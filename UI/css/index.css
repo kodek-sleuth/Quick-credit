@@ -3,6 +3,9 @@ body
     margin: 0;
     height: 100%;
     width: 100%;
+    background-color: #FFF;
+    color: #091E42;
+    font-size: 16px;
 }
 
 .navbar_icon
@@ -34,9 +37,16 @@ ul li
 ul
 {
     margin-left: 10px;
+    margin-top: 25px;
 }
 
 li
 {
     margin-left: 50px;
+}
+
+#navbar_third_column
+{
+    margin-left: 25%;
+    margin-top: 10px;
 }
