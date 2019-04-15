@@ -25,3 +25,18 @@ body
     display: flex;
     flex-direction: row;
 }
+
+ul li
+{
+    display: inline;
+}
+
+ul
+{
+    margin-left: 10px;
+}
+
+li
+{
+    margin-left: 50px;
+}
