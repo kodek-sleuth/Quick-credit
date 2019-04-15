@@ -4,3 +4,9 @@ body
     height: 100%;
     width: 100%;
 }
+
+.navbar_icon
+{
+    height: 30px;
+    width: 30px;
+}
