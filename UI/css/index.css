@@ -9,4 +9,19 @@ body
 {
     height: 30px;
     width: 30px;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+.homepage_navbar
+{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#navbar_first_column
+{
+    display: flex;
+    flex-direction: row;
 }
