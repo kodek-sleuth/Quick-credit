@@ -370,5 +370,70 @@ footer
 
 @media(max-width: 900px)
 {
-    
+    body
+    {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #FFF;
+        color: #091E42;
+        font-size: 16px;
+        font-family: 'Bitter', serif;
+    }
+
+    .homepage_navbar
+    {
+        padding: 5px;
+        width: 100%;
+    }
+
+    #navbar_second_column
+    {
+        display: none
+    }
+
+
+    #navbar_third_column
+    {
+        display: none
+    }
+
+    .navbar_fourth_column
+    {
+        display: block;
+        margin-top: 10px;
+        margin-left: 100px;
+    }
+
+    .navbar_menu_icon
+    {
+        fill: #091E42;
+        height: 25px;
+        width: 25px;
+        padding: 10px;
+        box-shadow: rgba(57, 73, 76, 0.4) 0px 1px 5px 1px, rgba(57, 73, 76, 0.25) 0px 1px 1px;
+        -moz-border-radius:36px;
+	    -webkit-border-radius:36px;
+    }
+
+    .second_container
+    {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .get_me_on
+    {
+        display: flex;
+        flex-direction: row;
+        margin-top: 15px;
+        margin-left: 20px;
+    }
+
+    .links
+    {
+        margin-left: 55px;
+    }
+
+
 }
