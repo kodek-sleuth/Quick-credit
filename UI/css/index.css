@@ -362,3 +362,13 @@ footer
     background: rgba(57, 73, 76, 0.4);
     text-align: center;
 }
+
+.navbar_fourth_column
+{
+    display: none;
+}
+
+@media(max-width: 900px)
+{
+    
+}
