@@ -224,7 +224,7 @@ li
 .how_it_works
 {
     background: #f9f9f9;
-    height: 50vh;
+    height: 60vh;
     padding: 50px;
     margin-top: 100px;
 }
@@ -299,5 +299,25 @@ li
     margin-top: 50px;
 }
 
+.testimonial
+{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 150px;
+    width: 700px;
+}
+
+.testimonial_image
+{
+    height: 300px;
+    width: 400px;
+    margin-left: 100px;
+}
+
+.testimonial_text
+{
+    margin-top: 100px;
+}
 
 
