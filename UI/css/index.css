@@ -328,4 +328,37 @@ li
     margin-top: 35px;
 }
 
+footer
+{
+    display: flex;
+    flex-direction: row;
+    padding-top: 50px;
+    padding-left: 50px;
+    background: rgba(57, 73, 76, 0.4);
+}
 
+.fourth_column
+{
+    margin-left: 150px;
+}
+
+
+.second_column
+{
+    margin-left: 150px;
+}
+
+.third_column
+{
+    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.final_div
+{
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background: rgba(57, 73, 76, 0.4);
+    text-align: center;
+}
