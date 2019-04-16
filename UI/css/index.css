@@ -159,5 +159,65 @@ li
 .to_page_down
 {
     margin-left: 150px;   
-    margin-top: 120px;
+    margin-top: 110px;
 }
+
+#intro_btn_one
+{
+    background: linear-gradient(to right,#019184 0,#019184 100%);
+	-moz-border-radius:36px;
+	-webkit-border-radius:36px;
+	border-radius:36px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:8px 50px;
+	text-decoration:none;
+    text-shadow:0px 0px 0px #1D2671;
+    border: none;
+    font-family: 'Bree Serif', serif;
+    outline: none;
+}
+
+#intro_btn_two
+{
+    background: linear-gradient(to right,#1D2671 0,#1D2671 100%);
+	-moz-border-radius:36px;
+	-webkit-border-radius:36px;
+	border-radius:36px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:8px 50px;
+	text-decoration:none;
+    text-shadow:0px 0px 0px #1D2671;
+    border: none;
+    font-family: 'Bree Serif', serif;
+    outline: none;
+}
+
+#btn_login:hover
+{
+    background: linear-gradient(to right,#041B2D 0,#041B2D 100%);
+}
+
+#btn_signup:hover
+{
+    background: linear-gradient(to right,#041B2D 0,#041B2D 100%);
+}
+
+#intro_btn_one:hover
+{
+    background: linear-gradient(to right,#041B2D 0,#041B2D 100%);
+}
+
+#intro_btn_two:hover
+{
+    background: linear-gradient(to right,#041B2D 0,#041B2D 100%);
+}
+
+
