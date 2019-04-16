@@ -76,7 +76,7 @@ li
 	font-size:17px;
 	padding:8px 50px;
 	text-decoration:none;
-    text-shadow:0px 0px 0px #2f6627;
+    text-shadow:0px 0px 0px #52A0FD;
     border: none;
     font-family: 'Bree Serif', serif;
     background: linear-gradient(to right,#52A0FD 0,#39fad7 100%);
@@ -97,8 +97,29 @@ li
 	font-size:17px;
 	padding:8px 50px;
 	text-decoration:none;
-    text-shadow:0px 0px 0px #2f6627;
+    text-shadow:0px 0px 0px #1D2671;
     border: none;
     font-family: 'Bree Serif', serif;
     outline: none;
+}
+
+.get_me_on
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    margin-left: 20px;
+}
+
+.links
+{
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    padding: 10px;
+    box-shadow: rgba(57, 73, 76, 0.4) 0px 1px 5px 1px, rgba(57, 73, 76, 0.25) 0px 1px 1px;
+    -moz-border-radius:36px;
+	-webkit-border-radius:36px;
+    border-radius:36px;
+    margin-bottom: 15px;
 }
