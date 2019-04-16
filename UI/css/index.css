@@ -54,7 +54,14 @@ ul
 
 li
 {
-    margin-left: 50px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+a
+{
+    color: #091E42;
+    text-decoration: none;
 }
 
 #navbar_third_column
@@ -402,7 +409,7 @@ footer
     {
         display: block;
         margin-top: 10px;
-        margin-left: 100px;
+        margin-left: 75px;
     }
 
     .navbar_menu_icon
@@ -428,7 +435,7 @@ footer
         display: flex;
         flex-direction: row;
         margin-top: 15px;
-        margin-left: 20px;
+        margin-left: 5px;
     }
 
     .links
@@ -478,24 +485,27 @@ footer
 
     .how_it_works
     {
-        height: 100vh;
+        height: 120vh;
     }
 
     .how_it_works_column_first
     {
-        margin-left: 105px;
         margin-bottom: 10px;
+        margin-left: 100px;
+        margin-right: 0;
     }
 
     .how_it_works_columns
     {
-        margin-right: 35px;
         margin-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .apply_btn
     {
         margin-left: 15%;
+        margin-top: 10px;
     }
 
     .testimonial
@@ -518,6 +528,7 @@ footer
         display: flex;
         flex-direction: column;
         padding: 0;
+        width: 100%;
     }
 
     .first_column
@@ -542,5 +553,10 @@ footer
         display: flex;
         flex-direction: row;
         margin-left: 0;
+    }
+
+    .testimonial_text
+    {
+        margin-left:15px;
     }
 }
