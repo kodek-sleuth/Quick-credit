@@ -301,23 +301,31 @@ li
 
 .testimonial
 {
+    margin-left: 225px;
     display: flex;
     flex-direction: row;
     margin-top: 50px;
     margin-bottom: 150px;
-    width: 700px;
+    width: 750px;
+    box-shadow: rgba(57, 73, 76, 0.4) 0px 1px 5px 1px, rgba(57, 73, 76, 0.25) 0px 1px 1px;
 }
 
 .testimonial_image
 {
     height: 300px;
     width: 400px;
-    margin-left: 100px;
 }
 
 .testimonial_text
 {
-    margin-top: 100px;
+    margin-left: 35px;
+    width: 300px;
+    margin-top: 35px;
+}
+
+#testimonial_paragraph
+{
+    margin-top: 35px;
 }
 
 
