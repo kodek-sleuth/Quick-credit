@@ -192,3 +192,35 @@ a:hover
     color: #17a2b8;
     text-decoration: #17a2b8;
 }
+
+#badFeedBack
+{
+    border-radius: 3px;
+    margin-bottom: 24px;
+    width: 30.5%;
+    color: #fff;
+    font-family: 'Bree Serif', serif;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    box-shadow: #dc3545 0px 1px 5px 1px, #dc3545 0px 1px 1px;
+    outline-color: #dc3545;
+    background: linear-gradient(to right,#dc3545 0,#dc3545 100%);
+}
+
+#goodFeedBack
+{
+    border-radius: 3px;
+    margin-bottom: 24px;
+    width: 30.5%;
+    color: #fff;
+    font-family: 'Bree Serif', serif;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    box-shadow: #dc3545 0px 1px 5px 1px, #dc3545 0px 1px 1px;
+    outline-color: #dc3545;
+    background: linear-gradient(to right,#dc3545 0,#dc3545 100%);
+}
