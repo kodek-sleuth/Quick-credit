@@ -15,22 +15,28 @@
             <h1 id="name_of_website">Quick-Credit</h1>
             <img src="icons/loan.svg" id="logo_of_website">
         </div>
-       
-        <h3>Already Have an account Login <a href="">Here</a></h3>
-        <div id="badFeedBack"></div>
-        <div id="goodFeedBack"></div>
+
+       <div class="validators">
+            <h3>Already Have an account Login <a href="">Here</a></h3>
+            <div id="badFeedBack"></div>
+            <div id="goodFeedBack"></div>
+       </div>
+        
         <div class="all_form_control">
             <div class="forms">
                 <form method="POST" id="signup_form">
                     <input id="email" class="formcontrol" placeholder="johana@gamil.com" type="email">
                     <input id="fullname" class="formcontrol" placeholder="Fullname" type="text">
                     <input id="password" class="formcontrol" type="password" placeholder="Password">
-                    <input id="address" class="formcontrol" type="text" placeholder="Pal, Kigali">
-                    <select name="dropdown" class="formcontrol">
-                        <option value="False" selected>False</option>
-                        <option value="True">True</option>
-                    </select>
-                    <input id="account" class="formcontrol" type="text" placeholder="1222-9020-222">
+                    <div id="float">
+                        <input id="address" class="formcontrol" type="text" placeholder="Address">
+                        <select name="dropdown" class="formcontrol">
+                            <option value="False" selected>False</option>
+                            <option value="True">True</option>
+                        </select>
+                    </div>
+                    
+                    <input id="account" class="formcontrol" type="text" placeholder="1222-9020-222"><br>
                     <input class="btn_submit" value="Sign Up!" type="button">
                 </form>
             </div>
