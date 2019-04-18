@@ -6,142 +6,82 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quick-Credit</title>
     <link href="https://fonts.googleapis.com/css?family=Acme|Shadows+Into+Light|Lobster|Noto+Serif|Pacifico|Roboto|StaatlichesCoiny|Hind|Mukta|Poppins|Rubik|Bree+Serif|Slabo+27px|Bitter|Merriweather" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet" type="text/css">
+    <link href="css/forms.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/ico" href="bank.png"/>
 </head>
 <body>
-    <div class="homepage_display_one">
-        <div class="homepage_navbar">
-            <div id="navbar_first_column">
-                <h2 id="name_of_website">QUICK-CREDIT</h2>
-                <div>
-                    <img src="images/money-bag.png" class="navbar_icon">
-                </div>
-            </div>
-
-            <div id="navbar_second_column">
-                <ul>
-                    <a href="#how_how"><li>How It Works</li></a>
-                    <a href="#testimonial"><li>Testimony</li></a>
-                    <a href="#footer"><li>Services</li></a>
-                </ul>
-            </div>
-
-            <div id="navbar_third_column">
-                <a href="/UI/signup.html"><button id="btn_signup">Signup</button></a>
-                <a href="/UI/login.html"><button id="btn_login">Login</button></a>
-            </div>
-
-            <div class="navbar_fourth_column">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="navbar_menu_icon">
-                    <path d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-                </svg>
-            </div>
+    <div class="first_container">
+        <div class="navbar">
+            <h1 id="name_of_website">Quick-Credit</h1>
+            <img src="icons/loan.svg" id="logo_of_website">
         </div>
-        <div>
 
-        <div class="second_container">
-            <div class="get_me_on">
-                <img src="icons/instagram.svg" class="links">
-                <img src="icons/facebook.svg" class="links">
-                <img src="icons/linkedin.svg" class="links">
-            </div>
-
-            <div class="introduction_qc">
-                <h1>Quick Credit is an online lending platform that provides short term soft loans to individuals.</h1>
-                <p class="introduction_text">This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners.</p>
-                <div class="introduction_btns">
-                    <a href="/UI/signup.html"><button id="intro_btn_one">Get Your Loan Now</button></a>
-                    <a href="/UI/signup.html"><button id="intro_btn_two">Try As Admin</button></a>
-                </div>
-                
-                <a href="#how_how"><div class="to_page_down">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="page_down">
-                        <path d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z"/>
-                    </svg>
-                </div></a>
-            </div>
-
-            <div>
-                <img src="images/173.jpg" class="quick_credit_image">
-            </div>
-        </div>
-    </div>
-
-      <!-- Projects Section -->
-      <div class="how_it_works" id="how_how">
-        <h1 class="how_it_works_Heading">How To Get Your Loan</h1>
+       <div class="validators">
+            <h3>Already Have an account Login <a href="/UI/login.html" id="first_link">Here</a></h3>
+            <div id="badFeedBack">Invalid Email or Password</div>
+            <div id="goodFeedBack">Successfully Logged In</div>
+       </div>
         
-        <div class="how_it_works_divs">    
-            <div class="how_it_works_column_first">
-                <img src="icons/account.svg" class="how_it_works_icons">
-                <p class="how_it_works_text">Register/Login</p>
+        <div class="all_form_control">
+            <div class="forms">
+                <form method="POST" id="signup_form">
+                    <input id="email" class="formcontrol long" placeholder="johana@gamil.com" type="email">
+                    <input id="fullname" class="formcontrol long" placeholder="Fullname" type="text">
+                    <input id="password" class="formcontrol long" type="password" placeholder="Password">
+                    <div id="float">
+                        <input id="address" class="formcontrol short" type="text" placeholder="Address">
+                        <select name="dropdown" class="formcontrol short">
+                            <option value="Are You an Admin-> False" selected>isAdmin-> False</option>
+                            <option value="Are You an Admin-> True">isAdmin-> True</option>
+                        </select>
+                    </div>
+                    
+                    <input id="account" class="formcontrol long" type="text" placeholder="Account Number"><br>
+                    <input class="btn_submit" value="Sign Up!" type="button">
+                </form>
             </div>
 
-            <div class="how_it_works_columns">
-                <img src="icons/email.svg" class="how_it_works_icons">
-                <p class="how_it_works_text">Wait For Verification Email</p>
+            <div class="image_settings">
+                <img src="icons/space-station.svg" class="image_form">
+                <h3>Fastest Loaning Enterprise in this Generation</h3>
+                <p>All Loans are sent to your Bank Account and Please enter a valid Email. Admins cannot make Loans so note that.</p>
+                <input value="Already Have an Account" type="button" id="haveAccount">
             </div>
-
-            <div class="how_it_works_columns">
-                <img src="icons/contract.svg" class="how_it_works_icons">
-                <p class="how_it_works_text">Use Link to Open Your Account and Apply For loan</p>
-            </div> 
-
-            <div class="how_it_works_columns">
-                <img src="icons/loan.svg" class="how_it_works_icons">
-                <p class="how_it_works_text">Successful Applicants Will Recieve Loan</p>
-            </div> 
-        </div>
-
-        <div class="apply_btn">
-            <a href="/signup.html"><button class="overall_btn_design">Register Now!</button></a>
-        </div>
-    </div>
-
-    <div class="testimonial" id="testimonial">
-        <img src="images/testmonial.jpg" class="testimonial_image">
-        <div class="testimonial_text">
-            <h3>Quick-Credit Testimonial</h3>
-            <p id="testimonial_paragraph">"Quick-credit made me feel like a valued customer and  I feel powered to chart my own path after receiving <br> my loan throughQuick-credit. Many many thanks."</p>
-            <h3>-Mathius Charlie</h3>
         </div>
     </div>
 
     <footer id="footer">
-       <div class="first_column">
-           <h1>Quick-Credit</h1>
-           <h3>Sign Up</h3>
-           <h3>Login</h3>
-           <h3>Use as Administrator</h3>
-       </div> 
-
-       <div class="second_column">
-           <h1>Services</h1>
-           <h3>Acquire Loan</h3>
-           <h3>Check Deadlines</h3>
-           <h3>Track Repayments</h3>
-       </div>
-
-       <div class="fourth_column">
-            <h1>Patners</h1>
-            <h3>Bank of Rwanda</h3>
-            <h3>Bank of Uganda</h3>
-            <h3>Bank of Kenya</h3>
-        </div>
-
-
-       <h1 class="third_column"> 
-            <img src="icons/instagram.svg" class="links">
-            <img src="icons/facebook.svg" class="links">
-            <img src="icons/linkedin.svg" class="links">
-       </h1>
-    </footer>
-
-    <div class="final_div">
-        <h3>Created By Mugerwa Joseph Lumu, Andela Bootcamp Challenge Cycle 6</h3>
-    </div>
+            <div class="first_column">
+                <h1>Quick-Credit</h1>
+                <a href="/UI/index.html"><h3>Homepage</h3></a>
+                <a href="/UI/login.html"><h3>Login as Administrator/User</h3></a>
+            </div> 
+     
+            <div class="second_column">
+                <h1>Services</h1>
+                <h3>Acquire Loan</h3>
+                <h3>Check Deadlines</h3>
+                <h3>Track Repayments</h3>
+            </div>
+     
+            <div class="fourth_column">
+                 <h1>Patners</h1>
+                 <a href="www.bankofrwanda.com"><h3>Bank of Rwanda</h3></a>
+                 <a href="www.bankofuganda.com"><h3>Bank of Uganda</h3></a>
+                 <a href="www.bankofkenya.com"><h3>Bank of Kenya</h3></a>
+             </div>
+     
+            <div class="third_column"> 
+                 <img src="icons/instagram.svg" class="links">
+                 <img src="icons/facebook.svg" class="links">
+                 <img src="icons/linkedin.svg" class="links">
+            </div>
+         </footer>
+     
+         <div class="final_div">
+             <h3>Created By Mugerwa Joseph Lumu, Andela Bootcamp Challenge Cycle 6</h1>
+         </div>
+         
     
 </body>
 </html>
