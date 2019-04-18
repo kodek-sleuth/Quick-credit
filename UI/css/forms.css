@@ -28,12 +28,12 @@ body
 {
     display: flex;
     flex-direction: row;
-    margin-left: 250px;
+    margin-left: 100px;
 }
 
 .validators
 {
-    margin-left: 150px;
+    margin-left: 100px;
 }
 
 .image_settings
@@ -44,11 +44,11 @@ body
 .image_form
 {
     margin-top: 0;
-    height: 100px;
+    height: 300px;
     width: 200px;
 }
 
-.float
+#float
 {
     display: flex;
     flex-direction: row;
