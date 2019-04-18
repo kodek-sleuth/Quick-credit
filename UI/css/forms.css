@@ -312,6 +312,17 @@ a:hover
     .long
     {
         width: 90%;
+        font-size: 17px;
+    }
+
+    #goodFeedBack
+    {
+        width: 90%;
+    }
+
+    #badFeedBack
+    {
+        width: 90%;
     }
 
     .links
@@ -322,6 +333,7 @@ a:hover
     .short
     {
         width: 44.5%;
+        font-size: 15px;
     }
 
     .btn_submit
