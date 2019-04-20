@@ -130,3 +130,10 @@ body
     margin-left: 15px;
     margin-top: 25px;
 }
+
+.side_navbar_icon_size
+{
+    height: 30px;
+    width: 30px;
+    fill: #fff;
+}
