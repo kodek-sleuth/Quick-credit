@@ -85,11 +85,12 @@ body
     height: 25px;
     width: 25px;
     padding: 10px;
-    box-shadow: #fff 0px 1px 5px 1px, #fff 0px 1px 1px;
+    box-shadow: #fff 0px 1px 5px 0px, #fff 0px 1px 0px;
     -moz-border-radius:36px;
     -webkit-border-radius:36px;
     cursor: pointer;
     outline: none;
+    display: none;
 
 
 }
