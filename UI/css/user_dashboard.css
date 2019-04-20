@@ -133,7 +133,19 @@ body
 
 .side_navbar_icon_size
 {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     fill: #fff;
+}
+
+.dash
+{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.dash_word
+{
+    margin-left: 15px;
 }
