@@ -1,0 +1,67 @@
+body
+{
+    background-color: #f2f7fb;
+    margin: 0;
+}
+
+.navbar_icon
+{
+    height: 25px;
+    width: 25px;
+}
+
+.side_navbar
+{
+    background-color: #fff;
+    bottom: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    width: 180px;
+    z-index: 1000;
+}
+
+.homepage_navbar
+{   
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.0625);
+    height: 65px;
+    margin-bottom: 0;
+    padding: 0;
+    position: fixed;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    width: 100%;
+    z-index: 800;
+}
+
+
+.dashboard
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.crm
+{
+    margin-left: 0px;
+    width: 100%;
+}
+
+.food
+{
+    text-align: center;
+    margin-top: 100px;
+}
+
+#navbar_first_column
+{
+    padding: 3px;
+    border-bottom: 1px solid rgba(0,0,0,.0625);
+    display: flex;
+    flex-direction: row;
+}
