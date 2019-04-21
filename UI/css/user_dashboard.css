@@ -60,7 +60,7 @@ body
 
 .crm
 {
-    margin-left: 0px;
+    margin-left: 0;
     width: 100%;
 }
 
@@ -176,7 +176,6 @@ body
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
 	font-size:17px;
 	padding:8px 50px;
 	text-decoration:none;
@@ -197,4 +196,79 @@ body
 .dashed_icon
 {
     fill: #00bcd4;
+}
+
+.dashboard_heading
+{
+    margin-left: 0;
+}
+
+@media(max-width: 900px)
+{
+    body
+    {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #f2f7fb;
+        color: #091E42;
+        font-size: 16px;
+        font-family: 'Bitter', serif;
+    }
+
+    .crm
+    {
+        
+    }
+
+    .side_navbar
+    {
+        display: none;
+        width: 100%;
+    }
+
+    #logout_btn
+    {
+        margin-top: 15px;
+    }
+
+    .navbar_menu_icon
+    {
+        display: block;
+        margin-top: 10px;
+        margin-left: 100px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .homepage_navbar
+    {
+        margin-left: 0%;
+        box-shadow: rgba(57, 73, 76, 0.4) 0px 2px 10px 1px, rgba(57, 73, 76, 0.25) 0px 1px 2px;
+    }
+
+    .navbar_menu_icon
+    {
+        margin-left: 10px;
+        background: #fff;
+        fill: #091E42;
+        box-shadow: rgba(57, 73, 76, 0.4) 0px 2px 10px 1px, rgba(57, 73, 76, 0.25) 0px 1px 2px;
+    }
+
+    #sponsor
+    {
+        margin-left: 10%;
+    }
+
+    .sponsor_logo
+    {
+        height: 25px;
+        margin-top: 20px;
+        margin-left: 35px;
+    }
+
+    .your_name
+    {
+        display: none;
+    }
 }
