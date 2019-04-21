@@ -137,6 +137,13 @@ body
     width: 25px;
     fill: #b7c0cd;
     margin-top: 15px;
+    cursor: pointer;
+    outline: none;
+}
+
+.side_navbar_icon_size:hover
+{
+    fill: #00bcd4;
 }
 
 
@@ -146,11 +153,18 @@ body
     display: flex;
     flex-direction: row;
     margin-left: 15px;
+    outline: none'
 }
 
 .dash_word
 {
     margin-left: 15px;
+    cursor: pointer;
+}
+
+.dash_word:hover
+{
+    color: #00bcd4;
 }
 
 #logout_btn
@@ -173,4 +187,14 @@ body
     margin-left: 15px;
     margin-top: 90%;
 
+}
+
+#dashed
+{
+    color: #00bcd4;
+}
+
+.dashed_icon
+{
+    fill: #00bcd4;
 }
