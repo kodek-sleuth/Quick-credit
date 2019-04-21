@@ -30,7 +30,7 @@ body
 {
     display: flex;
     flex-direction: row;
-    margin-left: 100px;
+    margin-left: 33%;
     margin-bottom: 50px;
 }
 
@@ -178,10 +178,11 @@ footer
 
 #applyLoan
 {
+    margin-left: 32%;
     text-align: center;
     border-radius: 3px;
     margin-bottom: 24px;
-    width: 25%;
+    width: 35%;
     color: #fff;
     font-family: 'Bree Serif', serif;
     font-size: 15px;
@@ -215,7 +216,7 @@ a:hover
 {
     border-radius: 3px;
     margin-bottom: 24px;
-    width: 30.5%;
+    width: 40%;
     color: #fff;
     font-family: 'Bree Serif', serif;
     font-size: 15px;
@@ -225,14 +226,14 @@ a:hover
     box-shadow: #dc3545 0px 1px 5px 1px, #dc3545 0px 1px 1px;
     outline-color: #dc3545;
     background: linear-gradient(to right,#dc3545 0,#dc3545 100%);
-    display: none;
+    margin-left: 32%;
 }
 
 #goodFeedBack
 {
     border-radius: 3px;
     margin-bottom: 24px;
-    width: 30.5%;
+    width: 40%;
     color: #fff;
     font-family: 'Bree Serif', serif;
     font-size: 15px;
@@ -243,7 +244,7 @@ a:hover
     box-shadow: #28a745 0px 1px 5px 1px, #28a745 0px 1px 1px;
     outline-color: #28a745;
     background: linear-gradient(to right,#28a745 0,#28a745 100%);
-    display: none;
+    margin-left: 32%;
 }
 
 @media(max-width: 900px)
