@@ -33,6 +33,7 @@ body
     color: #b7c0cd;
 }
 
+
 .homepage_navbar
 {   
     background-color: #fff;
@@ -210,6 +211,64 @@ body
 {
     height: 55px;
 }
+
+.user_stats
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20%;
+}
+
+.stat_one
+{
+    display: flex;
+    flex-direction: row;
+   
+    background: #17a2b8;
+    padding: 1.25rem;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    color: #fff;
+}
+
+.stat_icons
+{
+    fill: rgb(100, 97, 97);
+    height: 30px;
+    width: 30px;
+    margin-top: 25px;
+    margin-left: 5px;
+    padding: 5px;
+    background: #fff;
+    -moz-border-radius:36px;
+	-webkit-border-radius:36px;
+	border-radius:36px;
+}
+
+#unrepaid_loans
+{
+    display: flex;
+    margin-left: 20%;
+    text-decoration: underline
+}
+
+#repaid_loans
+{
+    display: flex;
+    margin-left: 20%;
+    text-decoration: underline
+}
+
+.loan_unrepaid
+{
+    display: flex;
+    margin-left: 20%;
+    width: 70%;
+    background: #fff;
+}
+
 
 @media(max-width: 900px)
 {
