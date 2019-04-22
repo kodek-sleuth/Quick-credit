@@ -318,6 +318,16 @@ body
     margin-left: 100px;
 }
 
+.user_profile
+{
+    display: block;
+    width: 70%;
+    background: #fff;
+    box-shadow: rgba(57, 73, 76, 0.4) 0px 1px 5px 1px, rgba(57, 73, 76, 0.25) 0px 1px 1px;
+    margin-left: 20%;
+    padding: 25px;
+}
+
 @media(max-width: 900px)
 {
     body
@@ -390,13 +400,13 @@ body
     .user_stats
     {
         flex-direction: column;
-        margin-left: 0%;
+        margin-left: 1%;
         width: 100%;
     }
 
     .stat_one
     {
-        width:60%;
+        width: 70%;
         margin-top: 25px;
 
     }
@@ -412,6 +422,7 @@ body
     {
         margin-left: 1%;
         width: 100%;
+        margin-bottom: 2px;
     }
 
     .struc_one

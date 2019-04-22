@@ -227,7 +227,6 @@ a:hover
     outline-color: #dc3545;
     background: linear-gradient(to right,#dc3545 0,#dc3545 100%);
     margin-left: 32%;
-    display: none;
 }
 
 #goodFeedBack
@@ -246,7 +245,6 @@ a:hover
     outline-color: #28a745;
     background: linear-gradient(to right,#28a745 0,#28a745 100%);
     margin-left: 32%;
-    display: none;
 }
 
 @media(max-width: 900px)
