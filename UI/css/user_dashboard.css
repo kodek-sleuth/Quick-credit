@@ -223,11 +223,10 @@ body
 {
     display: flex;
     flex-direction: row;
-   
     background: #17a2b8;
     padding: 1.25rem;
     word-wrap: break-word;
-    background-clip: border-box;
+   
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
     color: #fff;
@@ -372,5 +371,51 @@ body
     .your_name
     {
         display: none;
+    }
+
+    .user_stats
+    {
+        flex-direction: column;
+        margin-left: 0%;
+        width: 100%;
+    }
+
+    .stat_one
+    {
+        width:60%;
+        margin-top: 25px;
+
+    }
+
+    .loan_unrepaid
+    {
+        margin-left: 10%;
+        width: 100%;
+    }
+
+
+    .loan_repaid
+    {
+        margin-left: 10%;
+        width: 100%;
+    }
+
+    .struc_one
+    {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .struc_two
+    {
+        flex-direction: column;
+        text-align: center;
+    }
+
+
+    .struc_three
+    {
+        flex-direction: column;
+        text-align: center;
     }
 }
