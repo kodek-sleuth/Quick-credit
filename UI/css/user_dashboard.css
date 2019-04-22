@@ -256,14 +256,14 @@ body
 
 #repaid_loans
 {
-    display: flex;
+    display: block;
     margin-left: 20%;
     text-decoration: underline
 }
 
 .loan_unrepaid
 {
-    display: flex;
+    display: block;
     margin-left: 20%;
     width: 70%;
     background: #fff;
@@ -271,6 +271,12 @@ body
 }
 
 .struc_one
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.struc_two
 {
     display: flex;
     flex-direction: row;
