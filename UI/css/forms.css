@@ -9,8 +9,6 @@ body
     font-family: 'Bitter', serif;
 }
 
-
-
 .navbar
 {
     display: flex;
@@ -246,6 +244,13 @@ a:hover
     background: linear-gradient(to right,#28a745 0,#28a745 100%);
     margin-left: 32%;
 }
+
+.homepage_navbar
+{
+    margin-top: 0;
+    padding-top: 0;
+}
+
 
 @media(max-width: 900px)
 {
