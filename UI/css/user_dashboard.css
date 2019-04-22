@@ -10,6 +10,10 @@ body
 
 }
 
+a
+{
+    text-decoration: none;
+}
 .navbar_icon
 {
     height: 20px;
