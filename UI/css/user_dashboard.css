@@ -303,6 +303,20 @@ body
     border-top: 1px solid rgba(0,0,0,.0625);
 }
 
+.struc_text3
+{
+    margin-left: 40px;
+}
+
+.struc_text2
+{
+    margin-left: 70px;
+}
+
+.struc_text1
+{
+    margin-left: 100px;
+}
 
 @media(max-width: 900px)
 {
@@ -389,14 +403,14 @@ body
 
     .loan_unrepaid
     {
-        margin-left: 10%;
+        margin-left: 1%;
         width: 100%;
     }
 
 
     .loan_repaid
     {
-        margin-left: 10%;
+        margin-left: 1%;
         width: 100%;
     }
 
@@ -417,5 +431,20 @@ body
     {
         flex-direction: column;
         text-align: center;
+    }
+
+    .struc_text3
+    {
+        margin-left: 0px;
+    }
+
+    .struc_text2
+    {
+        margin-left: 0px;
+    }
+
+    .struc_text1
+    {
+        margin-left: 0px;
     }
 }
