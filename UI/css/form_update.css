@@ -36,3 +36,17 @@
 {
     height: 100px;
 }
+
+.control_display
+{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.control_display_password
+{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
