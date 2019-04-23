@@ -11,6 +11,11 @@
     width: 200px;
 }
 
+.stat_icons
+{
+    background-color: #FFF;
+}
+
 #logout_btn
 {
     margin-top: 70%;
@@ -55,6 +60,100 @@ button:hover
     color: #FFF;
 }
 
+.user_table
+{
+    width: 75%;
+    display: block;
+    margin-left: 20%;
+    background: #fff;
+    box-shadow: rgba(57, 73, 76, 0.4) 0px 1px 5px 1px, rgba(57, 73, 76, 0.25) 0px 1px 1px;
+}
+
+.search_icon
+{
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    background: #17a2b8;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.search
+{
+    height: 40px;
+    padding: 10px 19px;
+    border: 1px solid #E0E0E0;
+    border-radius: 2px;
+    color: #222;
+    background-color: #fff;
+    font-size: 13px;
+    line-height: 18px;
+    margin-left: 50%;
+    margin-top: 15px;
+    outline-color: #17a2b8;
+   
+
+}
+
+.table_column_one
+{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    border-bottom: 1px solid rgba(0,0,0,.0625);
+}
+
+.table_column_keys
+{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(0,0,0,.0625);
+}
+
+.table_column_values
+{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid rgba(0,0,0,.0625);
+}
+
+.row_struc_id
+{
+    padding-left: 20px;
+}
+
+.row_struc_pic
+{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.row_struc_name
+{
+    padding-left: 30px;
+    padding-right: 70px;
+    text-align: center;
+}
+
+.row_struc_email
+{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.row_struc_status
+{
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center;
+}
+
+.row_struc_perm
+{
+    padding-left: 40px;
+    padding-right: 40px;
+}
 
 @media(max-width: 900px)
 {
