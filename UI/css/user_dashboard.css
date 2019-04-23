@@ -142,7 +142,7 @@ a
 {
     height: 25px;
     width: 25px;
-    fill: #b7c0cd;
+    filter: invert(84%) sepia(6%) saturate(528%) hue-rotate(176deg) brightness(93%) contrast(87%);
     margin-top: 15px;
     cursor: pointer;
     outline: none;
@@ -150,7 +150,7 @@ a
 
 .side_navbar_icon_size:hover
 {
-    fill: #00bcd4;
+    filter: invert(54%) sepia(22%) saturate(1970%) hue-rotate(141deg) brightness(99%) contrast(105%);
 }
 
 
@@ -202,7 +202,7 @@ a
 
 .dashed_icon
 {
-    fill: #00bcd4;
+    filter: invert(54%) sepia(22%) saturate(1970%) hue-rotate(141deg) brightness(99%) contrast(105%);
 }
 
 .dashboard_heading
@@ -240,7 +240,7 @@ a
 
 .stat_icons
 {
-    fill: rgb(100, 97, 97);
+    filter: invert(76%) sepia(30%) saturate(415%) hue-rotate(124deg) brightness(96%) contrast(89%);
     height: 30px;
     width: 30px;
     margin-top: 25px;
