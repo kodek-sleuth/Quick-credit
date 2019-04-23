@@ -7,6 +7,7 @@
     <title>Quick-Credit</title>
     <link href="https://fonts.googleapis.com/css?family=Acme|Shadows+Into+Light|Lobster|Noto+Serif|Pacifico|Roboto|StaatlichesCoiny|Hind|Mukta|Poppins|Rubik|Bree+Serif|Slabo+27px|Bitter|Merriweather" rel="stylesheet">
     <link href="css/user_dashboard.css" rel="stylesheet" type="text/css">
+    <link href="css/admin_dashboard.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/ico" href="bank.png"/>
 </head>
 <body>
@@ -39,26 +40,34 @@
 
                 <div class="dash">
                     <div>
-                        <img src="icons/get_money.svg" class="side_navbar_icon_size">
-                    </div>
-
-                    <a href="/Quick-credit/UI/get_loan.html"><h5 class="dash_word">Get Loan</h5></a>
-                </div>
-
-                <div class="dash">
-                    <div>
                         <img src="icons/repay_loan.svg" class="side_navbar_icon_size">
                     </div>
 
-                    <a href="/Quick-credit/UI/loan_repayment.html"><h5 class="dash_word">Repay Loan</h5></a>
+                    <a href="/Quick-credit/UI/get_loan.html"><h5 class="dash_word">Loan Applications</h5></a>
                 </div>
 
                 <div class="dash">
                     <div>
-                        <img src="icons/track_payments.svg" class="side_navbar_icon_size">
+                        <img src="icons/paid_loans.svg" class="side_navbar_icon_size">
                     </div>
 
-                    <a href="/Quick-credit/UI/track_repayments.html"><h5 class="dash_word">Track Payments</h5></a>
+                    <a href="/Quick-credit/UI/loan_repayment.html"><h5 class="dash_word">Repaid Loans</h5></a>
+                </div>
+
+                <div class="dash">
+                    <div>
+                        <img src="icons/unpaid_loans.svg" class="side_navbar_icon_size">
+                    </div>
+
+                    <a href="/Quick-credit/UI/track_repayments.html"><h5 class="dash_word">Unrepaid Loans</h5></a>
+                </div>
+
+                <div class="dash">
+                    <div>
+                        <img src="icons/total_loan.svg" class="side_navbar_icon_size">
+                    </div>
+
+                    <a href="/Quick-credit/UI/track_repayments.html"><h5 class="dash_word">Search Loans</h5></a>
                 </div>
 
                 <div class="dash">
@@ -100,15 +109,15 @@
                 <div class="content_body">
                     <div class="dashboard_heading">
                         <img src="icons/account_logo.svg" class="account_logo">
-                        <h3 class="account_text">Account Feed</h3>
+                        <h3 class="account_text">Admin Dashboard</h3>
                     </div>
 
                     <div class="user_stats">
-                        <div class="stat_one" style="margin-left: 20px">
+                        <div class="stat_one stat_left">
                             <div class="statistics">
-                                <h4>Total Loans</h4>
-                                <h3 id="stat_loan_amount">3</h3>
-                                <h4 id="stat_total_loan_amount">Total Credit: shs.4000000</h4>
+                                <h4>All Users</h4>
+                                <h3 id="stat_user_amount_all">7</h3>
+                               <button>View Users</button>
                             </div>
 
                             <div>
@@ -116,11 +125,11 @@
                             </div>
                         </div>
 
-                        <div class="stat_one" style="margin-left: 20px; background: #e83e8c">
+                        <div class="stat_one stat_left stat_color4">
                             <div class="statistics">
-                                <h4>Repaid Loans</h4>
-                                <h3 id="stat_loan_amount">2</h3>
-                                <h4 id="stat_total_loan_amount">Total Credit: shs.3000000</h4>
+                                <h4>Verified</h4>
+                                <h3 id="stat_user_amount_ver">3</h3>
+                                <button>View Users</button>
                             </div>
 
                             <div>
@@ -128,17 +137,30 @@
                             </div>
                         </div>
 
-                            <div class="stat_one" style="margin-left: 20px; background: #20c997">
-                                <div class="statistics">
-                                    <h4>UnRepaid Loan</h4>
-                                    <h3>1</h3>
-                                    <h4 id="stat_total_loan_balance">Total Credit: shs.2000000</h4>
-                                </div>
-    
-                                <div>
-                                    <img src="icons/unpaid_loans.svg" class="stat_icons">
-                                </div>
+                        <div class="stat_one stat_left stat_color5">
+                            <div class="statistics">
+                                <h4>Pending</h4>
+                                <h3>1</h3>
+                                <button>View Users</button>
                             </div>
+
+                            <div>
+                                <img src="icons/unpaid_loans.svg" class="stat_icons">
+                            </div>
+                        </div>
+
+                        <div class="stat_one stat_left stat_color6">
+                            <div class="statistics">
+                                <h4>Rejected</h4>
+                                <h3>3</h3>
+                                <button>View Users</button>
+                            </div>
+
+                            <div>
+                                <img src="icons/unpaid_loans.svg" class="stat_icons">
+                            </div>
+                        </div>
+
                     </div>
 
                     <h3 id="unrepaid_loans">Unrepaid Loan</h3>

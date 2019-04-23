@@ -232,7 +232,6 @@ a
     background: #17a2b8;
     padding: 1.25rem;
     word-wrap: break-word;
-   
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
     color: #fff;
@@ -334,6 +333,23 @@ a
     padding: 25px;
     margin-bottom: 25px;
 }
+
+.stat_color2
+{
+    background: #e83e8c;
+}
+
+
+.stat_color3
+{
+    background: #20c997;
+}
+
+.stat_left
+{
+    margin-left: 20px;
+}
+
 
 @media(max-width: 900px)
 {
