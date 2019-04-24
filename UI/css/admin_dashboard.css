@@ -107,20 +107,59 @@ button:hover
 
 tr th
 {
-    border-bottom: 1px solid pink;
+    padding: 25px;
+}
+
+tr td
+{
     padding: 10px;
 }
 
-table tr 
+tr:nth-child(odd)
 {
-    border-bottom: 1px solid gray;
+    background: rgba(167, 177, 179, 0.4);
+}
+
+th
+{
+    background: #222;
+    color: #FFF;
 }
 
 
 #table
 {
     width: 100%;
-    border-spacing: 5px;
+    border-collapse: collapse;
+}
+
+
+.table_btn_reject
+{
+    background: #dc281e;
+    color: #FFF;
+}
+
+.table_btn_reject:hover
+{
+    background: #dc281e;
+}
+
+
+.table_btn_verify
+{
+    background: #28a745;
+    color: #FFF;
+}
+
+.table_btn_verify:hover
+{
+    background: #28a745;
+}
+
+.user_table
+{
+    overflow-x: auto;
 }
 
 
@@ -144,5 +183,16 @@ table tr
     .statistics
     {
         margin-left: 0px;
+    }
+
+    .user_table
+    {
+        width: 100%;
+        margin-left: 10px;
+    }
+
+    .table_btn_reject
+    {
+        margin-top: 10px;
     }
 }
