@@ -62,9 +62,10 @@ button:hover
 
 .user_table
 {
-    width: 75%;
+    margin-bottom: 20px;
+    width: 80%;
     display: block;
-    margin-left: 20%;
+    margin-left: 18%;
     background: #fff;
     box-shadow: rgba(57, 73, 76, 0.4) 0px 1px 5px 1px, rgba(57, 73, 76, 0.25) 0px 1px 1px;
 }
@@ -104,56 +105,24 @@ button:hover
     border-bottom: 1px solid rgba(0,0,0,.0625);
 }
 
-.table_column_keys
+tr th
 {
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid rgba(0,0,0,.0625);
+    border-bottom: 1px solid pink;
+    padding: 10px;
 }
 
-.table_column_values
+table tr 
 {
-    display: flex;
-    flex-direction: row;
-    border-bottom: 2px solid rgba(0,0,0,.0625);
+    border-bottom: 1px solid gray;
 }
 
-.row_struc_id
+
+#table
 {
-    padding-left: 20px;
+    width: 100%;
+    border-spacing: 5px;
 }
 
-.row_struc_pic
-{
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
-.row_struc_name
-{
-    padding-left: 30px;
-    padding-right: 70px;
-    text-align: center;
-}
-
-.row_struc_email
-{
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
-.row_struc_status
-{
-    padding-left: 40px;
-    padding-right: 40px;
-    text-align: center;
-}
-
-.row_struc_perm
-{
-    padding-left: 40px;
-    padding-right: 40px;
-}
 
 @media(max-width: 900px)
 {
