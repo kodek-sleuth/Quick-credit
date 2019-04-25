@@ -250,4 +250,9 @@ th
     {
         margin-top: 10px;
     }
+
+    #logout_btn
+    {
+        margin-top: 50px;
+    }
 }

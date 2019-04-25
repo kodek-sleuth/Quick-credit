@@ -33,7 +33,7 @@ a
     -webkit-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
-    width: 190px;
+    width: 200px;
     z-index: 1000;
     color: #b7c0cd;
 }
@@ -191,7 +191,7 @@ a
     font-family: 'Bree Serif', serif;
     outline: none;
     margin-left: 15px;
-    margin-top: 90%;
+    margin-top: 10%;
 
 }
 
@@ -351,6 +351,8 @@ a
 }
 
 
+
+
 @media(max-width: 900px)
 {
     body
@@ -362,11 +364,6 @@ a
         color: #091E42;
         font-size: 16px;
         font-family: 'Bitter', serif;
-    }
-
-    .crm
-    {
-        
     }
 
     .side_navbar
@@ -480,5 +477,15 @@ a
     .struc_text1
     {
         margin-left: 0px;
+    }
+
+    #close_icon
+    {
+        margin-left: 100px;
+    }
+
+    .logout_btn
+    {
+        margin-top: 50px;
     }
 }
