@@ -2,9 +2,10 @@
   "name": "quick-credit",
   "version": "1.0.0",
   "description": "Quick Credit is an online lending platform that provides short term soft loans to individuals. This",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "mocha test || true"
+    "test": "mocha test || true",
+    "start": "nodemon --exec babel-node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,20 @@
   },
   "homepage": "https://github.com/kodek-sleuth/Quick-credit#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.19.0",
+    "eslint": "^5.16.0",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "nodemon": "^1.18.11",
+    "pg": "^7.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2"
   }
 }
