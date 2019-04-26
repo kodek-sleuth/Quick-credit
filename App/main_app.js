@@ -1,12 +1,13 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable indent */
 /* eslint-disable max-len */
-const app = require('express');
+const express = require('express');
+const app = express()
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 // Enable API to receive urlencoded data as well as json
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
