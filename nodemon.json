@@ -1,0 +1,5 @@
+{
+    "env":{
+        "QUICK_CREDIT_DB": "postgresql://josekodek:sleuth@localhost:5432/quickcredit"
+    }
+}
