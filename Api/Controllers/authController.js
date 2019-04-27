@@ -1,3 +1,7 @@
+/* eslint-disable max-len */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable brace-style */
+/* eslint-disable no-console */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable eqeqeq */
@@ -18,7 +22,7 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 // eslint-disable-next-line object-shorthand
 const pool = new DatabaseConnector({ connectionString: connectionString });
 
-exports.create_user = (req, res, next) => {
+exports.createUser = (req, res, next) => {
     const valuesToDatabase = [req.body.Fullname, req.body.Email, req.body.Password, req.body.Address, req.body.Status, req.body.isAdmin, req.file.path];
     const dataBaseQuery = 'INSERT INTO users(fullname, email, password, address, status, isAdmin, image) VALUES($1, $2, $3, $4, $5, $6, $7)';
     
@@ -32,10 +36,18 @@ exports.create_user = (req, res, next) => {
                 {
                     pool.query(dataBaseQuery, valuesToDatabase)
                     .then((result) => {
+                        console.log(result);
                         res.status.json({
-
+                            Status: '401',
+                            Data: result
                         });
                     })
+                    .catch((error) => {
+                        res.status(401).json({
+                            Status: '401',
+                            Error: error
+                        });
+                    });
                 }
 
                 else 
@@ -45,7 +57,6 @@ exports.create_user = (req, res, next) => {
                         Error: 'Name is already taken'
                     });
                 }
-
             })
             .catch((dataErrorName) => {
                 res.status(401).json({
@@ -53,7 +64,6 @@ exports.create_user = (req, res, next) => {
                     Error: dataErrorName
                 });
             });
-
         }
 
         else
@@ -69,5 +79,5 @@ exports.create_user = (req, res, next) => {
             Status: '401',
             Error: dataError
         });
-    })
+    });
 };
