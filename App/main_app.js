@@ -13,6 +13,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
+app.use('/heloo', (req, res) => {
+    res.status(200).json({
+        Message: 'Hello',
+    });
+});
+
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {
     const error = new Error('Not Found');
