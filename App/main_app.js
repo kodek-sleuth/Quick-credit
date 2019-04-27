@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable indent */
 /* eslint-disable max-len */
@@ -12,12 +13,6 @@ const morgan = require('morgan');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-
-app.use('/heloo', (req, res) => {
-    res.status(200).json({
-        Message: 'Hello',
-    });
-});
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {
