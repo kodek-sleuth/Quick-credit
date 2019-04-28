@@ -25,6 +25,8 @@ const pool = new DatabaseConnector({ connectionString: connectionString });
 exports.createUser = (req, res, next) => {
     const valuesToDatabaseAdmin = [req.body.Fullname, req.body.Email, req.body.Password, req.body.isAdmin, req.file.path];
     const dataBaseQueryAdmin = 'INSERT INTO admin(fullname, email, password, isAdmin, image) VALUES($1, $2, $3, $4, $5)';
+    const valuesToDatabaseUser = [req.body.Fullname, req.body.Email, req.body.Password, req.body.Address, req.body.isAdmin, req.file.path];
+    const dataBaseQueryUser = 'INSERT INTO admin(fullname, email, password, isAdmin, image) VALUES($1, $2, $3, $4, $5, $6)';
     
     console.log(req.body.isAdmin);
     
@@ -38,7 +40,7 @@ exports.createUser = (req, res, next) => {
                 .then((dataCheck2) => {
                     if (dataCheck2.rows == 0)
                     {
-                        pool.query(dataBaseQueryAdmin, valuesToDatabaseAdmin)
+                        pool.query(dataBaseQueryUser, valuesToDatabaseUser)
                         .then((result) => {
                             console.log(result);
                             res.status(201).json({
@@ -51,7 +53,7 @@ exports.createUser = (req, res, next) => {
                                     Address: req.body.Address,
                                     Image: req.file.path
                                 },
-                                Success: 'Admin Has Successfully Signed Up'
+                                Success: 'User Has Successfully Signed Up'
                             });
                         })
                         .catch((error) => {
