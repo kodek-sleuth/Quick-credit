@@ -10,9 +10,6 @@
 // Password Encryption Library
 const bcrypt = require('bcrypt');
 
-// Authorisation Token Generator Library
-const jwt = require('jsonwebtoken');
-
 // .Pool enables connection to Database
 const DatabaseConnector = require('pg').Pool;
 
