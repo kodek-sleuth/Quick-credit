@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const authSignup = require('../Api/Auth/authSignUp');
 const authLogin = require('../Api/Auth/authLogin');
+const verifyUser = require('../Api/Verifications/verifyUser');
 
 // Enable API to receive urlencoded data as well as json
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,9 +19,11 @@ app.use(morgan('dev'));
 
 // To tell express that uploads is a static folder 
 app.use(express.static('uploads'));
+
+// Defining our routes.
 app.use('/auth', authSignup);
 app.use('/auth', authLogin);
-
+app.use('/user', verifyUser);
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {
