@@ -40,7 +40,6 @@ exports.createUser = (req, res, next) => {
                     if (dataCheck2.rows == 0)
                     {
                         bcrypt.hash(req.body.Password, 10, (err, hash) => {
-                            
                             if (err)
                             {
                                 res.status(401).json({
