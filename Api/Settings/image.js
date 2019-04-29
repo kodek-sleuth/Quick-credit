@@ -10,7 +10,7 @@
 // Middleware that enables fileUploads
 const multer = require('multer');
 
-// .diskStorage Func enables us set filename and determine destination, callback to null means they was no error so we can set the file...
+// .diskStorage Func(Takes in Functions) enables us set filename and determine destination, callback to null means they was no error so we can set the file...
 const storage = multer.diskStorage({
     filename: function (req, file, cb) {
         cb(null, file.originalname);
