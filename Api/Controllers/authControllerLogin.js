@@ -30,9 +30,10 @@ exports.loginUser = (req, res, next) => {
         const checkQueryUser = `Select * from users WHERE email='${req.body.Email}'`;
         pool.query(checkQueryUser)
         .then((data) => {
-            if (data.rows > 0)
+            if (data.rowCount > 0)
             {
-                bcrypt.compare(req.body.Password, data[0].password, (err, success) => {
+                const fetchedData = data.rows;
+                bcrypt.compare(req.body.Password, fetchedData[0].password, (err, success) => {
                     if (err)
                     {
                         res.status(401).json({
@@ -44,10 +45,10 @@ exports.loginUser = (req, res, next) => {
                     if (success)
                     {
                         const token = jwt.sign({
-                            Email: data[0].email
+                            Email: fetchedData[0].email
                         },
 
-                        process.env.QUICK_CREDIT_SK,
+                        process.env.JWT_KEY,
                         {
                             expiresIn: '2h'
                         });
@@ -55,12 +56,68 @@ exports.loginUser = (req, res, next) => {
                         res.status(200).json({
                             Status: 200,
                             Data: {
-                                Fullname: data[0].fullname,
-                                Email: data[0].email,
-                                Address: data[0].Address,
-                                Status: data[0].status
+                                Fullname: fetchedData[0].fullname,
+                                Email: fetchedData[0].email,
+                                Address: fetchedData[0].Address,
+                                Status: fetchedData[0].status
                             },
                             Success: 'User Has Successfully Logged In',
+                            Token: token
+                        });
+                    }
+                });
+            }
+
+            else
+            {
+                res.status(401).json({
+                    Status: '401',
+                    Error: 'Invalid Email or Password'
+                });
+            }
+        })
+        .catch((error) => {
+            res.status(401).json({
+                Status: 401,
+                Error: 'Invalid Email or Password'
+            });
+        });
+    }
+
+    if (req.body.isAdmin == 'True')
+    {
+        pool.query(checkQueryAdmin)
+        .then((data) => {
+            if (data.rowCount > 0)
+            {
+                const fetchedData = data.rows;
+                bcrypt.compare(req.body.Password, fetchedData[0].password, (err, success) => {
+                    if (err)
+                    {
+                        res.status(401).json({
+                            Status: '401',
+                            Error: 'Invalid Email or Password'
+                        });
+                    }
+
+                    if (success)
+                    {
+                        const token = jwt.sign({
+                            Email: fetchedData[0].email
+                        },
+
+                        process.env.JWT_KEY,
+                        {
+                            expiresIn: '2h'
+                        });
+
+                        res.status(200).json({
+                            Status: 200,
+                            Data: {
+                                Fullname: fetchedData[0].fullname,
+                                Email: fetchedData[0].email
+                            },
+                            Success: 'Admin Has Successfully Logged In',
                             Token: token
                         });
                     }

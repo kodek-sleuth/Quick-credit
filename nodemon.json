@@ -1,5 +1,6 @@
 {
     "env":{
-        "QUICK_CREDIT_DB": "postgresql://josekodek:sleuth@localhost:5432/quickcredit"
+        "QUICK_CREDIT_DB": "postgresql://josekodek:sleuth@localhost:5432/quickcredit",
+        "JWT_KEY": "I have a very big secret"
     }
 }
