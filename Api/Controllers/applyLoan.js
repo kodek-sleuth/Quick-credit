@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 /* eslint-disable object-shorthand */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable max-len */
@@ -20,8 +21,6 @@ const pool = new Pool({ connectionString: connectionString });
 exports.applyLoan = (req, res, next) => {
     const queryReqLoan = 'INSERT INTO loan(investee_email, investee_name, createdOn, tenor, amount, paymentInstallment, balance, interest) VALUES($1, $2, $3, $4, $5, $6, $7, $8)';
 
-    const queryReqValues = [req.body.Email, req.body.Fullname, currentDate, req.body.tenor, req.body.amount, paymentInstallment, balance, interest];
-
     pool.query(`Select * from users WHERE email='${req.body.Email}' and fullname='${req.body.Fullname}'`)
     .then((data) => {
         if (data.rowCount > 0)
@@ -41,12 +40,61 @@ exports.applyLoan = (req, res, next) => {
                             {
                                 res.status(401).json({
                                     Status: '401',
-                                    Error: 'User can only apply for a loan at one time'
+                                    Error: 'Please repay old loan before applying for a new one'
                                 });
+                            }
+
+                            else
+                            {
+                                if (req.body.tenor > 12)
+                                {
+                                    res.status(401).json({
+                                        Status: '401',
+                                        Error: 'Tenor must be 12 or less'
+                                    });
+                                }
+
+                                else 
+                                {
+                                    if (req.body.Amount > 20000000)
+                                    {
+                                        res.status(401).json({
+                                            Status: '401',
+                                            Error: 'User can only request for a loan less than 20,000,001'
+                                        });
+                                    }
+
+                                    else
+                                    {
+                                        // 
+                                        
+                                        const today = new Date();
+
+                                        const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+
+                                        const balance = 0.00;
+                                        const interest = (5 * req.body.Amount) / 100;
+                                        const paymentInstallment = (req.body.Amount + interest) / req.body.Tenor;
+                                        
+                                        const queryReqValues = [req.body.Email, req.body.Fullname, currentDate, req.body.Tenor, req.body.Amount, paymentInstallment, balance, interest];
+                                    
+                                        pool.query(queryReqLoan, queryReqValues)
+                                        .then(() => {
+
+                                        })
+                                        .catch(() => {
+
+                                        });
+                                    }
+                                }
                             }
                         });
                     }
                 })
+
+                .catch((err) => {
+
+                });
             }
 
             else
