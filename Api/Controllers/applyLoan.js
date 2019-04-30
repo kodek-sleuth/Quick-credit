@@ -27,9 +27,26 @@ exports.applyLoan = (req, res, next) => {
         if (data.rowCount > 0)
         {
             const dataFetched = data.rows;
+            
             if (dataFetched[0].status == 'Verified')
             {
                 pool.query(`Select * from loan WHERE investee_email='${req.body.Email}' and investee_name='${req.body.Fullname}'`)
+                .then((loanData) => {
+                    if (loanData.rowCount >= 0)
+                    {
+                        const userLoanData = loanData.rows;
+
+                        userLoanData.forEach((loan) => {
+                            if (loan.repaid == 'False')
+                            {
+                                res.status(401).json({
+                                    Status: '401',
+                                    Error: 'User can only apply for a loan at one time'
+                                });
+                            }
+                        });
+                    }
+                })
             }
 
             else
