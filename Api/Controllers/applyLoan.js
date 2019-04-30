@@ -79,11 +79,18 @@ exports.applyLoan = (req, res, next) => {
                                         const queryReqValues = [req.body.Email, req.body.Fullname, currentDate, req.body.Tenor, req.body.Amount, paymentInstallment, balance, interest];
                                     
                                         pool.query(queryReqLoan, queryReqValues)
-                                        .then(() => {
-
+                                        .then((result) => {
+                                            res.status(201).json({
+                                                Status: '201',
+                                                Data: result,
+                                                Success: 'Successfully Applied for loan'
+                                            });
                                         })
-                                        .catch(() => {
-
+                                        .catch((error) => {
+                                            res.status(401).json({
+                                                Status: '401',
+                                                Error: error.message
+                                            });
                                         });
                                     }
                                 }
