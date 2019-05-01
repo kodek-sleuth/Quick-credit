@@ -30,7 +30,11 @@ exports.approveLoan = (req, res, next) => {
                         Fullname: dataFound[0].investee_name,
                         Email: dataFound[0].investee_email,
                         Status: dataFound[0].status,
-                        Address: dataFound[0].address
+                        Amount: dataFound[0].amount,
+                        Installment: dataFound[0].paymentinstallment,
+                        Balance: dataFound[0].balance,
+                        Repaid: dataFound[0].repaid,
+                        Tenor: `${dataFound[0].tenor} months`
                     },
                     Success: 'Successfully Approved Loan'
                 }); 
