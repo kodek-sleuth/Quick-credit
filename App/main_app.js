@@ -13,6 +13,8 @@ const authLogin = require('../Api/Auth/authLogin');
 const verifyUser = require('../Api/Verifications/verifyUser');
 const rejectUser = require('../Api/Verifications/rejectUser');
 const reqLoan = require('../Api/Loans/applyLoan');
+const repayLoan = require('../Api/Loans/repayLoan');
+const approveLoan = require('../Api/Loans/approveLoan');
 
 // Enable API to receive urlencoded data as well as json
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,6 +30,8 @@ app.use('/auth', authLogin);
 app.use('/user', verifyUser);
 app.use('/user', rejectUser);
 app.use('/user', reqLoan);
+app.use('/user', repayLoan);
+app.use('/user', approveLoan);
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {
