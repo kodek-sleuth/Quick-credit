@@ -16,6 +16,7 @@ const reqLoan = require('../Api/Loans/applyLoan');
 const repayLoan = require('../Api/Loans/repayLoan');
 const approveLoan = require('../Api/Loans/approveLoan');
 const posTransLoan = require('../Api/Loans/postTransaction');
+const rejectLoan = require('../Api/Loans/rejectLoan');
 
 // Enable API to receive urlencoded data as well as json
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,12 +29,13 @@ app.use(express.static('uploads'));
 // Defining our routes.
 app.use('/auth', authSignup);
 app.use('/auth', authLogin);
-app.use('/user', verifyUser);
-app.use('/user', rejectUser);
+app.use('/admin', verifyUser);
+app.use('/admin', rejectUser);
 app.use('/user', reqLoan);
 app.use('/user', repayLoan);
-app.use('/user', approveLoan);
+app.use('/admin', approveLoan);
 app.use('/admin', posTransLoan);
+app.use('/admin', rejectLoan)
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {

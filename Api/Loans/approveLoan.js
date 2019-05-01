@@ -4,6 +4,6 @@ const approveLoan = express.Router();
 
 const approveLoanController = require('../Controllers/approveLoanController');
 
-approveLoan.patch('/loans/:loanId', approveLoanController.approveLoan);
+approveLoan.patch('/loans/:loanId/approve', approveLoanController.approveLoan);
 
 module.exports = approveLoan;

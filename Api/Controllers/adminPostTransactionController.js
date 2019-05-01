@@ -16,7 +16,7 @@ const pool = new Pool({ connectionString: connectionString });
 exports.postTransaction = (req, res, next) => {
     const loanId = req.params.loanId;
 
-    const verifyLoanQuery = `Update loan SET repaid='True' and balance=0.00 where id='${loanId}'`;
+    const verifyLoanQuery = `Update loan SET repaid='True' where id='${loanId}'`;
 
     pool.query(`Select * from loan where id='${loanId}'`)
         .then((data) => {
@@ -28,19 +28,42 @@ exports.postTransaction = (req, res, next) => {
                 {
                     pool.query(verifyLoanQuery)
                     .then((feedback) => {
-                        res.status(200).json({
-                            Status: 200,
-                            Data: {
-                                Fullname: dataFound[0].investee_name,
-                                Email: dataFound[0].investee_email,
-                                Status: dataFound[0].status,
-                                Amount: dataFound[0].amount,
-                                Installment: dataFound[0].paymentinstallment,
-                                Balance: dataFound[0].balance,
-                                Repaid: dataFound[0].repaid,
-                                Tenor: `${dataFound[0].tenor} months`
-                            },
-                            Success: 'Successfully Placed Transaction for User'
+                        pool.query(`SELECT * FROM loan WHERE id=${loanId}`)
+                        .then((newData) => {
+                            if (newData.rowCount > 0)
+                            {
+                                const fetchedData = newData.rows;
+
+                                res.status(200).json({
+                                    Status: 200,
+                                    Data: {
+                                        Fullname: fetchedData[0].investee_name,
+                                        Email: fetchedData[0].investee_email,
+                                        Status: fetchedData[0].status,
+                                        Amount: fetchedData[0].amount,
+                                        Installment: fetchedData[0].paymentinstallment,
+                                        Balance: fetchedData[0].balance,
+                                        Repaid: fetchedData[0].repaid,
+                                        Tenor: `${fetchedData[0].tenor} months`
+                                    },
+                                    Success: 'Successfully Placed Transaction for User'
+                                });
+                            }
+
+                            else
+                            {
+                                res.status(500).json({
+                                    Status: '500',
+                                    Error: 'No rows Found'
+                                });
+                            }
+                        })
+
+                        .catch((error) => {
+                            res.status(500).json({
+                                Status: '500',
+                                Error: error.message
+                            });
                         }); 
                     })
 
