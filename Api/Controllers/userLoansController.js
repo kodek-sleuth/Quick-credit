@@ -25,6 +25,7 @@ exports.getLoansApplied = (req, res, next) => {
         {
             const fetchedData1 = data.rows;
             res.status(200).json({
+                Count: data.rowCount,
                 Status: 200,
                 Data: fetchedData1
             });
@@ -32,8 +33,9 @@ exports.getLoansApplied = (req, res, next) => {
 
         else
         {
-            res.status(500).json({
-                Status: 500,
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
                 Error: 'User has not applied for any loans'
             });
         }
@@ -56,6 +58,7 @@ exports.getLoansApproved = (req, res, next) => {
         {
             const fetchedData2 = data.rows;
             res.status(200).json({
+                Count: data.rowCount,
                 Status: 200,
                 Data: fetchedData2
             });
@@ -63,9 +66,10 @@ exports.getLoansApproved = (req, res, next) => {
 
         else
         {
-            res.status(500).json({
-                Status: 500,
-                Error: 'User has no approved loans'
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Success: 'User has no approved loans'
             });
         }
     })
@@ -87,6 +91,7 @@ exports.getLoansRejected = (req, res, next) => {
         {
             const fetchedData3 = data.rows;
             res.status(200).json({
+                Count: data.rowCount,
                 Status: 200,
                 Data: fetchedData3
             });
@@ -94,9 +99,10 @@ exports.getLoansRejected = (req, res, next) => {
 
         else
         {
-            res.status(500).json({
-                Status: 500,
-                Error: 'User has no rejected loans'
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Success: 'User has no rejected loans'
             });
         }
     })
@@ -118,6 +124,7 @@ exports.getLoansRepaid = (req, res, next) => {
         {
             const fetchedData = data.rows;
             res.status(200).json({
+                Count: data.rowCount,
                 Status: 200,
                 Data: fetchedData
             });
@@ -125,9 +132,10 @@ exports.getLoansRepaid = (req, res, next) => {
 
         else
         {
-            res.status(500).json({
-                Status: 500,
-                Error: 'User has no paid loans'
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Success: 'User has no paid loans'
             });
         }
     })
@@ -149,6 +157,7 @@ exports.getLoansUnrepaid = (req, res, next) => {
         {
             const fetchedData = data.rows;
             res.status(200).json({
+                Count: data.rowCount,
                 Status: 200,
                 Data: fetchedData
             });
@@ -156,9 +165,10 @@ exports.getLoansUnrepaid = (req, res, next) => {
 
         else
         {
-            res.status(500).json({
-                Status: 500,
-                Error: 'User has no unrepaid loans'
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Success: 'User has no unrepaid loans'
             });
         }
     })
