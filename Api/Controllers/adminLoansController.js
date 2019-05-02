@@ -47,7 +47,7 @@ exports.getAllUsers = (req, res, next) => {
 };
 
 exports.getUsersVerified = (req, res, next) => {
-    pool.query(`Select * from users WHERE status=${'Verified'}`)
+    pool.query("Select * from users WHERE status='Verified'")
     .then((data) => {
         if (data.rowCount > 0)
         {
@@ -78,7 +78,7 @@ exports.getUsersVerified = (req, res, next) => {
 };
 
 exports.getUsersPending = (req, res, next) => {
-    pool.query(`Select * from users WHERE status=${'Pending'}`)
+    pool.query("Select * from users WHERE status='Pending'")
     .then((data) => {
         if (data.rowCount > 0)
         {
@@ -108,7 +108,7 @@ exports.getUsersPending = (req, res, next) => {
 };
 
 exports.getLoansApproved = (req, res, next) => {
-    pool.query(`Select * from loan WHERE status=${'Approved'}`)
+    pool.query("Select * from loan WHERE status='Approved'")
     .then((data) => {
         if (data.rowCount > 0)
         {
@@ -139,7 +139,7 @@ exports.getLoansApproved = (req, res, next) => {
 };
 
 exports.getLoansRejected = (req, res, next) => {
-    pool.query(`Select * from loan WHERE status=${'Rejected'}`)
+    pool.query("Select * from loan WHERE status='Rejected'")
     .then((data) => {
         if (data.rowCount > 0)
         {
@@ -170,7 +170,7 @@ exports.getLoansRejected = (req, res, next) => {
 };
 
 exports.getLoansRepaid = (req, res, next) => {
-    pool.query(`Select * from loan WHERE repaid=${'True'}`)
+    pool.query("Select * from loan WHERE repaid='True'")
     .then((data) => {
         if (data.rowCount > 0)
         {
@@ -201,7 +201,7 @@ exports.getLoansRepaid = (req, res, next) => {
 };
 
 exports.getLoansUnrepaid = (req, res, next) => {
-    pool.query(`Select * from loan WHERE repaid=${'False'}`)
+    pool.query("Select * from loan WHERE repaid='False'")
     .then((data) => {
         if (data.rowCount > 0)
         {
@@ -219,6 +219,69 @@ exports.getLoansUnrepaid = (req, res, next) => {
                 Count: data.rowCount,
                 Status: 200,
                 Success: 'There are no unrepaid Loans'
+            });
+        }
+    })
+
+    .catch((error) => {
+        res.status(500).json({
+            Status: 500,
+            Error: error.message 
+        });
+    });
+};
+
+
+exports.getAllLoansPending = (req, res, next) => {
+    pool.query("Select * from loan WHERE status='Pending'")
+    .then((data) => {
+        if (data.rowCount > 0)
+        {
+            const fetchedData = data.rows;
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Data: fetchedData
+            });
+        }
+
+        else
+        {
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Success: 'There are no pending loans'
+            });
+        }
+    })
+
+    .catch((error) => {
+        res.status(500).json({
+            Status: 500,
+            Error: error.message 
+        });
+    });
+};
+
+exports.getAllLoans = (req, res, next) => {
+    pool.query('Select * from loan')
+    .then((data) => {
+        if (data.rowCount > 0)
+        {
+            const fetchedData = data.rows;
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Data: fetchedData
+            });
+        }
+
+        else
+        {
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Success: 'There are no Loans found'
             });
         }
     })
