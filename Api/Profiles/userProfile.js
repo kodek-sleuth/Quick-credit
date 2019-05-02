@@ -6,6 +6,8 @@ const userProfile = express.Router();
 
 const userProfileController = require('../Controllers/updateProfileUser');
 
-userProfile.patch('/user/:userId/profile', settings.upload.single('Image'), userProfileController.updateUserProfile);
+userProfile.get('/user/:Email/profile', userProfileController.getUserProfile);
+
+userProfile.patch('/user/:Email/profile', settings.upload.single('Image'), userProfileController.updateUserProfile);
 
 module.exports = userProfile;
