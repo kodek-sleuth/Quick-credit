@@ -4,6 +4,8 @@ const reject = express.Router();
 
 const rejectUserController = require('../Controllers/verifyFeature');
 
-reject.patch('/:Email/reject', rejectUserController.rejectUser);
+const jwtMiddleware = require('../Settings/checkAuth');
+
+reject.patch('/:Email/reject', jwtMiddleware, rejectUserController.rejectUser);
 
 module.exports = reject;

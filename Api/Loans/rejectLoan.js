@@ -4,6 +4,8 @@ const rejectLoan = express.Router();
 
 const rejectLoanController = require('../Controllers/rejectLoanController');
 
-rejectLoan.patch('/loans/:loanId/reject', rejectLoanController.rejectLoan);
+const jwtMiddleware = require('../Settings/checkAuth');
+
+rejectLoan.patch('/loans/:loanId/reject', jwtMiddleware, rejectLoanController.rejectLoan);
 
 module.exports = rejectLoan;

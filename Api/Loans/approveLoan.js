@@ -4,6 +4,8 @@ const approveLoan = express.Router();
 
 const approveLoanController = require('../Controllers/approveLoanController');
 
-approveLoan.patch('/loans/:loanId/approve', approveLoanController.approveLoan);
+const jwtMiddleware = require('../Settings/checkAuth');
+
+approveLoan.patch('/loans/:loanId/approve', jwtMiddleware, approveLoanController.approveLoan);
 
 module.exports = approveLoan;

@@ -91,12 +91,12 @@ exports.loginUser = (req, res, next) => {
             if (data.rowCount > 0)
             {
                 const fetchedData = data.rows;
-                bcrypt.compare(req.body.Password, fetchedData[0].password, (err, success) => {
-                    if (err)
+                bcrypt.compare(req.body.Password, fetchedData[0].password, (error, success) => {
+                    if (error)
                     {
                         res.status(401).json({
                             Status: '401',
-                            Error: 'Invalid Email or Password'
+                            Error: error.message
                         });
                     }
 

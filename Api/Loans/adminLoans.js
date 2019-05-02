@@ -4,24 +4,26 @@ const adminLoans = express.Router();
 
 const adminLoansController = require('../Controllers/adminLoansController');
 
-adminLoans.get('/users', adminLoansController.getAllUsers);
+const jwtMiddleware = require('../Settings/checkAuth');
 
-adminLoans.get('/users/pending', adminLoansController.getUsersPending);
+adminLoans.get('/users', jwtMiddleware, adminLoansController.getAllUsers);
 
-adminLoans.get('/users/verified', adminLoansController.getUsersVerified);
+adminLoans.get('/users/pending', jwtMiddleware, adminLoansController.getUsersPending);
 
-adminLoans.get('/loans', adminLoansController.getAllLoans);
+adminLoans.get('/users/verified', jwtMiddleware, adminLoansController.getUsersVerified);
 
-adminLoans.get('/loans/approved', adminLoansController.getLoansApproved);
+adminLoans.get('/loans', jwtMiddleware, adminLoansController.getAllLoans);
 
-adminLoans.get('/loans/pending', adminLoansController.getAllLoansPending);
+adminLoans.get('/loans/approved', jwtMiddleware, adminLoansController.getLoansApproved);
 
-adminLoans.get('/loans/rejected', adminLoansController.getLoansRejected);
+adminLoans.get('/loans/pending', jwtMiddleware, adminLoansController.getAllLoansPending);
 
-adminLoans.get('/loans/repaid', adminLoansController.getLoansRepaid);
+adminLoans.get('/loans/rejected', jwtMiddleware, adminLoansController.getLoansRejected);
 
-adminLoans.get('/loans/unrepaid', adminLoansController.getLoansUnrepaid);
+adminLoans.get('/loans/repaid', jwtMiddleware, adminLoansController.getLoansRepaid);
 
-adminLoans.get('/loans/:loanId', adminLoansController.getSpecificLoan);
+adminLoans.get('/loans/unrepaid', jwtMiddleware, adminLoansController.getLoansUnrepaid);
+
+adminLoans.get('/loans/:loanId', jwtMiddleware, adminLoansController.getSpecificLoan);
 
 module.exports = adminLoans;

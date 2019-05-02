@@ -5,6 +5,8 @@ const verify = express.Router();
 
 const verifyUserController = require('../Controllers/verifyFeature');
 
-verify.patch('/:Email/verify', verifyUserController.verifyUser);
+const jwtMiddleware = require('../Settings/checkAuth');
+
+verify.patch('/:Email/verify', jwtMiddleware, verifyUserController.verifyUser);
 
 module.exports = verify;

@@ -101,7 +101,7 @@ exports.createUser = (req, res, next) => {
         .catch((dataError) => {
             res.status(401).json({
                 Status: '401',
-                Error: dataError
+                Error: dataError.message
             });
         });
     }
@@ -145,7 +145,7 @@ exports.createUser = (req, res, next) => {
                                 .catch((error) => {
                                     res.status(401).json({
                                         Status: '401',
-                                        Error: error
+                                        Error: error.message
                                     });
                                 });
                             }
@@ -163,7 +163,7 @@ exports.createUser = (req, res, next) => {
                 .catch((dataErrorName) => {
                     res.status(401).json({
                         Status: '401',
-                        Error: dataErrorName
+                        Error: dataErrorName.message
                     });
                 });
             }
@@ -179,7 +179,7 @@ exports.createUser = (req, res, next) => {
         .catch((dataError) => {
             res.status(401).json({
                 Status: '401',
-                Error: dataError
+                Error: dataError.message
             });
         });
     } 
