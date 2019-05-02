@@ -17,6 +17,8 @@ const repayLoan = require('../Api/Loans/repayLoan');
 const approveLoan = require('../Api/Loans/approveLoan');
 const posTransLoan = require('../Api/Loans/postTransaction');
 const rejectLoan = require('../Api/Loans/rejectLoan');
+const userLoans = require('../Api/Loans/userLoans');
+const adminLoans = require('../Api/Loans/adminLoans');
 
 // Enable API to receive urlencoded data as well as json
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,7 +37,9 @@ app.use('/user', reqLoan);
 app.use('/user', repayLoan);
 app.use('/admin', approveLoan);
 app.use('/admin', posTransLoan);
-app.use('/admin', rejectLoan)
+app.use('/admin', rejectLoan);
+app.use('/user', userLoans);
+app.use('/user', adminLoans);
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {

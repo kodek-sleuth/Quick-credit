@@ -230,3 +230,35 @@ exports.getLoansUnrepaid = (req, res, next) => {
         });
     });
 };
+
+exports.getSpecificLoan = (req, res, next) => {
+    const loanId = req.params.loanId;
+    pool.query(`Select * from loan WHERE id=${loanId}`)
+    .then((data) => {
+        if (data.rowCount > 0)
+        {
+            const fetchedData = data.rows;
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Data: fetchedData
+            });
+        }
+
+        else
+        {
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Success: 'Loan with that Id does not exist'
+            });
+        }
+    })
+
+    .catch((error) => {
+        res.status(500).json({
+            Status: 500,
+            Error: error.message 
+        });
+    });
+};
