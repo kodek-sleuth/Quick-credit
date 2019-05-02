@@ -18,10 +18,10 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 
 const pool = new Pool({ connectionString: connectionString });
 
-exports.getUserProfile = (req, res, next) => {
+exports.getAdminProfile = (req, res, next) => {
     const Email = req.params.Email;
 
-    pool.query(`Select * from users WHERE email='${Email}'`)
+    pool.query(`Select * from admin WHERE email='${Email}'`)
     .then((data) => {
         if (data.rowCount > 0)
         {
@@ -50,14 +50,14 @@ exports.getUserProfile = (req, res, next) => {
     });
 };
 
-exports.updateUserProfile = (req, res, next) => {
+exports.updateAdminProfile = (req, res, next) => {
     const email = req.params.Email;
 
     if (req.body.Email)
     {
-        pool.query(`UPDATE users set email='${req.body.Email}' where email='${email}'`)
+        pool.query(`UPDATE admin set email='${req.body.Email}' where email='${email}'`)
         .then((feedBack) => {
-            pool.query(`select * from users where email='${email}'`)
+            pool.query(`select * from admin where email='${email}'`)
             .then((feedBack2) => {
                 console.log(feedBack2.rows);
                 res.status(200);
@@ -80,9 +80,9 @@ exports.updateUserProfile = (req, res, next) => {
 
     if (req.body.Fullname)
     {
-        pool.query(`UPDATE users set fullname='${req.body.Fullname}' where email='${email}'`)
+        pool.query(`UPDATE admin set fullname='${req.body.Fullname}' where email='${email}'`)
         .then((feedBack) => {
-            pool.query(`select * from users where email='${email}'`)
+            pool.query(`select * from admin where email='${email}'`)
             .then((feedBack2) => {
                 res.status(200);
             })
@@ -104,7 +104,7 @@ exports.updateUserProfile = (req, res, next) => {
 
     if (req.body.OldPassword)
     {
-        pool.query(`SELECT * FROM users where email='${email}'`, (errorFound2, result) => {
+        pool.query(`SELECT * FROM admin where email='${email}'`, (errorFound2, result) => {
             if (errorFound2)
             {
                 res.status(500).json({
@@ -138,7 +138,7 @@ exports.updateUserProfile = (req, res, next) => {
 
                         else
                         {
-                            pool.query(`UPDATE users set password='${hash}' where email='${email}'`, (errorFound, feedBack) => {
+                            pool.query(`UPDATE admin set password='${hash}' where email='${email}'`, (errorFound, feedBack) => {
                                 if (errorFound)
                                 {
                                     res.status(500).json({
@@ -149,7 +149,7 @@ exports.updateUserProfile = (req, res, next) => {
 
                                 else
                                 {
-                                    pool.query(`select * from users where email='${email}'`, (error, feedBack2) => {
+                                    pool.query(`select * from admin where email='${email}'`, (error, feedBack2) => {
                                         if (error)
                                         {
                                             res.status(500).json({
@@ -173,42 +173,11 @@ exports.updateUserProfile = (req, res, next) => {
         });
     }
 
-    if (req.body.Address)
-    {
-        pool.query(`UPDATE users set address='${req.body.Address}' where email='${email}'`, (error, success) => {
-            if (error)
-            {
-                res.status(500).json({
-                    Status: 500,
-                    Error: error.message
-                });   
-            }
-
-            else
-            {
-                pool.query(`select * from users where email='${email}'`, (error2, success2) => {
-                    if (error)
-                    {
-                        res.status(500).json({
-                            Status: 500,
-                            Error: error.message
-                        });
-                    }
-
-                    else
-                    {
-                        res.status(200);
-                    }
-                });
-            }
-        });
-    }
-
     if (req.file.path)
     {
-        pool.query(`UPDATE users set image='${req.file.path}' where email='${email}'`)
+        pool.query(`UPDATE admin set image='${req.file.path}' where email='${email}'`)
         .then((feedBack) => {
-            pool.query(`select * from users where email='${email}'`, (err, success) => {
+            pool.query(`select * from admin where email='${email}'`, (err, success) => {
                 if (err)
                 {
                     res.status(500).json({
