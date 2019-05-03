@@ -6,8 +6,14 @@
 const express = require('express');
 
 const app = express();
+
 const bodyParser = require('body-parser');
+
 const morgan = require('morgan');
+
+// Library that generates the UI/UX of swagger
+const swaggerUI = require('swagger-ui-express');
+
 const authSignup = require('../Api/Auth/authSignUp');
 const authLogin = require('../Api/Auth/authLogin');
 const verifyUser = require('../Api/Verifications/verifyUser');
@@ -21,6 +27,7 @@ const userLoans = require('../Api/Loans/userLoans');
 const adminLoans = require('../Api/Loans/adminLoans');
 const userProfile = require('../Api/Profiles/userProfile');
 const adminProfile = require('../Api/Profiles/adminProfile');
+const swagger = require('../Api/Settings/swagger');
 
 // Enable API to receive urlencoded data as well as json
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,6 +36,13 @@ app.use(morgan('dev'));
 
 // To tell express that uploads is a static folder 
 app.use(express.static('uploads'));
+
+app.get('/swagger.json', (req, res, next) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swagger.swaggerSpec);
+});
+
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swagger.swaggerSpec));
 
 // Defining our routes.
 app.use('/auth', authSignup);
