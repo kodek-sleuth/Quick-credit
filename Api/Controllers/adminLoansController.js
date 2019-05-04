@@ -24,7 +24,8 @@ exports.getAllUsers = (req, res, next) => {
             const fetchedData1 = data.rows;
             res.status(200).json({
                 Status: 200,
-                Data: fetchedData1
+                Data: fetchedData1,
+                Success: 'Successfully Fetched Users'
             });
         }
 

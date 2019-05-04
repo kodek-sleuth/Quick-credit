@@ -6,6 +6,30 @@ const adminLoansController = require('../Controllers/adminLoansController');
 
 const jwtMiddleware = require('../Settings/checkAuthAdmin');
 
+
+/**
+* @swagger
+* /admin/users:
+*   get:
+*     security:
+*        - bearerAuth: []
+*     tags:
+*       - Admin
+*     name: Gets User Profile
+*     summary: Gets an Admin Profile
+*     consumes:
+*       - multipart/form-data
+*     parameters:
+*       - name: ":Email"
+*         in: path
+*         description: Email of User Profile
+*         required: true
+*         type: string
+*     responses:
+*       200:
+*         Success: Successfully Fetched Users
+*/
+
 adminLoans.get('/users', jwtMiddleware, adminLoansController.getAllUsers);
 
 adminLoans.get('/users/pending', jwtMiddleware, adminLoansController.getUsersPending);
