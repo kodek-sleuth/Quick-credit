@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
     try
     {
         const token = req.headers.authorization.split(' ')[1];
-        const decode = jwt.verify(token, process.env.JWT_KEY);
+        const decode = jwt.verify(token, process.env.JWT_KEY_USER);
         req.userData = decode;
         next();
     }
@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
     catch (error)
     {
         res.status(401).json({
-            Message: 'Authorisation required to access resource',
+            Message: 'User Authorisation required to access resource',
         });
     }
 };

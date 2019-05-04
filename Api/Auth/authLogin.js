@@ -9,7 +9,7 @@ const userController = require('../Controllers/authControllerLogin');
 * /auth/login:
 *   post:
 *     tags:
-*       - Users
+*       - Auth
 *     name: Login
 *     summary: Logs in a User/Admin
 *     consumes:

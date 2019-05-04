@@ -2,11 +2,35 @@ const express = require('express');
 
 const settings = require('../Settings/image');
 
-const jwtMiddleware = require('../Settings/checkAuth');
+const jwtMiddleware = require('../Settings/checkAuthAdmin');
 
 const adminProfile = express.Router();
 
 const adminProfileController = require('../Controllers/adminUpdateProfile');
+
+
+/**
+* @swagger
+* /admin/{:Email}/profile:
+*   get:
+*     security:
+*        - bearerAuth: []
+*     tags:
+*       - Profiles
+*     name: Gets User Profile
+*     summary: Gets an Admin Profile
+*     consumes:
+*       - multipart/form-data
+*     parameters:
+*       - name: ":Email"
+*         in: path
+*         description: Email of User Profile
+*         required: true
+*         type: string
+*     responses:
+*       200:
+*         data: []
+*/
 
 adminProfile.get('/:Email/profile', adminProfileController.getAdminProfile);
 
@@ -51,9 +75,9 @@ adminProfile.get('/:Email/profile', adminProfileController.getAdminProfile);
 *         description: Upload an Image File.
 *     responses:
 *       200:
-*         description: User Has Successfully Logged In
+*         description: Successfully Updated Profilen
 *       401:
-*         description: Invalid Email or Password
+*         description: Admin Authorisation required to access resource
 */
 
 adminProfile.patch('/:Email/profile', jwtMiddleware, settings.upload.single('Image'), adminProfileController.updateAdminProfile);

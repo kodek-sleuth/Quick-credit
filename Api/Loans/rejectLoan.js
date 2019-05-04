@@ -4,7 +4,7 @@ const rejectLoan = express.Router();
 
 const rejectLoanController = require('../Controllers/rejectLoanController');
 
-const jwtMiddleware = require('../Settings/checkAuth');
+const jwtMiddleware = require('../Settings/checkAuthAdmin');
 
 rejectLoan.patch('/loans/:loanId/reject', jwtMiddleware, rejectLoanController.rejectLoan);
 

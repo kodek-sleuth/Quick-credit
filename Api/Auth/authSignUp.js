@@ -11,7 +11,7 @@ const image = require('../Settings/image');
 * /auth/signup:
 *   post:
 *     tags:
-*       - Users
+*       - Auth
 *     name: Signup
 *     summary: Signs up a User/Admin
 *     consumes:
@@ -48,7 +48,7 @@ const image = require('../Settings/image');
 *         description: Upload an Image File.
 *     responses:
 *       201:
-*         description: User Has Successfully Logged In
+*         description: User Has Successfully Signed Up
 *       401:
 *         description: Invalid Email or Password
 */

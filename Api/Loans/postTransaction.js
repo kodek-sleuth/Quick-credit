@@ -2,7 +2,7 @@ const express = require('express');
 
 const postTransLoan = express.Router();
 
-const jwtMiddleware = require('../Settings/checkAuth');
+const jwtMiddleware = require('../Settings/checkAuthAdmin');
 
 const postTransLoanController = require('../Controllers/adminPostTransactionController');
 

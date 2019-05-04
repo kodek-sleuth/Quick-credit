@@ -4,7 +4,7 @@ const adminLoans = express.Router();
 
 const adminLoansController = require('../Controllers/adminLoansController');
 
-const jwtMiddleware = require('../Settings/checkAuth');
+const jwtMiddleware = require('../Settings/checkAuthAdmin');
 
 adminLoans.get('/users', jwtMiddleware, adminLoansController.getAllUsers);
 

@@ -6,6 +6,7 @@ const userProfile = express.Router();
 
 const userProfileController = require('../Controllers/updateProfileUser');
 
+const jwtMiddleware = require('../Settings/checkAuthUser');
 
 /**
 * @swagger
@@ -15,8 +16,8 @@ const userProfileController = require('../Controllers/updateProfileUser');
 *        - bearerAuth: []
 *     tags:
 *       - Profiles
-*     name: Update User Profile
-*     summary: Updates a User Profile
+*     name: Gets User Profile
+*     summary: Gets a User Profile
 *     consumes:
 *       - multipart/form-data
 *     parameters:
@@ -27,13 +28,10 @@ const userProfileController = require('../Controllers/updateProfileUser');
 *         type: string
 *     responses:
 *       200:
-*         description: User Has Successfully Logged In
-*       401:
-*         description: Invalid Email or Password
+*         data: []
 */
 
-userProfile.get('/:Email/profile', userProfileController.getUserProfile);
-
+userProfile.get('/:Email/profile', jwtMiddleware, userProfileController.getUserProfile);
 
 /**
 * @swagger
@@ -76,11 +74,11 @@ userProfile.get('/:Email/profile', userProfileController.getUserProfile);
 *         description: Upload an Image File.
 *     responses:
 *       200:
-*         description: User Has Successfully Logged In
+*         description: Successfully Updated Profile
 *       401:
-*         description: Invalid Email or Password
+*         description: User Authorisation required to access resource
 */
 
-userProfile.patch('/:Email/profile', settings.upload.single('Image'), userProfileController.updateUserProfile);
+userProfile.patch('/:Email/profile', jwtMiddleware, settings.upload.single('Image'), userProfileController.updateUserProfile);
 
 module.exports = userProfile;
