@@ -11,7 +11,7 @@ const userController = require('../Controllers/authControllerLogin');
 *     tags:
 *       - Users
 *     name: Signup
-*     summary: Logs in a user/admin
+*     summary: Logs in a User/Admin
 *     consumes:
 *       - application/json
 *     parameters:

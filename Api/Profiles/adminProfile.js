@@ -8,44 +8,43 @@ const adminProfile = express.Router();
 
 const adminProfileController = require('../Controllers/adminUpdateProfile');
 
-adminProfile.get('/:Email/profile', jwtMiddleware, adminProfileController.getAdminProfile);
+adminProfile.get('/:Email/profile', adminProfileController.getAdminProfile);
 
 /**
 * @swagger
-* /admin/signup:
-*   post:
+* /admin/{:Email}/profile:
+*   patch:
+*     security:
+*        - bearerAuth: []
 *     tags:
 *       - Profiles
 *     name: Update Admin Profile
-*     summary: Signs up a customer
+*     summary: Updates an Admin Profile
 *     consumes:
 *       - multipart/form-data
 *     parameters:
+*       - name: ":Email"
+*         in: path
+*         description: Email of Admin Profile
+*         required: true
+*         type: string
 *       - name: Fullname
 *         in: formData
 *         type: string
-*         required: true
 *         description: Yahya Jalal.
 *       - name: Email
 *         in: formData
 *         type: string
-*         required: true
 *         description: yahya@gmail.com.
 *       - name: Password
 *         in: formData
 *         type: string
-*         required: true
 *         description: stealth.
-*       - name: isAdmin
-*         in: formData
-*         type: string
-*         required: true
-*         description: True or False.
 *       - name: Address
 *         in: formData
 *         type: string
 *         description: Kitende, Entebbe.
-*       - name: uploadImage
+*       - name: Image
 *         in: formData
 *         type: file
 *         required: true

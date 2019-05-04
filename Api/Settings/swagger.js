@@ -18,17 +18,17 @@ const swaggerDefinition = {
       description: 'Quick Credit is an online lending platform that provides short term soft loans to individuals'
     },
     host: 'localhost:3000',
-    schemes: ['https', 'http'],
+    schemes: ['http'],
     basePath: '/',
     securityDefinitions: {
       bearerAuth: {
         type: 'apiKey',
-        name: 'Authorization',
+        name: 'authorization',
         scheme: 'bearer',
         in: 'header',
       },
     },
-};
+  };
 
 const options = {
     swaggerDefinition,

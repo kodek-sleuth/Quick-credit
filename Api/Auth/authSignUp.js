@@ -13,7 +13,7 @@ const image = require('../Settings/image');
 *     tags:
 *       - Users
 *     name: Signup
-*     summary: Signs up a customer
+*     summary: Signs up a User/Admin
 *     consumes:
 *       - multipart/form-data
 *     parameters:
@@ -41,13 +41,13 @@ const image = require('../Settings/image');
 *         in: formData
 *         type: string
 *         description: Kitende, Entebbe.
-*       - name: uploadImage
+*       - name: Image
 *         in: formData
 *         type: file
 *         required: true
 *         description: Upload an Image File.
 *     responses:
-*       200:
+*       201:
 *         description: User Has Successfully Logged In
 *       401:
 *         description: Invalid Email or Password
