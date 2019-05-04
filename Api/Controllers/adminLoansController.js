@@ -56,7 +56,8 @@ exports.getUsersVerified = (req, res, next) => {
             res.status(200).json({
                 Count: data.rowCount,
                 Status: 200,
-                Data: fetchedData2
+                Data: fetchedData2,
+                Success: 'Successfully Fetched Users'
             });
         }
 
@@ -87,7 +88,8 @@ exports.getUsersPending = (req, res, next) => {
             res.status(200).json({
                 Count: data.rowCount,
                 Status: 200,
-                Data: fetchedData2
+                Data: fetchedData2,
+                Success: 'Successfully Fetched Users'
             });
         }
 
@@ -117,7 +119,8 @@ exports.getLoansApproved = (req, res, next) => {
             res.status(200).json({
                 Count: data.rowCount,
                 Status: 200,
-                Data: fetchedData2
+                Data: fetchedData2,
+                Success: 'Successfully Fetched Loans'
             });
         }
 
@@ -148,7 +151,8 @@ exports.getLoansRejected = (req, res, next) => {
             res.status(200).json({
                 Count: data.rowCount,
                 Status: 200,
-                Data: fetchedData3
+                Data: fetchedData3,
+                Success: 'Successfully Fetched Loans'
             });
         }
 
@@ -179,7 +183,8 @@ exports.getLoansRepaid = (req, res, next) => {
             res.status(200).json({
                 Count: data.rowCount,
                 Status: 200,
-                Data: fetchedData
+                Data: fetchedData,
+                Success: 'Successfully Fetched Loans'
             });
         }
 
@@ -210,7 +215,8 @@ exports.getLoansUnrepaid = (req, res, next) => {
             res.status(200).json({
                 Count: data.rowCount,
                 Status: 200,
-                Data: fetchedData
+                Data: fetchedData,
+                Success: 'Successfully Fetched Loans'
             });
         }
 
@@ -242,7 +248,8 @@ exports.getAllLoansPending = (req, res, next) => {
             res.status(200).json({
                 Count: data.rowCount,
                 Status: 200,
-                Data: fetchedData
+                Data: fetchedData,
+                Success: 'Successfully Fetched Loans'
             });
         }
 
@@ -273,7 +280,8 @@ exports.getAllLoans = (req, res, next) => {
             res.status(200).json({
                 Count: data.rowCount,
                 Status: 200,
-                Data: fetchedData
+                Data: fetchedData,
+                Success: 'Successfully Fetched Loans'
             });
         }
 
@@ -305,7 +313,8 @@ exports.getSpecificLoan = (req, res, next) => {
             res.status(200).json({
                 Count: data.rowCount,
                 Status: 200,
-                Data: fetchedData
+                Data: fetchedData,
+                Success: 'Successfully Fetched Loans'
             });
         }
 
