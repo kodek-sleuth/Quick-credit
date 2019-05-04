@@ -6,6 +6,32 @@ const userProfile = express.Router();
 
 const userProfileController = require('../Controllers/updateProfileUser');
 
+
+/**
+* @swagger
+* /user/{:Email}/profile:
+*   get:
+*     security:
+*        - bearerAuth: []
+*     tags:
+*       - Profiles
+*     name: Update User Profile
+*     summary: Updates a User Profile
+*     consumes:
+*       - multipart/form-data
+*     parameters:
+*       - name: ":Email"
+*         in: path
+*         description: Email of User Profile
+*         required: true
+*         type: string
+*     responses:
+*       200:
+*         description: User Has Successfully Logged In
+*       401:
+*         description: Invalid Email or Password
+*/
+
 userProfile.get('/:Email/profile', userProfileController.getUserProfile);
 
 

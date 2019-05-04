@@ -48,7 +48,7 @@ exports.loginUser = (req, res, next) => {
                             Email: fetchedData[0].email
                         },
 
-                        process.env.JWT_KEY,
+                        process.env.JWT_KEY_USER,
                         {
                             expiresIn: '2h'
                         });
@@ -106,7 +106,7 @@ exports.loginUser = (req, res, next) => {
                             Email: fetchedData[0].email
                         },
 
-                        process.env.JWT_KEY,
+                        process.env.JWT_KEY_ADMIN,
                         {
                             expiresIn: '2h'
                         });
