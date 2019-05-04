@@ -92,7 +92,7 @@ exports.applyLoan = (req, res, next) => {
                                                 Interest: interest,
                                                 PaymentInstallment: paymentInstallment
                                             },
-                                            Success: 'Successfully Applied for loan'
+                                            Success: 'Successfully Applied For Loan'
                                         });
                                     })
 

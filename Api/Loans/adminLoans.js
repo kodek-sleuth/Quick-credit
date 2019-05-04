@@ -117,8 +117,8 @@ adminLoans.get('/loans/pending', jwtMiddleware, adminLoansController.getAllLoans
 *        - bearerAuth: []
 *     tags:
 *       - Loans
-*     name: Gets All Loans in database
-*     summary: Gets All Loans in database
+*     name: Gets All Rejected Loans in database
+*     summary: Gets All Rejected Loans in database
 *     responses:
 *       200:
 *         description: Successfully Fetched Loans
@@ -134,8 +134,8 @@ adminLoans.get('/loans/rejected', jwtMiddleware, adminLoansController.getLoansRe
 *        - bearerAuth: []
 *     tags:
 *       - Loans
-*     name: Gets All Loans in database
-*     summary: Gets All Loans in database
+*     name: Gets All Repaid Loans in database
+*     summary: Gets All Repaid Loans in database
 *     responses:
 *       200:
 *         description: Successfully Fetched Loans
@@ -151,8 +151,8 @@ adminLoans.get('/loans/repaid', jwtMiddleware, adminLoansController.getLoansRepa
 *        - bearerAuth: []
 *     tags:
 *       - Loans
-*     name: Gets All Loans in database
-*     summary: Gets All Loans in database
+*     name: Gets All Unrepaid Loans in database
+*     summary: Gets All Unrepaid Loans in database
 *     responses:
 *       200:
 *         description: Successfully Fetched Loans
@@ -178,7 +178,7 @@ adminLoans.get('/loans/unrepaid', jwtMiddleware, adminLoansController.getLoansUn
 *         type: integer
 *     responses:
 *       200:
-*         description: Successfully Fetched Loans
+*         description: Successfully Fetched Loan
 */
 
 adminLoans.get('/loans/:loanId', jwtMiddleware, adminLoansController.getSpecificLoan);
