@@ -4,9 +4,10 @@ const adminLoans = express.Router();
 
 const adminLoansController = require('../Controllers/adminLoansController');
 
+// Middleware for checking Auth and Access Rights
 const jwtMiddleware = require('../Settings/checkAuthAdmin');
 
-
+// Swagger documentation
 /**
 * @swagger
 * /admin/users:

@@ -30,6 +30,7 @@ const swaggerDefinition = {
     },
   };
 
+// Options object is later sent to swagger server to generate UI/UX
 const options = {
     swaggerDefinition,
     apis: ['./Api/Auth/*.js', './Api/Loans/*.js', './Api/Profiles/*.js', './Api/Verifications/*.js']
