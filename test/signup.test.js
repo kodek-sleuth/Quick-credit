@@ -8,19 +8,17 @@
 
 const supertest = require('supertest');
 
-const chai = require('chai').expect;
+const expect = require('chai').expect;
 
-const app = require('../test/newServer');
-
-const testApp = require('../App/server');
+const server = supertest.agent('http://localhost:3000');
 
 // Describe(mocha) is used to group the testcases while it(chai) is used to write the real testcases
 // supertest takes in the server app and enables us to make requests to the api
-
 describe('Testing if app returns all loans successfully', () => {
     it('Returns all loans', (done) => {
-        supertest(testApp).get('/admin/users')
+        server.get('/admin/loans')
         .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
         .expect(200, done);
     });
 });

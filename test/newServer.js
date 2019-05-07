@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 
 const http = require('http');
 
 const app = require('../App/mainApp');
 
-const port = 8000;
+const port = 7000;
 
 const server = http.createServer(app);
 
