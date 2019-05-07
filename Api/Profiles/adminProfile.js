@@ -11,7 +11,7 @@ const adminProfileController = require('../Controllers/adminUpdateProfile');
 
 /**
 * @swagger
-* /admin/{:Email}/profile:
+* /api/v1/admin/{:Email}/profile:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -36,7 +36,7 @@ adminProfile.get('/:Email/profile', adminProfileController.getAdminProfile);
 
 /**
 * @swagger
-* /admin/{:Email}/profile:
+* /api/v1/admin/{:Email}/profile:
 *   patch:
 *     security:
 *        - bearerAuth: []
