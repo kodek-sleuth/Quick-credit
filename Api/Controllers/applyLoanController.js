@@ -100,8 +100,8 @@ exports.applyLoan = (req, res, next) => {
                                     })
 
                                 .catch((error) => {
-                                    res.status(401).json({
-                                        Status: '401',
+                                    res.status(409).json({
+                                        Status: '409',
                                         Error: error.message
                                 });
                             });
@@ -110,8 +110,8 @@ exports.applyLoan = (req, res, next) => {
             }
         })
             .catch((err) => {
-                res.status(401).json({
-                    Status: '401',
+                res.status(409).json({
+                    Status: '409',
                     Error: err
                 });
             });
@@ -128,16 +128,16 @@ exports.applyLoan = (req, res, next) => {
 
         else
         {
-            res.status(401).json({
-                Status: '401',
+            res.status(409).json({
+                Status: '409',
                 Error: 'Failed to process request, Try again later'
             });
         }
     })
 
     .catch((error) => {
-        res.status(401).json({
-            Status: '401',
+        res.status(500).json({
+            Status: '500',
             Error: 'Failed to process request, Try again later'
         });
     });

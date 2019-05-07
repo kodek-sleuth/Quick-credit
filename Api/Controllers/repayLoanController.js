@@ -58,6 +58,17 @@ exports.repayLoan = (req, res, next) => {
                                     Repaid: 'True'
                                 });
                             }
+
+                            if (loanData[0].balance == 0.00)
+                            {
+                                pool.query(`UPDATE loan set repaid='True' where id=${loanData[0].id}`)
+                                .then((updateResult) => {
+                                    console.log(updateResult);
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                });
+                            }
     
                             else
                             {      

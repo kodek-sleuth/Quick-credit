@@ -4,10 +4,15 @@ const reqLoan = express.Router();
 
 const reqLoanController = require('../Controllers/applyLoanController');
 
+// Middleware for checking Auth and Access Rights
+const jwtMiddleware = require('../Settings/checkAuthUser');
+
 /**
 * @swagger
 * /user/loans/apply:
 *   post:
+*     security:
+*        - bearerAuth: []
 *     tags:
 *       - User
 *     name: Apply for a Loan
@@ -42,6 +47,6 @@ const reqLoanController = require('../Controllers/applyLoanController');
 *         description: Failed To Authenticate
 */
 
-reqLoan.post('/loans/apply', reqLoanController.applyLoan);
+reqLoan.post('/loans/apply', jwtMiddleware, reqLoanController.applyLoan);
 
 module.exports = reqLoan;
