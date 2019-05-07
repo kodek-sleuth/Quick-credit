@@ -9,7 +9,7 @@ const jwtMiddleware = require('../Settings/checkAuthAdmin');
 
 /**
 * @swagger
-* /admin/users/{:Email}/verify:
+* /api/v1/admin/users/{:Email}/verify:
 *   patch:
 *     security:
 *        - bearerAuth: []
