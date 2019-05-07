@@ -10,7 +10,7 @@ const jwtMiddleware = require('../Settings/checkAuthUser');
 
 /**
 * @swagger
-* /user/{:Email}/profile:
+* /api/v1/user/{:Email}/profile:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -35,7 +35,7 @@ userProfile.get('/:Email/profile', jwtMiddleware, userProfileController.getUserP
 
 /**
 * @swagger
-* /user/{:Email}/profile:
+* /api/v1/user/{:Email}/profile:
 *   patch:
 *     security:
 *        - bearerAuth: []
