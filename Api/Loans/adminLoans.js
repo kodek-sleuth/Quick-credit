@@ -10,7 +10,7 @@ const jwtMiddleware = require('../Settings/checkAuthAdmin');
 // Swagger documentation
 /**
 * @swagger
-* /admin/users:
+* /api/v1/admin/users:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -27,7 +27,7 @@ adminLoans.get('/users', jwtMiddleware, adminLoansController.getAllUsers);
 
 /**
 * @swagger
-* /admin/users/pending:
+* /api/v1/admin/users/pending:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -44,7 +44,7 @@ adminLoans.get('/users/pending', jwtMiddleware, adminLoansController.getUsersPen
 
 /**
 * @swagger
-* /admin/users/verified:
+* /api/v1/admin/users/verified:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -61,7 +61,7 @@ adminLoans.get('/users/verified', jwtMiddleware, adminLoansController.getUsersVe
 
 /**
 * @swagger
-* /admin/loans:
+* /api/v1/admin/loans:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -78,7 +78,7 @@ adminLoans.get('/loans', adminLoansController.getAllLoans);
 
 /**
 * @swagger
-* /admin/loans/approved:
+* /api/v1/admin/loans/approved:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -95,7 +95,7 @@ adminLoans.get('/loans/approved', jwtMiddleware, adminLoansController.getLoansAp
 
 /**
 * @swagger
-* /admin/loans/pending:
+* /api/v1/admin/loans/pending:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -112,7 +112,7 @@ adminLoans.get('/loans/pending', jwtMiddleware, adminLoansController.getAllLoans
 
 /**
 * @swagger
-* /admin/loans/rejected:
+* /api/v1/admin/loans/rejected:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -129,7 +129,7 @@ adminLoans.get('/loans/rejected', jwtMiddleware, adminLoansController.getLoansRe
 
 /**
 * @swagger
-* /admin/loans/repaid:
+* /api/v1/admin/loans/repaid:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -146,7 +146,7 @@ adminLoans.get('/loans/repaid', jwtMiddleware, adminLoansController.getLoansRepa
 
 /**
 * @swagger
-* /admin/loans/unrepaid:
+* /api/v1/admin/loans/unrepaid:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -163,7 +163,7 @@ adminLoans.get('/loans/unrepaid', jwtMiddleware, adminLoansController.getLoansUn
 
 /**
 * @swagger
-* /admin/loans/{:loanId}:
+* /api/v1/admin/loans/{:loanId}:
 *   get:
 *     security:
 *        - bearerAuth: []
