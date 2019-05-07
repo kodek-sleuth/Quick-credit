@@ -9,7 +9,7 @@ const jwtMiddleware = require('../Settings/checkAuthUser');
 
 /**
 * @swagger
-* /user/loans/apply:
+* /api/v1/user/loans/apply:
 *   post:
 *     security:
 *        - bearerAuth: []
@@ -23,7 +23,7 @@ const jwtMiddleware = require('../Settings/checkAuthUser');
 *       - name: body
 *         in: body
 *         properties:
-*           FullName:
+*           Fullname:
 *             type: string
 *             example: Mugerwa Joseph
 *           Email:
