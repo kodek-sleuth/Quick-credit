@@ -8,7 +8,7 @@ const image = require('../Settings/image');
 
 /**
 * @swagger
-* /auth/signup:
+* /api/v1/auth/signup:
 *   post:
 *     tags:
 *       - Auth
