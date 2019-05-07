@@ -56,18 +56,18 @@ app.get('/home', (req, res, next) => {
 
 // Defining our routes.
 app.use('/auth', authSignup);
-app.use('/auth', authLogin);
-app.use('/admin', verifyUser);
-app.use('/admin', rejectUser);
-app.use('/user', reqLoan);
-app.use('/user', repayLoan);
-app.use('/admin', approveLoan);
-app.use('/admin', posTransLoan);
-app.use('/admin', rejectLoan);
-app.use('/user', userLoans);
-app.use('/admin', adminLoans);
-app.use('/user', userProfile);
-app.use('/admin', adminProfile);
+app.use('/api/v1/auth', authLogin);
+app.use('/api/v1/admin', verifyUser);
+app.use('/api/v1/admin', rejectUser);
+app.use('/api/v1/user', reqLoan);
+app.use('/api/v1/user', repayLoan);
+app.use('/api/v1/admin', approveLoan);
+app.use('/api/v1/admin', posTransLoan);
+app.use('/api/v1/admin', rejectLoan);
+app.use('/api/v1/user', userLoans);
+app.use('/api/v1/admin', adminLoans);
+app.use('/api/v1/user', userProfile);
+app.use('/api/v1/admin', adminProfile);
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {
