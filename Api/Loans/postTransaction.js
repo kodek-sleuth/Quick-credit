@@ -8,7 +8,7 @@ const postTransLoanController = require('../Controllers/adminPostTransactionCont
 
 /**
 * @swagger
-* /admin/loans/{:loanId}/transact:
+* /api/v1/admin/loans/{:loanId}/transact:
 *   patch:
 *     security:
 *        - bearerAuth: []

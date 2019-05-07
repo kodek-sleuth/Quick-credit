@@ -9,7 +9,7 @@ const jwtMiddleware = require('../Settings/checkAuthUser');
 
 /**
 * @swagger
-* /user/loans/repay:
+* /api/v1/user/loans/repay:
 *   post:
 *     security:
 *        - bearerAuth: []

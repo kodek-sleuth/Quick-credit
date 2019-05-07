@@ -6,7 +6,7 @@ const userLoansController = require('../Controllers/userLoansController');
 
 /**
 * @swagger
-* /user/{:Email}/loans:
+* /api/v1/user/{:Email}/loans:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -29,7 +29,7 @@ userLoans.get('/:Email/loans', userLoansController.getLoansApplied);
 
 /**
 * @swagger
-* /user/{:Email}/loans/approved:
+* /api/v1/user/{:Email}/loans/approved:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -52,7 +52,7 @@ userLoans.get('/:Email/loans/approved', userLoansController.getLoansApproved);
 
 /**
 * @swagger
-* /user/{:Email}/loans/rejected:
+* /api/v1/user/{:Email}/loans/rejected:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -75,7 +75,7 @@ userLoans.get('/:Email/loans/rejected', userLoansController.getLoansRejected);
 
 /**
 * @swagger
-* /user/{:Email}/loans/repaid:
+* /api/v1/user/{:Email}/loans/repaid:
 *   get:
 *     security:
 *        - bearerAuth: []
@@ -98,7 +98,7 @@ userLoans.get('/:Email/loans/repaid', userLoansController.getLoansRepaid);
 
 /**
 * @swagger
-* /user/{:Email}/loans/unrepaid:
+* /api/v1/user/{:Email}/loans/unrepaid:
 *   get:
 *     security:
 *        - bearerAuth: []

@@ -8,7 +8,7 @@ const jwtMiddleware = require('../Settings/checkAuthAdmin');
 
 /**
 * @swagger
-* /admin/loans/{:loanId}/reject:
+* /api/v1/admin/loans/{:loanId}/reject:
 *   patch:
 *     security:
 *        - bearerAuth: []
