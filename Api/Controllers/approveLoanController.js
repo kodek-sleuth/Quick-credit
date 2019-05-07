@@ -12,6 +12,7 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 
 const pool = new Pool({ connectionString: connectionString });
 
+// An Approval is an update on the status
 exports.approveLoan = (req, res, next) => {
     const loanId = req.params.loanId;
 

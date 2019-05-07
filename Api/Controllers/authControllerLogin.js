@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable max-len */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable brace-style */
@@ -19,19 +20,25 @@ const DatabaseConnector = require('pg').Pool;
 // Database Conectoion String
 const connectionString = process.env.QUICK_CREDIT_DB;
 
-// eslint-disable-next-line object-shorthand
+
 const pool = new DatabaseConnector({ connectionString: connectionString });
 
+// A Login is just a database check to make sure that req.body matches  all values in database for that user
 exports.loginUser = (req, res, next) => {
     const checkQueryAdmin = `Select * from admin WHERE email='${req.body.Email}'`;
 
+    // Since Admin and User use one route for login in this Database
+    // This field enables us filter out who is Admin and who is not
+
     if (req.body.isAdmin == 'False')
     {
+        // We first check if the Email exists
         const checkQueryUser = `Select * from users WHERE email='${req.body.Email}'`;
         pool.query(checkQueryUser)
         .then((data) => {
             if (data.rowCount > 0)
             {
+                // We check if the Password matches the hashed Password in db if decrypted
                 const fetchedData = data.rows;
                 bcrypt.compare(req.body.Password, fetchedData[0].password, (err, success) => {
                     if (err)
@@ -44,6 +51,9 @@ exports.loginUser = (req, res, next) => {
 
                     if (success)
                     {
+                        // We the Create a user token that user is going to use for Authentication of other routes
+                        // Token takes user details(any), Secret Key and an expiry
+                        
                         const token = jwt.sign({
                             Email: fetchedData[0].email
                         },

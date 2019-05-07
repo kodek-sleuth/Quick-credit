@@ -13,21 +13,22 @@ const bcrypt = require('bcrypt');
 // .Pool enables connection to Database
 const DatabaseConnector = require('pg').Pool;
 
-// Database Conectoion String
+// Database Connection String
 const connectionString = process.env.QUICK_CREDIT_DB;
 
 // eslint-disable-next-line object-shorthand
 const pool = new DatabaseConnector({ connectionString: connectionString });
 
 exports.createUser = (req, res, next) => {
+    // Database queriey to insert  req body in Database
     const dataBaseQueryAdmin = 'INSERT INTO admin(fullname, email, password, isAdmin, image) VALUES($1, $2, $3, $4, $5)';
     
     const dataBaseQueryUser = 'INSERT INTO users(fullname, email, password, address, isAdmin, image) VALUES($1, $2, $3, $4, $5, $6)';
     
-    console.log(req.body.isAdmin);
-    
+    // We seperating who deserves to be admin and user
     if (req.body.isAdmin == 'False')
     {
+        // We making sure that User/Admin does not login with an already users Email/Fullname
         pool.query(`Select * FROM users WHERE email='${req.body.Email}'`)
         .then((dataCheck1) => {
             if (dataCheck1.rows == 0)
@@ -36,6 +37,7 @@ exports.createUser = (req, res, next) => {
                 .then((dataCheck2) => {
                     if (dataCheck2.rows == 0)
                     {
+                        // We make sure that the Password stored is first hashed for Privacy and Protection 
                         bcrypt.hash(req.body.Password, 10, (err, hash) => {
                             if (err)
                             {

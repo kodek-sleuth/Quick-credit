@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable eqeqeq */
 /* eslint-disable brace-style */
 /* eslint-disable no-trailing-spaces */
@@ -13,19 +14,23 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 
 const pool = new Pool({ connectionString: connectionString });
 
+// The main objective here is to create un update in repaid field of that loan 
 exports.postTransaction = (req, res, next) => {
     const loanId = req.params.loanId;
 
     const verifyLoanQuery = `Update loan SET repaid='True' where id='${loanId}'`;
 
+    // We checkif the loan Exists 
     pool.query(`Select * from loan where id='${loanId}'`)
         .then((data) => {
             if (data.rowCount > 0)
             {
                 const dataFound = data.rows;
-
+                
+                // We make sure that Admin can only Post Transaction of un approved Loan
                 if (dataFound[0].status == 'Approved')
                 {
+                    // We then make the Update and then make another check to send back current data to the User
                     pool.query(verifyLoanQuery)
                     .then((feedback) => {
                         pool.query(`SELECT * FROM loan WHERE id=${loanId}`)

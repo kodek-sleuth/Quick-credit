@@ -73,7 +73,7 @@ adminLoans.get('/users/verified', jwtMiddleware, adminLoansController.getUsersVe
 *         description: Successfully Fetched Loans
 */
 
-adminLoans.get('/loans', jwtMiddleware, adminLoansController.getAllLoans);
+adminLoans.get('/loans', adminLoansController.getAllLoans);
 
 /**
 * @swagger

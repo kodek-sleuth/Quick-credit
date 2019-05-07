@@ -11,6 +11,10 @@ const bodyParser = require('body-parser');
 
 const morgan = require('morgan');
 
+const cors = require('cors');
+
+app.use(cors());
+
 // Library that generates the UI/UX of swagger
 const swaggerUI = require('swagger-ui-express');
 
@@ -43,6 +47,12 @@ app.get('/swagger.json', (req, res, next) => {
 });
 
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swagger.swaggerSpec));
+
+app.get('/home', (req, res, next) => {
+    res.status(200).json({
+        Message: 'Hello',
+    });
+});
 
 // Defining our routes.
 app.use('/auth', authSignup);

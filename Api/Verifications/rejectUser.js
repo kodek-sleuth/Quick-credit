@@ -14,8 +14,8 @@ const jwtMiddleware = require('../Settings/checkAuthAdmin');
 *        - bearerAuth: []
 *     tags:
 *       - Verifications, Approvals & Rejections
-*     name: Admin Verify user
-*     summary: Admin Verify user
+*     name: Admin Reject user
+*     summary: Admin Reject user
 *     parameters:
 *       - name: ":Email"
 *         in: path

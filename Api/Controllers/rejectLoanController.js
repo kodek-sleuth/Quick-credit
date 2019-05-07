@@ -12,6 +12,7 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 
 const pool = new Pool({ connectionString: connectionString });
 
+// This func creates un update in the status field and denies User Loan
 exports.rejectLoan = (req, res, next) => {
     const loanId = req.params.loanId;
 

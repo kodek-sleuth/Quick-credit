@@ -2,6 +2,7 @@
     "env":{
         "QUICK_CREDIT_DB": "postgresql://josekodek:sleuth@localhost:5432/quickcredit",
         "JWT_KEY_ADMIN": "I have a very big secret",
-        "JWT_KEY_USER": "Planet of apes"
+        "JWT_KEY_USER": "Planet of apes",
+        "QUICK_CREDIT_DB_TEST": "postgresql://postgres:kevina@localhost:5432/quickcredittest"
     }
 }

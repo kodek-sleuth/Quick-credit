@@ -12,7 +12,7 @@
 
 const Pool = require('pg').Pool;
 
-const connectionString = process.env.QUICK_CREDIT_DB;
+const connectionString = process.env.QUICK_CREDIT_DB_TEST;
 
 const pool = new Pool({ connectionString: connectionString });
 
@@ -314,7 +314,7 @@ exports.getSpecificLoan = (req, res, next) => {
                 Count: data.rowCount,
                 Status: 200,
                 Data: fetchedData,
-                Success: 'Successfully Fetched Loans'
+                Success: 'Successfully Fetched Loan'
             });
         }
 

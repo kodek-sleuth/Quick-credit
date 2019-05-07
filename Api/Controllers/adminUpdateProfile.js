@@ -18,6 +18,7 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 
 const pool = new Pool({ connectionString: connectionString });
 
+// Function To fetch Admin Profile
 exports.getAdminProfile = (req, res, next) => {
     const Email = req.params.Email;
 
@@ -50,9 +51,12 @@ exports.getAdminProfile = (req, res, next) => {
     });
 };
 
+// Since Image object will be available everytime on submit 
+// I want us to appreciate the fact that we only send a full object back to the user in the Image file meaning that Image file should be available in every request 
 exports.updateAdminProfile = (req, res, next) => {
     const email = req.params.Email;
 
+    // If Email Exists in FormBody then it should make update but this is not recommended
     if (req.body.Email)
     {
         pool.query(`UPDATE admin set email='${req.body.Email}' where email='${email}'`)
@@ -78,6 +82,7 @@ exports.updateAdminProfile = (req, res, next) => {
         });
     }
 
+    // Update Fullname if Fullname is available in req body
     if (req.body.Fullname)
     {
         pool.query(`UPDATE admin set fullname='${req.body.Fullname}' where email='${email}'`)
@@ -101,6 +106,9 @@ exports.updateAdminProfile = (req, res, next) => {
             });
         });
     }
+
+    // We fast want to make sure that User has old Password which Password we test with bcrypt with the real in database
+    // If they dont match it should throw an error else we encrypt and save the new one  
 
     if (req.body.OldPassword)
     {
@@ -173,6 +181,7 @@ exports.updateAdminProfile = (req, res, next) => {
         });
     }
 
+    // Image path
     if (req.file.path)
     {
         pool.query(`UPDATE admin set image='${req.file.path}' where email='${email}'`)

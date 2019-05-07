@@ -33,6 +33,9 @@ exports.applyLoan = (req, res, next) => {
             if (dataFetched[0].status == 'Verified')
             {
                 // Querying to make sure user does not apply for a new loan minus paying for the old one
+                // Remember as an Investee can only have one unrepaid loan at a time
+                // We check if the user has an unrepaid loan, if so then he cant apply for a new one else he can apply
+
                 pool.query(`Select * from loan WHERE investee_email='${req.body.Email}' and investee_name='${req.body.Fullname}' and repaid='False'`)
                 .then((loanData) => {
                     if (loanData.rowCount > 0)
@@ -46,7 +49,6 @@ exports.applyLoan = (req, res, next) => {
                     else
                         {
                             // Making sure that user does not use a longer extension peroid than 12 months
-
                             const userLoanData = loanData.rows;
                             if (req.body.Tenor > 12)
                             {
@@ -78,6 +80,7 @@ exports.applyLoan = (req, res, next) => {
                                     const balance = req.body.Amount + interest;
                                     const queryReqValues = [req.body.Email, req.body.Fullname, currentDate, req.body.Tenor, req.body.Amount, paymentInstallment, balance, interest];
                                 
+                                    // Posting the Loan to Database
                                     pool.query(queryReqLoan, queryReqValues)
                                     .then((result) => {
                                         res.status(201).json({
