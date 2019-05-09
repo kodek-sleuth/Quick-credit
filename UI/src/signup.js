@@ -1,4 +1,4 @@
-let previewFile = () => {
+const previewFile = () => {
     // Fetching the Image Tag and its contents
     const preview = document.querySelector('#preview');
   
@@ -83,7 +83,9 @@ let previewFile = () => {
           }
         })
         .then((response) => response.json())
-        .catch((error) => console.log(error));
+        .then((data) => {
+          
+        })
       }
   
       return true;
