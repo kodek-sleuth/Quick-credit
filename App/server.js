@@ -2,7 +2,7 @@ const app = require('./mainApp');
 
 const port = process.env.PORT || 3000;
 
-const targetBaseUrl = 'https://quick-credit-loanapp.herokuapp.com/docs';
+const targetBaseUrl = 'https://quick-credit-loanapp.herokuapp.com/docs/';
 
 const handleRedirect = (req, res) => {
   // Req URL enables us to overwrite it with targetBaseUrl
