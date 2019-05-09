@@ -1,4 +1,4 @@
-const previewFile = () => {
+let previewFile = () => {
     // Fetching the Image Tag and its contents
     const preview = document.querySelector('#preview');
   
@@ -82,10 +82,7 @@ const previewFile = () => {
             Accept: 'application/json, text/plain, */*'
           }
         })
-        .then((response) => {
-            document.getElementById('badFeedBack').style.display = 'block';
-            document.getElementById('badFeedBack').innerHTML = response.json();
-        })
+        .then((response) => response.json())
         .catch((error) => console.log(error));
       }
   
