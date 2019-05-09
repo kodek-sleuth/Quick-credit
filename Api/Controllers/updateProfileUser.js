@@ -14,7 +14,7 @@ const Pool = require('pg').Pool;
 
 const bcrypt = require('bcrypt');
 
-const connectionString = process.env.QUICK_CREDIT_DB;
+const connectionString = process.env.QUICK_CREDIT_DB_TEST;
 
 const pool = new Pool({ connectionString: connectionString });
 

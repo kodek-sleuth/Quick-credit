@@ -55,7 +55,7 @@ app.get('/home', (req, res, next) => {
 });
 
 // Defining our routes.
-app.use('/auth', authSignup);
+app.use('/api/v1/auth', authSignup);
 app.use('/api/v1/auth', authLogin);
 app.use('/api/v1/admin', verifyUser);
 app.use('/api/v1/admin', rejectUser);

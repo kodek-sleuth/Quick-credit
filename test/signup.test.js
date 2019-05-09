@@ -1,24 +1,49 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-trailing-spaces */
+/* eslint-disable no-console */
 /* eslint-disable prefer-destructuring */
-/* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
+/* eslint-disable object-shorthand */
 /* eslint-disable no-undef */
-/* eslint-disable indent */
 
-const supertest = require('supertest');
+const library = require('./libraries/library');
 
-const expect = require('chai').expect;
+const userDetails = require('./utils/utils');
 
-const server = supertest.agent('http://localhost:3000');
+const adminTable = require('../Api/Controllers/databaseController');
 
-// Describe(mocha) is used to group the testcases while it(chai) is used to write the real testcases
-// supertest takes in the server app and enables us to make requests to the api
-describe('Testing if app returns all loans successfully', () => {
-    it('Returns all loans', (done) => {
-        server.get('/admin/loans')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
-    });
+describe('App Authorisation Signup', () => {
+  it('Should not signup new admin if his email already exists', (done) => {
+    // Incase of an email that exists in database
+    library.server.post('/api/v1/auth/signup')
+      .set('Content-Type', 'multipart/form-data')
+      .field('Fullname', 'Yahya Jalal')
+      .field('Email', 'yahya@gmail.com')
+      .field('Password', 'stealth')
+      .field('isAdmin', 'True')
+      .attach('Image', '/home/kodek-sleuth/Pictures/code.jpeg')
+      .end((error, res) => {
+        library.expect(res.body).to.have.property('Status');
+        library.expect(res.body).to.have.property('Error');
+        library.expect(res.body.Error).to.equals('Email is already taken');
+        library.expect(res.body.Status).to.equals('401');
+        done();
+      });
+  });
+
+  it('Should not signup new admin if his name already exists', (done) => {
+    // Incase of a fullname that exists in database
+    library.server.post('/api/v1/auth/signup')
+      .set('Content-Type', 'multipart/form-data')
+      .field('Fullname', 'Yahya Jalal')
+      .field('Email', 'abel@gmail.com')
+      .field('Password', 'stealth')
+      .field('isAdmin', 'True')
+      .attach('Image', '/home/kodek-sleuth/Pictures/code.jpeg')
+      .end((error, res) => {
+        library.expect(res.body).to.have.property('Status');
+        library.expect(res.body).to.have.property('Error');
+        library.expect(res.body.Error).to.equals('Name is already taken');
+        library.expect(res.body.Status).to.equals('401');
+        done();
+      });
+  });
 });

@@ -18,7 +18,7 @@ const jwt = require('jsonwebtoken');
 const DatabaseConnector = require('pg').Pool;
 
 // Database Conectoion String
-const connectionString = process.env.QUICK_CREDIT_DB;
+const connectionString = process.env.QUICK_CREDIT_DB_TEST;
 
 
 const pool = new DatabaseConnector({ connectionString: connectionString });
@@ -68,7 +68,7 @@ exports.loginUser = (req, res, next) => {
                             Data: {
                                 Fullname: fetchedData[0].fullname,
                                 Email: fetchedData[0].email,
-                                Address: fetchedData[0].Address,
+                                Address: fetchedData[0].address,
                                 Status: fetchedData[0].status
                             },
                             Success: 'User Has Successfully Logged In',

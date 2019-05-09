@@ -14,7 +14,7 @@
 const Pool = require('pg').Pool;
 
 // Object that defines db Properties
-const connectionString = process.env.QUICK_CREDIT_DB;
+const connectionString = process.env.QUICK_CREDIT_DB_TEST;
 
 // Creating a connection with connection string
 const pool = new Pool({ connectionString: connectionString });

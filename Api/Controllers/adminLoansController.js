@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-lonely-if */
 /* eslint-disable object-shorthand */
 /* eslint-disable prefer-destructuring */
@@ -12,7 +13,7 @@
 
 const Pool = require('pg').Pool;
 
-const connectionString = process.env.QUICK_CREDIT_DB;
+const connectionString = process.env.QUICK_CREDIT_DB_TEST;
 
 const pool = new Pool({ connectionString: connectionString });
 

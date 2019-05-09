@@ -16,6 +16,17 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 
 const pool = new Pool({ connectionString: connectionString });
 
+// Function to Update Loans
+const updateLoan = () => {
+    pool.query("UPDATE loan set repaid='True' WHERE status='Verified' and balance=0.00")
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+};
+
 exports.getLoansApplied = (req, res, next) => {
     const Email = req.params.Email;
 

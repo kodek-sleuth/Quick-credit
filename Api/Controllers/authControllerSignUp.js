@@ -14,7 +14,7 @@ const bcrypt = require('bcrypt');
 const DatabaseConnector = require('pg').Pool;
 
 // Database Connection String
-const connectionString = process.env.QUICK_CREDIT_DB;
+const connectionString = process.env.QUICK_CREDIT_DB_TEST;
 
 // eslint-disable-next-line object-shorthand
 const pool = new DatabaseConnector({ connectionString: connectionString });
