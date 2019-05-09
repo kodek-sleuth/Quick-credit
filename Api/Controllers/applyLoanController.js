@@ -14,7 +14,7 @@ const jwt = require('jsonwebtoken');
 
 const Pool = require('pg').Pool;
 
-const connectionString = process.env.QUICK_CREDIT_DB_TEST;
+const connectionString = process.env.QUICK_CREDIT_DB;
 
 const pool = new Pool({ connectionString: connectionString });
 
