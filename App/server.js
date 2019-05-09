@@ -1,11 +1,16 @@
-const http = require('http');
-
 const app = require('./mainApp');
 
 const port = process.env.PORT || 3000;
 
-const server = http.createServer(app);
+const targetBaseUrl = 'https://quick-credit-loanapp.herokuapp.com/docs';
 
-server.listen(port);
+const handleRedirect = (req, res) => {
+  // Req URL enables us to overwrite it with targetBaseUrl
+  const targetUrl = targetBaseUrl + req.originalUrl;
+  res.redirect(targetUrl);
+};
 
-module.exports = server;
+// Fetches and Redirects all Hosts to TargetUrl
+app.get('*', handleRedirect);
+
+app.listen(port);
