@@ -225,6 +225,7 @@ a:hover
     outline-color: #dc3545;
     background: linear-gradient(to right,#dc3545 0,#dc3545 100%);
     margin-left: 32%;
+    display: none;
 }
 
 #goodFeedBack
@@ -243,6 +244,7 @@ a:hover
     outline-color: #28a745;
     background: linear-gradient(to right,#28a745 0,#28a745 100%);
     margin-left: 32%;
+    display: none;
 }
 
 .homepage_navbar
@@ -251,6 +253,33 @@ a:hover
     padding-top: 0;
 }
 
+.profileSize
+{
+    width: 30%;
+    height: 125px;
+}
+
+.file
+{
+    opacity: 0;
+    outline: none;
+    width: 1px;
+}
+
+.fileUpload
+{
+    border-radius: 3px;
+    margin-bottom: 24px;
+    width: 30%;
+    color: #fff;
+    font-family: 'Bree Serif', serif;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    outline-color: #041B2D;
+    background: linear-gradient(to right,#041B2D 0,#041B2D 100%); 
+}
 
 @media(max-width: 900px)
 {

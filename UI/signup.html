@@ -25,20 +25,25 @@
         
         <div class="all_form_control">
             <div class="forms">
-                <form method="POST" id="signup_form">
+                <form method="POST" id="signup_form" class="signupForm" enctype="multipart/form-data">
+                    <div class="uploadSection">
+                        <img src="images/bank.png" id="preview" height="200" alt="Image preview..." class="profileSize"><br><br>
+                        <label class="fileUpload" for="fileUpload"> Upload Profile Picture</label>
+                        <input type="file" onchange="previewFile()" class="file" id="fileUpload">
+                    </div><br> 
+
                     <input id="email" class="formcontrol long" placeholder="johana@gamil.com" type="email">
                     <input id="fullname" class="formcontrol long" placeholder="Fullname" type="text">
                     <input id="password" class="formcontrol long" type="password" placeholder="Password">
                     <div id="float">
                         <input id="address" class="formcontrol short" type="text" placeholder="Address">
                         <select name="dropdown" class="formcontrol short">
-                            <option value="Are You an Admin-> False" selected>isAdmin-> False</option>
-                            <option value="Are You an Admin-> True">isAdmin-> True</option>
+                            <option value="Are You An Admin">Are you an admin</option>
+                            <option value="False">False</option>
+                            <option value="True">True</option>
                         </select>
-                    </div>
-                    
-                    <input id="account" class="formcontrol long" type="text" placeholder="Account Number"><br>
-                    <input class="btn_submit" value="Sign Up!" type="button">
+                    </div>                    
+                    <input class="btn_submit" value="Sign Up!" type="submit">
                 </form>
             </div>
 
@@ -82,7 +87,8 @@
          <div class="final_div">
              <h3>Created By Mugerwa Joseph Lumu, Andela Bootcamp Challenge Cycle 6</h1>
          </div>
-         
     
+   <script src="assets/jquery-3.3.1.js"></script>
+   <script src="src/signup.js"></script> 
 </body>
 </html>
