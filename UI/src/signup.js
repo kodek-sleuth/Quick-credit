@@ -99,6 +99,4 @@ const previewFile = () => {
         console.log(6000);
       }
     }
-  });
-  
-  
+});
