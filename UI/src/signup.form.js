@@ -84,7 +84,10 @@ const previewFile = () => {
         })
         .then((response) => response.json())
         .then((data) => {
-          
+            if (data.Error)
+            {
+                console.log(data.Error);
+            }
         })
       }
   
