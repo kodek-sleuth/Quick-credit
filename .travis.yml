@@ -3,6 +3,9 @@ language: node_js
 node_js:
   - '8'
 
+env:
+  - JWT_KEY_ADMIN: "I have a very big secret" JWT_KEY_USER: "Planet of apes" QUICK_CREDIT_DB_TEST: "postgresql://postgres:kevina@localhost:5432/quickcredittest"
+
 script:
   - npm run test
   
@@ -12,4 +15,5 @@ cache:
 
 before_script:
   - psql -c 'quickcredittest;' -U postgres
+  - npm install
   - npm start
