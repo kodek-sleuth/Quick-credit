@@ -84,7 +84,7 @@ const previewFile = () => {
         })
         .then((response) => response.json())
         .then((data) => {
-          
+          document
         })
       }
   
