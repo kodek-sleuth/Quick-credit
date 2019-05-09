@@ -82,8 +82,11 @@ const previewFile = () => {
             Accept: 'application/json, text/plain, */*'
           }
         })
-         .then(response => console.log(response.text()))
-        .catch(error => console.error('Error:', error));
+        .then((response) => {
+            document.getElementById('badFeedBack').style.display = 'block';
+            document.getElementById('badFeedBack').innerHTML = response.json();
+        })
+        .catch((error) => console.log(error));
       }
   
       return true;
