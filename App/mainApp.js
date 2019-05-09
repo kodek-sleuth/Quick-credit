@@ -48,12 +48,6 @@ app.get('/swagger.json', (req, res, next) => {
 
 app.use('/', swaggerUI.serve, swaggerUI.setup(swagger.swaggerSpec));
 
-app.get('/home', (req, res, next) => {
-    res.status(200).json({
-        Message: 'Hello',
-    });
-});
-
 // Defining our routes.
 app.use('/api/v1/auth', authSignup);
 app.use('/api/v1/auth', authLogin);
