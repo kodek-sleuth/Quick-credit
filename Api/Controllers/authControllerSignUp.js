@@ -25,6 +25,7 @@ exports.createUser = (req, res, next) => {
     
     const dataBaseQueryUser = 'INSERT INTO users(fullname, email, password, address, isAdmin, image) VALUES($1, $2, $3, $4, $5, $6)';
     
+    console.log(req.body);
     // We seperating who deserves to be admin and user
     if (req.body.isAdmin == 'False')
     {

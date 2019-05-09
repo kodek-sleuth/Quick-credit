@@ -46,7 +46,7 @@ app.get('/swagger.json', (req, res, next) => {
     res.send(swagger.swaggerSpec);
 });
 
-app.use('/', swaggerUI.serve, swaggerUI.setup(swagger.swaggerSpec));
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swagger.swaggerSpec));
 
 // Defining our routes.
 app.use('/api/v1/auth', authSignup);
