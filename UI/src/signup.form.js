@@ -86,7 +86,14 @@ const previewFile = () => {
         .then((data) => {
             if (data.Error && data.Status == 401)
             {
-                console.log(data.Error);
+                document.getElementById('badFeedBack').style.display = 'block';
+                document.getElementById('badFeedBack').innerHTML = data.Error;
+            }
+            
+            else{
+                document.getElementById('badFeedBack').style.display = 'none';
+                document.getElementById('goodFeedBack').style.display = 'block';
+                document.getElementById('goodFeedBack').innerHTML = 'Successfully Signed Up as Admin';
             }
         })
       }
