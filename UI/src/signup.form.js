@@ -73,8 +73,6 @@ const previewFile = () => {
         formData.append('Password', password);
         formData.append('Image', file);
   
-        console.log(formData.values);
-  
         fetch('http://localhost:3000/api/v1/auth/signup', {
           method: 'POST',
           body: formData,
@@ -105,7 +103,59 @@ const previewFile = () => {
       if (email == null || email == '' && fullname == null || fullname == '' && password == null || password == '' && address == null || address == '') {
         document.getElementById('badFeedBack').style.display = 'block';
         document.getElementById('badFeedBack').innerHTML = 'Please fill out all fields';
-        console.log(6000);
+        
+        if (email.length > 40) {
+            document.getElementById('badFeedBack').style.display = 'block';
+            document.getElementById('badFeedBack').innerHTML = 'Email is too long';
+            return false;
+          }
+      
+          if (fullname.length > 30) {
+            document.getElementById('badFeedBack').style.display = 'block';
+            document.getElementById('badFeedBack').innerHTML = 'Please use a shorter name';
+            return false;
+          }
+      
+          if (password.length < 6) {
+            document.getElementById('badFeedBack').style.display = 'block';
+            document.getElementById('badFeedBack').innerHTML = 'Password should have more than 6 characters';
+            return false;
+          } 
+          
+          else {
+            const file = document.querySelector('input[type=file]').files[0];
+            let formData = new FormData();
+            formData.append('Fullname', fullname);
+            formData.append('Email', email);
+            formData.append('isAdmin', isAdmin);
+            formData.append('Password', password);
+            formData.append('Address', address);
+            formData.append('Image', file);
+      
+            fetch('http://localhost:3000/api/v1/auth/signup', {
+              method: 'POST',
+              body: formData,
+              headers: {
+                Accept: 'application/json, text/plain, */*'
+              }
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.Error && data.Status == 401)
+                {
+                    document.getElementById('badFeedBack').style.display = 'block';
+                    document.getElementById('badFeedBack').innerHTML = data.Error;
+                }
+                
+                else{
+                    document.getElementById('badFeedBack').style.display = 'none';
+                    document.getElementById('goodFeedBack').style.display = 'block';
+                    document.getElementById('goodFeedBack').innerHTML = `Successfully Signed ${data.Data.Fullname}`;
+                }
+            })
+          }
+      
+          return true;
       }
     }
 });
