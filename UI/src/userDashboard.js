@@ -2,7 +2,7 @@ const getProfile = () => {
     const cookieToken = document.cookie.split(';')[0].split(' ')[0].split('=')[1];
     const cookieEmail = document.cookie.split(';')[1].split(' ')[1].split('=')[1];
 
-    console.log(cookieEmail);
+    console.log(cookieToken);
     fetch(`http://localhost:3000/api/v1/user/${cookieEmail}/profile`, {
         method: 'GET',
         headers: {
