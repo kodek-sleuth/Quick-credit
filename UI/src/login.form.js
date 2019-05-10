@@ -55,7 +55,7 @@ document.getElementsByClassName('loginForm')[0].addEventListener('submit', valid
                 document.getElementById('goodFeedBack').style.display = 'block';
                 document.getElementById('goodFeedBack').innerHTML = `Welcome back ${data.Data.Fullname}`;
                 
-                document.cookie = `adminToken=${data.Token};`;
+                document.cookie = `adminToken=${data.Token}; path=/UI/admin_dashboard`;
 
                 window.location = '/Quick-credit/UI/admin_dashboard.html'
             }
@@ -106,7 +106,7 @@ document.getElementsByClassName('loginForm')[0].addEventListener('submit', valid
                 document.getElementById('goodFeedBack').style.display = 'block';
                 document.getElementById('goodFeedBack').innerHTML = `Welcome back ${data.Data.Fullname}`;
                 
-                document.cookie = `userToken=${data.Token};`;
+                document.cookie = `userToken=${data.Token}; path=/UI/admin_dashboard`;
 
                 window.location = '/Quick-credit/UI/user_dashboard.html'
             }
