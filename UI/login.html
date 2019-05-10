@@ -18,21 +18,22 @@
         </div>
 
        <div class="validators">
-            <h4>Already Have an account Login <a href="/Quick-credit/UI/signup.html" id="first_link">Here</a></h4>
+            <h4>Do not have an account signup <a href="/Quick-credit/UI/signup.html" id="first_link">Here</a></h4>
             <div id="badFeedBack">Invalid Email or Password</div>
             <div id="goodFeedBack">Successfully Logged In</div>
        </div>
         
         <div class="all_form_control">
             <div class="forms">
-                <form method="POST" id="signup_form">
+                <form method="POST" id="signup_form" class="loginForm">
                     <input id="email" class="formcontrol long" placeholder="johana@gmail.com" type="email">
                     <input id="password" class="formcontrol long" type="password" placeholder="Password">
                     <select name="dropdown" class="formcontrol long">
-                        <option value="Are You an Admin-> False" selected>Are You An Admin-> False</option>
-                        <option value="Are You an Admin-> True">Are You An Admin-> True</option>
+                        <option value="Are You an Admin">Are You an Admin</option>
+                        <option value="False">False</option>
+                        <option value="True">True</option>
                     </select>
-                    <a href="/Quick-credit/UI/user_dashboard.html"><input class="btn_submit" value="Just Login Userdashboard" type="button"></a>
+                    <input class="btn_submit" value="Login" type="submit">
                 </form>
             </div>
 
@@ -77,6 +78,6 @@
              <h3>Created By Mugerwa Joseph Lumu, Andela Bootcamp Challenge Cycle 6</h1>
          </div>
          
-    
+    <script src="src/login.form.js"></script>
 </body>
 </html>
