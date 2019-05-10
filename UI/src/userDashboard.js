@@ -114,3 +114,24 @@ const fetchUnRepaidLoansCount = () => {
 };
 
 fetchUnRepaidLoansCount();
+
+
+const fetchUnrepaidLoan = () => {
+    fetch(`http://localhost:3000/api/v1/user/${userEmail}/loans/repaid`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${userToken}`,
+            Accept: 'application/json'
+        }
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (parseInt(data.Count) > 0){
+            
+
+        }
+    })
+
+};
+
+fetchUnrepaidLoan();
