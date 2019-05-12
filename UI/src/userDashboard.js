@@ -14,7 +14,6 @@ const fetchTotalLoansCount = () => {
     })
     .then((response) => response.json())
     .then((data) => {
-
         if (parseInt(data.Count) > 0)
         {
             // Change the loanAmount to actual values from database
@@ -52,7 +51,6 @@ const fetchRepaidLoansCount = () => {
     })
     .then((response) => response.json())
     .then((data) => {
-        console.log(data);
         if (parseInt(data.Count) > 0)
         {
             // Change the loanAmount to actual values from database
@@ -90,7 +88,6 @@ const fetchUnRepaidLoansCount = () => {
     })
     .then((response) => response.json())
     .then((data) => {
-        console.log(data);
         if (parseInt(data.Count) > 0)
         {
             // Change the loanAmount to actual values from database
@@ -117,6 +114,53 @@ fetchUnRepaidLoansCount();
 
 
 const fetchUnrepaidLoan = () => {
+    let newLoan = '';
+
+    fetch(`http://localhost:3000/api/v1/user/${userEmail}/loans/unrepaid`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${userToken}`,
+            Accept: 'application/json'
+        }
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (parseInt(data.Count) == 0){
+            newLoan += `<div class="no_un_repaidBox">You currently don't have an unrepaid loan</div>`
+            document.getElementsByClassName('loan_unrepaid')[0].innerHTML = newLoan;        
+        }
+
+        if (parseInt(data.Count) == 1){
+            data.Data.forEach(loan => {
+                newLoan += `<div class="struc_one">
+                    <h4 class="struc_text3">Balance: shs ${loan.balance}</h4>
+                    <h4 class="struc_text1">Amount: shs ${loan.amount}</h4>
+                    <h4 class="struc_text1">Date Applied: ${loan.createdon}</h4>
+                </div>
+
+                <div class="struc_two">
+                    <h4 class="struc_text2">Interest: shs ${loan.interest}</h4>
+                    <h4 class="struc_text2">Installment: shs ${loan.paymentinstallment}</h4>
+                    <h4 class="struc_text2">Repaid: ${loan.repaid}</h4>
+                </div>
+
+                <div class="struc_three">
+                    <h4 class="struc_text3">Investee: ${loan.investee_name}</h4>
+                    <h4 class="struc_text2">Tenor: ${loan.tenor} months</h4>
+                    <h4 class="struc_text2">Status: ${loan.status}</h4>
+                </div>`
+            })
+            document.getElementsByClassName('loan_unrepaid')[0].innerHTML = newLoan;
+        }
+    })
+
+};
+
+fetchUnrepaidLoan();
+
+const fetchRepaidLoans = () => {
+    let newLoan = '';
+
     fetch(`http://localhost:3000/api/v1/user/${userEmail}/loans/repaid`, {
         method: 'GET',
         headers: {
@@ -126,12 +170,36 @@ const fetchUnrepaidLoan = () => {
     })
     .then((response) => response.json())
     .then((data) => {
-        if (parseInt(data.Count) > 0){
-            
+        if (parseInt(data.Count) == 0)
+        {
+            newLoan += `<div class="no_un_repaidBox">You currently don't have a repaid loan</div>`
+            document.getElementsByClassName('loan_repaid')[0].innerHTML = newLoan;
+        }
 
+        if (parseInt(data.Count) > 0)
+        {
+            data.Data.forEach(loan => {
+                newLoan += `<div class="struc_one">
+                    <h4 class="struc_text3">Investee: shs ${loan.investee_name}</h4>
+                    <h4 class="struc_text1">Amount: shs ${loan.amount}</h4>
+                    <h4 class="struc_text1">Date Applied: ${loan.createdon}</h4>
+                </div>
+
+                <div class="struc_two">
+                    <h4 class="struc_text2">Interest: shs ${loan.interest}</h4>
+                    <h4 class="struc_text2">Status: shs ${loan.status}</h4>
+                    <h4 class="struc_text2">Repaid: ${loan.repaid}</h4>
+                </div>
+
+                <div class="struc_three">
+                    <h4 class="struc_text3 textToLeft">Balance: ${loan.balance}</h4>
+                    <h4 class="struc_text2">Tenor: ${loan.tenor} months</h4>
+                    <h4 class="struc_text2">Installment: ${loan.paymentinstallment}</h4>
+                </div>`
+            })
+            document.getElementsByClassName('loan_repaid')[0].innerHTML = newLoan;
         }
     })
-
 };
 
-fetchUnrepaidLoan();
+fetchRepaidLoans();
