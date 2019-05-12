@@ -19,6 +19,18 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 // Creating a connection with connection string
 const pool = new Pool({ connectionString: connectionString });
 
+const updateLoan = () => {
+    pool.query("UPDATE loan set repaid='True' WHERE status='Verified' and balance<=0.00")
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+};
+
+updateLoan();
+
 exports.repayLoan = (req, res, next) => {
     const makeRepaymentQuery = 'INSERT INTO repayments(loanId, investee_email, investee_name, createdOn, amount, paidAmount, monthlyInstallment) VALUES($1, $2, $3, $4, $5, $6, $7)';
   
