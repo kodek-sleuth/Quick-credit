@@ -65,7 +65,9 @@ document.getElementsByClassName('repayLoanForm')[0].addEventListener('submit', v
 
             if (data.Status == '201')
             {
-                console.log(data);
+                document.getElementById('goodFeedBack').style.display = 'block'
+                document.getElementById('badFeedBack').style.display = 'none';
+                document.getElementById('goodFeedBack').innerHTML = data.Success   
             }
         })
     }
