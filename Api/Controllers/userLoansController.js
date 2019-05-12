@@ -18,7 +18,7 @@ const pool = new Pool({ connectionString: connectionString });
 
 // Function to Update Loans
 const updateLoan = () => {
-    pool.query("UPDATE loan set repaid='True' WHERE status='Verified' and balance=0.00")
+    pool.query("UPDATE loan set repaid='True' WHERE status='Verified' and balance<=0.00")
     .then((result) => {
         console.log(result);
     })
