@@ -198,3 +198,38 @@ exports.getLoansUnrepaid = (req, res, next) => {
         });
     });
 };
+
+exports.getLoanRepayments = (req, res, next) => {
+    const Email = req.params.Email;
+    const loanId = req.params.loanId;
+
+    pool.query(`Select * from repayments WHERE investee_email='${Email}' and loanid=${loanId}`)
+    .then((data) => {
+        if (data.rowCount > 0)
+        {
+            const fetchedData3 = data.rows;
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Data: fetchedData3,
+                Success: 'Successfully fetched Repayments'
+            });
+        }
+
+        else
+        {
+            res.status(200).json({
+                Count: data.rowCount,
+                Status: 200,
+                Message: 'User has no repayments loans'
+            });
+        }
+    })
+
+    .catch((error) => {
+        res.status(500).json({
+            Status: 500,
+            Error: error.message 
+        });
+    });
+};

@@ -4,6 +4,9 @@ const userLoans = express.Router();
 
 const userLoansController = require('../Controllers/userLoansController');
 
+// Middleware for checking Auth and Access Rights
+const jwtMiddleware = require('../Settings/checkAuthUser');
+
 /**
 * @swagger
 * /api/v1/user/{:Email}/loans:
@@ -25,7 +28,7 @@ const userLoansController = require('../Controllers/userLoansController');
 *         description: Successfully Fetched Loans
 */
 
-userLoans.get('/:Email/loans', userLoansController.getLoansApplied);
+userLoans.get('/:Email/loans', jwtMiddleware, userLoansController.getLoansApplied);
 
 /**
 * @swagger
@@ -48,7 +51,7 @@ userLoans.get('/:Email/loans', userLoansController.getLoansApplied);
 *         description: Successfully Fetched Loans
 */
 
-userLoans.get('/:Email/loans/approved', userLoansController.getLoansApproved);
+userLoans.get('/:Email/loans/approved', jwtMiddleware, userLoansController.getLoansApproved);
 
 /**
 * @swagger
@@ -71,7 +74,7 @@ userLoans.get('/:Email/loans/approved', userLoansController.getLoansApproved);
 *         description: Successfully Fetched Loans
 */
 
-userLoans.get('/:Email/loans/rejected', userLoansController.getLoansRejected);
+userLoans.get('/:Email/loans/rejected', jwtMiddleware, userLoansController.getLoansRejected);
 
 /**
 * @swagger
@@ -94,7 +97,7 @@ userLoans.get('/:Email/loans/rejected', userLoansController.getLoansRejected);
 *         description: Successfully Fetched Loans
 */
 
-userLoans.get('/:Email/loans/repaid', userLoansController.getLoansRepaid);
+userLoans.get('/:Email/loans/repaid', jwtMiddleware, userLoansController.getLoansRepaid);
 
 /**
 * @swagger
@@ -117,6 +120,35 @@ userLoans.get('/:Email/loans/repaid', userLoansController.getLoansRepaid);
 *         description: Successfully Fetched Loans
 */
 
-userLoans.get('/:Email/loans/unrepaid', userLoansController.getLoansUnrepaid);
+userLoans.get('/:Email/loans/unrepaid', jwtMiddleware, userLoansController.getLoansUnrepaid);
+
+
+/**
+* @swagger
+* /api/v1/user/{:Email}/loans/{:loanId}/repayments:
+*   get:
+*     security:
+*        - bearerAuth: []
+*     tags:
+*       - User
+*     name: Gets All User's Repayments of that Loan in database
+*     summary: Gets All User's  Repayments of that Loan in database
+*     parameters:
+*       - name: ":Email"
+*         in: path
+*         description: Email Id of Loan
+*         required: true
+*         type: string
+*       - name: ":loanId"
+*         in: path
+*         description: Id of Loan
+*         required: true
+*         type: integer
+*     responses:
+*       200:
+*         description: Successfully Fetched Repayments
+*/
+
+userLoans.get('/:Email/loans/:loanId/repayments', jwtMiddleware, userLoansController.getLoanRepayments);
 
 module.exports = userLoans;
