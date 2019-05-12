@@ -90,8 +90,8 @@
                     </div>
 
                     <div id="navbar_last_column">
-                        <img src="images/testmonial.jpg" class="profile_image">
-                        <h4 class="your_name">Mugerwa Joseph</h4>
+                        <img src="images/testmonial.jpg" class="profile_image" id="yourImage">
+                        <h4 class="your_name" id="yourName">Mugerwa Joseph</h4>
                     </div>            
                 </div>
 
@@ -101,62 +101,26 @@
                         <h3 class="account_text">Loan Repayment History</h3>
                     </div>
 
-                    <div class="user_stats">
-                        <div class="stat_one" style="margin-left: 20px;">
-                            <div class="statistics">
-                                <h4>Total Loans</h4>
-                                <h3 id="stat_loan_amount">3</h3>
-                                <h4 id="stat_total_loan_amount">Total Credit: shs.4000000</h4>
-                            </div>
-
-                            <div>
-                                <img src="icons/paid_loans.svg" class="stat_icons">
-                            </div>
-                        </div>
-
-                        <div class="stat_one" style="margin-left: 20px; background: #e83e8c">
-                            <div class="statistics">
-                                <h4>Total Repayments</h4>
-                                <h3 id="stat_loan_amount">2</h3>
-                                <h4 id="stat_total_loan_amount">Total Credit: shs.3000000</h4>
-                            </div>
-
-                            <div>
-                                <img src="icons/unpaid_loans.svg" class="stat_icons">
-                            </div>
-                        </div>
-
-                            <div class="stat_one" style="margin-left: 20px; background: #20c997">
-                                <div class="statistics">
-                                    <h4>UnRepaid Loan</h4>
-                                    <h3>1</h3>
-                                    <h4 id="stat_total_loan_balance">Total Credit: shs.2000000</h4>
-                                </div>
-    
-                                <div>
-                                    <img src="icons/repay_loan.svg" class="stat_icons">
-                                </div>
-                            </div>
-                    </div>
-
                     <h3 id="unrepaid_loans">Repayment History</h3>
                     <div class="loan_unrepaid">
                         <div class="struc_one">
-                            <h4 class="struc_text3">Amount: shs 2910000</h4>
-                            <h4 class="struc_text1">Interest: 5% of Amount</h4>
+                            <h4 class="struc_text3">LoanId: 2</h4>
+                            <h4 class="struc_text1">Amount: shs 200000</h4>
                             <h4 class="struc_text1">Date Payed: 21/4/2019</h4>
                         </div>
 
                         <div class="struc_three">
                             <h4 class="struc_text3">Investee: Mugerwa Joseph Lumu</h4>
-                            <h4 class="struc_text2">Loan Id: 2</h4>
-                            <h4 class="struc_text2">Payment Method: Credit Card</h4>
+                            <h4 class="struc_text2">Payed: shs 100000</h4>
+                            <h4 class="struc_text2">Installment: shs 20000</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     <script src="assets/jquery-3.3.1.js"></script>
-    <script src="src/menu.js"></script>   
+    <script src="src/menu.js"></script>  
+    <script src="src/setUpDashboardUser.js"></script> 
+    <script src="src/trackUserRepayments.js"></script>
 </body>
 </html>
