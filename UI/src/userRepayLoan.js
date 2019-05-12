@@ -61,7 +61,7 @@ document.getElementsByClassName('repayLoanForm')[0].addEventListener('submit', v
         })
         .then((res) => res.json())
         .then((data) => {
-            if (data.Error)
+            if (data.Status == '401')
             {
                 document.getElementById('goodFeedBack').style.display = 'none'
                 document.getElementById('badFeedBack').style.display = 'block';
