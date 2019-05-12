@@ -1,5 +1,6 @@
 const userToken = sessionStorage.getItem('UserToken');
 const userEmail =  sessionStorage.getItem('UserEmail');
+const fullname = document.getElementById('yourName').innerHTML;
 
 const fetchBalance = () => {
     fetch(`http://localhost:3000/api/v1/user/${userEmail}/loans/unrepaid`, {
@@ -13,6 +14,10 @@ const fetchBalance = () => {
     .then((data) => {
         data.Data.forEach(loan => {
             document.getElementById('yourBalance').innerHTML =`Current Balance =>  ${loan.balance}`;
+            if (loan.balance == '0.00')
+            {
+                document.getElementById('yourRepayBtn').value = 'Loan repayment made, Confim submission'
+            }
         });
     })
 };
@@ -71,6 +76,4 @@ document.getElementsByClassName('repayLoanForm')[0].addEventListener('submit', v
             }
         })
     }
-
-
 });
