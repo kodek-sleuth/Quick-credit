@@ -116,20 +116,40 @@ exports.repayLoan = (req, res, next) => {
                                                 if (currentData.rowCount > 0)
                                                 {
                                                     const updatedData = currentData.rows;
-                                                    
-                                                    res.status(201).json({
-                                                        Status: '201',
-                                                        Data: {
-                                                            Email: updatedData[0].investee_email,
-                                                            Fullname: updatedData[0].investee_name,
-                                                            Amount: updatedData[0].amount,
-                                                            Paid: req.body.Amount,
-                                                            Balance: updatedData[0].balance,
-                                                            Repaid: updatedData[0].repaid,
-                                                            Installment: updatedData[0].paymentinstallment
-                                                        },
-                                                        Success: 'Successfully Placed Repayment'
-                                                    });     
+
+                                                    if (updatedData[0].balance == 0.00)
+                                                    {
+                                                        res.status(201).json({
+                                                            Status: '201',
+                                                            Data: {
+                                                                Email: updatedData[0].investee_email,
+                                                                Fullname: updatedData[0].investee_name,
+                                                                Amount: updatedData[0].amount,
+                                                                Paid: req.body.Amount,
+                                                                Balance: updatedData[0].balance,
+                                                                Repaid: 'True',
+                                                                Installment: updatedData[0].paymentinstallment
+                                                            },
+                                                            Success: 'Successfully Placed Repayment'
+                                                        });   
+                                                    }  
+
+                                                    else
+                                                    {
+                                                        res.status(201).json({
+                                                            Status: '201',
+                                                            Data: {
+                                                                Email: updatedData[0].investee_email,
+                                                                Fullname: updatedData[0].investee_name,
+                                                                Amount: updatedData[0].amount,
+                                                                Paid: req.body.Amount,
+                                                                Balance: updatedData[0].balance,
+                                                                Repaid: updatedData[0].repaid,
+                                                                Installment: updatedData[0].paymentinstallment
+                                                            },
+                                                            Success: 'Successfully Placed Repayment'
+                                                        }); 
+                                                    }
                                                 }     
                                             });
                                         })
