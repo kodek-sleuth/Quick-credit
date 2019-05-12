@@ -91,8 +91,8 @@
                     </div>
 
                     <div id="navbar_last_column">
-                        <a href="/Quick-credit/UI/user_profile.html"><img src="images/testmonial.jpg" class="profile_image"></a>
-                        <h4 class="your_name">Mugerwa Joseph</h4>
+                        <a href="/Quick-credit/UI/user_profile.html"><img src="images/testmonial.jpg" class="profile_image" id="yourImage"></a>
+                        <h4 class="your_name" id="yourName">Mugerwa Joseph</h4>
                     </div>
         
                     
@@ -101,30 +101,31 @@
                 <div class="content_body">
                     <div class="validators">
                             <h4>Have A Loan To Repay <a href="/Quick-credit/UI/login.html" id="first_link">Here</a></h4>
-                            <div id="applyLoan">Interest Rate on all loans is '%5' and Amount is Ugandan Shillings e.g 2,000,000</div>
+                            <div id="applyLoan">Interest Rate on all loans is '%5' and Amount is in Shillings e.g 2000000 no commas</div>
                             <div id="badFeedBack">Invalid Email or Password</div>
                             <div id="goodFeedBack">Successfully Logged In</div>
                     </div>
                         
                     <div class="all_form_control">
                         <div class="forms">
-                            <form method="POST" id="signup_form">
+                            <form method="POST" id="signup_form" class="userGetLoanForm">
                                 <input id="amount" class="formcontrol long" placeholder="Amount in shillings" type="text">
                                 <select name="dropdown" class="formcontrol long">
-                                    <option value="1 Month" selected>Tenor-> 1 Month</option>
-                                    <option value="2 Months">Tenor-> 2 Months</option>
-                                    <option value="2 Months">Tenor-> 3 Months</option>
-                                    <option value="2 Months">Tenor-> 4 Months</option>
-                                    <option value="2 Months">Tenor-> 5 Months</option>
-                                    <option value="2 Months">Tenor-> 6 Months</option>
-                                    <option value="2 Months">Tenor-> 7 Months</option>
-                                    <option value="2 Months">Tenor-> 8 Months</option>
-                                    <option value="2 Months">Tenor-> 9 Months</option>
-                                    <option value="2 Months">Tenor-> 10 Months</option>
-                                    <option value="2 Months">Tenor-> 11 Months</option>
-                                    <option value="2 Months">Tenor-> 12 Months</option>
+                                    <option value="Choose Tenor">Choose Tenor</option>
+                                    <option value="1 Month">1 Month</option>
+                                    <option value="2 Months">2 Months</option>
+                                    <option value="3 Months">3 Months</option>
+                                    <option value="4 Months">4 Months</option>
+                                    <option value="5 Months">5 Months</option>
+                                    <option value="6 Months">6 Months</option>
+                                    <option value="7 Months">7 Months</option>
+                                    <option value="8 Months">8 Months</option>
+                                    <option value="9 Months">9 Months</option>
+                                    <option value="10 Months">10 Months</option>
+                                    <option value="11 Months">11 Months</option>
+                                    <option value="12 Months">12 Months</option>
                                 </select>
-                                <input class="btn_submit" value="Apply For Loan!" type="button">
+                                <input class="btn_submit" value="Apply For Loan!" type="submit">
                             </form>
                         </div>
                     </div>        
@@ -133,5 +134,7 @@
         </div>
     <script src="assets/jquery-3.3.1.js"></script>
     <script src="src/menu.js"></script>   
+    <script src="src/setUpDashboardUser.js"></script>
+    <script src="src/userGetLoan.js"></script>
 </body>
 </html>
