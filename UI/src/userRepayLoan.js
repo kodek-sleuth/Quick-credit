@@ -54,7 +54,7 @@ document.getElementsByClassName('repayLoanForm')[0].addEventListener('submit', v
         })
         .then((res) => res.json())
         .then((data) => {
-
+            console.log(data);
         })
     }
 
