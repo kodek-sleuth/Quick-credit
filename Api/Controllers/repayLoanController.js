@@ -176,7 +176,7 @@ exports.repayLoan = (req, res, next) => {
                 {
                     res.status(401).json({
                         Status: '401',
-                        Error: 'Please Loan Has to be verified inorder to make Repayment' 
+                        Error: 'Loan has To be verified inorder to make Repayment' 
                     });
                 }
                 }
