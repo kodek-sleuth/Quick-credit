@@ -28,6 +28,7 @@ document.getElementsByClassName('repayLoanForm')[0].addEventListener('submit', v
 
     if (amount == null || amount == '')
     {
+        document.getElementById('goodFeedBack').style.display = 'none'
         document.getElementById('badFeedBack').style.display = 'block';
         document.getElementById('badFeedBack').innerHTML = 'Please Enter an Amount to repay Balance'
         return false;
@@ -35,6 +36,7 @@ document.getElementsByClassName('repayLoanForm')[0].addEventListener('submit', v
 
     if (amount > 20000000)
     {
+        document.getElementById('goodFeedBack').style.display = 'none'
         document.getElementById('badFeedBack').style.display = 'block';
         document.getElementById('badFeedBack').innerHTML = 'Amount should not be more than 20million'
         return false;
@@ -54,7 +56,17 @@ document.getElementsByClassName('repayLoanForm')[0].addEventListener('submit', v
         })
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
+            if (data.Error)
+            {
+                document.getElementById('goodFeedBack').style.display = 'none'
+                document.getElementById('badFeedBack').style.display = 'block';
+                document.getElementById('badFeedBack').innerHTML = data.Error
+            }
+
+            if (data.Status == '201')
+            {
+                console.log(data);
+            }
         })
     }
 
