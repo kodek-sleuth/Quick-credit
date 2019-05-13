@@ -27,8 +27,8 @@ const jwtMiddleware = require('../Settings/checkAuthUser');
 *         required: true
 *         type: string
 *     responses:
-*       200:
-*         data: []
+*      200:
+*       data: []
 */
 
 userProfile.get('/:Email/profile', jwtMiddleware, userProfileController.getUserProfile);
@@ -72,10 +72,11 @@ userProfile.get('/:Email/profile', jwtMiddleware, userProfileController.getUserP
 *           - Password
 *           - Fullname
 *           - Address
-*       200:
-*         description: Successfully Updated Profile
-*       401:
-*         description: User Authorisation required to access resource
+*     responses:
+*      200:
+*       description: Successfully Updated Profile
+*      401:
+*       description: User Authorisation required to access resource
 */
 
 userProfile.patch('/:Email/profile', jwtMiddleware, userProfileController.updateUserProfile);
@@ -104,10 +105,10 @@ userProfile.patch('/:Email/profile', jwtMiddleware, userProfileController.update
 *         required: true
 *         description: Upload an Image File.
 *     responses:
-*       200:
-*         description: Successfully Updated Profile
-*       401:
-*         description: User Authorisation required to access resource
+*     200:
+*       description: Successfully Updated Profile
+*     401:
+*       description: User Authorisation required to access resource
 */
 
 userProfile.patch('/:Email/profile/image', jwtMiddleware, settings.upload.single('Image'), userProfileController.userUpdateProfilePicture);

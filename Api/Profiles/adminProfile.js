@@ -27,8 +27,8 @@ const adminProfileController = require('../Controllers/adminUpdateProfile');
 *         required: true
 *         type: string
 *     responses:
-*       200:
-*         data: []
+*      200:
+*       data: []
 */
 
 adminProfile.get('/:Email/profile', jwtMiddleware, adminProfileController.getAdminProfile);
@@ -63,19 +63,16 @@ adminProfile.get('/:Email/profile', jwtMiddleware, adminProfileController.getAdm
 *             example: stealth
 *           Fullname:
 *             type: string
-*             example: "Jose Kodek"
-*           Address:
-*             type: string
-*             example: "KG ST 442"
+*             example: Jose Kodek
 *         required:
 *           - Email
 *           - Password
 *           - Fullname
-*           - Address
-*       200:
-*         description: Successfully Updated Profile
-*       401:
-*         description: admin Authorisation required to access resource
+*     responses:
+*      200:
+*       description: Successfully Updated Profile
+*      401:
+*       description: admin Authorisation required to access resource
 */
 
 adminProfile.patch('/:Email/profile', jwtMiddleware, adminProfileController.updateAdminProfile);
@@ -104,10 +101,10 @@ adminProfile.patch('/:Email/profile', jwtMiddleware, adminProfileController.upda
 *         required: true
 *         description: Upload an Image File.
 *     responses:
-*       200:
-*         description: Successfully Updated Profile
-*       401:
-*         description: admin Authorisation required to access resource
+*      200:
+*       description: Successfully Updated Profile
+*      401:
+*       description: admin Authorisation required to access resource
 */
 
 adminProfile.patch('/:Email/profile/image', jwtMiddleware, settings.upload.single('Image'), adminProfileController.adminUpdateProfilePicture);

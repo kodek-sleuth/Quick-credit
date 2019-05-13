@@ -145,8 +145,8 @@ userLoans.get('/:Email/loans/unrepaid', jwtMiddleware, userLoansController.getLo
 *         required: true
 *         type: integer
 *     responses:
-*       200:
-*         description: Successfully Fetched Repayments
+*      200:
+*       description: Successfully Fetched Repayments
 */
 
 userLoans.get('/:Email/loans/:loanId/repayments', jwtMiddleware, userLoansController.getLoanRepayments);
