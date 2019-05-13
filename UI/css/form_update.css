@@ -12,6 +12,7 @@
     box-shadow: #dc3545 0px 1px 5px 1px, #dc3545 0px 1px 1px;
     outline-color: #dc3545;
     background: linear-gradient(to right,#dc3545 0,#dc3545 100%);
+    display: none;
 }
 
 #goodFeedBack
@@ -29,6 +30,7 @@
     box-shadow: #28a745 0px 1px 5px 1px, #28a745 0px 1px 1px;
     outline-color: #28a745;
     background: linear-gradient(to right,#28a745 0,#28a745 100%);
+    display: none;
 }
 
 .update_image

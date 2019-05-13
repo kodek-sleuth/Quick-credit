@@ -91,8 +91,8 @@
                     </div>
 
                     <div id="navbar_last_column">
-                        <img src="images/testmonial.jpg" class="profile_image">
-                        <h4 class="your_name">Mugerwa Joseph</h4>
+                        <img src="images/testmonial.jpg" class="profile_image" id="yourImage">
+                        <h4 class="your_name" id="yourName">Mugerwa Joseph</h4>
                     </div>
         
                     
@@ -113,21 +113,22 @@
 
                     <h3>General Information</h3>
                     <form method="POST" class="update_form">
-                        <div class="the_images">
-                            <label>Profile Picture</label><br>
-                            <img src="images/testmonial.jpg" class="update_image"><br>
-                            <input type="button" name="Image" class="upload" value="Upload New Picture">
-                        </div>
-
+                        <form method="POST" enctype="multipart/form-data">
+                            <div class="the_images">
+                                <label>Profile Picture</label><br>
+                                <img src="images/testmonial.jpg" class="update_image"  id="yourImage2"><br>
+                                <input type="button" name="Image" class="upload" value="Upload New Picture">
+                            </div>
+                        </form>
                         <div class="control_display">
                             <div>
                                 <label>Fullname</label><br>
-                                <input type="text"  class="control" value="" placeholder="Mugerwa Joseph Lumu">
+                                <input type="text"  class="control" value="" placeholder="Mugerwa Joseph Lumu" id="yourName2">
                             </div>
                             
                             <div class="control_left">
                                 <label>Your Email</label><br>
-                                <input type="text"  class="control" value="" placeholder="Mugerwa Joseph Lumu">
+                                <input type="text"  class="control" value="" placeholder="Mugerwa Joseph Lumu" id="yourEmail">
                             </div> 
                         </div>
                         
@@ -135,36 +136,35 @@
                         <div class="control_display">
                             <div>
                                 <label>Your Address</label><br>
-                                <input type="text"  class="control" value="" placeholder="Mugerwa Joseph Lumu">
+                                <input type="text"  class="control" value="" placeholder="Mugerwa Joseph Lumu" id="yourAddress">
                             </div> 
 
                             <div class="control_left">
                                 <label>Account Number</label><br>
-                                <input type="text"  class="control" value="" placeholder="Mugerwa Joseph Lumu">
+                                <input type="text"  class="control" value="11211231AWD21" placeholder="Mugerwa Joseph Lumu">
                             </div>
                         </div>
 
                         <div class="control_display_password">
                             <div>
                                 <label>Old Password</label><br>
-                                <input type="text"  class="control" value="" placeholder="Mugerwa Joseph Lumu">
+                                <input type="text"  class="control" value="" placeholder="Mugerwa Joseph Lumu" id="yourPassword">
                             </div> 
     
                             <div class="control_left_password">
                                 <label>New Password</label><br>
-                                <input type="text"  class="control" value="" placeholder="Mugerwa Joseph Lumu">
+                                <input type="text"  class="control" value="" placeholder="Mugerwa Joseph Lumu" id="yourNewPassword">
                             </div>
                         </div>
 
                         <input class="btn_submit" value="Update Profile" type="button">
                     </form>
-                            
-
                 </div>
-                    
             </div>
         </div>
     <script src="assets/jquery-3.3.1.js"></script>
-    <script src="src/menu.js"></script>   
+    <script src="src/menu.js"></script> 
+    <script src="src/setUpDashboardUser.js"></script> 
+    <script src="src/userProfile.js"></script> 
 </body>
 </html>
