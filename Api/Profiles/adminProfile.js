@@ -8,7 +8,6 @@ const adminProfile = express.Router();
 
 const adminProfileController = require('../Controllers/adminUpdateProfile');
 
-
 /**
 * @swagger
 * /api/v1/admin/{:Email}/profile:
