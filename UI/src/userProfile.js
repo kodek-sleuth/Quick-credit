@@ -20,7 +20,6 @@ const getUserProfile = () => {
         document.getElementById('yourImage2').src = 'http://localhost:3000/'+ image.split('/')[1];
         document.getElementById('yourEmail').value = email;
         document.getElementById('yourAddress').value = address;
-
     })
 };
 

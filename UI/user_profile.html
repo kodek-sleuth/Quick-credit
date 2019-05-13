@@ -112,14 +112,15 @@
                     </div>
 
                     <h3>General Information</h3>
+                    <form method="POST" enctype="multipart/form-data" id="updatePP">
+                        <div class="the_images">
+                            <label>Click on Picture</label><br>
+                            <label for="updatePic"><img src="images/testmonial.jpg" class="update_image"  id="yourImage2"></label><br>
+                            <input type="submit" name="Image" class="upload" value="Upload New Picture">
+                            <input type="file" id="updatePic" onchange="previewImage()">
+                        </div>
+                    </form>
                     <form method="POST" class="update_form">
-                        <form method="POST" enctype="multipart/form-data">
-                            <div class="the_images">
-                                <label>Profile Picture</label><br>
-                                <img src="images/testmonial.jpg" class="update_image"  id="yourImage2"><br>
-                                <input type="button" name="Image" class="upload" value="Upload New Picture">
-                            </div>
-                        </form>
                         <div class="control_display">
                             <div>
                                 <label>Fullname</label><br>
@@ -165,6 +166,7 @@
     <script src="assets/jquery-3.3.1.js"></script>
     <script src="src/menu.js"></script> 
     <script src="src/setUpDashboardUser.js"></script> 
-    <script src="src/userProfile.js"></script> 
+    <script src="src/userProfile.js"></script>
+    <script src="src/updateUserProfile.js"></script> 
 </body>
 </html>

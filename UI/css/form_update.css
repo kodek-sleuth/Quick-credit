@@ -11,7 +11,7 @@
     padding: 10px;
     box-shadow: #dc3545 0px 1px 5px 1px, #dc3545 0px 1px 1px;
     outline-color: #dc3545;
-    background: linear-gradient(to right,#dc3545 0,#dc3545 100%);
+    background: #dc3545;
     display: none;
 }
 
@@ -29,7 +29,7 @@
     text-align: center;
     box-shadow: #28a745 0px 1px 5px 1px, #28a745 0px 1px 1px;
     outline-color: #28a745;
-    background: linear-gradient(to right,#28a745 0,#28a745 100%);
+    background:#28a745;
     display: none;
 }
 
@@ -97,7 +97,7 @@
     padding: 11px 38px;
     box-shadow: #041B2D 0px 1px 5px 1px, #041B2D 0px 1px 1px;
     outline-color: #041B2D;
-    background: linear-gradient(to right,#041B2D 0,#041B2D 100%);
+    background: #041B2D;
 }
 
 .upload
@@ -114,6 +114,17 @@
     box-shadow: #117a8b 0px 1px 5px 1px, #117a8b 0px 1px 1px;
     outline-color: #117a8b;
     background: linear-gradient(to right,#117a8b 0,#117a8b 100%);
+}
+
+#updatePic
+{
+    width: 1px;
+    opacity: 0;
+}
+
+.update_image
+{
+    cursor: pointer;
 }
 
 @media(max-width: 900px)
