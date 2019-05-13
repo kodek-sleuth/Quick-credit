@@ -17,14 +17,14 @@ const adminProfileController = require('../Controllers/adminUpdateProfile');
 *        - bearerAuth: []
 *     tags:
 *       - Profiles
-*     name: Gets User Profile
-*     summary: Gets an Admin Profile
+*     name: Gets admin Profile
+*     summary: Gets a admin Profile
 *     consumes:
 *       - multipart/form-data
 *     parameters:
 *       - name: ":Email"
 *         in: path
-*         description: Email of User Profile
+*         description: Email of admin Profile
 *         required: true
 *         type: string
 *     responses:
@@ -32,7 +32,7 @@ const adminProfileController = require('../Controllers/adminUpdateProfile');
 *         data: []
 */
 
-adminProfile.get('/:Email/profile', adminProfileController.getAdminProfile);
+adminProfile.get('/:Email/profile', jwtMiddleware, adminProfileController.getAdminProfile);
 
 /**
 * @swagger
@@ -42,32 +42,63 @@ adminProfile.get('/:Email/profile', adminProfileController.getAdminProfile);
 *        - bearerAuth: []
 *     tags:
 *       - Profiles
-*     name: Update Admin Profile
-*     summary: Updates an Admin Profile
+*     name: Update admin Profile
+*     summary: Updates a admin Profile
+*     consumes:
+*       - application/json
+*     parameters:
+*       - name: ":Email"
+*         in: path
+*         description: Email of admin Profile
+*         required: true
+*         type: string
+*       - name: body
+*         in: body
+*         properties:
+*           Email:
+*             type: string
+*             example: abel@gmail.com
+*           Password:
+*             type: string
+*             format: password
+*             example: stealth
+*           Fullname:
+*             type: string
+*             example: "Jose Kodek"
+*           Address:
+*             type: string
+*             example: "KG ST 442"
+*         required:
+*           - Email
+*           - Password
+*           - Fullname
+*           - Address
+*       200:
+*         description: Successfully Updated Profile
+*       401:
+*         description: admin Authorisation required to access resource
+*/
+
+adminProfile.patch('/:Email/profile', jwtMiddleware, adminProfileController.updateAdminProfile);
+
+/**
+* @swagger
+* /api/v1/admin/{:Email}/profile/image:
+*   patch:
+*     security:
+*        - bearerAuth: []
+*     tags:
+*       - Profiles
+*     name: Update admin Profile
+*     summary: Updates a admin Profile
 *     consumes:
 *       - multipart/form-data
 *     parameters:
 *       - name: ":Email"
 *         in: path
-*         description: Email of Admin Profile
+*         description: Email of admin Profile
 *         required: true
 *         type: string
-*       - name: Fullname
-*         in: formData
-*         type: string
-*         description: Yahya Jalal.
-*       - name: Email
-*         in: formData
-*         type: string
-*         description: yahya@gmail.com.
-*       - name: Password
-*         in: formData
-*         type: string
-*         description: stealth.
-*       - name: Address
-*         in: formData
-*         type: string
-*         description: Kitende, Entebbe.
 *       - name: Image
 *         in: formData
 *         type: file
@@ -75,11 +106,11 @@ adminProfile.get('/:Email/profile', adminProfileController.getAdminProfile);
 *         description: Upload an Image File.
 *     responses:
 *       200:
-*         description: Successfully Updated Profilen
+*         description: Successfully Updated Profile
 *       401:
-*         description: Admin Authorisation required to access resource
+*         description: admin Authorisation required to access resource
 */
 
-adminProfile.patch('/:Email/profile', jwtMiddleware, settings.upload.single('Image'), adminProfileController.updateAdminProfile);
+adminProfile.patch('/:Email/profile/image', jwtMiddleware, settings.upload.single('Image'), adminProfileController.adminUpdateProfilePicture);
 
 module.exports = adminProfile;

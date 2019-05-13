@@ -60,7 +60,11 @@ exports.updateUserProfile = (req, res, next) => {
             pool.query(`select * from users where email='${email}'`)
             .then((feedBack2) => {
                 console.log(feedBack2.rows);
-                res.status(200);
+                res.status(200).json({
+                    Status: 200,
+                    Data: feedBack2.rows,
+                    Success: 'Successfully Updated Profile'
+                });
             })
             .catch((error) => {
                 res.status(500).json({
@@ -203,12 +207,15 @@ exports.updateUserProfile = (req, res, next) => {
             }
         });
     }
+};
 
+exports.userUpdateProfilePicture = (req, res, next) => {
     if (req.file.path)
     {
+        const email = req.params.Email;
         pool.query(`UPDATE users set image='${req.file.path}' where email='${email}'`)
         .then((feedBack) => {
-            pool.query(`select * from users where email='${email}'`, (err, success) => {
+            pool.query(`select * from admin where email='${email}'`, (err, success) => {
                 if (err)
                 {
                     res.status(500).json({

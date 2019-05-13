@@ -44,6 +44,53 @@ userProfile.get('/:Email/profile', jwtMiddleware, userProfileController.getUserP
 *     name: Update User Profile
 *     summary: Updates a User Profile
 *     consumes:
+*       - application/json
+*     parameters:
+*       - name: ":Email"
+*         in: path
+*         description: Email of User Profile
+*         required: true
+*         type: string
+*       - name: body
+*         in: body
+*         properties:
+*           Email:
+*             type: string
+*             example: abel@gmail.com
+*           Password:
+*             type: string
+*             format: password
+*             example: stealth
+*           Fullname:
+*             type: string
+*             example: "Jose Kodek"
+*           Address:
+*             type: string
+*             example: "KG ST 442"
+*         required:
+*           - Email
+*           - Password
+*           - Fullname
+*           - Address
+*       200:
+*         description: Successfully Updated Profile
+*       401:
+*         description: User Authorisation required to access resource
+*/
+
+userProfile.patch('/:Email/profile', jwtMiddleware, userProfileController.updateUserProfile);
+
+/**
+* @swagger
+* /api/v1/user/{:Email}/profile/image:
+*   patch:
+*     security:
+*        - bearerAuth: []
+*     tags:
+*       - Profiles
+*     name: Update User Profile
+*     summary: Updates a User Profile
+*     consumes:
 *       - multipart/form-data
 *     parameters:
 *       - name: ":Email"
@@ -51,22 +98,6 @@ userProfile.get('/:Email/profile', jwtMiddleware, userProfileController.getUserP
 *         description: Email of User Profile
 *         required: true
 *         type: string
-*       - name: Fullname
-*         in: formData
-*         type: string
-*         description: Yahya Jalal.
-*       - name: Email
-*         in: formData
-*         type: string
-*         description: yahya@gmail.com.
-*       - name: Password
-*         in: formData
-*         type: string
-*         description: stealth.
-*       - name: Address
-*         in: formData
-*         type: string
-*         description: Kitende, Entebbe.
 *       - name: Image
 *         in: formData
 *         type: file
@@ -79,6 +110,6 @@ userProfile.get('/:Email/profile', jwtMiddleware, userProfileController.getUserP
 *         description: User Authorisation required to access resource
 */
 
-userProfile.patch('/:Email/profile', jwtMiddleware, settings.upload.single('Image'), userProfileController.updateUserProfile);
+userProfile.patch('/:Email/profile/image', jwtMiddleware, settings.upload.single('Image'), userProfileController.userUpdateProfilePicture);
 
 module.exports = userProfile;

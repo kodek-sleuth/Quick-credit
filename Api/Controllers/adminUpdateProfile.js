@@ -63,8 +63,11 @@ exports.updateAdminProfile = (req, res, next) => {
         .then((feedBack) => {
             pool.query(`select * from admin where email='${email}'`)
             .then((feedBack2) => {
-                console.log(feedBack2.rows);
-                res.status(200);
+                res.status(200).json({
+                    Status: 200,
+                    Data: feedBack2.rows,
+                    Success: 'Successfully Updated Profile'
+                });
             })
             .catch((error) => {
                 res.status(500).json({
@@ -180,10 +183,12 @@ exports.updateAdminProfile = (req, res, next) => {
             }
         });
     }
+};
 
-    // Image path
+exports.adminUpdateProfilePicture = (req, res, next) => {
     if (req.file.path)
     {
+        const email = req.params.Email;
         pool.query(`UPDATE admin set image='${req.file.path}' where email='${email}'`)
         .then((feedBack) => {
             pool.query(`select * from admin where email='${email}'`, (err, success) => {
