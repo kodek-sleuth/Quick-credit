@@ -24,7 +24,7 @@ document.getElementById('updatePP').addEventListener('submit', validatePicture =
     formData.append('Image', image);
 
     fetch(`http://localhost:3000/api/v1/user/${userEmail}/profile/image`, {
-        method: 'POST',
+        method: 'PATCH',
         body: formData,
         headers: {  
             Authorization: `Bearer ${userToken}`,
@@ -33,4 +33,13 @@ document.getElementById('updatePP').addEventListener('submit', validatePicture =
     })
     .then((response) => response.json())
     .then((data) => console.log(data));
+});
+
+document.getElementsByClassName('update_form')[0].addEventListener('subimt', validateForm2 = () => {
+
+    fetch(`http://localhost:3000/api/v1/user/${userEmail}/profile/image`, {
+        method: 'PATCH',
+        body: JSON.stringify({Email: email, Fullname: fullname, })
+    });
+
 });
