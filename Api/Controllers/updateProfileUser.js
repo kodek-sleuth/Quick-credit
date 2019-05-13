@@ -53,35 +53,6 @@ exports.getUserProfile = (req, res, next) => {
 exports.updateUserProfile = (req, res, next) => {
     const email = req.params.Email;
 
-    if (req.body.Email)
-    {
-        pool.query(`UPDATE users set email='${req.body.Email}' where email='${email}'`)
-        .then((feedBack) => {
-            pool.query(`select * from users where email='${email}'`)
-            .then((feedBack2) => {
-                console.log(feedBack2.rows);
-                res.status(200).json({
-                    Status: 200,
-                    Data: feedBack2.rows,
-                    Success: 'Successfully Updated Profile'
-                });
-            })
-            .catch((error) => {
-                res.status(500).json({
-                    Status: 500,
-                    Error: error.message
-                });
-            });
-        })
-
-        .catch((error) => {
-            res.status(500).json({
-                Status: 500,
-                Error: error.message
-            });
-        });
-    }
-
     if (req.body.Fullname)
     {
         pool.query(`UPDATE users set fullname='${req.body.Fullname}' where email='${email}'`)
@@ -207,6 +178,34 @@ exports.updateUserProfile = (req, res, next) => {
             }
         });
     }
+
+    if (req.body.Email)
+    {
+        pool.query(`UPDATE users set email='${req.body.Email}' where email='${email}'`)
+        .then((feedBack) => {
+            pool.query(`select * from users where email='${email}'`)
+            .then((feedBack2) => {
+                res.status(200).json({
+                    Status: 200,
+                    Data: feedBack2.rows,
+                    Success: 'Successfully Updated Profile'
+                });
+            })
+            .catch((error) => {
+                res.status(500).json({
+                    Status: 500,
+                    Error: error.message
+                });
+            });
+        })
+
+        .catch((error) => {
+            res.status(500).json({
+                Status: 500,
+                Error: error.message
+            });
+        });
+    }
 };
 
 exports.userUpdateProfilePicture = (req, res, next) => {
@@ -215,7 +214,7 @@ exports.userUpdateProfilePicture = (req, res, next) => {
         const email = req.params.Email;
         pool.query(`UPDATE users set image='${req.file.path}' where email='${email}'`)
         .then((feedBack) => {
-            pool.query(`select * from admin where email='${email}'`, (err, success) => {
+            pool.query(`select * from users where email='${email}'`, (err, success) => {
                 if (err)
                 {
                     res.status(500).json({
