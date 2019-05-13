@@ -30,9 +30,6 @@ a
     overflow: hidden;
     position: fixed;
     top: 0;
-    -webkit-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    transition: all .2s ease;
     width: 200px;
     z-index: 1000;
     color: #b7c0cd;
@@ -47,9 +44,6 @@ a
     margin-bottom: 0;
     padding: 0;
     position: fixed;
-    -webkit-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    transition: all .2s ease;
     width: 100%;
     z-index: 800;
     margin-left: 13%;
@@ -212,19 +206,18 @@ a
 	-moz-border-radius:36px;
 	-webkit-border-radius:36px;
 	border-radius:36px;
-	display:inline-block;
-	cursor:pointer;
+	display: inline-block;
+	cursor: pointer;
 	color:#ffffff;
-	font-size:17px;
-	padding:8px 50px;
-	text-decoration:none;
-    text-shadow:0px 0px 0px #52A0FD;
+	font-size: 17px;
+	padding: 8px 50px;
+	text-decoration: none;
+    text-shadow: 0px 0px 0px #52A0FD;
     border: none;
     font-family: 'Bree Serif', serif;
     outline: none;
     margin-left: 15px;
     margin-top: 10%;
-
 }
 
 #dashed
@@ -278,9 +271,9 @@ a
     margin-left: 5px;
     padding: 5px;
     background: #fff;
-    -moz-border-radius:36px;
-	-webkit-border-radius:36px;
-	border-radius:36px;
+    -moz-border-radius: 36px;
+	-webkit-border-radius: 36px;
+	border-radius: 36px;
 }
 
 #unrepaid_loans

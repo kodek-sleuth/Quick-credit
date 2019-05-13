@@ -92,6 +92,7 @@ const previewFile = () => {
                 document.getElementById('badFeedBack').style.display = 'none';
                 document.getElementById('goodFeedBack').style.display = 'block';
                 document.getElementById('goodFeedBack').innerHTML = 'Successfully Signed Up as Admin';
+                window.location = '/';
             }
         })
       }
@@ -151,6 +152,7 @@ const previewFile = () => {
                     document.getElementById('badFeedBack').style.display = 'none';
                     document.getElementById('goodFeedBack').style.display = 'block';
                     document.getElementById('goodFeedBack').innerHTML = `Successfully Signed ${data.Data.Fullname}`;
+                    window.location = '/';
                 }
             })
           }
