@@ -16,19 +16,6 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 
 const pool = new Pool({ connectionString: connectionString });
 
-// Function to Update Loans
-const updateLoan = () => {
-    pool.query("UPDATE loan set repaid='True' WHERE status='Verified' and balance<=0.00")
-    .then((result) => {
-        console.log(result);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
-};
-
-updateLoan();
-
 exports.getLoansApplied = (req, res, next) => {
     const Email = req.params.Email;
 
@@ -221,7 +208,7 @@ exports.getLoanRepayments = (req, res, next) => {
             res.status(200).json({
                 Count: data.rowCount,
                 Status: 200,
-                Message: 'User has no repayments loans'
+                Message: 'User has no repayments made'
             });
         }
     })
