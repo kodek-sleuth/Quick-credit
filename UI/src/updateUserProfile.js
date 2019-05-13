@@ -26,8 +26,7 @@ document.getElementById('updatePP').addEventListener('submit', validatePicture =
     fetch(`http://localhost:3000/api/v1/user/${userEmail}/profile/image`, {
         method: 'POST',
         body: formData,
-        headers: {
-            'Content-Type': 'application/json',  
+        headers: {  
             Authorization: `Bearer ${userToken}`,
             Accept: 'application/json, text/plain, */*'
         }
