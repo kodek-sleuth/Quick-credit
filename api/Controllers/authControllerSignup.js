@@ -69,9 +69,9 @@ exports.signUpUser = (req, res, next) => {
           Lastname: req.body.Lastname,
           isAdmin: req.body.isAdmin,
           Address: req.body.Address,
-          Status: 'Pending'
+          Status: 'Pending',
+          Token: token,
         },
-        Token: token,
         Success: 'User successfully signed up' 
       });
     }

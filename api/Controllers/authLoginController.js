@@ -35,8 +35,8 @@ exports.loginUser = (req, res, next) => {
 
           res.status(200).json({
             Status: 200,
-            Token: token,
             Data: {
+              Token: token,
               Email: user.Email,
               Firstname: user.Firstname,
               Lastname: user.Lastname,
