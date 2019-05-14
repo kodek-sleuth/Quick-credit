@@ -14,12 +14,20 @@ exports.adminLoginDetails = {
   Password: 'stealth'
 };
 
+
 exports.loanApplication = {
-  Email: 'yahya@gmail.com',
-  Fullname: 'Yahya Jalal',
+  Email: 'abel@gmail.com',
+  Fullname: 'Abel Tesfaye',
   Amount: 290000,
   Tenor: 2
 };
+
+exports.loanExists = {
+  Email: 'kelvin@gmail.com',
+  Fullname: 'Kelvin Richie',
+  Amount: 790000,
+  Tenor: 2
+}
 
 exports.loanApplicationPresent = {
   Email: 'john@gmail.com',
@@ -33,3 +41,20 @@ exports.repayLoan = {
   Fullname: 'Abel Tesfaye',
   Amount: 50000
 }
+
+exports.userFalseDetails = {
+  isAdmin: 'False',
+  Email: 'malvina@gmail.com',
+  Password: 'stealth'
+}
+
+exports.adminFalseDetails = {
+  isAdmin: 'True',
+  Email: 'malvina@gmail.com',
+  Password: 'stealth'
+}
+
+exports.rightCredentials = {
+  
+}
+

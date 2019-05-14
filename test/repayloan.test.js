@@ -6,7 +6,7 @@ const userDetails = require('./utils/utils');
 
 describe('Repay Loan', () => {
   it('Should repay loan given the right credentials', (done) => {
-    library.server.post('/api/v1/auth/login')
+    library.server.post('/api/v1/users/loans/repay')
       .set('Accept', 'application/json')
       .send(userDetails.adminLoginDetails)
       .expect('Content-Type', /json/)
@@ -19,7 +19,7 @@ describe('Repay Loan', () => {
   });
 
   it('Should not repay a loan that is not approved', (done) => {
-    library.server.post('/api/v1/auth/login')
+    library.server.post('/api/v1/users/loans/repay')
       .set('Accept', 'application/json')
       .send(userDetails.adminLoginDetails)
       .expect('Content-Type', /json/)
@@ -31,7 +31,7 @@ describe('Repay Loan', () => {
   });
 
   it('Should not repay a loan that is already repaid', (done) => {
-    library.server.post('/api/v1/auth/login')
+    library.server.post('/api/v1/users/loans/repay')
       .set('Accept', 'application/json')
       .send(userDetails.adminLoginDetails)
       .expect('Content-Type', /json/)

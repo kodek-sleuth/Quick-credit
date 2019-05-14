@@ -11,9 +11,8 @@ const token = require('./login.test');
 
 describe('Testing if app returns all Admin loan requests', () => {
   it('Should return all repaid loans', (done) => {
-    library.server.post('/api/v1/admin/loans')
+    library.server.post('/api/v1/admin/loans/repaid')
       .set('Accept', 'application/json')
-      .send(userDetails.adminLoginDetails)
       .expect('Content-Type', /json/)
       .end((error, res) => {
         library.expect(res.body.Status).to.have.property('200');
@@ -24,9 +23,8 @@ describe('Testing if app returns all Admin loan requests', () => {
   });
 
   it('Should return all unrepaid loans', (done) => {
-    library.server.post('/api/v1/admin/loans')
+    library.server.post('/api/v1/admin/loans/unrepaid')
       .set('Accept', 'application/json')
-      .send(userDetails.adminLoginDetails)
       .expect('Content-Type', /json/)
       .end((error, res) => {
         library.expect(res.body.Status).to.have.property('200');
