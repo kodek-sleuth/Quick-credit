@@ -21,11 +21,11 @@ exports.applyLoan = (req, res, next) => {
         });
     }
 
-    if (isNaN(req.body.Email) == false || isNaN(req.body.Fullname) == false || isNaN(req.body.Amount) == true || isNaN(req.body.Tenor) == true)
+    if (isNaN(req.body.Email) == false || isNaN(req.body.Fullname) == false || isNaN(req.body.Amount) == true || isNaN(req.body.Tenor) == true || isNaN(req.body.loanId) == true)
     {
         res.status(400).json({
             Status: 400,
-            Error: 'Email and Fullname should be String while Amount and Tenor Integers'
+            Error: 'Email and Fullname should be String while Amount, Loanid and Tenor are Integers'
         });
     }
 
@@ -58,6 +58,7 @@ exports.applyLoan = (req, res, next) => {
                                 const balance = req.body.Amount + interest;
 
                                 const newLoan = {
+                                    id: req.body.loanId,
                                     Fullname: req.body.Fullname,
                                     Email: req.body.Email,
                                     Amount: req.body.Amount,
@@ -67,7 +68,7 @@ exports.applyLoan = (req, res, next) => {
                                     Installment: paymentInstallment,
                                     Repaid: 'False',
                                     Status: 'Pending',
-                                    CreatedOn: currentDate,
+                                    CreatedOn: currentDate
                                 };
 
                                 models.loans.push(newLoan);
@@ -76,6 +77,7 @@ exports.applyLoan = (req, res, next) => {
                                     Status: '201',
                                     loans: loan,
                                     Data: {
+                                        id: req.body.loanId,
                                         Email: req.body.Email,
                                         Fullname: req.body.Fullname,
                                         Amount: req.body.Amount,

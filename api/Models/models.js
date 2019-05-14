@@ -12,6 +12,7 @@
 
 
 exports.loans = [{
+    id: 1,
     Fullname: 'Kelvin Tinidyebwa',
     Email: 'kelvin@gmail.com',
     Amount: 300000.0,
@@ -20,7 +21,7 @@ exports.loans = [{
     Interest: 30000,
     Installment: 28999,
     Repaid: 'False',
-    Status: 'Verified',
+    Status: 'Pending',
     CreatedOn: '21-05-2019'
 }];
 
@@ -41,3 +42,5 @@ exports.admins = [{
     isAdmin: 'False'
   }
 ];
+
+exports.repayments = []
