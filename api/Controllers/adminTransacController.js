@@ -14,26 +14,31 @@
 
 const models = require('../Models/models');
 
-exports.verifyUser = (req, res, next) => {
-    const userId = req.params.userId;
+exports.transacPost = (req, res, next) => {
+    const loanId = req.params.loanId;
 
-    if (userId)
+    if (loanId)
     {
-        models.users.forEach((user) => {
-            if (user.id == userId && user.isAdmin == 'False')
+        models.loans.forEach((loan) => {
+            if (loan.id == loanId)
             {
-                user.Status = 'Verified';
+                loan.Balance = '0';
+                loan.Repaid = 'True';
+                loan.Status = 'Verified';
 
                 res.status(200).json({
                     Status: 200,
-                    Success: 'Successfully verified a user',
+                    Success: 'Successfully posted transaction for user',
                     Data: {
-                        Firstname: user.Email,
-                        Lastname: user.Amount,
-                        Email: user.Tenor,
-                        Address: user.Balance,
-                        Status: user.Interest,
-                        isAdmin: user.Installment
+                        Email: loan.Email,
+                        Amount: loan.Amount,
+                        Tenor: loan.Tenor,
+                        Balance: loan.Balance,
+                        Interest: loan.Interest,
+                        Installment: loan.Installment,
+                        Repaid: loan.Balance,
+                        Status: loan.Status,
+                        CreatedOn: loan.CreatedOn
                     }
                 });
             }
@@ -42,7 +47,7 @@ exports.verifyUser = (req, res, next) => {
             {
                 res.status(400).json({
                     Status: 400,
-                    Error: 'User with that id does not exist'
+                    Error: 'Loan with that id does not exist'
                   });
             }
         });
