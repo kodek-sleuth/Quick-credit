@@ -80,7 +80,7 @@ exports.signUpUser = (req, res, next) => {
       Admins: admins,
       Success: 'Admin successfully signed up' 
     });
-  }
+   }
   }
 
   if (req.body.isAdmin == 'False')
