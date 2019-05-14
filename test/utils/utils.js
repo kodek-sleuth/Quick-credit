@@ -15,7 +15,7 @@ exports.adminLoginDetails = {
 };
 
 exports.loanApplication = {
-  Id = 1,
+  id = 1,
   Email: 'yahya@gmail.com',
   Fullname: 'Yahya Jalal',
   Amount: 290000,
