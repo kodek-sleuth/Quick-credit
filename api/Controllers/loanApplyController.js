@@ -38,13 +38,60 @@ exports.applyLoan = (req, res, next) => {
         res.status(400).json({
             Status: 400,
             Error: 'Email, Fullname, Amount and Tenor fields are required'
-          });
+        });
+    }
+
+    if (isNaN(req.body.Email) == false || isNaN(req.body.Fullname) == false || isNaN(req.body.Amount) == true || isNaN(req.body.Tenor) == true)
+    {
+        res.status(400).json({
+            Status: 400,
+            Error: 'Email and Fullname should be String while Amount and Tenor Integers'
+        });
     }
 
     else
     {
-        users.forEach(user => {
-            
-        })        
+        users.forEach((user) => {
+            if (user.Email == req.body.Email && user.Fullname == req.body.Fullname)
+            {
+                if (user.Status == 'Verified')
+                {
+                    loans.forEach((loan) => {
+                        if (loan.Email == user.Email && loan.Fullname == user.Fullname)
+                        {
+                            if (loan.Repaid == 'False')
+                            {
+                                res.status(400).json({
+                                    Status: 400,
+                                    Error: 'User must pay old loan to apply for new loan'
+                                });
+                            }
+
+                            else
+                            {
+                                const date = new
+                            }
+                        }
+                    });
+                    
+                }
+
+                else
+                {
+                    res.status(400).json({
+                        Status: 400,
+                        Error: 'User must be verified to use resource'
+                    });
+                }
+            }
+
+            else
+            {
+                res.status(400).json({
+                    Status: 400,
+                    Error: 'Please Signup to use resource'
+                });
+            }
+        });     
     }
 };
