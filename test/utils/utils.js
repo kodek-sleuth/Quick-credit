@@ -15,5 +15,9 @@ exports.adminLoginDetails = {
 };
 
 exports.loanApplication = {
-  Email: 'yahya@gmail.com'
+  Id = 1,
+  Email: 'yahya@gmail.com',
+  Fullname: 'Yahya Jalal',
+  Amount: 290000,
+  Tenor: 2
 };
