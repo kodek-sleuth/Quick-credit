@@ -24,4 +24,53 @@ const users = [{
   Address: 'Kitende, Entebbe'
 }];
 
-exports.loginUser
+exports.loginUser = (req, res, next) => {
+  if (req.body.isAdmin == 'True') {
+    if (req.body.Email == null || req.body.Email == '' && req.body.Password == null || req.body.Password == '') {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Email, Fullname and Password fields are required'
+      });
+    } 
+
+    if (isNaN(req.body.Email) == false)
+    {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Email cannot be Integer'
+      });
+    }
+
+    else {
+      admins.forEach((admin) => {
+        if (admin.Email == req.body.Email && admin.Password == req.body.Password) {
+          res.status(400).json({
+            Status: 400,
+            Error: 'Email or Name is already taken'
+          });
+        }
+      });
+        
+      const newUser = {
+        Email: req.body.Email,
+        Fullname: req.body.Fullname,
+        Password: req.body.Password,
+        isAdmin: req.body.isAdmin
+      };   
+
+      admins.push(newUser);
+
+      res.status(201).json({
+        Status: 201,
+        Data: {
+          Email: req.body.Email,
+          Fullname: req.body.Fullname,
+          Password: req.body.Password,
+          isAdmin: req.body.isAdmin
+        },
+        Admins: admins,
+        Success: 'Admin successfully signed up' 
+      });
+    }
+  }
+};
