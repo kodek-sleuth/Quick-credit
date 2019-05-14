@@ -26,7 +26,8 @@ exports.loans = [{
 }];
 
 exports.users = [{
-    Fullname: 'Kelvin Tinidyebwa',
+    Firstname: 'Kelvin',
+    Lastname: 'Tindeyebwa',
     Email: 'kelvin@gmail.com',
     Password: 'stealth',
     Status: 'Pending',

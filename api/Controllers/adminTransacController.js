@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable max-len */
 /* eslint-disable no-shadow */
 /* eslint-disable indent */
@@ -12,42 +14,37 @@
 
 const models = require('../Models/models');
 
-exports.transacPost = {
-    const loanId = req.params.loanId;
+exports.verifyUser = (req, res, next) => {
+    const userId = req.params.userId;
 
-    if (loanId)
+    if (userId)
     {
-        models.loans.forEach((loan) => {
-            if (loan.id == loanId)
+        models.users.forEach((user) => {
+            if (user.id == userId && user.isAdmin == 'False')
             {
-                loan.Balance = '0';
-                loan.Repaid = 'True';
-                loan.Status = 'Verified'
+                user.Status = 'Verified';
 
                 res.status(200).json({
                     Status: 200,
-                    Success: 'Successfully posted transaction for user',
+                    Success: 'Successfully verified a user',
                     Data: {
-                        Email: loan.Email,
-                        Amount: loan.Amount,
-                        Tenor: loan.Tenor,
-                        Balance: loan.Balance,
-                        Interest: loan.Interest,
-                        Installment: loan.Installment,
-                        Repaid: loan.Balance,
-                        Status: loan.Status,
-                        CreatedOn: loan.CreatedOn
+                        Firstname: user.Email,
+                        Lastname: user.Amount,
+                        Email: user.Tenor,
+                        Address: user.Balance,
+                        Status: user.Interest,
+                        isAdmin: user.Installment
                     }
-                })
+                });
             }
 
             else
             {
                 res.status(400).json({
                     Status: 400,
-                    Error: 'Loan with that id does not exist'
+                    Error: 'User with that id does not exist'
                   });
             }
         });
     }
-}
+};
