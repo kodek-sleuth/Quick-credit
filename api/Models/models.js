@@ -12,8 +12,7 @@
 
 
 exports.loans = [{
-    id: 1,
-    Fullname: 'Kelvin Tinidyebwa',
+    Id: 1,
     Email: 'kelvin@gmail.com',
     Amount: 300000.0,
     Tenor: 5,
