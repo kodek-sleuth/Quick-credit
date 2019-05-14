@@ -10,29 +10,6 @@
 /* eslint-disable no-empty */
 /* eslint-disable comma-dangle */
 
-const loans = [{
-    Fullname: 'Kelvin Tinidyebwa',
-    Email: 'kelvin@gmail.com',
-    Amount: 300000.0,
-    Tenor: 5,
-    Balance: 24030.0,
-    Interest: 30000,
-    Installment: 28999,
-    Repaid: 'False',
-    Status: 'Verified',
-    CreatedOn: '21-05-2019'
-}];
-
-const users = [{
-    Fullname: 'Kelvin Tinidyebwa',
-    Email: 'kelvin@gmail.com',
-    Password: 'stealth',
-    Status: 'Pending',
-    isAdmin: 'False',
-    Address: 'Kitende, Entebbe'
-  }
-];
-
 exports.applyLoan = (req, res, next) => {
     if (req.body.Email == null || req.body.Fullname == null || req.body.Amount == null || req.body.Tenor == null)
     {

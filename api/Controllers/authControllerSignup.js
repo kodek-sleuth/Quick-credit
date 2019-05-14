@@ -9,22 +9,6 @@
 /* eslint-disable no-empty */
 /* eslint-disable comma-dangle */
 
-const admins = [{
-  Fullname: 'Kelvin Tinidyebwa',
-  Email: 'kelvin@gmail.com',
-  Password: 'stealth',
-  isAdmin: 'False'
-}];
-
-const users = [{
-  Fullname: 'Kelvin Tinidyebwa',
-  Email: 'kelvin@gmail.com',
-  Password: 'stealth',
-  Status: 'Verified',
-  isAdmin: 'False',
-  Address: 'Kitende, Entebbe'
-}];
-
 exports.signUpUser = (req, res, next) => {
   if (req.body.isAdmin == 'True') {
     if (req.body.Email == null || req.body.Password == null || req.body.Fullname == null) {
