@@ -14,15 +14,15 @@
 
 const models = require('../Models/models');
 
-exports.viewLoan = (req, res, next) => {
-    const loanId = req.params.loanId;
-    models.loans.forEach((loan) => {
-        if (loan.id == loanId)
+exports.viewLoanHistory = (req, res, next) => {
+    const userEmail = req.params.userEmail;
+    models.repayments.forEach((loan) => {
+        if (loan.Email == userEmail)
         {
             res.status(200).json({
                 Status: 200,
                 Data: loan,
-                Success: 'Successfully returned loan'
+                Success: 'Successfully returned loan History'
             });
         }
     });
