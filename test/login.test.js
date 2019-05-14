@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 
-const library = require('./libraries/library');
+const service = require('../test/service');
 
-const userDetails = require('./utils/utils');
+const utils = require('./utils/utils');
 
 describe('App Authorisation Login', () => {
   it('Should login admin and return Success, Data, Token, Fullname and Email', (done) => {
-    library.server.post('/api/v1/auth/login')
+    service.post('/api/v1/auth/login')
       .set('Accept', 'application/json')
       .send(userDetails.adminLoginDetails)
       .expect('Content-Type', /json/)
@@ -25,7 +25,7 @@ describe('App Authorisation Login', () => {
   });
 
   it('Should login user and return Success, Data, Token, Fullname and Email', (done) => {
-    library.server.post('/api/v1/auth/login')
+    service.post('/api/v1/auth/login')
       .set('Accept', 'application/json')
       .send(userDetails.userLoginDetails)
       .expect('Content-Type', /json/)
@@ -40,7 +40,7 @@ describe('App Authorisation Login', () => {
   });
 
   it('Should not login in user who does not exist', (done) => {
-    library.server.post('/api/v1/auth/login')
+    service.post('/api/v1/auth/login')
       .set('Accept', 'application/json')
       .send(userDetails.userFalseDetails)
       .expect('Content-Type', /json/)
@@ -53,7 +53,7 @@ describe('App Authorisation Login', () => {
   });
 
   it('Should not login in admin with false email/password', (done) => {
-    library.server.post('/api/v1/auth/login')
+    service.post('/api/v1/auth/login')
       .set('Accept', 'application/json')
       .send(userDetails.adminFalseDetails)
       .expect('Content-Type', /json/)
@@ -66,7 +66,7 @@ describe('App Authorisation Login', () => {
   });
 
   it('Should not login in user with false email/password', (done) => {
-    library.server.post('/api/v1/auth/login')
+    service.post('/api/v1/auth/login')
       .set('Accept', 'application/json')
       .send(userDetails.userFalseDetails)
       .expect('Content-Type', /json/)

@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 
-const library = require('./libraries/library');
+const service = require('../test/service');
 
-const userDetails = require('./utils/utils');
+const utils = require('./utils/utils');
 
 describe('App Authorisation Login', () => {
   it('Admin Should post transaction of a loan', (done) => {
-    library.server.post('/api/v1/admin/loans/:loanId/transac')
+    service.post('/api/v1/admin/loans/:loanId/transac')
       .set('Accept', 'application/json')
       .send(userDetails.adminLoginDetails)
       .expect('Content-Type', /json/)
@@ -23,7 +23,7 @@ describe('App Authorisation Login', () => {
   });
 
   it('Admin Should not post transaction of a loan that is not verified', (done) => {
-    library.server.post('/api/v1/admin/loans/:loanId/transac')
+    service.post('/api/v1/admin/loans/:loanId/transac')
       .set('Accept', 'application/json')
       .send(userDetails.adminLoginDetails)
       .expect('Content-Type', /json/)
@@ -38,7 +38,7 @@ describe('App Authorisation Login', () => {
   });
 
   it('Admin Should not post transaction of a loan that has been repaid', (done) => {
-    library.server.post('/api/v1/admin/loans/:loanId/transac')
+    service.post('/api/v1/admin/loans/:loanId/transac')
       .set('Accept', 'application/json')
       .send(userDetails.adminLoginDetails)
       .expect('Content-Type', /json/)

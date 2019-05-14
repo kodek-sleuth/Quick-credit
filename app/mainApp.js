@@ -62,10 +62,6 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
     // Displaying The Error Message To User/Console
     res.status(error.status || 500);
-    //res.json({
-        // eslint-disable-next-line comma-dangle
-        //Error: error.message
-    //});
 });
 
 module.exports = app;

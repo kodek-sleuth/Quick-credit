@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 
-const library = require('./libraries/library');
+const service = require('../test/service');
 
-const userDetails = require('./utils/utils');
+const utils = require('./utils/utils');
 
 describe('Apply Loan', () => {
   it('Should apply for loan given the right credentials', (done) => {
-    library.server.post('/api/v1/loans/apply')
+    service.post('/api/v1/loans/apply')
       .set('Accept', 'application/json')
       .send(userDetails.loanApplication)
       .expect('Content-Type', /json/)
@@ -19,7 +19,7 @@ describe('Apply Loan', () => {
   });
 
   it('Should not apply for loan given the user already has a loan unrepaid', (done) => {
-    library.server.post('/api/v1/loans/apply')
+    service.post('/api/v1/loans/apply')
       .set('Accept', 'application/json')
       .send(userDetails.loanExists)
       .expect('Content-Type', /json/)
@@ -32,7 +32,7 @@ describe('Apply Loan', () => {
   });
 
   it('Should not apply for loan given the user is not verified', (done) => {
-    library.server.post('/api/v1/loans/apply')
+    service.post('/api/v1/loans/apply')
       .set('Accept', 'application/json')
       .send(userDetails.loanApplication)
       .expect('Content-Type', /json/)
@@ -45,7 +45,7 @@ describe('Apply Loan', () => {
   });
 
   it('Should not apply for loan given the user enters wrong data', (done) => {
-    library.server.post('/api/v1/loans/apply')
+    service.post('/api/v1/loans/apply')
       .set('Accept', 'application/json')
       .send(userDetails.adminLoginDetails)
       .expect('Content-Type', /json/)
