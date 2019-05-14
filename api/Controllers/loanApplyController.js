@@ -11,8 +11,8 @@
 /* eslint-disable comma-dangle */
 
 const loans = [{
-    Fullname: 'Charlie Wancellor',
-    Email: 'charlie@gmail.com',
+    Fullname: 'Kelvin Tinidyebwa',
+    Email: 'kelvin@gmail.com',
     Amount: 300000.0,
     Tenor: 5,
     Balance: 24030.0,
@@ -27,10 +27,11 @@ const users = [{
     Fullname: 'Kelvin Tinidyebwa',
     Email: 'kelvin@gmail.com',
     Password: 'stealth',
-    Status: 'Verified',
+    Status: 'Pending',
     isAdmin: 'False',
     Address: 'Kitende, Entebbe'
-  }];
+  }
+];
 
 exports.applyLoan = (req, res, next) => {
     if (req.body.Email == null || req.body.Fullname == null || req.body.Amount == null || req.body.Tenor == null)
@@ -61,9 +62,9 @@ exports.applyLoan = (req, res, next) => {
                         {
                             if (loan.Repaid == 'False')
                             {
-                                res.status(400).json({
-                                    Status: 400,
-                                    Error: 'User must pay old loan to apply for new loan'
+                                res.status(401).json({
+                                    Status: 401,
+                                    Error: 'User must repay old loan to apply for new loan'
                                 });
                             }
 
@@ -94,6 +95,7 @@ exports.applyLoan = (req, res, next) => {
 
                                 res.status(201).json({
                                     Status: '201',
+                                    loans: loan,
                                     Data: {
                                         Email: req.body.Email,
                                         Fullname: req.body.Fullname,
@@ -102,7 +104,9 @@ exports.applyLoan = (req, res, next) => {
                                         CreatedOn: currentDate,
                                         Balance: balance,
                                         Interest: interest,
-                                        Installment: paymentInstallment
+                                        Installment: paymentInstallment,
+                                        Repaid: 'False',
+                                        Status: 'Pending'
                                     },
                                     Success: 'Successfully Applied For Loan'
                                 });
