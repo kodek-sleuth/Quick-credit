@@ -26,6 +26,7 @@ exports.loans = [{
 }];
 
 exports.users = [{
+    Id: 2282882,
     Firstname: 'Kelvin',
     Lastname: 'Tindeyebwa',
     Email: 'kelvin@gmail.com',

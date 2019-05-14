@@ -26,18 +26,16 @@ const userController = require('../Controllers/authLoginController');
 *             type: string
 *             format: password
 *             example: stealth
-*           isAdmin:
-*             type: string
-*             example: "False"
 *         required:
 *           - Email
 *           - Password
-*           - isAdmin
 *     responses:
 *       200:
-*         description: User Has Successfully Logged In
+*         description: User successfully logged in
 *       401:
 *         description: Invalid Email or Password
+*       400:
+*         description: Name cannot be an integer
 */
 
 login.post('/login', userController.loginUser);

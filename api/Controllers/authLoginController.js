@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-mixed-operators */
 /* eslint-disable eqeqeq */
@@ -36,6 +37,7 @@ exports.loginUser = (req, res, next) => {
           res.status(200).json({
             Status: 200,
             Data: {
+              Id: user.Id,
               Token: token,
               Email: user.Email,
               Firstname: user.Firstname,
