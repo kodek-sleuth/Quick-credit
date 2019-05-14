@@ -44,32 +44,25 @@ exports.loginUser = (req, res, next) => {
     else {
       admins.forEach((admin) => {
         if (admin.Email == req.body.Email && admin.Password == req.body.Password) {
-          res.status(400).json({
-            Status: 400,
-            Error: 'Email or Name is already taken'
+          res.status(200).json({
+            Status: 200,
+            Data: {
+              Email: admin.Email,
+              Fullname: admin.Fullname,
+              Password: admin.Password,
+              isAdmin: admin.isAdmin
+            },
+            Success: 'Admin successfully logged up' 
           });
         }
-      });
-        
-      const newUser = {
-        Email: req.body.Email,
-        Fullname: req.body.Fullname,
-        Password: req.body.Password,
-        isAdmin: req.body.isAdmin
-      };   
 
-      admins.push(newUser);
-
-      res.status(201).json({
-        Status: 201,
-        Data: {
-          Email: req.body.Email,
-          Fullname: req.body.Fullname,
-          Password: req.body.Password,
-          isAdmin: req.body.isAdmin
-        },
-        Admins: admins,
-        Success: 'Admin successfully signed up' 
+        else
+        {
+          res.status(401).json({
+            Status: 401,
+            Error: 'Invalid Email or Password'
+          });
+        }
       });
     }
   }

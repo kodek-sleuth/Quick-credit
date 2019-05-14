@@ -19,7 +19,8 @@ app.use(cors());
 const swaggerUI = require('swagger-ui-express');
 
 const authSignup = require('../api/Auth/signup');
-// const authLogin = require('../Api/Auth/authLogin');
+
+const login = require('../api/Auth/login');
 
 const swagger = require('../api/Settings/swagger');
 
@@ -40,7 +41,7 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swagger.swaggerSpec));
 
 // Defining our routes.
 app.use('/api/v1/auth', authSignup);
-// app.use('/api/v1/auth', authLogin);
+app.use('/api/v1/auth', login);
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {

@@ -6,7 +6,7 @@ const userController = require('../Controllers/authControllerSignup');
 
 /**
 * @swagger
-* /api/v1/auth/login:
+* /api/v1/auth/signup:
 *   post:
 *     tags:
 *       - Auth
