@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable indent */
+
 // Library that enables us to make the JSON SPEC file
 const swaggerDoc = require('swagger-jsdoc');
 
@@ -25,7 +26,7 @@ const swaggerDefinition = {
     },
   };
 
-// Options object is later sent to swagger server to generate UI/UX
+// Options object is later sent to swagger server to generate UI/UX and for specifying routes
 const options = {
     swaggerDefinition,
     apis: ['./Api/Auth/*.js', './Api/Loans/*.js', './Api/Profiles/*.js', './Api/Verifications/*.js']
