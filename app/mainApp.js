@@ -24,6 +24,8 @@ const login = require('../api/Auth/login');
 
 const applyLoan = require('../api/Loans/applyLoan');
 
+const repayLoan = require('../api/Loans/repayLoan');
+
 const swagger = require('../api/Settings/swagger');
 
 // Enable API to receive urlencoded data as well as json
@@ -45,6 +47,7 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swagger.swaggerSpec));
 app.use('/api/v1/auth', authSignup);
 app.use('/api/v1/auth', login);
 app.use('/api/v1/user', applyLoan);
+app.use('/api/v1/user', repayLoan);
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {

@@ -30,7 +30,7 @@ exports.repayLoan = (req, res, next) => {
     {
         res.status(400).json({
             Status: 400,
-            Error: 'Email and Fullname should be String while Amount is Integer'
+            Error: 'Email and Fullname should be String while Amount and id are Integers'
         });
     }
 
@@ -39,7 +39,7 @@ exports.repayLoan = (req, res, next) => {
         models.loans.forEach((loan) => {
             if (loan.Email == req.body.Email && loan.Fullname == req.body.Fullname)
             {
-                if (loan.id == req.body.loanId)
+                if (loan.id == loanId)
                 {
                     if (loan.Repaid == 'True')
                     {
@@ -51,49 +51,60 @@ exports.repayLoan = (req, res, next) => {
 
                     if (loan.Repaid == 'False')
                     {
-                        const today = new Date();
-
-                        const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-
-                        if (req.body.Amount > loan.Balance)
+                        if (loan.Status == 'Verified')
                         {
-                            res.status(200).json({
-                                Status: 200,
-                                Error: 'Please repay exact balance'
-                            });
+                            const today = new Date();
+
+                            const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    
+                            if (req.body.Amount > loan.Balance)
+                            {
+                                res.status(200).json({
+                                    Status: 200,
+                                    Error: 'Please repay exact balance'
+                                });
+                            }
+    
+                            else
+                            {
+                                const newRepayment = {
+                                    id: req.body.id,
+                                    Email: loan.Email,
+                                    Fullname: loan.Email,
+                                    Amount: loan.Amount,
+                                    Paid: req.body.Amount,
+                                    PayedOn: currentDate
+                                };
+                                
+                                models.repayments.push(newRepayment);
+        
+                                const newBalance = req.body.Amount - loan.Balance;
+                                loan.Balance = newBalance;
+    
+                                res.status(201).json({
+                                    Status: 201,
+                                    Data: {
+                                        id: req.body.loanId,
+                                        Fullname: req.body.Fullname,
+                                        Email: req.body.Email,
+                                        Amount: loan.Amount,
+                                        Tenor: loan.Tenor,
+                                        Balance: loan.Balance,
+                                        Interest: loan.Interest,
+                                        Installment: loan.Installment,
+                                        Repaid: loan.Repaid,
+                                        Status: loan.Status,
+                                        CreatedOn: loan.CreatedOn
+                                    }
+                                });
+                            }
                         }
 
                         else
                         {
-                            const newRepayment = {
-                                id: req.body.id,
-                                Email: loan.Email,
-                                Fullname: loan.Email,
-                                Amount: loan.Amount,
-                                Paid: req.body.Amount,
-                                PayedOn: currentDate
-                            };
-                            
-                            models.repayments.push(newRepayment);
-    
-                            const newBalance = req.body.Amount - loan.Balance;
-                            loan.Balance = newBalance;
-
-                            res.status(201).json({
-                                Status: 201,
-                                Data: {
-                                    id: req.body.loanId,
-                                    Fullname: req.body.Fullname,
-                                    Email: req.body.Email,
-                                    Amount: loan.Amount,
-                                    Tenor: loan.Tenor,
-                                    Balance: loan.Balance,
-                                    Interest: loan.Interest,
-                                    Installment: loan.Installment,
-                                    Repaid: loan.Repaid,
-                                    Status: loan.Status,
-                                    CreatedOn: loan.CreatedOn
-                                }
+                            res.status(400).json({
+                                Status: 400,
+                                Error: 'Loan has to be Verified inorder to post payment'
                             });
                         }
                     }
