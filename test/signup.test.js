@@ -29,7 +29,7 @@ describe('App Authorisation Signup', () => {
       });
   });
 
-  it('Should not signup new admin if his name already exists', (done) => {
+  it('Should not signup new admin if his name/email/isAdmin/password is missing', (done) => {
     // Incase of a fullname that exists in database
     library.server.post('/api/v1/auth/signup')
       .set('Content-Type', 'multipart/form-data')
@@ -41,42 +41,7 @@ describe('App Authorisation Signup', () => {
       .end((error, res) => {
         library.expect(res.body).to.have.property('Status');
         library.expect(res.body).to.have.property('Error');
-        library.expect(res.body.Error).to.equals('Name is already taken');
-        library.expect(res.body.Status).to.equals('401');
-        done();
-      });
-  });
-
-  it('Should not signup new admin if email is not provided', (done) => {
-    // Incase of a fullname that exists in database
-    library.server.post('/api/v1/auth/signup')
-      .set('Content-Type', 'multipart/form-data')
-      .field('Fullname', 'Yahya Jalal')
-      .field('Password', 'stealth')
-      .field('isAdmin', 'True')
-      .attach('Image', '/home/kodek-sleuth/Pictures/code.jpeg')
-      .end((error, res) => {
-        library.expect(res.body).to.have.property('Status');
-        library.expect(res.body).to.have.property('Error');
-        library.expect(res.body.Error).to.equals('Missing Email field');
-        library.expect(res.body.Status).to.equals('401');
-        done();
-      });
-  });
-
-  it('Should not signup new admin if his name is missing', (done) => {
-    // Incase of a fullname that exists in database
-    library.server.post('/api/v1/auth/signup')
-      .set('Content-Type', 'multipart/form-data')
-      .field('Fullname', 'Yahya Jalal')
-      .field('Email', 'abel@gmail.com')
-      .field('Password', 'stealth')
-      .field('isAdmin', 'True')
-      .attach('Image', '/home/kodek-sleuth/Pictures/code.jpeg')
-      .end((error, res) => {
-        library.expect(res.body).to.have.property('Status');
-        library.expect(res.body).to.have.property('Error');
-        library.expect(res.body.Error).to.equals('Name is missing');
+        library.expect(res.body.Error).to.equals(' Missing important field Email, Password, Fullname or is Admin');
         library.expect(res.body.Status).to.equals('401');
         done();
       });
@@ -89,12 +54,12 @@ describe('App Authorisation Signup', () => {
       .field('Fullname', 'Yahya Jalal')
       .field('Email', 'abel@gmail.com')
       .field('Password', 'stealth')
-      .field('isAdmin', 'True')
+      .field('isAdmin', 1)
       .attach('Image', '/home/kodek-sleuth/Pictures/code.jpeg')
       .end((error, res) => {
         library.expect(res.body).to.have.property('Status');
         library.expect(res.body).to.have.property('Error');
-        library.expect(res.body.Error).to.equals('Email, Name or ');
+        library.expect(res.body.Error).to.equals('Email, Name or isAdmin cannot be integer');
         library.expect(res.body.Status).to.equals('401');
         done();
       });
