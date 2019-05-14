@@ -20,9 +20,6 @@ const reqLoanController = require('../Controllers/loanApplyController');
 *       - name: body
 *         in: body
 *         properties:
-*           Fullname:
-*             type: string
-*             example: Mugerwa Joseph
 *           Email:
 *             type: string
 *             example: mugerwa@gmail.com
@@ -33,13 +30,12 @@ const reqLoanController = require('../Controllers/loanApplyController');
 *             type: integer
 *             example: 500000
 *         required:
-*           - FullName
 *           - Email
 *           - Tenor
 *           - Amount
 *     responses:
 *       201:
-*         description: Customer Successfully Signed Up
+*         description: Successfully Applied For Loan
 *       500:
 *         description: Failed To Authenticate
 */
