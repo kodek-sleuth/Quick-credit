@@ -33,3 +33,11 @@ exports.users = [{
     Address: 'Kitende, Entebbe'
   }
 ];
+
+exports.admins = [{
+    Fullname: 'Kelvin Tinidyebwa',
+    Email: 'kelvin@gmail.com',
+    Password: 'stealth',
+    isAdmin: 'False'
+  }
+];

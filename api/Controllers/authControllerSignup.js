@@ -9,6 +9,8 @@
 /* eslint-disable no-empty */
 /* eslint-disable comma-dangle */
 
+const models = require('../Models/models');
+
 exports.signUpUser = (req, res, next) => {
   if (req.body.isAdmin == 'True') {
     if (req.body.Email == null || req.body.Password == null || req.body.Fullname == null) {
@@ -27,7 +29,7 @@ exports.signUpUser = (req, res, next) => {
     }
 
     else {
-      admins.forEach((admin) => {
+      models.admins.forEach((admin) => {
         if (admin.Email == req.body.Email || admin.Fullname == req.body.Fullname) {
           res.status(400).json({
             Status: 400,
@@ -43,7 +45,7 @@ exports.signUpUser = (req, res, next) => {
         isAdmin: req.body.isAdmin
       };   
 
-      admins.push(newUser);
+      models.admins.push(newUser);
       
       if (isNaN(req.body.Email) == false || isNaN(req.body.Fullname) == false)
       {
@@ -61,7 +63,7 @@ exports.signUpUser = (req, res, next) => {
         Password: req.body.Password,
         isAdmin: req.body.isAdmin
       },
-      Admins: admins,
+      Admins: models.admins,
       Success: 'Admin successfully signed up' 
     });
    }
@@ -85,7 +87,7 @@ exports.signUpUser = (req, res, next) => {
     }
 
     else {
-      users.forEach((user) => {
+      models.users.forEach((user) => {
         if (user.Email == req.body.Email || user.Fullname == req.body.Fullname) {
           res.status(400).json({
             Status: 400,
@@ -103,7 +105,7 @@ exports.signUpUser = (req, res, next) => {
         Status: 'Pending'
       };   
 
-      users.push(newUser2);
+      models.users.push(newUser2);
 
       res.status(201).json({
         Status: 201,
@@ -115,7 +117,7 @@ exports.signUpUser = (req, res, next) => {
           Status: 'Pending',
           Address: req.body.Address
         },
-        Users: users,
+        Users: models.users,
         Success: 'User successfully signed up' 
       });
     }

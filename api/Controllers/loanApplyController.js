@@ -10,6 +10,8 @@
 /* eslint-disable no-empty */
 /* eslint-disable comma-dangle */
 
+const models = require('../Models/models');
+
 exports.applyLoan = (req, res, next) => {
     if (req.body.Email == null || req.body.Fullname == null || req.body.Amount == null || req.body.Tenor == null)
     {
@@ -29,12 +31,12 @@ exports.applyLoan = (req, res, next) => {
 
     else
     {
-        users.forEach((user) => {
+        models.users.forEach((user) => {
             if (user.Email == req.body.Email && user.Fullname == req.body.Fullname)
             {
                 if (user.Status == 'Verified')
                 {
-                    loans.forEach((loan) => {
+                    models.loans.forEach((loan) => {
                         if (loan.Email == user.Email && loan.Fullname == user.Fullname)
                         {
                             if (loan.Repaid == 'False')
@@ -68,7 +70,7 @@ exports.applyLoan = (req, res, next) => {
                                     CreatedOn: currentDate,
                                 };
 
-                                loans.push(newLoan);
+                                models.loans.push(newLoan);
 
                                 res.status(201).json({
                                     Status: '201',

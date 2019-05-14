@@ -7,6 +7,8 @@
 /* eslint-disable no-empty */
 /* eslint-disable comma-dangle */
 
+const models = require('../Models/models');
+
 exports.loginUser = (req, res, next) => {
   if (req.body.isAdmin == 'True') {
     if (req.body.Email == null || req.body.Email == '' && req.body.Password == null || req.body.Password == '') {
@@ -25,7 +27,7 @@ exports.loginUser = (req, res, next) => {
     }
 
     else {
-      admins.forEach((admin) => {
+      models.admins.forEach((admin) => {
         if (admin.Email == req.body.Email && admin.Password == req.body.Password) {
           res.status(200).json({
             Status: 200,
@@ -68,7 +70,7 @@ exports.loginUser = (req, res, next) => {
     }
 
     else {
-      users.forEach((user) => {
+      models.users.forEach((user) => {
         if (user.Email == req.body.Email && user.Password == req.body.Password) {
           res.status(200).json({
             Status: 200,
