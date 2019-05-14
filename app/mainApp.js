@@ -18,9 +18,10 @@ app.use(cors());
 // Library that generates the UI/UX of swagger
 const swaggerUI = require('swagger-ui-express');
 
-const authSignup = require('../Api/Auth/authSignUp');
-const authLogin = require('../Api/Auth/authLogin');
-const swagger = require('../Api/Settings/swagger');
+const authSignup = require('../api/Auth/signup');
+// const authLogin = require('../Api/Auth/authLogin');
+
+const swagger = require('../api/Settings/swagger');
 
 // Enable API to receive urlencoded data as well as json
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,7 +40,7 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swagger.swaggerSpec));
 
 // Defining our routes.
 app.use('/api/v1/auth', authSignup);
-app.use('/api/v1/auth', authLogin);
+// app.use('/api/v1/auth', authLogin);
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {

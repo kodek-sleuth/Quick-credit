@@ -5,7 +5,7 @@
     "main": "server.js",
     "scripts": {
       "test": "mocha || true",
-      "start": "nodemon App/server.js"
+      "start": "nodemon app/server.js"
     },
     "repository": {
       "type": "git",
