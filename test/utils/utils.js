@@ -32,5 +32,4 @@ exports.repayLoan = {
   Email: 'abel@gmail.com',
   Fullname: 'Abel Tesfaye',
   Amount: 50000
-
 }

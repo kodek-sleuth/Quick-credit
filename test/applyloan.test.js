@@ -4,7 +4,7 @@ const library = require('./libraries/library');
 
 const userDetails = require('./utils/utils');
 
-describe('App Authorisation Login', () => {
+describe('Apply Loan', () => {
   it('Should apply for loan given the right credentials', (done) => {
     library.server.post('/api/v1/auth/login')
       .set('Accept', 'application/json')
