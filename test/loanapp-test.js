@@ -2,7 +2,7 @@ const library = require('./libraries/library');
 
 const userDetails = require('./utils/utils');
 
-describe('Apply Loan', () => {
+describe('Testing if user can Apply for a Loan', () => {
   it('Should apply for loan given the right credentials', (done) => {
     library.server.post('/api/v1/auth/login')
       .set('Accept', 'application/json')
@@ -40,7 +40,7 @@ describe('Apply Loan', () => {
       });
   });
 
-  it('Should not apply for loan given the user is not enters wrong data', (done) => {
+  it('Should not apply for loan given the user is enters wrong data', (done) => {
     library.server.post('/api/v1/auth/login')
       .set('Accept', 'application/json')
       .send(userDetails.adminLoginDetails)
