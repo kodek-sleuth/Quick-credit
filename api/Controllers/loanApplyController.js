@@ -69,7 +69,43 @@ exports.applyLoan = (req, res, next) => {
 
                             else
                             {
-                                const date = new
+                                const today = new Date();
+
+                                const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+
+                                const interest = (5 * req.body.Amount) / 100;
+                                const paymentInstallment = (req.body.Amount + interest) / req.body.Tenor;
+                                const balance = req.body.Amount + interest;
+
+                                const newLoan = {
+                                    Fullname: req.body.Fullname,
+                                    Email: req.body.Email,
+                                    Amount: req.body.Amount,
+                                    Tenor: req.body.Tenor,
+                                    Balance: balance,
+                                    Interest: interest,
+                                    Installment: paymentInstallment,
+                                    Repaid: 'False',
+                                    Status: 'Pending',
+                                    CreatedOn: currentDate,
+                                };
+
+                                loans.push(newLoan);
+
+                                res.status(201).json({
+                                    Status: '201',
+                                    Data: {
+                                        Email: req.body.Email,
+                                        Fullname: req.body.Fullname,
+                                        Amount: req.body.Amount,
+                                        Tenor: req.body.Tenor,
+                                        CreatedOn: currentDate,
+                                        Balance: balance,
+                                        Interest: interest,
+                                        Installment: paymentInstallment
+                                    },
+                                    Success: 'Successfully Applied For Loan'
+                                });
                             }
                         }
                     });
