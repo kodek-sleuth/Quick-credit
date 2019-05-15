@@ -12,13 +12,13 @@
 
 
 exports.loans = [{
-    Id: 1,
+    LoanId: 1,
     Email: 'kelvin@gmail.com',
     Amount: 300000.0,
     Tenor: 5,
     Balance: 24030.0,
     Interest: 30000,
-    Installment: 28999,
+    MonthlyInstallment: 28999,
     Repaid: 'False',
     Status: 'Verified',
     CreatedOn: '21-05-2019'

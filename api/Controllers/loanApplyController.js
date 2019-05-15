@@ -46,18 +46,21 @@ exports.applyLoan = (req, res, next) => {
                   const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 
                   const interest = (5 * req.body.Amount) / 100;
+                  
                   const paymentInstallment = (req.body.Amount + interest) / req.body.Tenor;
+                  
                   const balance = req.body.Amount + interest;
-
+                  
+                  const id = Math.floor((Math.random() * 10) + 1);
+                  
                   const newLoan = {
-                    id: req.body.loanId,
-                    Fullname: req.body.Fullname,
+                    LoanId: id,
                     Email: req.body.Email,
                     Amount: req.body.Amount,
                     Tenor: req.body.Tenor,
                     Balance: balance,
                     Interest: interest,
-                    Installment: paymentInstallment,
+                    MonthlyInstallment: paymentInstallment,
                     Repaid: 'False',
                     Status: 'Pending',
                     CreatedOn: currentDate
@@ -69,15 +72,14 @@ exports.applyLoan = (req, res, next) => {
                     Status: '201',
                     loans: loan,
                     Data: {
-                      id: req.body.loanId,
+                      LoanId: id,
                       Email: req.body.Email,
-                      Fullname: req.body.Fullname,
                       Amount: req.body.Amount,
                       Tenor: req.body.Tenor,
                       CreatedOn: currentDate,
                       Balance: balance,
                       Interest: interest,
-                      Installment: paymentInstallment,
+                      MonthlyInstallment: paymentInstallment,
                       Repaid: 'False',
                       Status: 'Pending'
                     },
