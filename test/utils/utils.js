@@ -61,9 +61,8 @@ exports.loanApplicationPresent = {
 };
 
 exports.repayLoan = {
-  Email: 'abel@gmail.com',
-  Fullname: 'Abel Tesfaye',
-  Amount: 50000
+  Email: 'melvin@gmail.com',
+  Amount: 3000
 };
 
 exports.userFalseDetails = {

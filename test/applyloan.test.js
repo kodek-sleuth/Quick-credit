@@ -36,7 +36,7 @@ describe('Apply Loan', () => {
 
   it('Should not apply for loan given the user is not verified', () => {
     chai.request(app).post('/api/v1/loans/apply')
-      .send(utils.loanApplication)
+      .send(utils.userSignup)
       .end((error, res) => {
         expect(res.body.Status).to.have.property('401');
         expect(res.body).to.have.property('Error');
