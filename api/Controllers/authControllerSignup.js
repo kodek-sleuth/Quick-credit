@@ -10,10 +10,10 @@ const jwt = require('jsonwebtoken');
 const models = require('../Models/models');
 
 exports.signUpUser = (req, res, next) => {
-  const body = new models.ModelClass(req.body, res);
+  const result = new models.User().validateUserdata(req.body, res);
   res.status(201).json({
     Success: 'User successfully signed up',
-    Data: body,
+    Data: result,
     Status: 201
   });
 };

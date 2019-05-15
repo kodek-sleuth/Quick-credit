@@ -11,93 +11,10 @@ const models = require('../Models/models');
 
 exports.repayLoan = (req, res, next) => {
   const loanId = req.params.loanId;
-
-  if (req.body.Email == null || req.body.Amount == null) {
-    res.status(400).json({
-      Status: 400,
-      Error: 'Email and Amount fields are required'
-    });
-  }
-
-  if (isNaN(req.body.Email) == false || isNaN(req.body.Fullname) == false || isNaN(req.body.Amount) == true || isNaN(loanId) == true) {
-    res.status(400).json({
-      Status: 400,
-      Error: 'Email and Fullname should be String while Amount and loanUd are Integers'
-    });
-  } else {
-    models.loans.forEach((loan) => {
-      if (loan.Email == req.body.Email) {
-        if (loan.LoanId == loanId) {
-          if (loan.Repaid == 'True') {
-            res.status(400).json({
-              Status: 400,
-              Error: 'Loan has already been repayed'
-            });
-          }
-
-          if (loan.Repaid == 'False') {
-            if (loan.Status == 'Verified') {
-              const today = new Date();
-
-              const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-
-              if (req.body.Amount > loan.Balance) {
-                res.status(200).json({
-                  Status: 200,
-                  Error: 'Please repay exact balance or loan is repaid'
-                });
-              } else {
-                const id = Math.floor((Math.random() * 10) + 1);
-                const newRepayment = {
-                  Id: id,
-                  LoanId: req.body.loanId,
-                  Email: loan.Email,
-                  Amount: loan.Amount,
-                  PaidAmount: req.body.Amount,
-                  CreatedOn: currentDate
-                };
-
-                models.repayments.push(newRepayment);
-
-                const newBalance = loan.Balance - req.body.Amount;
-                loan.Balance = newBalance;
-
-                res.status(201).json({
-                  Status: 201,
-                  Data: {
-                    Id: id,
-                    LoanId: req.body.loanId,
-                    Email: req.body.Email,
-                    Amount: loan.Amount,
-                    Tenor: loan.Tenor,
-                    Balance: loan.Balance,
-                    Interest: loan.Interest,
-                    MonthlyInstallment: loan.MonthlyInstallment,
-                    Repaid: loan.Repaid,
-                    Status: loan.Status,
-                    CreatedOn: loan.CreatedOn
-                  }
-                });
-              }
-            } else {
-              res.status(400).json({
-                Status: 400,
-                Error: 'Loan has to be Verified inorder to post payment'
-              });
-            }
-          }
-        } else {
-          res.status(400).json({
-            Status: 400,
-            Error: 'Invalid Loan Id'
-          });
-        }
-      } else {
-        res.status(400).json({
-          Status: 400,
-          Error: 'Please Singup to use resource'
-        });
-      }
-    });
-  }
+  const result = new models.Repayment().validateRepayment(req.body, res, loanId);
+  res.status(201).json({
+    Success: 'Successfully posted payment for loan',
+    Data: result,
+    Status: 201
+  });
 };
