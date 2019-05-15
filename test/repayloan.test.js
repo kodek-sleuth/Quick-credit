@@ -18,7 +18,7 @@ describe('Repay Loan', () => {
     chai.request(app).post('/api/v1/users/loans/repay')
       .send(utils.repayLoan)
       .end((error, res) => {
-        expect(res.body.Status).to.have.equals(201);
+        expect(res.body.Status).to.equal(201);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
       });

@@ -17,7 +17,7 @@ describe('Testing if app returns all Admin loan requests', () => {
   it('Should return all repaid loans', () => {
     chai.request(app).get('/api/v1/admin/loans/repaid')
       .end((error, res) => {
-        expect(res.body.Status).to.equals(200);
+        expect(res.body.Status).to.equal(200);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
       });
@@ -26,7 +26,7 @@ describe('Testing if app returns all Admin loan requests', () => {
   it('Should return all unrepaid loans', () => {
     chai.request(app).get('/api/v1/admin/loans/unrepaid')
       .end((error, res) => {
-        expect(res.body.Status).to.equals(200);
+        expect(res.body.Status).to.equal(200);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
       });
@@ -35,7 +35,7 @@ describe('Testing if app returns all Admin loan requests', () => {
   it('Should return all loans', () => {
     chai.request(app).get('/api/v1/admin/loans')
       .end((error, res) => {
-        expect(res.body.Status).to.equals(200);
+        expect(res.body.Status).to.equal(200);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
       });

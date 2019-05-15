@@ -15,7 +15,7 @@ describe('Testing if app returns all User repayments', () => {
   it('Should return all repaid loans', () => {
     chai.request(app).post('/api/v1/users/loans/93/repayments')
       .end((error, res) => {
-        expect(res.body.Status).to.have.equals(201);
+        expect(res.body.Status).to.equal(201);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
       });

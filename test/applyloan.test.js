@@ -18,7 +18,7 @@ describe('Apply Loan', () => {
     chai.request(app).post('/api/v1/loans/apply')
       .send(utils.loanApplication)
       .end((error, res) => {
-        expect(res.body.Status).to.have.equals(201);
+        expect(res.body.Status).to.equal(201);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
       });
@@ -28,7 +28,7 @@ describe('Apply Loan', () => {
     chai.request(app).post('/api/v1/loans/apply')
       .send(utils.loanExists)
       .end((error, res) => {
-        expect(res.body.Status).to.have.equals(400);
+        expect(res.body.Status).to.equal(400);
         expect(res.body).to.have.property('Error');
         expect(res.body.Error).to.equals('User must repay old loan to apply for new loan');
       });
@@ -38,7 +38,7 @@ describe('Apply Loan', () => {
     chai.request(app).post('/api/v1/loans/apply')
       .send(utils.userSignup)
       .end((error, res) => {
-        expect(res.body.Status).to.have.equals(401);
+        expect(res.body.Status).to.equal(401);
         expect(res.body).to.have.property('Error');
         expect(res.body.Error).to.equals('User must be verified to use resource');
       });

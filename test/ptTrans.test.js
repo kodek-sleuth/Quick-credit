@@ -15,7 +15,7 @@ describe('Admin Transactions', () => {
   it('Admin Should post transaction of a loan', () => {
     chai.request(app).post('/api/v1/admin/loans/:loanId/transac')
       .end((error, res) => {
-        expect(res.body.Status).to.have.equals(200);
+        expect(res.body.Status).to.equal(200);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
         expect(res.body.Data).to.have.property('Lastname');
@@ -27,7 +27,7 @@ describe('Admin Transactions', () => {
   it('Admin Should not post transaction of a loan that is not verified', () => {
     chai.request(app).post('/api/v1/admin/loans/:loanId/transac')
       .end((error, res) => {
-        expect(res.body.Status).to.have.equals(400);
+        expect(res.body.Status).to.equal(400);
         expect(res.body).to.have.property('Status');
       });
   });

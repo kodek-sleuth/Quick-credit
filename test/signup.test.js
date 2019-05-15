@@ -23,8 +23,8 @@ describe('App Authorisation Signup', () => {
         expect(res.body).to.have.property('Data');
         expect(res.body.Data).to.have.property('Token');
         expect(res.body.Data).to.have.property('Email');
-        expect(res.body.Status).to.equals(201);
-        expect(res.body.Success).to.equals('User successfully signed up');
+        expect(res.body.Status).to.equal(201);
+        expect(res.body.Success).to.equal('User successfully signed up');
       });
   });
 
@@ -35,8 +35,8 @@ describe('App Authorisation Signup', () => {
       .end((error, res) => {
         expect(res.body).to.have.property('Status');
         expect(res.body).to.have.property('Error');
-        expect(res.body.Error).to.equals('Email is already taken');
-        expect(res.body.Status).to.equals(400);
+        expect(res.body.Error).to.equal('Email is already taken');
+        expect(res.body.Status).to.equal(400);
       });
   });
 

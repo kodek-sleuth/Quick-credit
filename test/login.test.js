@@ -45,7 +45,7 @@ describe('App Authorisation Login', () => {
     chai.request(app).post('/api/v1/auth/login')
       .send(utils.userFalseDetails)
       .end((error, res) => {
-        expect(res.body.Status).to.equals(401);
+        expect(res.body.Status).to.equal(401);
         expect(res.body).to.have.property('Error');
         expect(res.body.Error).to.equals('Invalid Email or Password');
       });
