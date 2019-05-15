@@ -15,7 +15,7 @@ const utils = require('./utils/utils');
 
 describe('Apply Loan', () => {
   it('Should apply for loan given the right credentials', () => {
-    chai.request(app).post('/api/v1/loans/apply')
+    chai.request(app).post('/api/v1/user/loans/apply')
       .send(utils.loanApplication)
       .end((error, res) => {
         expect(res.statusCode).to.equal(201);
@@ -25,7 +25,7 @@ describe('Apply Loan', () => {
   });
 
   it('Should not apply for loan given the user already has a loan unrepaid', () => {
-    chai.request(app).post('/api/v1/loans/apply')
+    chai.request(app).post('/api/v1/user/loans/apply')
       .send(utils.loanExists)
       .end((error, res) => {
         expect(res.statusCode).to.equal(400);
@@ -35,7 +35,7 @@ describe('Apply Loan', () => {
   });
 
   it('Should not apply for loan given the user is not verified', () => {
-    chai.request(app).post('/api/v1/loans/apply')
+    chai.request(app).post('/api/v1/user/loans/apply')
       .send(utils.userSignup)
       .end((error, res) => {
         expect(res.statusCode).to.equal(401);
