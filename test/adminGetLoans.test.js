@@ -1,35 +1,43 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-undef */
 
+const chai = require('chai');
 
-const service = require('../test/service');
+const expect = chai.expect;
+
+const chaiHttp = require('chai-http');
+
+chai.use(chaiHttp);
+
+const app = require('../app/server');
 
 const utils = require('./utils/utils');
 
-// Describe(mocha) is used to group the testcases while it(chai) is used to write the real testcases
-// supertest takes in the server app and enables us to make requests to the api
-
 describe('Testing if app returns all Admin loan requests', () => {
-  it('Should return all repaid loans', (done) => {
-    service.post('/api/v1/admin/loans/repaid')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
+  it('Should return all repaid loans', () => {
+    chai.request(app).post('/api/v1/admin/loans/repaid')
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('200');
-        library.expect(res.body).to.have.property('Success');
-        library.expect(res.body).to.have.property('Data');
-        done();
+        expect(res.body.Status).to.have.property('200');
+        expect(res.body).to.have.property('Success');
+        expect(res.body).to.have.property('Data');
       });
   });
 
-  it('Should return all unrepaid loans', (done) => {
-    service.post('/api/v1/admin/loans/unrepaid')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
+  it('Should return all unrepaid loans', () => {
+    chai.request(app).post('/api/v1/admin/loans/unrepaid')
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('200');
-        library.expect(res.body).to.have.property('Success');
-        library.expect(res.body).to.have.property('Data');
-        done();
+        expect(res.body.Status).to.have.property('200');
+        expect(res.body).to.have.property('Success');
+        expect(res.body).to.have.property('Data');
+      });
+  });
+
+  it('Should return all loans', () => {
+    chai.request(app).post('/api/v1/admin/loans')
+      .end((error, res) => {
+        expect(res.body.Status).to.have.property('200');
+        expect(res.body).to.have.property('Success');
+        expect(res.body).to.have.property('Data');
       });
   });
 });

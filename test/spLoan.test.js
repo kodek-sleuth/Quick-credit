@@ -1,35 +1,31 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-undef */
 
-const service = require('../test/service');
+const chai = require('chai');
 
-const utils = require('./utils/utils');
+const expect = chai.expect;
 
-// Describe(mocha) is used to group the testcases while it(chai) is used to write the real testcases
-// supertest takes in the server app and enables us to make requests to the api
+const chaiHttp = require('chai-http');
+
+chai.use(chaiHttp);
+
+const app = require('../app/server');
 
 describe('Testing if Admin can get a specific loan', () => {
-  it('Should return a specific loan', (done) => {
-    service.post('/api/v1/loans/:loanId')
-      .set('Accept', 'application/json')
-      .send(userDetails.adminLoginDetails)
-      .expect('Content-Type', /json/)
+  it('Should return a specific loan', () => {
+    chai.request(app).post('/api/v1/loans/93')
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('200');
-        library.expect(res.body).to.have.property('Success');
-        library.expect(res.body).to.have.property('Data');
-        done();
+        expect(res.body.Status).to.have.property('200');
+        expect(res.body).to.have.property('Success');
+        expect(res.body).to.have.property('Data');
       });
   });
 
-  it('Should not return a loan given wrong id', (done) => {
-    service.post('/api/v1/loans/:loanId')
-      .set('Accept', 'application/json')
-      .send(userDetails.adminLoginDetails)
-      .expect('Content-Type', /json/)
+  it('Should not return a loan given wrong id', () => {
+    chai.request(app).post('/api/v1/loans/:loanId')
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('409');
-        library.expect(res.body).to.have.property('Error');
-        done();
+        expect(res.body.Status).to.have.property('400');
+        expect(res.body).to.have.property('Error');
       });
   });
 });

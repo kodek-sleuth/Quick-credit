@@ -6,7 +6,7 @@ const payLoanController = require('../Controllers/loanRepayController');
 
 /**
 * @swagger
-* /api/v1/user/loans/repay:
+* /api/v1/loans/:loanId/repayment:
 *   post:
 *     tags:
 *       - User

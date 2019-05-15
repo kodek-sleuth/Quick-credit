@@ -1,55 +1,34 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-undef */
 
-const service = require('../test/service');
+const chai = require('chai');
 
-const utils = require('./utils/utils');
+const expect = chai.expect;
+
+const chaiHttp = require('chai-http');
+
+chai.use(chaiHttp);
+
+const app = require('../app/server');
 
 describe('Admin Transactions', () => {
-  it('Admin Should post transaction of a loan', (done) => {
-    service.post('/api/v1/admin/loans/:loanId/transac')
-      .set('Accept', 'application/json')
-      .send(userDetails.adminLoginDetails)
-      .expect('Content-Type', /json/)
+  it('Admin Should post transaction of a loan', () => {
+    chai.request(app).post('/api/v1/admin/loans/:loanId/transac')
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('201');
-        library.expect(res.body).to.have.property('Success');
-        library.expect(res.body).to.have.property('Data');
-        library.expect(res.body).to.have.property('Token');
-        library.expect(res.body.Data).to.have.property('Fullname');
-        library.expect(res.body.Data).to.have.property('Email');
-        exports.token = res.body.Token;
-        done();
+        expect(res.body.Status).to.have.property('200');
+        expect(res.body).to.have.property('Success');
+        expect(res.body).to.have.property('Data');
+        expect(res.body.Data).to.have.property('Lastname');
+        expect(res.body.Data).to.have.property('Firstname');
+        expect(res.body.Data).to.have.property('Email');
       });
   });
 
-  it('Admin Should not post transaction of a loan that is not verified', (done) => {
-    service.post('/api/v1/admin/loans/:loanId/transac')
-      .set('Accept', 'application/json')
-      .send(userDetails.adminLoginDetails)
-      .expect('Content-Type', /json/)
+  it('Admin Should not post transaction of a loan that is not verified', () => {
+    chai.request(app).post('/api/v1/admin/loans/:loanId/transac')
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('409');
-        library.expect(res.body).to.have.property('Success');
-        library.expect(res.body).to.have.property('Data');
-        library.expect(res.body.Data).to.have.property('Fullname');
-        library.expect(res.body.Data).to.have.property('Email');
-        done();
+        expect(res.body.Status).to.have.property('400');
+        expect(res.body).to.have.property('Status');
       });
   });
-
-  it('Admin Should not post transaction of a loan that has been repaid', (done) => {
-    service.post('/api/v1/admin/loans/:loanId/transac')
-      .set('Accept', 'application/json')
-      .send(userDetails.adminLoginDetails)
-      .expect('Content-Type', /json/)
-      .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('201');
-        library.expect(res.body).to.have.property('Success');
-        library.expect(res.body).to.have.property('Data');
-        library.expect(res.body.Data).to.have.property('Fullname');
-        library.expect(res.body.Data).to.have.property('Email');
-        done();
-      });
-  });
-
 });

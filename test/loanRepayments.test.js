@@ -11,12 +11,9 @@ chai.use(chaiHttp);
 
 const app = require('../app/server');
 
-const utils = require('./utils/utils');
-
 describe('Testing if app returns all User repayments', () => {
   it('Should return all repaid loans', () => {
-    chai.request(app).post('/api/v1/loans/93/repayments')
-      .send(utils.repayLoan)
+    chai.request(app).post('/api/v1/users/loans/93/repayments')
       .end((error, res) => {
         expect(res.body.Status).to.have.property('200');
         expect(res.body).to.have.property('Success');
