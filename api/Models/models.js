@@ -1,5 +1,74 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 
+exports.ModelClass = class User {
+  constructor() {
+    this.users = [{
+      Id: 93,
+      Firstname: 'Kelvin',
+      Lastname: 'Tindeyebwa',
+      Email: 'kelvin@gmail.com',
+      Password: 'stealth',
+      Status: 'Verified',
+      isAdmin: 'False',
+      Address: 'Kitende, Entebbe'
+    }];
+  }
+
+  validateUserdata(data, res) {
+    if (data.Email == null || data.Password == null || data.Firstname == null || data.Lastname == null || data.isAdmin == null) {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Email, Firstname, Lastname, Password fields are required'
+      });
+    } else {
+      this.users.forEach((userr) => {
+        if (userr.Email == data.Email) {
+          res.status(400).json({
+            Status: 400,
+            Error: 'Email is already taken'
+          });
+        }
+      });
+
+      const id = Math.floor((Math.random() * 10) + 1);
+
+      const token = jwt.sign({
+        Email: data.Email,
+        Firstname: data.Firstname,
+        Lastname: data.Lastname
+      },
+      process.env.SECRET_KEY,
+      {
+        expiresIn: '4h'
+      });
+
+      const newUser2 = {
+        Id: id,
+        Email: data.Email,
+        Firstname: data.Firstname,
+        Lastname: data.Lastname,
+        isAdmin: data.isAdmin,
+        Address: data.Address,
+        Status: 'Pending',
+        Token: token
+      };
+
+      this.users.push(newUser2);
+
+    const newObject = {
+        Id: id,
+        Email: data.Email,
+        Firstname: data.Firstname,
+        Lastname: data.Lastname,
+        isAdmin: data.isAdmin,
+        Address: data.Address,
+        Status: 'Pending',
+        Token: token
+    };
+    return newObject;
+  }
+}
 
 exports.loans = [{
   LoanId: 99,
