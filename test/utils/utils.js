@@ -6,6 +6,32 @@ exports.userLoginDetails = {
   Password: 'stealth'
 };
 
+exports.userSignup = {
+  Firstname: 'Marv',
+  Lastname: 'Tindeyebwa',
+  Email: 'marv@gmail.com',
+  Password: 'stealth',
+  isAdmin: 'False',
+  Address: 'Kitende, Entebbe'
+};
+
+exports.userSignupEmailTaken = {
+  Firstname: 'Marv',
+  Lastname: 'Tindeyebwa',
+  Email: 'marv@gmail.com',
+  Password: 'stealth',
+  isAdmin: 'False',
+  Address: 'Kitende, Entebbe'
+};
+
+exports.userSignupMissingFields = {
+  Firstname: 'Marv',
+  Lastname: 'Tindeyebwa',
+  Password: 'stealth',
+  isAdmin: 'False',
+  Address: 'Kitende, Entebbe'
+};
+
 // Admin object
 exports.adminLoginDetails = {
   isAdmin: 'True',
@@ -15,8 +41,7 @@ exports.adminLoginDetails = {
 
 
 exports.loanApplication = {
-  Email: 'abel@gmail.com',
-  Fullname: 'Abel Tesfaye',
+  Email: 'kelvin@gmail.com',
   Amount: 290000,
   Tenor: 2
 };
@@ -42,7 +67,6 @@ exports.repayLoan = {
 };
 
 exports.userFalseDetails = {
-  isAdmin: 'False',
   Email: 'malvina@gmail.com',
   Password: 'stealth'
 };

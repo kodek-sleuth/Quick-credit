@@ -4,7 +4,7 @@ const service = require('../test/service');
 
 const utils = require('./utils/utils');
 
-describe('App Authorisation Login', () => {
+describe('Admin Transactions', () => {
   it('Admin Should post transaction of a loan', (done) => {
     service.post('/api/v1/admin/loans/:loanId/transac')
       .set('Accept', 'application/json')

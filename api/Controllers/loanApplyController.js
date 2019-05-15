@@ -46,13 +46,9 @@ exports.applyLoan = (req, res, next) => {
                   const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 
                   const interest = (5 * req.body.Amount) / 100;
-                  
                   const paymentInstallment = (req.body.Amount + interest) / req.body.Tenor;
-                  
                   const balance = req.body.Amount + interest;
-                  
                   const id = Math.floor((Math.random() * 10) + 1);
-                  
                   const newLoan = {
                     LoanId: id,
                     Email: req.body.Email,
@@ -90,8 +86,8 @@ exports.applyLoan = (req, res, next) => {
             });
           }
         } else {
-          res.status(400).json({
-            Status: 400,
+          res.status(401).json({
+            Status: 401,
             Error: 'User must be verified to use resource'
           });
         }

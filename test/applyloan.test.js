@@ -1,59 +1,46 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-undef */
 
-const service = require('../test/service');
+const chai = require('chai');
+
+const expect = chai.expect;
+
+const chaiHttp = require('chai-http');
+
+chai.use(chaiHttp);
+
+const app = require('../app/server');
 
 const utils = require('./utils/utils');
 
 describe('Apply Loan', () => {
-  it('Should apply for loan given the right credentials', (done) => {
-    service.post('/api/v1/loans/apply')
-      .set('Accept', 'application/json')
-      .send(userDetails.loanApplication)
-      .expect('Content-Type', /json/)
+  it('Should apply for loan given the right credentials', () => {
+    chai.request(app).post('/api/v1/loans/apply')
+      .send(utils.loanApplication)
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('201');
-        library.expect(res.body).to.have.property('Success');
-        library.expect(res.body).to.have.property('Data');
-        done();
+        expect(res.body.Status).to.have.property(201);
+        expect(res.body).to.have.property('Success');
+        expect(res.body).to.have.property('Data');
       });
   });
 
-  it('Should not apply for loan given the user already has a loan unrepaid', (done) => {
-    service.post('/api/v1/loans/apply')
-      .set('Accept', 'application/json')
-      .send(userDetails.loanExists)
-      .expect('Content-Type', /json/)
+  it('Should not apply for loan given the user already has a loan unrepaid', () => {
+    chai.request(app).post('/api/v1/loans/apply')
+      .send(utils.loanExists)
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('409');
-        library.expect(res.body).to.have.property('Error');
-        library.expect(res.body.Error).to.equals('Please repay old loan to apply for this loan');
-        done();
+        expect(res.body.Status).to.have.property(401);
+        expect(res.body).to.have.property('Error');
+        expect(res.body.Error).to.equals('User must repay old loan to apply for new loan');
       });
   });
 
-  it('Should not apply for loan given the user is not verified', (done) => {
-    service.post('/api/v1/loans/apply')
-      .set('Accept', 'application/json')
-      .send(userDetails.loanApplication)
-      .expect('Content-Type', /json/)
+  it('Should not apply for loan given the user is not verified', () => {
+    chai.request(app).post('/api/v1/loans/apply')
+      .send(utils.loanApplication)
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('401');
-        library.expect(res.body).to.have.property('Error');
-        library.expect(res.body.Error).to.equals('User has to be verified to apply for this loan');
-        done();
-      });
-  });
-
-  it('Should not apply for loan given the user enters wrong data', (done) => {
-    service.post('/api/v1/loans/apply')
-      .set('Accept', 'application/json')
-      .send(userDetails.adminLoginDetails)
-      .expect('Content-Type', /json/)
-      .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('401');
-        library.expect(res.body).to.have.property('Error');
-        library.expect(res.body.Error).to.have.property('Please enter correct data');
-        done();
+        expect(res.body.Status).to.have.property('401');
+        expect(res.body).to.have.property('Error');
+        expect(res.body.Error).to.equals('User must be verified to use resource');
       });
   });
 });

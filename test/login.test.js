@@ -1,66 +1,53 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-undef */
 
-const service = require('../test/service');
+const chai = require('chai');
+
+const expect = chai.expect;
+
+const chaiHttp = require('chai-http');
+
+chai.use(chaiHttp);
+
+const app = require('../app/server');
 
 const utils = require('./utils/utils');
 
 describe('App Authorisation Login', () => {
-  it('Should login user and return Success, Data, Token, Firstname, Lastname and Email', (done) => {
-    service.post('/api/v1/auth/login')
-      .set('Accept', 'application/json')
+  it('Should login user and return Success, Data, Token, Firstname, Lastname and Email', () => {
+    chai.request(app).post('/api/v1/auth/login')
       .send(utils.userLoginDetails)
-      .expect('Content-Type', /json/)
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('200');
-        library.expect(res.body).to.have.property('Success');
-        library.expect(res.body).to.have.property('Data');
-        library.expect(res.body.Data).to.have.property('Firstname');
-        library.expect(res.body.Data).to.have.property('Lastname');
-        library.expect(res.body.Data).to.have.property('Token');
-        library.expect(res.body.Data).to.have.property('Email');
-        library.expect(res.body.Data).to.have.property('Status');
-        library.expect(res.body.Data).to.have.property('isAdmin');
-        library.expect(res.body.Data).to.have.property('Address');
-        done();
+        expect(res.body.Status).to.have.property('200');
+        expect(res.body).to.have.property('Success');
+        expect(res.body).to.have.property('Data');
+        expect(res.body.Data).to.have.property('Firstname');
+        expect(res.body.Data).to.have.property('Lastname');
+        expect(res.body.Data).to.have.property('Token');
+        expect(res.body.Data).to.have.property('Email');
+        expect(res.body.Data).to.have.property('Status');
+        expect(res.body.Data).to.have.property('isAdmin');
+        expect(res.body.Data).to.have.property('Address');
       });
   });
 
-  it('Should not login in user who does not exist', (done) => {
-    service.post('/api/v1/auth/login')
-      .set('Accept', 'application/json')
-      .send(userDetails.userFalseDetails)
-      .expect('Content-Type', /json/)
+  it('Should not login in user who does not exist', () => {
+    chai.request(app).post('/api/v1/auth/login')
+      .send(utils.userFalseDetails)
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('401');
-        library.expect(res.body).to.have.property('Error');
-        library.expect(res.body.Error).to.equals('Invalid Email or Password');
-        done();
+        expect(res.body.Status).to.equals(401);
+        expect(res.body).to.have.property('Error');
+        expect(res.body.Error).to.equals('Invalid Email or Password');
       });
   });
 
-  it('Should not login in admin with false email/password', (done) => {
-    service.post('/api/v1/auth/login')
-      .set('Accept', 'application/json')
-      .send(userDetails.adminFalseDetails)
-      .expect('Content-Type', /json/)
+  it('Should not login in admin with False Email/Password', () => {
+    chai.request(app).post('/api/v1/auth/login')
+      .send(utils.userFalseDetails)
       .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('401');
-        library.expect(res.body).to.have.property('Error');
-        library.expect(res.body.Error).to.equals('Invalid Email or Password');
-        done();
-      });
-  });
-
-  it('Should not login in user with false email/password', (done) => {
-    service.post('/api/v1/auth/login')
-      .set('Accept', 'application/json')
-      .send(userDetails.userFalseDetails)
-      .expect('Content-Type', /json/)
-      .end((error, res) => {
-        library.expect(res.body.Status).to.have.property('401');
-        library.expect(res.body).to.have.property('Error');
-        library.expect(res.body.Error).to.equals('Invalid Email or Password');
-        done();
+        expect(res.body.Status).to.equals(401);
+        expect(res.body).to.have.property('Error');
+        expect(res.body.Error).to.equals('Invalid Email or Password');
       });
   });
 });

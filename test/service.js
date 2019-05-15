@@ -1,7 +1,7 @@
-exports.chai = require('chai');
+const chai = require('chai');
 
-const supertest = require('supertest');
+const chaiHttp = require('chai-http');
+
+chai.use(chaiHttp);
 
 const app = require('../app/server');
-
-exports.newApp = supertest(app);

@@ -9,7 +9,7 @@ exports.loans = [{
   Balance: 24030.0,
   Interest: 30000,
   MonthlyInstallment: 28999,
-  Repaid: 'False',
+  Repaid: 'True',
   Status: 'Verified',
   CreatedOn: '21-05-2019'
 },
