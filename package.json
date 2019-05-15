@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha || true",
     "start": "nodemon app/server.js",
-    "coveralls": "coveralls nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -51,6 +51,7 @@
     "eslint-plugin-import": "^2.17.2",
     "mocha": "^6.1.4",
     "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^14.1.1",
     "supertest": "^4.0.2"
   }
 }

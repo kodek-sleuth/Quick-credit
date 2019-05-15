@@ -13,9 +13,9 @@ const app = require('../app/server');
 
 describe('Testing if app returns all User repayments', () => {
   it('Should return all repaid loans', () => {
-    chai.request(app).post('/api/v1/users/loans/93/repayments')
+    chai.request(app).get('/api/v1/user/loans/93/repayments')
       .end((error, res) => {
-        expect(res.body.Status).to.equal(201);
+        expect(res.statusCode).to.equal(200);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
       });

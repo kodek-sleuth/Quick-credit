@@ -24,23 +24,13 @@ describe('Apply Loan', () => {
       });
   });
 
-  it('Should not apply for loan given the user already has a loan unrepaid', () => {
-    chai.request(app).post('/api/v1/user/loans/apply')
-      .send(utils.loanApplication)
-      .end((error, res) => {
-        expect(res.statusCode).to.equal(400);
-        expect(res.body).to.have.property('Error');
-        expect(res.body.Error).to.equals('User must repay old loan to apply for new loan');
-      });
-  });
-
-  it('Should not apply for loan given the user is not verified', () => {
+  it('Should not apply for loan given the user does not submit amount and tenor', () => {
     chai.request(app).post('/api/v1/user/loans/apply')
       .send(utils.userSignup)
       .end((error, res) => {
         expect(res.statusCode).to.equal(400);
         expect(res.body).to.have.property('Error');
-        expect(res.body.Error).to.equals('User must be verified to use resource');
+        expect(res.body.Error).to.equals('Email, Amount and Tenor fields are required');
       });
   });
 });
