@@ -52,6 +52,7 @@ class User {
       const newUser2 = {
         Id: id,
         Email: data.Email,
+        Password: data.Password,
         Firstname: data.Firstname,
         Lastname: data.Lastname,
         isAdmin: data.isAdmin,
@@ -158,13 +159,6 @@ class Loan {
       });
     }
 
-    if (data.Tenor > 12) {
-      res.status(400).json({
-        Status: 400,
-        Error: 'Tenor must be less than 12 monthns'
-      });
-    }
-
     this.userss.forEach((user) => {
       if (user.Email !== data.Email) {
         res.status(400).json({
@@ -173,6 +167,13 @@ class Loan {
         });
       }
     });
+
+    if (data.Tenor > 12) {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Tenor must be less than 12 monthns'
+      });
+    }
 
     this.userss.forEach((user) => {
       if (user.Email == data.Email) {

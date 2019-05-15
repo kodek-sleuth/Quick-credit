@@ -4,15 +4,9 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable comma-dangle */
 
-const jwt = require('jsonwebtoken');
 
 const models = require('../Models/models');
 
 exports.loginUser = (req, res, next) => {
-  const result = new models.Loans().loginUser(req.body, res);
-  res.status(200).json({
-    Success: 'User successfully logged in',
-    Data: result,
-    Status: 200
-  });
+  const result = new models.User().loginUser(req.body, res);
 };
