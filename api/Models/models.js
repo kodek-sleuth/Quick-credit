@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable indent */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-else-return */
@@ -174,6 +175,7 @@ class Loan {
   }
 
   validateLoanApplication(data, res) {
+    // Checking whether user does not supply null data
     if (data.Email == null || data.Amount == null || data.Tenor == null) {
       res.status(400).json({
         Status: 400,
@@ -181,33 +183,41 @@ class Loan {
       });
     }
 
+    // Checking whether user does not supply a number for email and string for tenor and amount
+    if (isNaN(data.Amount) == true && isNaN(data.Tenor) == true && isNaN(data.Email) == false) {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Amount and Tenor should be numbers only while Email is string'
+      });
+    }
+
+    // Checking whether a user enters an apropriate email
+    if (data.Email.length < 7) {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Email is too short'
+      });
+    }
+
+    // Checking whether a user only borrows 5000 plus amount of money
+    if (data.Amount < 5000) {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Amount should be greater than 4999 shillings'
+      });
+    }
+
+    // Checking whether a user who applies for a loan is a user in db
     this.userss.forEach((user) => {
       if (user.Email !== data.Email) {
         res.status(400).json({
           Status: 400,
-          Error: 'Please Signup to apply for loan'
+          Error: 'Please signup to apply for loan'
         });
       }
     });
 
-    if (data.Tenor > 12) {
-      res.status(400).json({
-        Status: 400,
-        Error: 'Tenor must be less than 12 monthns'
-      });
-    }
-
-    this.userss.forEach((user) => {
-      if (user.Email == data.Email) {
-        if (user.isAdmin == 'True') {
-          res.status(400).json({
-            Status: 400,
-            Error: 'Admin cannot apply for loan'
-          });
-        }
-      }
-    });
-
+    // Checking whether user has no unrepaid loan history before applying for a new one
     this.loans.forEach((loan) => {
       if (loan.Email == data.Email && loan.Repaid == 'False') {
         res.status(400).json({
@@ -217,6 +227,7 @@ class Loan {
       }
     });
 
+    // Finally enabling the user to apply for loan
     const today = new Date();
     const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
     const interest = (5 * data.Amount) / 100;
@@ -255,6 +266,22 @@ class Loan {
     });
   }
 
+  adminPostTransaction(loanId, res) {
+    this.loans.forEach((loan) => {
+      if (loan.Id == loanId) {
+        loan.Status = 'Approved';
+        loan.Balance = 0;
+        loan.Repaid = 'True';
+        return loan;
+      } else {
+        res.status(400).json({
+          Status: 400,
+          Error: 'No loan exists with that Id'
+        });
+      }
+    });
+  }
+
   rejectLoan(loanId, res) {
     this.loans.forEach((loan) => {
       if (loan.Id == loanId) {
@@ -275,7 +302,7 @@ class Loan {
       } else {
         res.status(400).json({
           Status: 400,
-          Error: 'No loans exist with those parameters [Aprproved, True/False]'
+          Error: 'No loans exist with those parameters [Approved, True/False]'
         });
       }
     });
@@ -283,12 +310,12 @@ class Loan {
 
   showUnRepaid(status, repaid, res) {
     this.loans.forEach((loan) => {
-      if (loan.Status == 'Approved' && loan.Repaid == 'False') {
+      if (loan.Status == repaid && loan.Repaid == status) {
         return loan;
       } else {
         res.status(400).json({
           Status: 400,
-          Error: 'No loans exist with those parameters'
+          Error: 'No loans exist with those parameters [Approved, True/False]'
         });
       }
     });
@@ -333,6 +360,7 @@ class Repayment {
   }
 
   validateRepayment(data, res, loanId) {
+    // Checking whether user submits the required values
     if (data.Email == null || data.Amount == null) {
       res.status(400).json({
         Status: 400,
@@ -340,7 +368,34 @@ class Repayment {
       });
     }
 
+    // Checking whether user does not supply a number for email and string for amount
+    if (isNaN(data.Amount) == true && isNaN(data.Email) == false) {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Amount and Tenor should be numbers only while Email is string'
+      });
+    }
+
+    // Checking whether a user enters an apropriate email
+    if (data.Email.length < 7) {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Email is too short'
+      });
+    }
+
+    // Checking whether a user who repays for a loan is a user in db
+    this.userss.forEach((user) => {
+      if (user.Email !== data.Email) {
+        res.status(400).json({
+          Status: 400,
+          Error: 'Please signup to repay loan'
+        });
+      }
+    });
+
     this.loans.forEach((loan) => {
+      // Checking whether loan with that Id exists in the database
       if (loan.Id != loanId) {
         res.status(400).json({
           Status: 400,
@@ -348,13 +403,7 @@ class Repayment {
         });
       }
 
-      if (data.Amount > loan.Balance) {
-        res.status(400).json({
-          Status: 400,
-          Error: `Please pay exact balance of ${loan.Balance}`
-        });
-      }
-
+      // Checking whether loan to repay is verified
       if (loan.Status !== 'Verified') {
         res.status(400).json({
           Status: 400,
@@ -362,10 +411,19 @@ class Repayment {
         });
       }
 
+      // Checking whether loans to repay has already been repaid
       if (loan.Repaid == 'True') {
         res.status(400).json({
           Status: 400,
-          Error: 'Loan has been already been repaid'
+          Error: 'Loan has already been repaid'
+        });
+      }
+
+      // Checking if user does not pay higher than his balance
+      if (data.Amount > loan.Balance) {
+        res.status(400).json({
+          Status: 400,
+          Error: `Please pay exact balance of ${loan.Balance}`
         });
       }
     });
