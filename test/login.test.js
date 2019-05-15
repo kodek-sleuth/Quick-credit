@@ -18,7 +18,7 @@ describe('App Authorisation Login', () => {
     chai.request(app).post('/api/v1/auth/login')
       .send(utils.userLoginDetails)
       .end((error, res) => {
-        expect(res.body.Status).to.have.property('200');
+        expect(res.body.Status).to.have.equals(201);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
         expect(res.body.Data).to.have.property('Firstname');
