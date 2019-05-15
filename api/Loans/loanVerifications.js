@@ -1,10 +1,9 @@
 const express = require('express');
 
-const approveLoan = express.Router();
+const verifyLoan = express.Router();
 
-const approveLoanController = require('../Controllers/approveLoanController');
+const verifyLoanController = require('../Controllers/adminVerifyLoans');
 
-const jwtMiddleware = require('../Settings/checkAuthAdmin');
 
 /**
 * @swagger
@@ -29,6 +28,29 @@ const jwtMiddleware = require('../Settings/checkAuthAdmin');
 *         description: Failed to process request, Try again later
 */
 
-approveLoan.patch('/loans/:loanId/approve', jwtMiddleware, approveLoanController.approveLoan);
+verifyLoan.patch('/loans/:loanId/approve', verifyLoanController.verifyLoan);
 
-module.exports = approveLoan;
+/**
+* @swagger
+* /api/v1/admin/loans/{:loanId}/reject:
+*   patch:
+*     security:
+*        - bearerAuth: []
+*     tags:
+*       - Verifications, Approvals & Rejections
+*     name: Admin Reject Loan for user
+*     summary: Admin Reject Loan for user
+*     parameters:
+*       - name: ":loanId"
+*         in: path
+*         description: Id of Loan
+*         required: true
+*         type: integer
+*     responses:
+*       200:
+*         description: Successfully Rejected Loan
+*/
+
+verifyLoan.patch('/loans/:loanId/reject', verifyLoanController.rejectLoan);
+
+module.exports = verifyLoan;
