@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-else-return */
 /* eslint-disable eqeqeq */
@@ -27,16 +28,23 @@ class User {
         Status: 400,
         Error: 'Email, Firstname, Lastname, Password fields are required'
       });
-    } else {
-      this.users.forEach((userr) => {
-        if (data.Email === userr.Email) {
-          res.status(400).json({
-            Status: 400,
-            Error: 'Email is already taken'
-          });
-        }
-      });
+    }
 
+    this.users.forEach((user) => {
+      if (user.Email == data.Email) {
+        res.status(400).json({
+          Status: 400,
+          Error: 'User with that Email/Names Exist'
+        });
+      }
+    });
+
+    if (data.Password.length < 6) {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Password should be 6 or more characters'
+      });
+    } else {
       const id = Math.floor((Math.random() * 10) + 1);
 
       const token = jwt.sign({
@@ -106,6 +114,7 @@ class User {
             Address: user.Address,
             Status: user.Status
           };
+
           res.status(200).json({
             Success: 'User successfully logged in',
             Data: newObject2,
@@ -119,6 +128,19 @@ class User {
         }
       });
     }
+  }
+
+  verifyUser(emailId, res) {
+    this.users.forEach((user) => {
+      if (user.Email == emailId) {
+         return user;
+      } else {
+        res.status(400).json({
+          Status: 400,
+          Error: 'User with tha Email does not exist'
+        });
+      }
+    });
   }
 }
 
@@ -220,10 +242,71 @@ class Loan {
     return newLoan;
   }
 
-  showLoans(status, repaid, res) {
+  verifyLoan(loanId, res) {
     this.loans.forEach((loan) => {
-      if (loan.status == 'Approved' && loan.Repaid == 'True') {
-        const newObject = loan;
+      if (loan.Id == loanId) {
+        loan.Status = 'Verified';
+      } else {
+        res.status(400).json({
+          Status: 400,
+          Error: 'No loan exists with that Id'
+        });
+      }
+    });
+  }
+
+  rejectLoan(loanId, res) {
+    this.loans.forEach((loan) => {
+      if (loan.Id == loanId) {
+        loan.Status = 'Rejected';
+      } else {
+        res.status(400).json({
+          Status: 400,
+          Error: 'No loan exists with that Id'
+        });
+      }
+    });
+  }
+
+  showRepaid(status, repaid, res) {
+    this.loans.forEach((loan) => {
+      if (loan.Status == status && loan.Repaid == repaid) {
+        return loan;
+      } else {
+        res.status(400).json({
+          Status: 400,
+          Error: 'No loans exist with those parameters [Aprproved, True/False]'
+        });
+      }
+    });
+  }
+
+  showUnRepaid(status, repaid, res) {
+    this.loans.forEach((loan) => {
+      if (loan.Status == 'Approved' && loan.Repaid == 'False') {
+        return loan;
+      } else {
+        res.status(400).json({
+          Status: 400,
+          Error: 'No loans exist with those parameters'
+        });
+      }
+    });
+  }
+
+  showAllLoans() {
+    return this.loans;
+  }
+
+  getSpecific(loanId, res) {
+    this.loans.forEach((loan) => {
+      if (loan.Id == loanId) {
+        return loan;
+      } else {
+        res.status(400).json({
+          Status: 400,
+          Error: 'Loan with that Id does not exist'
+        });
       }
     });
   }
@@ -309,6 +392,19 @@ class Repayment {
     this.repayments.push(newRepayment);
 
     return newRepayment;
+  }
+
+  getUserLoanHistory(loanId, res) {
+    this.repayments.forEach((loan) => {
+      if (loan.LoanId == loanId) {
+        return loan;
+      } else {
+        res.status(400).json({
+          Status: 400,
+          Error: 'Loan with that Id does not exist'
+        });
+      }
+    });
   }
 }
 
