@@ -15,7 +15,7 @@ exports.verifyLoan = (req, res, next) => {
 
   if (loanId) {
     models.loans.forEach((loan) => {
-      if (loan.id == loanId) {
+      if (loan.LoanId == loanId) {
         loan.Status = 'Verified';
 
         res.status(200).json({
@@ -49,7 +49,7 @@ exports.rejectLoan = (req, res, next) => {
 
   if (loanId) {
     models.loans.forEach((loan) => {
-      if (loan.id == loanId) {
+      if (loan.LoanId == loanId) {
         loan.Status = 'Rejected';
 
         res.status(200).json({

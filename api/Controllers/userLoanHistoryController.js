@@ -17,6 +17,11 @@ exports.viewLoanHistory = (req, res, next) => {
         Data: loan,
         Success: 'Successfully returned loan History'
       });
+    } else {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Loan with that id does not exist'
+      });
     }
   });
 };

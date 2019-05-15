@@ -12,10 +12,10 @@ const models = require('../Models/models');
 exports.repayLoan = (req, res, next) => {
   const loanId = req.params.loanId;
 
-  if (req.body.Email == null || req.body.Fullname == null || req.body.Amount == null) {
+  if (req.body.Email == null || req.body.Amount == null) {
     res.status(400).json({
       Status: 400,
-      Error: 'Email, Fullname and Amount fields are required'
+      Error: 'Email and Amount fields are required'
     });
   }
 
@@ -27,7 +27,7 @@ exports.repayLoan = (req, res, next) => {
   } else {
     models.loans.forEach((loan) => {
       if (loan.Email == req.body.Email) {
-        if (loan.id == loanId) {
+        if (loan.LoanId == loanId) {
           if (loan.Repaid == 'True') {
             res.status(400).json({
               Status: 400,
@@ -44,7 +44,7 @@ exports.repayLoan = (req, res, next) => {
               if (req.body.Amount > loan.Balance) {
                 res.status(200).json({
                   Status: 200,
-                  Error: 'Please repay exact balance'
+                  Error: 'Please repay exact balance or loan is repaid'
                 });
               } else {
                 const id = Math.floor((Math.random() * 10) + 1);
@@ -59,7 +59,7 @@ exports.repayLoan = (req, res, next) => {
 
                 models.repayments.push(newRepayment);
 
-                const newBalance = req.body.Amount - loan.Balance;
+                const newBalance = loan.Balance - req.body.Amount;
                 loan.Balance = newBalance;
 
                 res.status(201).json({

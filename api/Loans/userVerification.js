@@ -25,6 +25,6 @@ const verifyUserController = require('../Controllers/userVerification');
 *         description: Successfully Verified User
 */
 
-verify.patch('/users/:Email/verify', verifyUserController.verifyUser);
+verify.patch('/users/:userEmail/verify', verifyUserController.verifyUser);
 
 module.exports = verify;

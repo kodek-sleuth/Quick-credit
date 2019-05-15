@@ -23,4 +23,6 @@ const sp = require('../Controllers/userLoanHistoryController');
 *         description: Successfully Fetched History
 */
 
-userHistory.get('/loans/:loanId/repayments', sp.viewLoan);
+userHistory.get('/loans/:loanId/repayments', sp.viewLoanHistory);
+
+module.exports = userHistory;

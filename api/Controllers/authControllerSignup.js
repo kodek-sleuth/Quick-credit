@@ -10,10 +10,10 @@ const jwt = require('jsonwebtoken');
 const models = require('../Models/models');
 
 exports.signUpUser = (req, res, next) => {
-  if (req.body.Email == null || req.body.Password == null || req.body.Firstname == null || req.body.Lastname || req.body.isAdmin == null) {
+  if (req.body.Email == null || req.body.Password == null || req.body.Firstname == null || req.body.Lastname == null || req.body.isAdmin == null) {
     res.status(400).json({
       Status: 400,
-      Error: 'Email, firstname, lastname, Password and Address fields are required'
+      Error: 'Email, firstname, lastname, Password fields are required'
     });
   }
 

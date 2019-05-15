@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 /* eslint-disable prefer-destructuring */
-/* eslint-disable padded-blocks */
 /* eslint-disable no-mixed-operators */
 /* eslint-disable eqeqeq */
 /* eslint-disable no-empty */
@@ -13,7 +13,7 @@ exports.verifyUser = (req, res, next) => {
 
   if (userEmail) {
     models.users.forEach((user) => {
-      if (user.Email == userEmail && user.isAdmin == 'False') {
+      if (user.Email == userEmail) {
         user.Status = 'Verified';
 
         res.status(200).json({
@@ -24,9 +24,9 @@ exports.verifyUser = (req, res, next) => {
             Firstname: user.Firstname,
             Lastname: user.Lastname,
             Email: user.Email,
-            Address: user.Balance,
-            Status: user.Interest,
-            isAdmin: user.Installment
+            Address: user.Address,
+            Status: user.Status,
+            isAdmin: user.isAdmin
           }
         });
       } else {

@@ -20,7 +20,7 @@ const sp = require('../Controllers/adminViewSpecificLoan');
 *         description: Successfully Fetched Loans
 */
 
-adminLoans.get('/admin/loans', adminLoansController.allLoans);
+adminLoans.get('/loans', adminLoansController.allLoans);
 
 // Swagger documentation
 /**
@@ -36,7 +36,7 @@ adminLoans.get('/admin/loans', adminLoansController.allLoans);
 *         description: Successfully Fetched Loans
 */
 
-adminLoans.get('/admin/loans/unrepaid', adminLoansController.unrepaidLoans);
+adminLoans.get('/loans/unrepaid', adminLoansController.unrepaidLoans);
 
 // Swagger documentation
 /**
@@ -52,7 +52,7 @@ adminLoans.get('/admin/loans/unrepaid', adminLoansController.unrepaidLoans);
 *         description: Successfully Fetched Loans
 */
 
-adminLoans.get('/admin/loans/repaid', adminLoansController.repaidLoans);
+adminLoans.get('/loans/repaid', adminLoansController.repaidLoans);
 
 /**
 * @swagger
@@ -74,3 +74,5 @@ adminLoans.get('/admin/loans/repaid', adminLoansController.repaidLoans);
 */
 
 adminLoans.get('/loans/:loanId', sp.viewLoan);
+
+module.exports = adminLoans;

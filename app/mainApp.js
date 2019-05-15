@@ -30,6 +30,8 @@ const verifyUser = require('../api/Loans/userVerification');
 
 const verifyLoan = require('../api/Loans/loanVerifications');
 
+const userHistory = require('../api/users/history');
+
 const loans = require('../api/Loans/adminLoans');
 
 const swagger = require('../api/Settings/swagger');
@@ -56,7 +58,8 @@ app.use('/api/v1/user', applyLoan);
 app.use('/api/v1/user', repayLoan);
 app.use('/api/v1/admin', verifyUser);
 app.use('/api/v1/admin', verifyLoan);
-app.use('/api/v1/loans', loans);
+app.use('/api/v1/admin', loans);
+app.use('/api/v1/user', userHistory);
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {

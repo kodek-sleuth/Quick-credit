@@ -30,11 +30,9 @@ exports.unrepaidLoans = (req, res, next) => {
 };
 
 exports.allLoans = (req, res, next) => {
-  models.loans.forEach((loan) => {
-    res.status(200).json({
-      Status: 200,
-      Data: loan,
-      Success: 'Successfully returned all loan applications'
-    });
+  res.status(200).json({
+    Status: 200,
+    Data: models.loans,
+    Success: 'Successfully returned all loan applications'
   });
 };
