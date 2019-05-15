@@ -15,27 +15,27 @@ const utils = require('./utils/utils');
 
 describe('Testing if app returns all Admin loan requests', () => {
   it('Should return all repaid loans', () => {
-    chai.request(app).post('/api/v1/admin/loans/repaid')
+    chai.request(app).get('/api/v1/admin/loans/repaid')
       .end((error, res) => {
-        expect(res.body.Status).to.have.property('200');
+        expect(res.body.Status).to.equals(200);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
       });
   });
 
   it('Should return all unrepaid loans', () => {
-    chai.request(app).post('/api/v1/admin/loans/unrepaid')
+    chai.request(app).get('/api/v1/admin/loans/unrepaid')
       .end((error, res) => {
-        expect(res.body.Status).to.have.property('200');
+        expect(res.body.Status).to.equals(200);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
       });
   });
 
   it('Should return all loans', () => {
-    chai.request(app).post('/api/v1/admin/loans')
+    chai.request(app).get('/api/v1/admin/loans')
       .end((error, res) => {
-        expect(res.body.Status).to.have.property('200');
+        expect(res.body.Status).to.equals(200);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
       });
