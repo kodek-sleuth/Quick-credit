@@ -15,6 +15,11 @@ const payLoanController = require('../Controllers/loanRepayController');
 *     consumes:
 *       - application/json
 *     parameters:
+*       - name: ":loanId"
+*         in: path
+*         description: Id of Loan
+*         required: true
+*         type: integer
 *       - name: body
 *         in: body
 *         properties:
