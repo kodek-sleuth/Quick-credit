@@ -13,7 +13,7 @@ const swaggerDefinition = {
       version: '1.0.0',
       description: 'Quick Credit is an online lending platform that provides short term soft loans to individuals'
     },
-    host: 'https://quick-credit-loanapp.herokuapp.com',
+    host: 'quick-credit-loanapp.herokuapp.com',
     schemes: ['https'],
     basePath: '/',
     securityDefinitions: {
