@@ -29,7 +29,7 @@ const swaggerDefinition = {
 // Options object is later sent to swagger server to generate UI/UX and for specifying routes
 const options = {
     swaggerDefinition,
-    apis: ['./Api/Auth/*.js', './Api/Loans/*.js', './Api/Profiles/*.js', './Api/Verifications/*.js']
+    apis: ['./api/Auth/*.js', './api/Loans/*.js', './api/Profiles/*.js', './api/Verifications/*.js']
 };
 
 exports.swaggerSpec = swaggerDoc(options);
