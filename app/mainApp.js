@@ -3,40 +3,40 @@
 /* eslint-disable indent */
 /* eslint-disable max-len */
 
-const express = require('express');
+import express from 'express';
+
+import bodyParser from 'body-parser';
+
+import morgan from 'morgan';
+
+import cors from 'cors';
+
+// Library that generates the UI/UX of swagger
+import swaggerUI from 'swagger-ui-express';
+
+import authSignup from '../api/Auth/signup';
+
+import login from '../api/Auth/login';
+
+import applyLoan from '../api/Loans/applyLoan';
+
+import repayLoan from '../api/Loans/repayLoan';
+
+import verifyUser from '../api/Loans/userVerification';
+
+import verifyLoan from '../api/Loans/loanVerifications';
+
+import userHistory from '../api/users/history';
+
+import loans from '../api/Loans/adminLoans';
+
+import transac from '../api/Loans/transac';
+
+import swagger from '../api/Settings/swagger';
 
 const app = express();
 
-const bodyParser = require('body-parser');
-
-const morgan = require('morgan');
-
-const cors = require('cors');
-
 app.use(cors());
-
-// Library that generates the UI/UX of swagger
-const swaggerUI = require('swagger-ui-express');
-
-const authSignup = require('../api/Auth/signup');
-
-const login = require('../api/Auth/login');
-
-const applyLoan = require('../api/Loans/applyLoan');
-
-const repayLoan = require('../api/Loans/repayLoan');
-
-const verifyUser = require('../api/Loans/userVerification');
-
-const verifyLoan = require('../api/Loans/loanVerifications');
-
-const userHistory = require('../api/users/history');
-
-const loans = require('../api/Loans/adminLoans');
-
-const transac = require('../api/Loans/transac');
-
-const swagger = require('../api/Settings/swagger');
 
 // Enable API to receive urlencoded data as well as json
 app.use(bodyParser.urlencoded({ extended: true }));
