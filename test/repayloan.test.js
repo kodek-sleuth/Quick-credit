@@ -15,7 +15,7 @@ const utils = require('./utils/utils');
 
 describe('Repay Loan', () => {
   it('Should repay loan given the right credentials', () => {
-    chai.request(app).post('/api/v1/users/loans/2/repayment')
+    chai.request(app).post('/api/v1/user/loans/2/repayment')
       .send(utils.repayLoan)
       .end((error, res) => {
         expect(res.body.Status).to.equals(201);
@@ -25,7 +25,7 @@ describe('Repay Loan', () => {
   });
 
   it('Should not repay loan given wrong id', () => {
-    chai.request(app).post('/api/v1/users/loans/22/repayment')
+    chai.request(app).post('/api/v1/user/loans/22/repayment')
       .send(utils.repayLoan)
       .end((error, res) => {
         expect(res.body.Status).to.equal(400);
@@ -35,7 +35,7 @@ describe('Repay Loan', () => {
   });
 
   it('Should not repay loan given repayer is not a user', () => {
-    chai.request(app).post('/api/v1/users/loans/2/repayment')
+    chai.request(app).post('/api/v1/user/loans/2/repayment')
       .send(utils.repayLoanEmail)
       .end((error, res) => {
         expect(res.body.Status).to.equal(400);
