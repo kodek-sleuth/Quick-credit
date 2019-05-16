@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
+
+import reqLoanController from '../Controllers/loanApplyController';
 
 const reqLoan = express.Router();
-
-const reqLoanController = require('../Controllers/loanApplyController');
 
 /**
 * @swagger

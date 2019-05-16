@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
+
+import verifyLoanController from '../Controllers/adminVerifyLoans';
 
 const verifyLoan = express.Router();
-
-const verifyLoanController = require('../Controllers/adminVerifyLoans');
 
 
 /**

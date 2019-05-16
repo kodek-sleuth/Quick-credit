@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
+
+import adminLoansController from '../Controllers/adminLoanApplications';
+
+import sp from '../Controllers/adminViewSpecificLoan';
 
 const adminLoans = express.Router();
-
-const adminLoansController = require('../Controllers/adminLoanApplications');
-
-const sp = require('../Controllers/adminViewSpecificLoan');
 
 // Swagger documentation
 /**

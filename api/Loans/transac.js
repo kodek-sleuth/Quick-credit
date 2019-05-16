@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
+
+import transacController from '../Controllers/adminTransacController';
 
 const transacLoan = express.Router();
-
-const transacController = require('../Controllers/adminTransacController');
 
 /**
 * @swagger

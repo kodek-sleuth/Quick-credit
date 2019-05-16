@@ -10,7 +10,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 class User {
   constructor() {
     this.users = [
