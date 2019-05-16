@@ -8,14 +8,14 @@ const verifyUserController = require('../Controllers/userVerification');
 
 /**
 * @swagger
-* /api/v1/admin/users/{:Email}/verify:
+* /api/v1/admin/users/{:userEmail}/verify:
 *   patch:
 *     tags:
 *       - Verifications, Approvals & Rejections
 *     name: Admin Verify user
 *     summary: Admin Verify user
 *     parameters:
-*       - name: ":Email"
+*       - name: ":userEmail"
 *         in: path
 *         description: Id of Loan
 *         required: true

@@ -6,42 +6,23 @@ const transacController = require('../Controllers/adminTransacController');
 
 /**
 * @swagger
-* /api/v1/user/loans/repay:
-*   post:
-*     security:
-*        - bearerAuth: []
+* /api/v1/admin/loans/{:loanId}/transac:
+*   patch:
 *     tags:
-*       - User
-*     name: Apply for a Loan
-*     summary: Apply for a Loan
-*     consumes:
-*       - application/json
+*       - Verifications, Approvals & Rejections
+*     name: Approve Loan
+*     summary: Approves Loan
 *     parameters:
-*       - name: body
-*         in: body
-*         properties:
-*           Fullname:
-*             type: string
-*             example: Mugerwa Joseph
-*           Email:
-*             type: string
-*             example: mugerwa@gmail.com
-*           Tenor:
-*             type: integer
-*             example: 5
-*           Amount:
-*             type: integer
-*             example: 500000
-*         required:
-*           - FullName
-*           - Email
-*           - Tenor
-*           - Amount
+*       - name: ":loanId"
+*         in: path
+*         description: Id of Loan
+*         required: true
+*         type: integer
 *     responses:
 *       201:
-*         description: Customer Successfully Signed Up
-*       500:
-*         description: Failed To Authenticate
+*         description: Successfully posted transaction for user
+*       400:
+*         description: Loan with that Id does not exist
 */
 
 transacLoan.patch('/loans/:loanId/transac', transacController.transacPost);

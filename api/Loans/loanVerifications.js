@@ -9,8 +9,6 @@ const verifyLoanController = require('../Controllers/adminVerifyLoans');
 * @swagger
 * /api/v1/admin/loans/{:loanId}/approve:
 *   patch:
-*     security:
-*        - bearerAuth: []
 *     tags:
 *       - Verifications, Approvals & Rejections
 *     name: Approve Loan
@@ -34,8 +32,6 @@ verifyLoan.patch('/loans/:loanId/approve', verifyLoanController.verifyLoan);
 * @swagger
 * /api/v1/admin/loans/{:loanId}/reject:
 *   patch:
-*     security:
-*        - bearerAuth: []
 *     tags:
 *       - Verifications, Approvals & Rejections
 *     name: Admin Reject Loan for user

@@ -25,7 +25,7 @@ adminLoans.get('/loans', adminLoansController.allLoans);
 // Swagger documentation
 /**
 * @swagger
-* /api/v1/admin/loans/unrepaid:
+* /api/v1/admin/loans/unrepaid?status=Approved&repaid=False:
 *   get:
 *     tags:
 *       - Admin
@@ -41,7 +41,7 @@ adminLoans.get('/loans/unrepaid', adminLoansController.unrepaidLoans);
 // Swagger documentation
 /**
 * @swagger
-* /api/v1/admin/loans/repaid:
+* /api/v1/admin/loans/repaid?status=Approved&repaid=True:
 *   get:
 *     tags:
 *       - Admin

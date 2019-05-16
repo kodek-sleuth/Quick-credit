@@ -29,9 +29,9 @@ const payLoanController = require('../Controllers/loanRepayController');
 *           - Amount
 *     responses:
 *       201:
-*         description: Customer Successfully Signed Up
-*       500:
-*         description: Failed To Authenticate
+*         description: Successfully posted payment for loan
+*       400:
+*         description: Loan with that Id does not exist
 */
 
 payLoan.post('/loans/:loanId/repayment', payLoanController.repayLoan);

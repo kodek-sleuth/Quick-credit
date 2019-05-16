@@ -8,8 +8,6 @@ const reqLoanController = require('../Controllers/loanApplyController');
 * @swagger
 * /api/v1/user/loans/apply:
 *   post:
-*     security:
-*        - bearerAuth: []
 *     tags:
 *       - User
 *     name: Apply for a Loan
