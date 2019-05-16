@@ -5,9 +5,7 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable comma-dangle */
 
-const jwt = require('jsonwebtoken');
-
-const models = require('../Models/models');
+import models from '../Models/models';
 
 exports.signUpUser = (req, res, next) => {
   const result = new models.User().validateUserdata(req.body, res);

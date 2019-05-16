@@ -7,7 +7,7 @@
 /* eslint-disable no-empty */
 /* eslint-disable comma-dangle */
 
-const models = require('../Models/models');
+import models from '../Models/models';
 
 exports.applyLoan = (req, res, next) => {
   const result = new models.Loan().validateLoanApplication(req.body, res);

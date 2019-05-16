@@ -7,7 +7,7 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable comma-dangle */
 
-const models = require('../Models/models');
+import models from '../Models/models';
 
 exports.repayLoan = (req, res, next) => {
   const loanId = req.params.loanId;

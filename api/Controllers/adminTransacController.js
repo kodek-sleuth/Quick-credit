@@ -3,7 +3,7 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-unused-vars */
 
-const models = require('../Models/models');
+import models from '../Models/models';
 
 exports.transacPost = (req, res, next) => {
   const loanId = req.params.loanId;

@@ -6,7 +6,7 @@
 /* eslint-disable no-empty */
 /* eslint-disable comma-dangle */
 
-const models = require('../Models/models');
+import models from '../Models/models';
 
 exports.viewLoan = (req, res, next) => {
   const loanId = req.params.loanId;

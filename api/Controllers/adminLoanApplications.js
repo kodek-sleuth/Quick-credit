@@ -3,13 +3,11 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable comma-dangle */
 
-const models = require('../Models/models');
+import models from '../Models/models';
 
 exports.repaidLoans = (req, res, next) => {
   const status = req.query.status;
   const repaid = req.query.repaid;
-
-  
   const result = new models.Loan().showRepaid(status, repaid, res);
 
   res.status(200).json({
