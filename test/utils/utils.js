@@ -7,12 +7,11 @@ exports.userLoginDetails = {
 };
 
 exports.userSignup = {
-  Firstname: 'Marv',
-  Lastname: 'Tindeyebwa',
-  Email: 'marv@gmail.com',
+  Firstname: 'Marry',
+  Lastname: 'Mason',
+  Email: 'marv21@gmail.com',
   Password: 'stealth',
-  isAdmin: 'False',
-  Address: 'Kitende, Entebbe'
+  isAdmin: 'False'
 };
 
 exports.userSignupEmailTaken = {
