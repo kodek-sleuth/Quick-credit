@@ -18,10 +18,11 @@ exports.userSignup = {
 exports.userSignupEmailTaken = {
   Firstname: 'Marv',
   Lastname: 'Tindeyebwa',
-  Email: 'marv@gmail.com',
+  Email: 'kelvin@gmail.com',
   Password: 'stealth',
   isAdmin: 'False',
-  Address: 'Kitende, Entebbe'
+  Address: 'Kitende, Entebbe',
+  Status: 'Verified'
 };
 
 exports.userSignupMissingFields = {
@@ -30,6 +31,16 @@ exports.userSignupMissingFields = {
   Password: 'stealth',
   isAdmin: 'False',
   Address: 'Kitende, Entebbe'
+};
+
+exports.userSignupShortPassword = {
+  Firstname: 'Marv',
+  Lastname: 'Tindeyebwa',
+  Email: 'mani@gmail.com',
+  Password: 'stea',
+  isAdmin: 'False',
+  Address: 'Kitende, Entebbe',
+  Status: 'Verified'
 };
 
 // Admin object

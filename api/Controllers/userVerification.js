@@ -12,4 +12,9 @@ exports.verifyUser = (req, res, next) => {
   const userEmail = req.params.userEmail;
 
   const result = new models.User().verifyUser(userEmail, res);
+  res.status(200).json({
+    Status: 200,
+    Data: result,
+    Success: 'User has sucessfully been Verified'
+  });
 };

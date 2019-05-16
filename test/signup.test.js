@@ -14,7 +14,7 @@ const app = require('../app/server');
 const utils = require('./utils/utils');
 
 describe('App Authorisation Signup', () => {
-  it('Should signup user', () => {
+  it('Should signup user if he does not exist in db', () => {
     // Incase of an email that exists in database
     chai.request(app).post('/api/v1/auth/signup')
       .send(utils.userSignup)
@@ -35,7 +35,7 @@ describe('App Authorisation Signup', () => {
       .end((error, res) => {
         expect(res.body).to.have.property('Status');
         expect(res.body).to.have.property('Error');
-        expect(res.body.Error).to.equal('Email is already taken');
+        expect(res.body.Error).to.equals('User with that Email Exists');
         expect(res.body.Status).to.equal(400);
       });
   });
@@ -47,7 +47,18 @@ describe('App Authorisation Signup', () => {
       .send(utils.userSignupMissingFields)
       .end((error, res) => {
         expect(res.body).to.have.property('Error');
-        expect(res.body.Error).to.equals('Email, firstname, lastname, Password fields are required');
+        expect(res.body.Error).to.equals('Email, Firstname, Lastname, Password and isAdmin fields are required');
+        expect(res.body.Status).to.equals(400);
+      });
+  });
+
+  it('Should not signup new user if his password is short', () => {
+    // Incase of a fullname that exists in database
+    chai.request(app).post('/api/v1/auth/signup')
+      .send(utils.userSignupShortPassword)
+      .end((error, res) => {
+        expect(res.body).to.have.property('Error');
+        expect(res.body.Error).to.equals('Password should be 6 or more characters');
         expect(res.body.Status).to.equals(400);
       });
   });

@@ -12,23 +12,22 @@ chai.use(chaiHttp);
 const app = require('../app/server');
 
 describe('Admin Transactions', () => {
-  it('Admin Should post transaction of a loan', () => {
-    chai.request(app).post('/api/v1/admin/loans/:loanId/transac')
+  it('Admin should post transaction of a loan', () => {
+    chai.request(app).patch('/api/v1/admin/loans/2/transac')
       .end((error, res) => {
         expect(res.body.Status).to.equal(200);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
-        expect(res.body.Data).to.have.property('Lastname');
-        expect(res.body.Data).to.have.property('Firstname');
-        expect(res.body.Data).to.have.property('Email');
+        expect(res.body.Success).to.equals('Admin successfully posted loan for user');
       });
   });
 
-  it('Admin Should not post transaction of a loan that is not verified', () => {
-    chai.request(app).post('/api/v1/admin/loans/:loanId/transac')
+  it('Admin should fail to post transaction of loan id that does not exist', () => {
+    chai.request(app).patch('/api/v1/admin/loans/2/transac')
       .end((error, res) => {
         expect(res.body.Status).to.equal(400);
-        expect(res.body).to.have.property('Status');
+        expect(res.body).to.have.property('Error');
+        expect(res.body.Error).to.equals('No loan exists with that Id');
       });
   });
 });

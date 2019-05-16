@@ -11,7 +11,6 @@ const models = require('../Models/models');
 
 exports.applyLoan = (req, res, next) => {
   const result = new models.Loan().validateLoanApplication(req.body, res);
-  
   res.status(200).json({
     Success: 'Successfully applied for loan',
     Data: result,

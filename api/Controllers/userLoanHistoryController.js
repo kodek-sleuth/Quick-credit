@@ -10,18 +10,11 @@ const models = require('../Models/models');
 
 exports.viewLoanHistory = (req, res, next) => {
   const loanId = req.params.loanId;
-  models.repayments.forEach((loan) => {
-    if (loan.LoanId == loanId) {
-      res.status(200).json({
-        Status: 200,
-        Data: loan,
-        Success: 'Successfully returned loan History'
-      });
-    } else {
-      res.status(400).json({
-        Status: 400,
-        Error: 'Loan with that id does not exist'
-      });
-    }
+  const result = new models.Repayment().getUserLoanHistory(loanId, res);
+
+  res.status(200).json({
+    Status: 200,
+    Data: result,
+    Success: 'All loan history successfully returned'
   });
 };

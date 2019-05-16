@@ -13,67 +13,23 @@ const models = require('../Models/models');
 exports.verifyLoan = (req, res, next) => {
   const loanId = req.params.loanId;
 
-  if (loanId) {
-    models.loans.forEach((loan) => {
-      if (loan.LoanId == loanId) {
-        loan.Status = 'Verified';
+  const result = new models.Loan().verifyLoan(loanId, res);
 
-        res.status(200).json({
-          Status: 200,
-          Success: 'Successfully verified loan for user',
-          Data: {
-            Id: loan.LoanId,  
-            Email: loan.Email,
-            Amount: loan.Amount,
-            Tenor: loan.Tenor,
-            Balance: loan.Balance,
-            Interest: loan.Interest,
-            Installment: loan.Installment,
-            Repaid: loan.Balance,
-            Status: loan.Status,
-            CreatedOn: loan.CreatedOn
-          }
-        });
-      } else {
-        res.status(400).json({
-          Status: 400,
-          Error: 'Loan with that id does not exist'
-        });
-      }
-    });
-  }
+  res.status(200).json({
+    Status: 200,
+    Data: result,
+    Success: 'Admin successfully approved loan for user'
+  });
 };
 
 exports.rejectLoan = (req, res, next) => {
   const loanId = req.params.loanId;
 
-  if (loanId) {
-    models.loans.forEach((loan) => {
-      if (loan.LoanId == loanId) {
-        loan.Status = 'Rejected';
+  const result = new models.Loan().rejectLoan(loanId, res);
 
-        res.status(200).json({
-          Status: 200,
-          Success: 'Successfully rejected loan for user',
-          Data: {
-            Id: loan.LoanId,
-            Email: loan.Email,
-            Amount: loan.Amount,
-            Tenor: loan.Tenor,
-            Balance: loan.Balance,
-            Interest: loan.Interest,
-            Installment: loan.Installment,
-            Repaid: loan.Balance,
-            Status: loan.Status,
-            CreatedOn: loan.CreatedOn
-          }
-        });
-      } else {
-        res.status(400).json({
-          Status: 400,
-          Error: 'Loan with that id does not exist'
-        });
-      }
-    });
-  }
+  res.status(200).json({
+    Status: 200,
+    Data: result,
+    Success: 'Admin successfully rejected loan for user'
+  });
 };

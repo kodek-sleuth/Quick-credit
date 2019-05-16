@@ -9,25 +9,25 @@ exports.repaidLoans = (req, res, next) => {
   const status = req.query.status;
   const repaid = req.query.repaid;
 
+  
   const result = new models.Loan().showRepaid(status, repaid, res);
 
   res.status(200).json({
     Status: 200,
     Data: result,
-    Success: 'All repaid loans returned'
+    Success: 'Sucessfully returned all repaid loans'
   });
 };
 
 exports.unrepaidLoans = (req, res, next) => {
   const status = req.query.status;
   const repaid = req.query.repaid;
-
   const result = new models.Loan().showUnRepaid(status, repaid, res);
 
   res.status(200).json({
     Status: 200,
     Data: result,
-    Success: 'All unrepaid loans successfully returned'
+    Success: 'Successfully returned repaid loans'
   });
 };
 

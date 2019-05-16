@@ -34,6 +34,8 @@ const userHistory = require('../api/users/history');
 
 const loans = require('../api/Loans/adminLoans');
 
+const transac = require('../api/Loans/transac');
+
 const swagger = require('../api/Settings/swagger');
 
 // Enable API to receive urlencoded data as well as json
@@ -60,6 +62,7 @@ app.use('/api/v1/admin', verifyUser);
 app.use('/api/v1/admin', verifyLoan);
 app.use('/api/v1/admin', loans);
 app.use('/api/v1/user', userHistory);
+app.use('/api/v1/admin', transac);
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {

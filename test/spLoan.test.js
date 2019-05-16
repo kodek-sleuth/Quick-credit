@@ -13,7 +13,7 @@ const app = require('../app/server');
 
 describe('Testing if Admin can get a specific loan', () => {
   it('Should return a specific loan', () => {
-    chai.request(app).post('/api/v1/loans/93')
+    chai.request(app).get('/api/v1/loans/2')
       .end((error, res) => {
         expect(res.body.Status).to.equal('200');
         expect(res.body).to.have.property('Success');
@@ -22,9 +22,10 @@ describe('Testing if Admin can get a specific loan', () => {
   });
 
   it('Should not return a loan given wrong id', () => {
-    chai.request(app).post('/api/v1/loans/:loanId')
+    chai.request(app).get('/api/v1/loans/4')
       .end((error, res) => {
         expect(res.body.Status).to.equal('400');
+        expect(res.body.Error).to.equals('Loan with that Id does not exist');
         expect(res.body).to.have.property('Error');
       });
   });

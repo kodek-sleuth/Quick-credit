@@ -6,7 +6,7 @@ const payLoanController = require('../Controllers/loanRepayController');
 
 /**
 * @swagger
-* /api/v1/loans/:loanId/repayment:
+* /api/v1/user/loans/:loanId/repayment:
 *   post:
 *     tags:
 *       - User
@@ -33,7 +33,6 @@ const payLoanController = require('../Controllers/loanRepayController');
 *       500:
 *         description: Failed To Authenticate
 */
-
 
 payLoan.post('/loans/:loanId/repayment', payLoanController.repayLoan);
 

@@ -11,11 +11,9 @@ chai.use(chaiHttp);
 
 const app = require('../app/server');
 
-const utils = require('./utils/utils');
-
 describe('Testing if app returns all Admin loan requests', () => {
   it('Should return all repaid loans', () => {
-    chai.request(app).get('/api/v1/admin/loans/repaid')
+    chai.request(app).get('/api/v1/admin/loans/repaid?status=Approved&repaid=False')
       .end((error, res) => {
         expect(res.body.Status).to.equal(200);
         expect(res.body).to.have.property('Success');
@@ -24,11 +22,29 @@ describe('Testing if app returns all Admin loan requests', () => {
   });
 
   it('Should return all unrepaid loans', () => {
-    chai.request(app).get('/api/v1/admin/loans/unrepaid')
+    chai.request(app).get('/api/v1/admin/loans/unrepaid?status=Approved&repaid=False')
       .end((error, res) => {
         expect(res.body.Status).to.equal(200);
         expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
+      });
+  });
+
+  it('Should return an error when supplied with wrong query string for unrepaid', () => {
+    chai.request(app).get('/api/v1/admin/loans/unrepaid?status=Approve&repaid=False')
+      .end((error, res) => {
+        expect(res.body.Status).to.equal(400);
+        expect(res.body).to.have.property('Error');
+        expect(res.body.Error).to.equals('Please use Approved and False');
+      });
+  });
+
+  it('Should return an error when supplied with wrong query string for repaid', () => {
+    chai.request(app).get('/api/v1/admin/loans/repaid?status=Approvd&repaid=False')
+      .end((error, res) => {
+        expect(res.body.Status).to.equal(400);
+        expect(res.body).to.have.property('Error');
+        expect(res.body.Error).to.equals('Please use Approved and True');
       });
   });
 

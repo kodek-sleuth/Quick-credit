@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable indent */
 /* eslint-disable no-param-reassign */
@@ -16,18 +17,20 @@ class User {
       {
         Firstname: 'Marv',
         Lastname: 'Tindeyebwa',
-        Email: 'marv@gmail.com',
+        Email: 'kelvin@gmail.com',
         Password: 'stealth',
         isAdmin: 'False',
-        Address: 'Kitende, Entebbe'
-      }];
+        Address: 'Kitende, Entebbe',
+        Status: 'Verified'
+      }
+    ];
   }
 
   validateUserdata(data, res) {
     if (data.Email == null || data.Password == null || data.Firstname == null || data.Lastname == null || data.isAdmin == null) {
       res.status(400).json({
         Status: 400,
-        Error: 'Email, Firstname, Lastname, Password fields are required'
+        Error: 'Email, Firstname, Lastname, Password and isAdmin fields are required'
       });
     }
 
@@ -35,7 +38,7 @@ class User {
       if (user.Email == data.Email) {
         res.status(400).json({
           Status: 400,
-          Error: 'User with that Email/Names Exist'
+          Error: 'User with that Email Exists'
         });
       }
     });
@@ -132,16 +135,20 @@ class User {
   }
 
   verifyUser(emailId, res) {
+    const userData = [];
     this.users.forEach((user) => {
       if (user.Email == emailId) {
-         return user;
+        user.Status = 'Verified';
+        userData.push(user);
       } else {
         res.status(400).json({
           Status: 400,
-          Error: 'User with tha Email does not exist'
+          Error: 'User with that Email does not exist'
         });
       }
     });
+
+    return userData;
   }
 }
 
@@ -150,27 +157,27 @@ class Loan {
     this.loans = [
       {
         Id: 2,
-        Email: 'marv@gmail.com',
+        Email: 'kelvin@gmail.com',
         Amount: 200000,
         Tenor: 4,
         Balance: 200000,
         Interest: 16000,
         MonthlyInstallment: 25000,
         Repaid: 'False',
-        Status: 'Verified',
+        Status: 'Approved',
         CreatedOn: '27-5-2019'
-      },
+      }
     ];
 
     this.userss = [
       {
-        Firstname: 'Marv',
+        Firstname: 'Kelvin',
         Lastname: 'Tindeyebwa',
-        Email: 'marv@gmail.com',
+        Email: 'kelvin@gmail.com',
         Password: 'stealth',
         isAdmin: 'True',
         Address: 'Kitende, Entebbe'
-      },
+      }
     ];
   }
 
@@ -184,10 +191,17 @@ class Loan {
     }
 
     // Checking whether user does not supply a number for email and string for tenor and amount
-    if (isNaN(data.Amount) == true && isNaN(data.Tenor) == true && isNaN(data.Email) == false) {
+    if (isNaN(data.Amount) == true || isNaN(data.Tenor) == true || isNaN(data.Email) == false) {
       res.status(400).json({
         Status: 400,
         Error: 'Amount and Tenor should be numbers only while Email is string'
+      });
+    }
+
+    if (data.Tenor > 12) {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Tenor should be less than 12 months'
       });
     }
 
@@ -209,7 +223,7 @@ class Loan {
 
     // Checking whether a user who applies for a loan is a user in db
     this.userss.forEach((user) => {
-      if (user.Email !== data.Email) {
+      if (user.Email != data.Email) {
         res.status(400).json({
           Status: 400,
           Error: 'Please signup to apply for loan'
@@ -230,9 +244,9 @@ class Loan {
     // Finally enabling the user to apply for loan
     const today = new Date();
     const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-    const interest = (5 * data.Amount) / 100;
-    const paymentInstallment = (data.Amount + interest) / data.Tenor;
-    const balance = data.Amount + interest;
+    const interest = (5 * parseInt(data.Amount)) / 100;
+    const paymentInstallment = (data.Amount + interest) / parseInt(data.Tenor);
+    const balance = parseInt(data.Amount) + interest;
     const id = Math.floor((Math.random() * 10) + 1);
 
     const newLoan = {
@@ -254,9 +268,11 @@ class Loan {
   }
 
   verifyLoan(loanId, res) {
+    const loanD = [];
     this.loans.forEach((loan) => {
       if (loan.Id == loanId) {
-        loan.Status = 'Verified';
+        loan.Status = 'Approved';
+        loanD.push(loan);
       } else {
         res.status(400).json({
           Status: 400,
@@ -264,15 +280,19 @@ class Loan {
         });
       }
     });
+
+    return loanD;
   }
 
   adminPostTransaction(loanId, res) {
+    const transac = [];
+
     this.loans.forEach((loan) => {
       if (loan.Id == loanId) {
         loan.Status = 'Approved';
         loan.Balance = 0;
         loan.Repaid = 'True';
-        return loan;
+        transac.push(loan);
       } else {
         res.status(400).json({
           Status: 400,
@@ -280,12 +300,17 @@ class Loan {
         });
       }
     });
+
+    return transac;
   }
 
   rejectLoan(loanId, res) {
+    const loanRej = [];
+
     this.loans.forEach((loan) => {
       if (loan.Id == loanId) {
         loan.Status = 'Rejected';
+        loanRej.push(loan);
       } else {
         res.status(400).json({
           Status: 400,
@@ -293,32 +318,44 @@ class Loan {
         });
       }
     });
+
+    return loanRej;
   }
 
   showRepaid(status, repaid, res) {
+    if (status != 'Approved' || repaid != 'True') {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Please use Approved and True'
+      });
+    }
+
+    const allLoans = [];
     this.loans.forEach((loan) => {
       if (loan.Status == status && loan.Repaid == repaid) {
-        return loan;
-      } else {
-        res.status(400).json({
-          Status: 400,
-          Error: 'No loans exist with those parameters [Approved, True/False]'
-        });
+        allLoans.push(loan);
       }
     });
+
+    return allLoans;
   }
 
   showUnRepaid(status, repaid, res) {
+    if (status != 'Approved' || repaid != 'False') {
+      res.status(400).json({
+        Status: 400,
+        Error: 'Please use Approved and False'
+      });
+    }
+
+    const allLoans = [];
     this.loans.forEach((loan) => {
-      if (loan.Status == repaid && loan.Repaid == status) {
-        return loan;
-      } else {
-        res.status(400).json({
-          Status: 400,
-          Error: 'No loans exist with those parameters [Approved, True/False]'
-        });
+      if (loan.Status == status && loan.Repaid == repaid) {
+        allLoans.push(loan);
       }
     });
+
+    return allLoans;
   }
 
   showAllLoans() {
@@ -326,16 +363,20 @@ class Loan {
   }
 
   getSpecific(loanId, res) {
+    const loanSpec = [];
+
     this.loans.forEach((loan) => {
       if (loan.Id == loanId) {
-        return loan;
+        loanSpec.push(loan);
       } else {
         res.status(400).json({
           Status: 400,
-          Error: 'Loan with that Id does not exist'
+          Error: 'Loan has already been repaid'
         });
       }
     });
+
+    return loanSpec;
   }
 }
 
@@ -344,19 +385,36 @@ class Repayment {
     this.loans = [
       {
         Id: 2,
-        Email: 'marv@gmail.com',
+        Email: 'kelvingmail.com',
         Amount: 200000,
         Tenor: 4,
         Balance: 200000,
         Interest: 16000,
         MonthlyInstallment: 25000,
         Repaid: 'False',
-        Status: 'Verified',
+        Status: 'Verifie',
         CreatedOn: '27-5-2019'
       }
     ];
 
-    this.repayments = [];
+    this.repayments = [{
+      Id: 3,
+      LoanId: 2,
+      Email: 'marv@gmail.com',
+      PaidAmount: 40000,
+      CreatedOn: '2019-06-11'
+    }];
+
+    this.userss = [
+      {
+        Firstname: 'Kelvin',
+        Lastname: 'Tindeyebwa',
+        Email: 'kelvin@gmail.com',
+        Password: 'stealth',
+        isAdmin: 'True',
+        Address: 'Kitende, Entebbe'
+      }
+    ];
   }
 
   validateRepayment(data, res, loanId) {
@@ -372,7 +430,7 @@ class Repayment {
     if (isNaN(data.Amount) == true && isNaN(data.Email) == false) {
       res.status(400).json({
         Status: 400,
-        Error: 'Amount and Tenor should be numbers only while Email is string'
+        Error: 'Amount be number while Email is string'
       });
     }
 
@@ -404,7 +462,7 @@ class Repayment {
       }
 
       // Checking whether loan to repay is verified
-      if (loan.Status !== 'Verified') {
+      if (loan.Status != 'Verified') {
         res.status(400).json({
           Status: 400,
           Error: 'Loan has to be verified inorder to repay it'
@@ -453,16 +511,20 @@ class Repayment {
   }
 
   getUserLoanHistory(loanId, res) {
+    const loanHistory = [];
+
     this.repayments.forEach((loan) => {
       if (loan.LoanId == loanId) {
-        return loan;
+        loanHistory.push(loan);
       } else {
         res.status(400).json({
           Status: 400,
-          Error: 'Loan with that Id does not exist'
+          Error: 'No loan exists with that Id'
         });
       }
     });
+
+    return loanHistory;
   }
 }
 
