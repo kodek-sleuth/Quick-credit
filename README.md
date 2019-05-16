@@ -74,12 +74,12 @@ npm test in terminal
 |  `PATCH`  |  `/api/v1/admin/loans/:loanId/transac`  |  `Post transaction `  |
 
 ## Deployments
-* Backend on [Heroku]('https://quick-credit-loanapp.herokuapp.com/docs/')
-* Frontend on [Github]('https://kodek-sleuth.github.io/Quick-credit/UI/index.html')
-* Tracker on [Pivotal Tracker]('https://www.pivotaltracker.com/n/projects/2326998')
+* Backend on [Heroku](https://quick-credit-loanapp.herokuapp.com/docs/)
+* Frontend on [Github](https://kodek-sleuth.github.io/Quick-credit/UI/index.html)
+* Tracker on [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2326998)
 
 #### Credit
-* All credit given to [Andela]('https://andela.com') for presenting me this project and allow me hack it out
+* All credit given to [Andela](https://andela.com) for presenting me this project and allow me hack it out
 
 
 
