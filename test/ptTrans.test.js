@@ -1,15 +1,15 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-undef */
 
-const chai = require('chai');
+import chai from 'chai';
+
+import chaiHttp from 'chai-http';
+
+import app from '../app/server';
 
 const expect = chai.expect;
 
-const chaiHttp = require('chai-http');
-
 chai.use(chaiHttp);
-
-const app = require('../app/server');
 
 describe('Admin Transactions', () => {
   it('Admin should post transaction of a loan', () => {

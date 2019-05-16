@@ -1,17 +1,17 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-undef */
 
-const chai = require('chai');
+import chai from 'chai';
+
+import chaiHttp from 'chai-http';
+
+import app from '../app/server';
+
+import utils from './utils/utils';
 
 const expect = chai.expect;
 
-const chaiHttp = require('chai-http');
-
 chai.use(chaiHttp);
-
-const app = require('../app/server');
-
-const utils = require('./utils/utils');
 
 describe('App Authorisation Signup', () => {
   it('Should signup user if he does not exist in db', () => {
