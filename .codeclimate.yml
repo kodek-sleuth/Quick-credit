@@ -1,0 +1,10 @@
+version: "2"
+
+engines:
+  eslint:
+    enabled: true
+    
+ratings:
+   paths:
+   - "app/**.js"
+   - "api/**/*.js"
