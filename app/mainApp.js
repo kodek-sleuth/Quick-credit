@@ -1,5 +1,5 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-trailing-spaces */
 /* eslint-disable indent */
 /* eslint-disable max-len */
 
@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
-// To tell express that uploads is a static folder 
+// To tell express that uploads is a static folder
 app.use(express.static('uploads'));
 
 app.get('/swagger.json', (req, res, next) => {
@@ -69,7 +69,7 @@ app.use((req, res, next) => {
     const error = new Error('Not Found');
     error.status = 404;
 
-    // Sending The error object to be sent and displayed back to User/Console 
+    // Sending The error object to be sent and displayed back to User/Console
     next(error);
 });
 
