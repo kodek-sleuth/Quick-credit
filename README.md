@@ -11,10 +11,6 @@ Quick Credit is an online lending platform that provides short term soft loans t
 * [NodeJS](https://nodejs.org/) - Runtime Environment
 * [ExpressJs](https://expressjs.com/) - Web Application Framework
 
-## Deployments
-* Backend on [Heroku]('https://quick-credit-loanapp.herokuapp.com/docs/')
-* Frontend on [Github]('https://kodek-sleuth.github.io/Quick-credit/UI/index.html')
-* Tracker on [Pivotal Tracker]('https://www.pivotaltracker.com/n/projects/2326998')
 
 ## Supporting Packages
 #### Linter
