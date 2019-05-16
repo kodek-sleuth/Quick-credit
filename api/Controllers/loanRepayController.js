@@ -11,7 +11,7 @@ const models = require('../Models/models');
 
 exports.repayLoan = (req, res, next) => {
   const loanId = req.params.loanId;
-  console.log(loanId);
+
   const result = new models.Repayment().validateRepayment(req.body, res, loanId);
   res.status(201).json({
     Success: 'Successfully posted payment for loan',

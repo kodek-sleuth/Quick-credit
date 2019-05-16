@@ -163,7 +163,7 @@ class Loan {
         Balance: 200000,
         Interest: 16000,
         MonthlyInstallment: 25000,
-        Repaid: 'False',
+        Repaid: 'True',
         Status: 'Approved',
         CreatedOn: '27-5-2019'
       }
@@ -202,14 +202,6 @@ class Loan {
       res.status(400).json({
         Status: 400,
         Error: 'Tenor should be less than 12 months'
-      });
-    }
-
-    // Checking whether a user enters an apropriate email
-    if (data.Email.length < 7) {
-      res.status(400).json({
-        Status: 400,
-        Error: 'Email is too short'
       });
     }
 
@@ -371,7 +363,7 @@ class Loan {
       } else {
         res.status(400).json({
           Status: 400,
-          Error: 'Loan has already been repaid'
+          Error: 'Loan with that Id does not exist'
         });
       }
     });
@@ -392,7 +384,7 @@ class Repayment {
         Interest: 16000,
         MonthlyInstallment: 25000,
         Repaid: 'False',
-        Status: 'Verifie',
+        Status: 'Verified',
         CreatedOn: '27-5-2019'
       }
     ];
@@ -431,14 +423,6 @@ class Repayment {
       res.status(400).json({
         Status: 400,
         Error: 'Amount be number while Email is string'
-      });
-    }
-
-    // Checking whether a user enters an apropriate email
-    if (data.Email.length < 7) {
-      res.status(400).json({
-        Status: 400,
-        Error: 'Email is too short'
       });
     }
 

@@ -57,23 +57,49 @@ exports.loanApplication = {
   Tenor: 2
 };
 
+exports.loanApplicationString = {
+  Email: 'kelvin@gmail.com',
+  Amount: 'shs 2000',
+  Tenor: 2
+};
+
+exports.loanApplicationTenor = {
+  Email: 'kelvin@gmail.com',
+  Amount: 6000,
+  Tenor: 22
+};
+
 exports.loanExists = {
   Email: 'kelvin@gmail.com',
-  Fullname: 'Kelvin Richie',
   Amount: 790000,
   Tenor: 2
 };
 
 exports.loanApplicationPresent = {
   Email: 'john@gmail.com',
-  Fullname: 'John Kisakye',
   Amount: 290000,
   Tenor: 3
 };
 
+exports.loanApplicationAmount = {
+  Email: 'john@gmail.com',
+  Amount: 1000,
+  Tenor: 3
+};
+
 exports.repayLoan = {
+  Email: 'kelvin@gmail.com',
+  Amount: 3000
+};
+
+exports.repayLoanEmail = {
   Email: 'melvin@gmail.com',
   Amount: 3000
+};
+
+exports.repayLoanString = {
+  Email: 'kelvin@gmail.com',
+  Amount: 'shs 2000'
 };
 
 exports.userFalseDetails = {

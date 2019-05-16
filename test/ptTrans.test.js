@@ -23,7 +23,7 @@ describe('Admin Transactions', () => {
   });
 
   it('Admin should fail to post transaction of loan id that does not exist', () => {
-    chai.request(app).patch('/api/v1/admin/loans/2/transac')
+    chai.request(app).patch('/api/v1/admin/loans/11/transac')
       .end((error, res) => {
         expect(res.body.Status).to.equal(400);
         expect(res.body).to.have.property('Error');

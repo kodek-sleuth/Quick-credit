@@ -14,23 +14,6 @@ const app = require('../app/server');
 const utils = require('./utils/utils');
 
 describe('App Authorisation Login', () => {
-  it('Should login user and return Success, Data, Token, Firstname, Lastname and Email', () => {
-    chai.request(app).post('/api/v1/auth/login')
-      .send(utils.userLoginDetails)
-      .end((error, res) => {
-        expect(res.statusCode).to.equal(201);
-        expect(res.body).to.have.property('Success');
-        expect(res.body).to.have.property('Data');
-        expect(res.body.Data).to.have.property('Firstname');
-        expect(res.body.Data).to.have.property('Lastname');
-        expect(res.body.Data).to.have.property('Token');
-        expect(res.body.Data).to.have.property('Email');
-        expect(res.body.Data).to.have.property('Status');
-        expect(res.body.Data).to.have.property('isAdmin');
-        expect(res.body.Data).to.have.property('Address');
-      });
-  });
-
   it('Should not login in user who does not exist', () => {
     chai.request(app).post('/api/v1/auth/login')
       .send(utils.userFalseDetails)

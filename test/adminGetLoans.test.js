@@ -13,7 +13,7 @@ const app = require('../app/server');
 
 describe('Testing if app returns all Admin loan requests', () => {
   it('Should return all repaid loans', () => {
-    chai.request(app).get('/api/v1/admin/loans/repaid?status=Approved&repaid=False')
+    chai.request(app).get('/api/v1/admin/loans/repaid?status=Approved&repaid=True')
       .end((error, res) => {
         expect(res.body.Status).to.equal(200);
         expect(res.body).to.have.property('Success');
