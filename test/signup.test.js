@@ -19,7 +19,7 @@ describe('App Authorisation Signup', () => {
     chai.request(app).post('/api/v1/auth/signup')
       .send(utils.userSignup)
       .end((error, res) => {
-        expect(res.body).to.have.property('Sucess');
+        expect(res.body).to.have.property('Success');
         expect(res.body).to.have.property('Data');
         expect(res.body.Data).to.have.property('Token');
         expect(res.body.Data).to.have.property('Email');
