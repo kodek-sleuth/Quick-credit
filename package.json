@@ -9,7 +9,7 @@
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "nyc": {
-    "exclude": "app/*.js, api/Models/*.js" 
+    "exclude": "app/mainApp.js, api/Models/*.js" 
   },
   "repository": {
     "type": "git",
