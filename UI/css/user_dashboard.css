@@ -1,0 +1,522 @@
+body
+{
+    background-color: #f2f7fb;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    color: #091E42;
+    font-size: 16px;
+    font-family: 'Bitter', serif;
+
+}
+
+a
+{
+    text-decoration: none;
+    color: #b7c0cd;
+}
+.navbar_icon
+{
+    height: 20px;
+    width: 20px;
+    margin-top: 18px;
+    margin-left: 15px;
+}
+
+.side_navbar
+{
+    background-color: #303641;
+    bottom: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 200px;
+    z-index: 1000;
+    color: #b7c0cd;
+}
+
+
+.homepage_navbar
+{   
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.0625);
+    height: 65px;
+    margin-bottom: 0;
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 800;
+    margin-left: 13%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 0;
+}
+
+.trackerControl
+{
+    box-shadow: inset 0 1px 3px #EBECF0;
+    border: 1px solid rgb(157, 166, 180);
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #091E42;
+    font-size: 14px;
+    margin-bottom: 24px;
+    outline-color: #091E42;
+    padding: 0 8px;
+    height: 40px;
+    max-width: 100%;
+    font-family: 'Bitter', serif;
+}
+
+.trackerBtn
+{
+    height: 38px;
+    border-radius: 3px;
+    margin-bottom: 24px;
+    color: #fff;
+    font-family: 'Bree Serif', serif;
+    font-size: 14px;
+    background: #17a2b8;
+    cursor: pointer;
+    border: none;
+    padding: 0 8px;
+    box-shadow: #f1efef 0px 1px 5px 1px, #f1efef 0px 1px 1px;
+    outline-color: #17a2b8;
+}
+
+
+.dashboard
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.crm
+{
+    margin-left: 0;
+    width: 100%;
+}
+
+.content_body
+{
+    text-align: center;
+    margin-top: 100px;
+}
+
+#navbar_first_column
+{
+    padding: 2.3px;
+    border-bottom: 1px solid rgba(0,0,0,.0625);
+    border-right: 1px solid rgba(0,0,0,.0625);
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar_menu_icon
+{
+    background: #303641;
+    padding: 5px;
+    fill: #fff;
+    height: 25px;
+    width: 25px;
+    padding: 10px;
+    box-shadow: #fff 0px 1px 5px 0px, #fff 0px 1px 0px;
+    -moz-border-radius:36px;
+    -webkit-border-radius:36px;
+    cursor: pointer;
+    outline: none;
+    display: none;
+}
+
+#sponsor
+{
+    margin-left: 35%;
+}
+
+.sponsor_logo
+{
+    height: 35px;
+    margin-top: 15px;
+}
+
+.profile_image
+{
+    border-radius: 50%;
+    border: 2px solid #fff;
+    -webkit-box-shadow: 0 5px 10px 0 rgba(43,43,43,0.2);
+    box-shadow: 0 5px 10px 0 rgba(43,43,43,0.2);
+    width: 45px;
+    height: 35px;
+    margin-top: 15px;
+    
+}
+
+#navbar_last_column
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20%;
+}
+
+.your_name
+{
+    margin-left: 15px;
+    margin-top: 25px;
+}
+
+.side_navbar_icon_size
+{
+    height: 25px;
+    width: 25px;
+    filter: invert(84%) sepia(6%) saturate(528%) hue-rotate(176deg) brightness(93%) contrast(87%);
+    margin-top: 15px;
+    cursor: pointer;
+    outline: none;
+}
+
+.side_navbar_icon_size:hover
+{
+    filter: invert(54%) sepia(22%) saturate(1970%) hue-rotate(141deg) brightness(99%) contrast(105%);
+}
+
+
+
+.dash
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 15px;
+    outline: none'
+}
+
+.dash_word
+{
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.dash_word:hover
+{
+    color: #00bcd4;
+}
+
+#logout_btn
+{
+    background-color: #FF5370;
+	-moz-border-radius:36px;
+	-webkit-border-radius:36px;
+	border-radius:36px;
+	display: inline-block;
+	cursor: pointer;
+	color:#ffffff;
+	font-size: 17px;
+	padding: 8px 50px;
+	text-decoration: none;
+    text-shadow: 0px 0px 0px #52A0FD;
+    border: none;
+    font-family: 'Bree Serif', serif;
+    outline: none;
+    margin-left: 15px;
+    margin-top: 10%;
+}
+
+#dashed
+{
+    color: #00bcd4;
+}
+
+.dashed_icon
+{
+    filter: invert(54%) sepia(22%) saturate(1970%) hue-rotate(141deg) brightness(99%) contrast(105%);
+}
+
+.dashboard_heading
+{
+    margin-left: 20%;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.account_logo
+{
+    height: 55px;
+}
+
+.user_stats
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20%;
+}
+
+.stat_one
+{
+    display: flex;
+    flex-direction: row;
+    background: #17a2b8;
+    padding: 1.25rem;
+    word-wrap: break-word;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    color: #fff;
+}
+
+.stat_icons
+{
+    filter: invert(76%) sepia(30%) saturate(415%) hue-rotate(124deg) brightness(96%) contrast(89%);
+    height: 30px;
+    width: 30px;
+    margin-top: 25px;
+    margin-left: 5px;
+    padding: 5px;
+    background: #fff;
+    -moz-border-radius: 36px;
+	-webkit-border-radius: 36px;
+	border-radius: 36px;
+}
+
+#unrepaid_loans
+{
+    display: flex;
+    margin-left: 20%;
+    text-decoration: underline
+}
+
+#repaid_loans
+{
+    display: flex;
+    margin-left: 20%;
+    text-decoration: underline;
+    margin-top: 40px;
+}
+
+.loan_unrepaid
+{
+    display: block;
+    margin-left: 20%;
+    width: 70%;
+    background: #fff;
+    box-shadow: rgba(57, 73, 76, 0.4) 0px 1px 5px 1px, rgba(57, 73, 76, 0.25) 0px 1px 1px;
+}
+
+.loan_repaid
+{
+    margin-bottom: 40px;
+    display: block;
+    margin-left: 20%;
+    width: 70%;
+    box-shadow: rgba(57, 73, 76, 0.4) 0px 1px 5px 1px, rgba(57, 73, 76, 0.25) 0px 1px 1px;
+}
+
+.struc_one
+{
+    display: flex;
+    flex-direction: row;
+    background: #222222;
+    color: #fff;
+}
+
+.struc_two
+{
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid rgba(0,0,0,.0625);
+    padding-bottom: 10px;
+    padding-top: 10px; 
+}
+
+.struc_three
+{
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid rgba(0,0,0,.0625);
+}
+
+.struc_text3
+{
+    margin-left: 60px;
+}
+
+.struc_text2
+{
+    margin-left: 60px;
+}
+
+.struc_text1
+{
+    margin-left: 60px;
+}
+
+.user_profile
+{
+    display: block;
+    width: 70%;
+    background: #fff;
+    box-shadow: rgba(57, 73, 76, 0.4) 0px 1px 5px 1px, rgba(57, 73, 76, 0.25) 0px 1px 1px;
+    margin-left: 20%;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.stat_color2
+{
+    background: #e83e8c;
+}
+
+
+.stat_color3
+{
+    background: #20c997;
+}
+
+.stat_left
+{
+    margin-left: 20px;
+}
+
+.no_un_repaidBox
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+
+@media(max-width: 900px)
+{
+    body
+    {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #f2f7fb;
+        color: #091E42;
+        font-size: 16px;
+        font-family: 'Bitter', serif;
+    }
+
+    .side_navbar
+    {
+        display: none;
+        width: 100%;
+    }
+
+    #logout_btn
+    {
+        margin-top: 15px;
+    }
+
+    .navbar_menu_icon
+    {
+        display: block;
+        margin-top: 10px;
+        margin-left: 100px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .homepage_navbar
+    {
+        margin-left: 0%;
+        box-shadow: rgba(57, 73, 76, 0.4) 0px 2px 10px 1px, rgba(57, 73, 76, 0.25) 0px 1px 2px;
+    }
+
+    .navbar_menu_icon
+    {
+        margin-left: 10px;
+        background: #fff;
+        fill: #091E42;
+        box-shadow: rgba(57, 73, 76, 0.4) 0px 2px 10px 1px, rgba(57, 73, 76, 0.25) 0px 1px 2px;
+    }
+
+    #sponsor
+    {
+        margin-left: 10%;
+    }
+
+    .sponsor_logo
+    {
+        height: 25px;
+        margin-top: 20px;
+        margin-left: 35px;
+    }
+
+    .your_name
+    {
+        display: none;
+    }
+
+    .user_stats
+    {
+        flex-direction: column;
+        margin-left: 1%;
+        width: 100%;
+    }
+
+    .stat_one
+    {
+        width: 70%;
+        margin-top: 25px;
+
+    }
+
+    .loan_unrepaid
+    {
+        margin-left: 1%;
+        width: 100%;
+    }
+
+
+    .loan_repaid
+    {
+        margin-left: 1%;
+        width: 100%;
+        margin-bottom: 2px;
+    }
+
+    .struc_one
+    {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .struc_two
+    {
+        flex-direction: column;
+        text-align: center;
+    }
+
+
+    .struc_three
+    {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .struc_text3
+    {
+        margin-left: 0px;
+    }
+
+    .struc_text2
+    {
+        margin-left: 0px;
+    }
+
+    .struc_text1
+    {
+        margin-left: 0px;
+    }
+
+    #close_icon
+    {
+        margin-left: 100px;
+    }
+
+    .logout_btn
+    {
+        margin-top: 50px;
+    }
+}
