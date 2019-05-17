@@ -11,8 +11,8 @@ const verifyLoan = express.Router();
 *   patch:
 *     tags:
 *       - Verifications, Approvals & Rejections
-*     name: Approve Loan
-*     summary: Approves Loan
+*     name: Admin Approve Loan
+*     summary: Admin Approves Loan
 *     parameters:
 *       - name: ":loanId"
 *         in: path

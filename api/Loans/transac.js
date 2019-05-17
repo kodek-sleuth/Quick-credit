@@ -10,8 +10,8 @@ const transacLoan = express.Router();
 *   patch:
 *     tags:
 *       - Verifications, Approvals & Rejections
-*     name: Approve Loan
-*     summary: Approves Loan
+*     name: Admin Post Loan Transaction
+*     summary: Admin Post Loan Transaction
 *     parameters:
 *       - name: ":loanId"
 *         in: path
