@@ -141,8 +141,8 @@ class User {
         user.Status = 'Verified';
         userData.push(user);
       } else {
-        res.status(400).json({
-          Status: 400,
+        res.status(404).json({
+          Status: 404,
           Error: 'User with that Email does not exist'
         });
       }
@@ -266,8 +266,8 @@ class Loan {
         loan.Status = 'Approved';
         loanD.push(loan);
       } else {
-        res.status(400).json({
-          Status: 400,
+        res.status(404).json({
+          Status: 404,
           Error: 'No loan exists with that Id'
         });
       }
@@ -286,8 +286,8 @@ class Loan {
         loan.Repaid = 'True';
         transac.push(loan);
       } else {
-        res.status(400).json({
-          Status: 400,
+        res.status(404).json({
+          Status: 404,
           Error: 'No loan exists with that Id'
         });
       }
@@ -304,8 +304,8 @@ class Loan {
         loan.Status = 'Rejected';
         loanRej.push(loan);
       } else {
-        res.status(400).json({
-          Status: 400,
+        res.status(404).json({
+          Status: 404,
           Error: 'No loan exists with that Id'
         });
       }
@@ -316,8 +316,8 @@ class Loan {
 
   showRepaid(status, repaid, res) {
     if (status != 'Approved' || repaid != 'True') {
-      res.status(400).json({
-        Status: 400,
+      res.status(404).json({
+        Status: 404,
         Error: 'Please use Approved and True'
       });
     }
@@ -334,8 +334,8 @@ class Loan {
 
   showUnRepaid(status, repaid, res) {
     if (status != 'Approved' || repaid != 'False') {
-      res.status(400).json({
-        Status: 400,
+      res.status(404).json({
+        Status: 404,
         Error: 'Please use Approved and False'
       });
     }
@@ -361,8 +361,8 @@ class Loan {
       if (loan.Id == loanId) {
         loanSpec.push(loan);
       } else {
-        res.status(400).json({
-          Status: 400,
+        res.status(404).json({
+          Status: 404,
           Error: 'Loan with that Id does not exist'
         });
       }
@@ -439,8 +439,8 @@ class Repayment {
     this.loans.forEach((loan) => {
       // Checking whether loan with that Id exists in the database
       if (loan.Id != loanId) {
-        res.status(400).json({
-          Status: 400,
+        res.status(404).json({
+          Status: 404,
           Error: 'Loan with that Id does not exist'
         });
       }
@@ -501,8 +501,8 @@ class Repayment {
       if (loan.LoanId == loanId) {
         loanHistory.push(loan);
       } else {
-        res.status(400).json({
-          Status: 400,
+        res.status(404).json({
+          Status: 404,
           Error: 'No loan exists with that Id'
         });
       }

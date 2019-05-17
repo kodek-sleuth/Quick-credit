@@ -28,7 +28,7 @@ describe('Repay Loan', () => {
     chai.request(app).post('/api/v1/user/loans/22/repayment')
       .send(utils.repayLoan)
       .end((error, res) => {
-        expect(res.body.Status).to.equal(400);
+        expect(res.body.Status).to.equal(404);
         expect(res.body).to.have.property('Error');
         expect(res.body.Error).to.equals('Loan with that Id does not exist');
       });

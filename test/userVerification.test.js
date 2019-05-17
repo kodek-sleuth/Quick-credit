@@ -24,7 +24,7 @@ describe('Verify User', () => {
   it('Should not verify user given wrong emailid', () => {
     chai.request(app).patch('/api/v1/admin/users/klvin@gmail.com/verify')
       .end((error, res) => {
-        expect(res.body.Status).to.equal(400);
+        expect(res.body.Status).to.equal(404);
         expect(res.body).to.have.property('Error');
         expect(res.body.Error).to.equals('User with that Email does not exist');
       });

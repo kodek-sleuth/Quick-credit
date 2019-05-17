@@ -24,7 +24,7 @@ describe('Testing if app returns all User repayments', () => {
   it('Should not return history given wrong id', () => {
     chai.request(app).get('/api/v1/user/loans/1/repayments')
       .end((error, res) => {
-        expect(res.statusCode).to.equal(400);
+        expect(res.statusCode).to.equal(404);
         expect(res.body).to.have.property('Error');
         expect(res.body.Error).to.equals('No loan exists with that Id');
       });
