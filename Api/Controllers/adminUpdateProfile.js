@@ -56,18 +56,14 @@ exports.getAdminProfile = (req, res, next) => {
 exports.updateAdminProfile = (req, res, next) => {
     const email = req.params.Email;
 
-    // If Email Exists in FormBody then it should make update but this is not recommended
-    if (req.body.Email)
+    // Update Fullname if Fullname is available in req body
+    if (req.body.Firstname)
     {
-        pool.query(`UPDATE admin set email='${req.body.Email}' where email='${email}'`)
+        pool.query(`UPDATE admin set firstname='${req.body.Firstname}' where email='${email}'`)
         .then((feedBack) => {
             pool.query(`select * from admin where email='${email}'`)
             .then((feedBack2) => {
-                res.status(200).json({
-                    Status: 200,
-                    Data: feedBack2.rows,
-                    Success: 'Successfully Updated Profile'
-                });
+                res.status(200);
             })
             .catch((error) => {
                 res.status(500).json({
@@ -85,10 +81,9 @@ exports.updateAdminProfile = (req, res, next) => {
         });
     }
 
-    // Update Fullname if Fullname is available in req body
-    if (req.body.Fullname)
+    if (req.body.Lastname)
     {
-        pool.query(`UPDATE admin set fullname='${req.body.Fullname}' where email='${email}'`)
+        pool.query(`UPDATE admin set lastname='${req.body.Lastname}' where email='${email}'`)
         .then((feedBack) => {
             pool.query(`select * from admin where email='${email}'`)
             .then((feedBack2) => {
@@ -183,6 +178,35 @@ exports.updateAdminProfile = (req, res, next) => {
             }
         });
     }
+
+       // If Email Exists in FormBody then it should make update but this is not recommended
+       if (req.body.Email)
+       {
+           pool.query(`UPDATE admin set email='${req.body.Email}' where email='${email}'`)
+           .then((feedBack) => {
+               pool.query(`select * from admin where email='${email}'`)
+               .then((feedBack2) => {
+                   res.status(200).json({
+                       Status: 200,
+                       Data: feedBack2.rows,
+                       Success: 'Successfully Updated Profile'
+                   });
+               })
+               .catch((error) => {
+                   res.status(500).json({
+                       Status: 500,
+                       Error: error.message
+                   });
+               });
+           })
+   
+           .catch((error) => {
+               res.status(500).json({
+                   Status: 500,
+                   Error: error.message
+               });
+           });
+       }
 };
 
 exports.adminUpdateProfilePicture = (req, res, next) => {

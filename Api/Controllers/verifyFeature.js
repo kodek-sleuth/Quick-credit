@@ -27,7 +27,8 @@ exports.verifyUser = (req, res, next) => {
                 res.status(200).json({
                     Status: 200,
                     Data: {
-                        Fullname: dataFound[0].fullname,
+                        Firstname: dataFound[0].firstname,
+                        Lastname: dataFound[0].lastname,
                         Email: dataFound[0].email,
                         Status: dataFound[0].status,
                         Address: dataFound[0].address
@@ -66,7 +67,8 @@ exports.rejectUser = (req, res, next) => {
                 res.status(200).json({
                     Status: 200,
                     Data: {
-                        Fullname: dataFound[0].fullname,
+                        Firstname: dataFound[0].firstname,
+                        Lastname: dataFound[0].lastname,
                         Email: dataFound[0].email,
                         Status: dataFound[0].status,
                         Address: dataFound[0].address

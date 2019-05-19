@@ -6,14 +6,10 @@ const userProfile = express.Router();
 
 const userProfileController = require('../Controllers/updateProfileUser');
 
-const jwtMiddleware = require('../Settings/checkAuthUser');
-
 /**
 * @swagger
 * /api/v1/user/{:Email}/profile:
 *   get:
-*     security:
-*        - bearerAuth: []
 *     tags:
 *       - Profiles
 *     name: Gets User Profile
@@ -31,7 +27,7 @@ const jwtMiddleware = require('../Settings/checkAuthUser');
 *       data: []
 */
 
-userProfile.get('/:Email/profile', jwtMiddleware, userProfileController.getUserProfile);
+userProfile.get('/:Email/profile', userProfileController.getUserProfile);
 
 /**
 * @swagger
@@ -79,7 +75,7 @@ userProfile.get('/:Email/profile', jwtMiddleware, userProfileController.getUserP
 *       description: User Authorisation required to access resource
 */
 
-userProfile.patch('/:Email/profile', jwtMiddleware, userProfileController.updateUserProfile);
+userProfile.patch('/:Email/profile', userProfileController.updateUserProfile);
 
 /**
 * @swagger
@@ -111,6 +107,6 @@ userProfile.patch('/:Email/profile', jwtMiddleware, userProfileController.update
 *       description: User Authorisation required to access resource
 */
 
-userProfile.patch('/:Email/profile/image', jwtMiddleware, settings.upload.single('Image'), userProfileController.userUpdateProfilePicture);
+userProfile.patch('/:Email/profile/image', settings.upload.single('Image'), userProfileController.userUpdateProfilePicture);
 
 module.exports = userProfile;

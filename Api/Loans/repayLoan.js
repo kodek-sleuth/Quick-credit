@@ -4,15 +4,10 @@ const payLoan = express.Router();
 
 const payLoanController = require('../Controllers/repayLoanController');
 
-// Middleware for checking Auth and Access Rights
-const jwtMiddleware = require('../Settings/checkAuthUser');
-
 /**
 * @swagger
 * /api/v1/user/loans/repay:
 *   post:
-*     security:
-*        - bearerAuth: []
 *     tags:
 *       - User
 *     name: Repay a Loan
@@ -43,6 +38,6 @@ const jwtMiddleware = require('../Settings/checkAuthUser');
 *         description: Failed to process request, Try again later
 */
 
-payLoan.post('/loans/repay', jwtMiddleware, payLoanController.repayLoan);
+payLoan.post('/loans/repay', payLoanController.repayLoan);
 
 module.exports = payLoan;

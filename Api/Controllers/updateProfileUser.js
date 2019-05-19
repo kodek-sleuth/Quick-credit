@@ -53,9 +53,33 @@ exports.getUserProfile = (req, res, next) => {
 exports.updateUserProfile = (req, res, next) => {
     const email = req.params.Email;
 
-    if (req.body.Fullname)
+    if (req.body.Firstname)
     {
-        pool.query(`UPDATE users set fullname='${req.body.Fullname}' where email='${email}'`)
+        pool.query(`UPDATE users set firstname='${req.body.Firstname}' where email='${email}'`)
+        .then((feedBack) => {
+            pool.query(`select * from users where email='${email}'`)
+            .then((feedBack2) => {
+                res.status(200);
+            })
+            .catch((error) => {
+                res.status(500).json({
+                    Status: 500,
+                    Error: error.message
+                });
+            });
+        })
+
+        .catch((error) => {
+            res.status(500).json({
+                Status: 500,
+                Error: error.message
+            });
+        });
+    }
+
+    if (req.body.Lastname)
+    {
+        pool.query(`UPDATE users set lastname='${req.body.Lastname}' where email='${email}'`)
         .then((feedBack) => {
             pool.query(`select * from users where email='${email}'`)
             .then((feedBack2) => {
@@ -82,8 +106,8 @@ exports.updateUserProfile = (req, res, next) => {
         pool.query(`SELECT * FROM users where email='${email}'`, (errorFound2, result) => {
             if (errorFound2)
             {
-                res.status(500).json({
-                    Status: 500,
+                res.status(400).json({
+                    Status: 400,
                     Error: errorFound2.message
                 });
             }
@@ -94,8 +118,8 @@ exports.updateUserProfile = (req, res, next) => {
                 bcrypt.compare(req.body.OldPassword, fetchedData[0].password, (err, goodFeedBack) => {
                 if (err)
                 {
-                    res.status(500).json({
-                        Status: 500,
+                    res.status(400).json({
+                        Status: 400,
                         Error: err.message
                     });
                 }
@@ -105,8 +129,8 @@ exports.updateUserProfile = (req, res, next) => {
                     bcrypt.hash(req.body.NewPassword, 10, (errr, hash) => {
                         if (err)
                         {
-                            res.status(500).json({
-                                Status: 500,
+                            res.status(400).json({
+                                Status: 400,
                                 Error: err.message
                             });
                         }
@@ -116,8 +140,8 @@ exports.updateUserProfile = (req, res, next) => {
                             pool.query(`UPDATE users set password='${hash}' where email='${email}'`, (errorFound, feedBack) => {
                                 if (errorFound)
                                 {
-                                    res.status(500).json({
-                                        Status: 500,
+                                    res.status(400).json({
+                                        Status: 400,
                                         Error: errorFound
                                     });
                                 }
@@ -127,8 +151,8 @@ exports.updateUserProfile = (req, res, next) => {
                                     pool.query(`select * from users where email='${email}'`, (error, feedBack2) => {
                                         if (error)
                                         {
-                                            res.status(500).json({
-                                                Status: 500,
+                                            res.status(400).json({
+                                                Status: 400,
                                                 Error: error.message
                                             });
                                         }

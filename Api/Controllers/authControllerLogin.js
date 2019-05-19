@@ -40,9 +40,10 @@ exports.loginUser = (req, res, next) => {
             {
                 // We check if the Password matches the hashed Password in db if decrypted
                 const fetchedData = data.rows;
-                bcrypt.compare(req.body.Password, fetchedData[0].password, (err, success) => {
-                    if (err)
+                bcrypt.compare(req.body.Password, fetchedData[0].password, (error, success) => {
+                    if (error)
                     {
+                        console.log(error);
                         res.status(401).json({
                             Status: '401',
                             Error: 'Invalid Email or Password'
@@ -55,10 +56,11 @@ exports.loginUser = (req, res, next) => {
                         // Token takes user details(any), Secret Key and an expiry
                         
                         const token = jwt.sign({
-                            Email: fetchedData[0].email
+                            Email: fetchedData[0].email,
+                            isAdmin: 'False'
                         },
 
-                        process.env.JWT_KEY_USER,
+                        process.env.SECRET_KEY,
                         {
                             expiresIn: '2h'
                         });
@@ -66,13 +68,14 @@ exports.loginUser = (req, res, next) => {
                         res.status(200).json({
                             Status: 200,
                             Data: {
-                                Fullname: fetchedData[0].fullname,
+                                Firstname: fetchedData[0].firstname,
+                                Lastname: fetchedData[0].lastname,
                                 Email: fetchedData[0].email,
                                 Address: fetchedData[0].address,
+                                Token: token,
                                 Status: fetchedData[0].status
                             },
-                            Success: 'User Has Successfully Logged In',
-                            Token: token
+                            Success: 'User Has Successfully Logged In'
                         });
                     }
                 });
@@ -113,10 +116,11 @@ exports.loginUser = (req, res, next) => {
                     if (success)
                     {
                         const token = jwt.sign({
-                            Email: fetchedData[0].email
+                            Email: fetchedData[0].email,
+                            isAdmin: 'True'
                         },
 
-                        process.env.JWT_KEY_ADMIN,
+                        process.env.SECRET_KEY,
                         {
                             expiresIn: '2h'
                         });
@@ -124,11 +128,12 @@ exports.loginUser = (req, res, next) => {
                         res.status(200).json({
                             Status: 200,
                             Data: {
-                                Fullname: fetchedData[0].fullname,
-                                Email: fetchedData[0].email
+                                Firstname: fetchedData[0].firstname,
+                                Lastname: fetchedData[0].lastname,
+                                Email: fetchedData[0].email,
+                                Token: token
                             },
-                            Success: 'Admin Has Successfully Logged In',
-                            Token: token
+                            Success: 'Admin Has Successfully Logged In'
                         });
                     }
                 });

@@ -28,7 +28,8 @@ exports.approveLoan = (req, res, next) => {
                 res.status(200).json({
                     Status: 200,
                     Data: {
-                        Fullname: dataFound[0].investee_name,
+                        Firstname: dataFound[0].investee_firstname,
+                        Lastname: dataFound[0].investee_lastname,
                         Email: dataFound[0].investee_email,
                         Status: dataFound[0].status,
                         Amount: dataFound[0].amount,
@@ -40,17 +41,25 @@ exports.approveLoan = (req, res, next) => {
                     Success: 'Successfully Approved Loan'
                 }); 
             }
+
+            else
+            {
+                res.status(404).json({
+                    Status: '404',
+                    Error: 'Invalid Id'
+                });
+            }
         })
         .catch((error) => {
-            res.status(500).json({
-                Status: '500',
+            res.status(400).json({
+                Status: '400',
                 Error: error.message
             });
         });
     })
     .catch((error) => {
-        res.status(500).json({
-            Status: '500',
+        res.status(400).json({
+            Status: '400',
             Error: error.message
         });
     });

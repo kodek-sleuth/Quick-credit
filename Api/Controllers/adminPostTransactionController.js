@@ -42,7 +42,8 @@ exports.postTransaction = (req, res, next) => {
                                 res.status(200).json({
                                     Status: 200,
                                     Data: {
-                                        Fullname: fetchedData[0].investee_name,
+                                        Firstname: fetchedData[0].investee_firstname,
+                                        Lastname: fetchedData[0].investee_lastname,
                                         Email: fetchedData[0].investee_email,
                                         Status: fetchedData[0].status,
                                         Amount: fetchedData[0].amount,
@@ -57,24 +58,24 @@ exports.postTransaction = (req, res, next) => {
 
                             else
                             {
-                                res.status(500).json({
-                                    Status: '500',
+                                res.status(400).json({
+                                    Status: '400',
                                     Error: 'No rows Found'
                                 });
                             }
                         })
 
                         .catch((error) => {
-                            res.status(500).json({
-                                Status: '500',
+                            res.status(400).json({
+                                Status: '400',
                                 Error: error.message
                             });
                         }); 
                     })
 
                     .catch((error) => {
-                        res.status(500).json({
-                            Status: '500',
+                        res.status(400).json({
+                            Status: '400',
                             Error: error.message
                         });
                     });
@@ -82,17 +83,25 @@ exports.postTransaction = (req, res, next) => {
 
                 else
                 {
-                    res.status(500).json({
-                        Status: '500',
+                    res.status(400).json({
+                        Status: '400',
                         Error: 'Loan has to be Approved inorder to Post Transaction'
                     });
                 }   
             }
+
+            else
+            {
+                res.status(404).json({
+                    Status: '404',
+                    Error: 'Invalid Id'
+                });
+            }
         })
 
     .catch((error) => {
-        res.status(500).json({
-            Status: '500',
+        res.status(400).json({
+            Status: '400',
             Error: error.message
         });
     });

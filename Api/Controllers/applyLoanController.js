@@ -19,10 +19,10 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 const pool = new Pool({ connectionString: connectionString });
 
 exports.applyLoan = (req, res, next) => {
-    const queryReqLoan = 'INSERT INTO loan(investee_email, investee_name, createdOn, tenor, amount, paymentInstallment, balance, interest) VALUES($1, $2, $3, $4, $5, $6, $7, $8)';
+    const queryReqLoan = 'INSERT INTO loan(investee_email, investee_firstname, investee_lastname, createdOn, tenor, amount, paymentInstallment, balance, interest) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)';
 
     // Making sure that user who request for loan exists
-    pool.query(`Select * from users WHERE email='${req.body.Email}' and fullname='${req.body.Fullname}'`)
+    pool.query(`Select * from users WHERE email='${req.body.Email}'`)
     .then((data) => {
         if (data.rowCount > 0)
         {
@@ -36,7 +36,7 @@ exports.applyLoan = (req, res, next) => {
                 // Remember as an Investee can only have one unrepaid loan at a time
                 // We check if the user has an unrepaid loan, if so then he cant apply for a new one else he can apply
 
-                pool.query(`Select * from loan WHERE investee_email='${req.body.Email}' and investee_name='${req.body.Fullname}' and repaid='False'`)
+                pool.query(`Select * from loan WHERE investee_email='${req.body.Email}' and repaid='False'`)
                 .then((loanData) => {
                     if (loanData.rowCount > 0)
                     {
@@ -78,7 +78,7 @@ exports.applyLoan = (req, res, next) => {
                                     const interest = (5 * req.body.Amount) / 100;
                                     const paymentInstallment = (req.body.Amount + interest) / req.body.Tenor;
                                     const balance = req.body.Amount + interest;
-                                    const queryReqValues = [req.body.Email, req.body.Fullname, currentDate, req.body.Tenor, req.body.Amount, paymentInstallment, balance, interest];
+                                    const queryReqValues = [req.body.Email, dataFetched[0].firstname, dataFetched[0].lastname, currentDate, req.body.Tenor, req.body.Amount, paymentInstallment, balance, interest];
                                 
                                     // Posting the Loan to Database
                                     pool.query(queryReqLoan, queryReqValues)
@@ -87,7 +87,8 @@ exports.applyLoan = (req, res, next) => {
                                             Status: '201',
                                             Data: {
                                                 Investee_Email: req.body.Email,
-                                                Investee_Name: req.body.Fullname,
+                                                Investee_Firstname: dataFetched[0].firstname,
+                                                Investee_Lastname: dataFetched[0].lastname,
                                                 Amount: req.body.Amount,
                                                 Tenor: req.body.Tenor,
                                                 CreatedOn: currentDate,
@@ -100,8 +101,8 @@ exports.applyLoan = (req, res, next) => {
                                     })
 
                                 .catch((error) => {
-                                    res.status(409).json({
-                                        Status: '409',
+                                    res.status(400).json({
+                                        Status: '400',
                                         Error: error.message
                                 });
                             });
@@ -110,8 +111,8 @@ exports.applyLoan = (req, res, next) => {
             }
         })
             .catch((err) => {
-                res.status(409).json({
-                    Status: '409',
+                res.status(400).json({
+                    Status: '400',
                     Error: err
                 });
             });
@@ -128,9 +129,9 @@ exports.applyLoan = (req, res, next) => {
 
         else
         {
-            res.status(409).json({
-                Status: '409',
-                Error: 'Failed to process request, Try again later'
+            res.status(400).json({
+                Status: '400',
+                Error: 'Please Signup to use resource'
             });
         }
     })

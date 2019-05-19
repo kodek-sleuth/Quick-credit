@@ -19,30 +19,18 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 // Creating a connection with connection string
 const pool = new Pool({ connectionString: connectionString });
 
-const updateLoan = () => {
-    pool.query("UPDATE loan set repaid='True' WHERE status='Verified' and balance<=0.00")
-    .then((result) => {
-        console.log(result);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
-};
-
-updateLoan();
-
 exports.repayLoan = (req, res, next) => {
-    const makeRepaymentQuery = 'INSERT INTO repayments(loanId, investee_email, investee_name, createdOn, amount, paidAmount, monthlyInstallment) VALUES($1, $2, $3, $4, $5, $6, $7)';
+    const makeRepaymentQuery = 'INSERT INTO repayments(loanId, investee_email, createdOn, paidamount, monthlyInstallment) VALUES($1, $2, $3, $4, $5)';
   
     // We first want to make sure that user exists in the Database
-    pool.query(`SELECT * FROM users WHERE email='${req.body.Email}' and fullname='${req.body.Fullname}'`)
+    pool.query(`SELECT * FROM users WHERE email='${req.body.Email}'`)
     .then((data) => {
         if (data.rowCount > 0)
         {
             const dataFetched = data.rows;
 
             // Since a repay will always be to that one unrepaid loan we may/many not user an id because a user will only have a loan after paying a new one 
-            pool.query(`SELECT * FROM loan WHERE investee_email='${dataFetched[0].email}' and investee_name='${dataFetched[0].fullname}' and repaid='False'`)
+            pool.query(`SELECT * FROM loan WHERE investee_email='${dataFetched[0].email}' and repaid='False'`)
             .then((result) => {
                 if (result.rowCount > 0)
                 {
@@ -62,7 +50,8 @@ exports.repayLoan = (req, res, next) => {
                                     Status: '200',
                                     Data: {
                                         Email: loanData[0].investee_email,
-                                        Fullname: loanData[0].investee_name,
+                                        Firstname: loanData[0].investee_firstname,
+                                        Lastname: loanData[0].investee_lastname,
                                         Paid: req.body.Amount,
                                         Balance: loanData[0].balance,
                                         Installment: loanData[0].paymentinstallment
@@ -87,7 +76,7 @@ exports.repayLoan = (req, res, next) => {
                                 // Now loan is unrepaid and user exists we now accept and track the repayment   
                                 const today = new Date();
                                 const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-                                const makeRepaymentQueryValues = [loanData[0].id, req.body.Email, req.body.Fullname, currentDate, loanData[0].amount, req.body.Amount, loanData[0].paymentinstallment];
+                                const makeRepaymentQueryValues = [loanData[0].id, req.body.Email, currentDate, req.body.Amount, loanData[0].paymentinstallment];
                                 
                                 pool.query(makeRepaymentQuery, makeRepaymentQueryValues)
                                 .then((feedback) => {
@@ -100,7 +89,8 @@ exports.repayLoan = (req, res, next) => {
                                                 Status: '200',
                                                 Data: {
                                                     Email: loanData[0].investee_email,
-                                                    Fullname: loanData[0].investee_name,
+                                                    Firstname: loanData[0].investee_firstname,
+                                                    Lastname: loanData[0].investee_lastname,
                                                     Paid: req.body.Amount,
                                                     Balance: loanData[0].balance,
                                                     Installment: loanData[0].paymentinstallment
@@ -135,7 +125,8 @@ exports.repayLoan = (req, res, next) => {
                                                             Status: '201',
                                                             Data: {
                                                                 Email: updatedData[0].investee_email,
-                                                                Fullname: updatedData[0].investee_name,
+                                                                Firstname: updatedData[0].investee_firstname,
+                                                                Lastname: updatedData[0].investee_lastname,
                                                                 Amount: updatedData[0].amount,
                                                                 Paid: req.body.Amount,
                                                                 Balance: updatedData[0].balance,
@@ -152,7 +143,8 @@ exports.repayLoan = (req, res, next) => {
                                                             Status: '201',
                                                             Data: {
                                                                 Email: updatedData[0].investee_email,
-                                                                Fullname: updatedData[0].investee_name,
+                                                                Firstname: updatedData[0].investee_firstname,
+                                                                Lastname: updatedData[0].investee_lastname,
                                                                 Amount: updatedData[0].amount,
                                                                 Paid: req.body.Amount,
                                                                 Balance: updatedData[0].balance,
@@ -188,7 +180,7 @@ exports.repayLoan = (req, res, next) => {
                 {
                     res.status(401).json({
                         Status: '401',
-                        Error: 'Loan has To be verified inorder to make Repayment' 
+                        Error: 'Loan has To be verified inorder to make repayment' 
                     });
                 }
                 }
@@ -206,7 +198,7 @@ exports.repayLoan = (req, res, next) => {
         {
             res.status(401).json({
             Status: '401',
-            Error: 'Signup or Login To access resource' 
+            Error: 'Signup to access resource' 
           });
         }
     })
