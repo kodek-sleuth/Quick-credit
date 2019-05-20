@@ -4,8 +4,6 @@ import userController from '../Controllers/authControllerSignUp';
 
 const authSignup = express.Router();
 
-const image = require('../Settings/image');
-
 /**
 * @swagger
 * /api/v1/auth/signup:
@@ -54,6 +52,6 @@ const image = require('../Settings/image');
 */
 
 
-authSignup.post('/signup', image.upload.single('Image'), userController.createUser);
+authSignup.post('/signup', userController.createUser);
 
 module.exports = authSignup;

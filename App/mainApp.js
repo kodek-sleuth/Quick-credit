@@ -30,8 +30,6 @@ const posTransLoan = require('../Api/Loans/postTransaction');
 const rejectLoan = require('../Api/Loans/rejectLoan');
 const userLoans = require('../Api/Loans/userLoans');
 const adminLoans = require('../Api/Loans/adminLoans');
-const userProfile = require('../Api/Profiles/userProfile');
-const adminProfile = require('../Api/Profiles/adminProfile');
 const swagger = require('../Api/Settings/swagger');
 
 // Enable API to receive urlencoded data as well as json

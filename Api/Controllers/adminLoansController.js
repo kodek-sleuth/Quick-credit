@@ -10,65 +10,8 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 
 const pool = new Pool({ connectionString: connectionString });
 
-
-exports.getLoansApproved = (req, res, next) => {
-  pool.query("Select * from loan WHERE status='Approved'")
-    .then((data) => {
-      if (data.rowCount > 0) {
-        const fetchedData2 = data.rows;
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Data: fetchedData2,
-          Success: 'Successfully Fetched Loans',
-        });
-      } else {
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Success: 'There are no approved loans',
-        });
-      }
-    })
-
-    .catch((error) => {
-      res.status(500).json({
-        Status: 500,
-        Error: error.message,
-      });
-    });
-};
-
-exports.getLoansRejected = (req, res, next) => {
-  pool.query("Select * from loan WHERE status='Rejected'")
-    .then((data) => {
-      if (data.rowCount > 0) {
-        const fetchedData3 = data.rows;
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Data: fetchedData3,
-          Success: 'Successfully Fetched Loans',
-        });
-      } else {
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Success: 'There are no rejected loans',
-        });
-      }
-    })
-
-    .catch((error) => {
-      res.status(500).json({
-        Status: 500,
-        Error: error.message,
-      });
-    });
-};
-
 exports.getLoansRepaid = (req, res, next) => {
-  pool.query("Select * from loan WHERE repaid='True'")
+  pool.query("Select * from loan WHERE repaid='True' and status='Approved'")
     .then((data) => {
       if (data.rowCount > 0) {
         const fetchedData = data.rows;
@@ -96,7 +39,7 @@ exports.getLoansRepaid = (req, res, next) => {
 };
 
 exports.getLoansUnrepaid = (req, res, next) => {
-  pool.query("Select * from loan WHERE repaid='False'")
+  pool.query("Select * from loan WHERE repaid='False' and status='Approved'")
     .then((data) => {
       if (data.rowCount > 0) {
         const fetchedData = data.rows;
