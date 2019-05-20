@@ -10,87 +10,6 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 
 const pool = new Pool({ connectionString: connectionString });
 
-exports.getAllUsers = (req, res, next) => {
-  pool.query('Select * from users')
-    .then((data) => {
-      if (data.rowCount > 0) {
-        const fetchedData1 = data.rows;
-        res.status(200).json({
-          Status: 200,
-          Data: fetchedData1,
-          Success: 'Successfully Fetched Users',
-        });
-      } else {
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Success: 'There are No Users in database',
-        });
-      }
-    })
-
-    .catch((error) => {
-      res.status(500).json({
-        Status: 500,
-        Error: error.message,
-      });
-    });
-};
-
-exports.getUsersVerified = (req, res, next) => {
-  pool.query("Select * from users WHERE status='Verified'")
-    .then((data) => {
-      if (data.rowCount > 0) {
-        const fetchedData2 = data.rows;
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Data: fetchedData2,
-          Success: 'Successfully Fetched Users',
-        });
-      } else {
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Success: 'There are no verified users',
-        });
-      }
-    })
-
-    .catch((error) => {
-      res.status(500).json({
-        Status: 500,
-        Error: error.message,
-      });
-    });
-};
-
-exports.getUsersPending = (req, res, next) => {
-  pool.query("Select * from users WHERE status='Pending'")
-    .then((data) => {
-      if (data.rowCount > 0) {
-        const fetchedData2 = data.rows;
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Data: fetchedData2,
-          Success: 'Successfully Fetched Users',
-        });
-      } else {
-        res.status(200).json({
-          Status: 200,
-          Success: 'There are no pending users',
-        });
-      }
-    })
-
-    .catch((error) => {
-      res.status(500).json({
-        Status: 500,
-        Error: error.message,
-      });
-    });
-};
 
 exports.getLoansApproved = (req, res, next) => {
   pool.query("Select * from loan WHERE status='Approved'")
@@ -192,35 +111,6 @@ exports.getLoansUnrepaid = (req, res, next) => {
           Count: data.rowCount,
           Status: 200,
           Success: 'There are no unrepaid Loans',
-        });
-      }
-    })
-
-    .catch((error) => {
-      res.status(500).json({
-        Status: 500,
-        Error: error.message,
-      });
-    });
-};
-
-
-exports.getAllLoansPending = (req, res, next) => {
-  pool.query("Select * from loan WHERE status='Pending'")
-    .then((data) => {
-      if (data.rowCount > 0) {
-        const fetchedData = data.rows;
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Data: fetchedData,
-          Success: 'Successfully Fetched Loans',
-        });
-      } else {
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Success: 'There are no pending loans',
         });
       }
     })
