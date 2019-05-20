@@ -1,12 +1,12 @@
-const express = require('express');
+import express from 'express';
 
-const settings = require('../Settings/image');
+import settings from '../Settings/image';
 
-const jwtMiddleware = require('../Settings/checkAuthAdmin');
+import jwtMiddleware from '../Settings/checkAuthAdmin';
+
+import adminProfileController from '../Controllers/adminUpdateProfile';
 
 const adminProfile = express.Router();
-
-const adminProfileController = require('../Controllers/adminUpdateProfile');
 
 /**
 * @swagger

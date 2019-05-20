@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 
-const adminLoans = express.Router();
-
-const adminLoansController = require('../Controllers/adminLoansController');
+import adminLoansController from '../Controllers/adminLoansController';
 
 // Middleware for checking Auth and Access Rights
-const jwtMiddleware = require('../Settings/checkAuthAdmin');
+import jwtMiddleware from '../Settings/checkAuthAdmin';
+
+const adminLoans = express.Router();
 
 // Swagger documentation
 /**

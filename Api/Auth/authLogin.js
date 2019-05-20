@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
+
+import userController from '../Controllers/authControllerLogin';
 
 const authLogin = express.Router();
-
-const userController = require('../Controllers/authControllerLogin');
 
 /**
 * @swagger

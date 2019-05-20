@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 /* eslint-disable brace-style */
-const jwt = require('jsonwebtoken');
+
+import jwt from 'jsonwebtoken';
 
 module.exports = (req, res, next) => {
     try

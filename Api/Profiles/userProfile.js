@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 
-const settings = require('../Settings/image');
+import settings from '../Settings/image';
+
+import userProfileController from '../Controllers/updateProfileUser';
 
 const userProfile = express.Router();
-
-const userProfileController = require('../Controllers/updateProfileUser');
 
 /**
 * @swagger

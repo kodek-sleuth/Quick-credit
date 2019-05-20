@@ -1,17 +1,18 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable indent */
 /* eslint-disable max-len */
 
-const express = require('express');
+import express from 'express';
+
+import bodyParser from 'body-parser';
+
+import morgan from 'morgan';
+
+import cors from 'cors';
 
 const app = express();
-
-const bodyParser = require('body-parser');
-
-const morgan = require('morgan');
-
-const cors = require('cors');
 
 app.use(cors());
 
@@ -72,12 +73,10 @@ app.use((req, res, next) => {
     next(error);
 });
 
-// eslint-disable-next-line no-unused-vars
 app.use((error, req, res, next) => {
     // Displaying The Error Message To User/Console
     res.status(error.status || 500);
     res.json({
-        // eslint-disable-next-line comma-dangle
         Error: error.message
     });
 });

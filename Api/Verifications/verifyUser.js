@@ -1,11 +1,11 @@
 
-const express = require('express');
+import express from 'express';
+
+import verifyUserController from '../Controllers/verifyFeature';
+
+import jwtMiddleware from '../Settings/checkAuthAdmin';
 
 const verify = express.Router();
-
-const verifyUserController = require('../Controllers/verifyFeature');
-
-const jwtMiddleware = require('../Settings/checkAuthAdmin');
 
 /**
 * @swagger

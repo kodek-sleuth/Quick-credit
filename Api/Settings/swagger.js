@@ -2,11 +2,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable indent */
+
 // Library that enables us to make the JSON SPEC file
-const swaggerDoc = require('swagger-jsdoc');
+import swaggerDoc from 'swagger-jsdoc';
 
 // Creating swag app from express
-const express = require('express');
+import express from 'express';
 
 const swag = express.Router();
 

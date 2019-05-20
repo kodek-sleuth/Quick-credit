@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
+
+import userController from '../Controllers/authControllerSignUp';
 
 const authSignup = express.Router();
-
-const userController = require('../Controllers/authControllerSignUp');
 
 const image = require('../Settings/image');
 

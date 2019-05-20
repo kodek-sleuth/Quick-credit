@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
+
+import rejectUserController from '../Controllers/verifyFeature';
+
+import jwtMiddleware from '../Settings/checkAuthAdmin';
 
 const reject = express.Router();
-
-const rejectUserController = require('../Controllers/verifyFeature');
-
-const jwtMiddleware = require('../Settings/checkAuthAdmin');
 
 /**
 * @swagger

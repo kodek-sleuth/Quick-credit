@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
+
+import jwtMiddleware from '../Settings/checkAuthAdmin';
+
+import postTransLoanController from '../Controllers/adminPostTransactionController';
 
 const postTransLoan = express.Router();
-
-const jwtMiddleware = require('../Settings/checkAuthAdmin');
-
-const postTransLoanController = require('../Controllers/adminPostTransactionController');
 
 /**
 * @swagger

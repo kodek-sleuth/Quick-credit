@@ -1,145 +1,118 @@
 /* eslint-disable no-lonely-if */
-/* eslint-disable object-shorthand */
-/* eslint-disable prefer-destructuring */
 /* eslint-disable max-len */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable brace-style */
-/* eslint-disable no-console */
-/* eslint-disable comma-dangle */
 /* eslint-disable no-unused-vars */
-/* eslint-disable eqeqeq */
-/* eslint-disable indent */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable object-shorthand */
 
-const jwt = require('jsonwebtoken');
+import pg from 'pg';
 
-const Pool = require('pg').Pool;
+const Pool = pg.Pool;
 
 const connectionString = process.env.QUICK_CREDIT_DB;
 
 const pool = new Pool({ connectionString: connectionString });
 
 exports.applyLoan = (req, res, next) => {
-    const queryReqLoan = 'INSERT INTO loan(investee_email, investee_firstname, investee_lastname, createdOn, tenor, amount, paymentInstallment, balance, interest) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)';
+  const queryReqLoan = 'INSERT INTO loan(investee_email, investee_firstname, investee_lastname, createdOn, tenor, amount, paymentInstallment, balance, interest) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)';
 
-    // Making sure that user who request for loan exists
-    pool.query(`Select * from users WHERE email='${req.body.Email}'`)
+  // Making sure that user who request for loan exists
+  pool.query(`Select * from users WHERE email='${req.body.Email}'`)
     .then((data) => {
-        if (data.rowCount > 0)
-        {
-            const dataFetched = data.rows;
-            console.log(dataFetched);
-            
-            // Making sure that user is Verified
-            if (dataFetched[0].status == 'Verified')
-            {
-                // Querying to make sure user does not apply for a new loan minus paying for the old one
-                // Remember as an Investee can only have one unrepaid loan at a time
-                // We check if the user has an unrepaid loan, if so then he cant apply for a new one else he can apply
+      if (data.rowCount > 0) {
+        const dataFetched = data.rows;
 
-                pool.query(`Select * from loan WHERE investee_email='${req.body.Email}' and repaid='False'`)
-                .then((loanData) => {
-                    if (loanData.rowCount > 0)
-                    {
-                        res.status(401).json({
-                            Status: '401',
-                            Error: 'Please repay old loan before applying for a new one'
-                        });
-                    }    
-                    
-                    else
-                        {
-                            // Making sure that user does not use a longer extension peroid than 12 months
-                            const userLoanData = loanData.rows;
-                            if (req.body.Tenor > 12)
-                            {
-                                res.status(401).json({
-                                    Status: '401',
-                                    Error: 'Tenor must be 12 or less'
-                                });
-                            }
+        // Making sure that user is Verified
+        if (dataFetched[0].status === 'Verified') {
+          // Querying to make sure user does not apply for a new loan minus paying for the old one
+          // Remember as an Investee can only have one unrepaid loan at a time
+          // We check if the user has an unrepaid loan, if so then he cant apply for a new one else he can apply
 
-                            else 
-                            {
-                                // Making sure that user does not apply for loan exceeding 20000000
-                                if (req.body.Amount > 20000000)
-                                {
-                                    res.status(401).json({
-                                        Status: '401',
-                                        Error: 'User can only request for a loan less than 20,000,001'
-                                    });
-                                }
-
-                                else
-                                {                        
-                                    // Creating current date
-                                    const today = new Date();
-                                    const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-
-                                    const interest = (5 * req.body.Amount) / 100;
-                                    const paymentInstallment = (req.body.Amount + interest) / req.body.Tenor;
-                                    const balance = req.body.Amount + interest;
-                                    const queryReqValues = [req.body.Email, dataFetched[0].firstname, dataFetched[0].lastname, currentDate, req.body.Tenor, req.body.Amount, paymentInstallment, balance, interest];
-                                
-                                    // Posting the Loan to Database
-                                    pool.query(queryReqLoan, queryReqValues)
-                                    .then((result) => {
-                                        res.status(201).json({
-                                            Status: '201',
-                                            Data: {
-                                                Investee_Email: req.body.Email,
-                                                Investee_Firstname: dataFetched[0].firstname,
-                                                Investee_Lastname: dataFetched[0].lastname,
-                                                Amount: req.body.Amount,
-                                                Tenor: req.body.Tenor,
-                                                CreatedOn: currentDate,
-                                                Balance: balance,
-                                                Interest: interest,
-                                                PaymentInstallment: paymentInstallment
-                                            },
-                                            Success: 'Successfully Applied For Loan'
-                                        });
-                                    })
-
-                                .catch((error) => {
-                                    res.status(400).json({
-                                        Status: '400',
-                                        Error: error.message
-                                });
-                            });
-                        }
-                    }   
-            }
-        })
-            .catch((err) => {
-                res.status(400).json({
-                    Status: '400',
-                    Error: err
+          pool.query(`Select * from loan WHERE investee_email='${req.body.Email}' and repaid='False'`)
+            .then((loanData) => {
+              if (loanData.rowCount > 0) {
+                res.status(401).json({
+                  Status: '401',
+                  Error: 'Please repay old loan before applying for a new one',
                 });
-            });
-        }
+              } else {
+                // Making sure that user does not use a longer extension peroid than 12 months
+                const userLoanData = loanData.rows;
+                if (req.body.Tenor > 12) {
+                  res.status(401).json({
+                    Status: '401',
+                    Error: 'Tenor must be 12 or less',
+                  });
+                } else {
+                  // Making sure that user does not apply for loan exceeding 20000000
+                  if (req.body.Amount > 20000000) {
+                    res.status(401).json({
+                      Status: '401',
+                      Error: 'User can only request for a loan less than 20,000,001',
+                    });
+                  } else {
+                    // Creating current date
+                    const today = new Date();
+                    const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 
-        else
-        {
-            res.status(401).json({
-                Status: '401',
-                Error: 'User must be Verified To make this request'
-            });
-        }
-    }
+                    const interest = (5 * req.body.Amount) / 100;
+                    const paymentInstallment = (req.body.Amount + interest) / req.body.Tenor;
+                    const balance = req.body.Amount + interest;
+                    const queryReqValues = [req.body.Email, dataFetched[0].firstname, dataFetched[0].lastname, currentDate, req.body.Tenor, req.body.Amount, paymentInstallment, balance, interest];
 
-        else
-        {
-            res.status(400).json({
+                    // Posting the Loan to Database
+                    pool.query(queryReqLoan, queryReqValues)
+                      .then((result) => {
+                        res.status(201).json({
+                          Status: '201',
+                          Data: {
+                            Investee_Email: req.body.Email,
+                            Investee_Firstname: dataFetched[0].firstname,
+                            Investee_Lastname: dataFetched[0].lastname,
+                            Amount: req.body.Amount,
+                            Tenor: req.body.Tenor,
+                            CreatedOn: currentDate,
+                            Balance: balance,
+                            Interest: interest,
+                            PaymentInstallment: paymentInstallment,
+                          },
+                          Success: 'Successfully Applied For Loan',
+                        });
+                      })
+
+                      .catch((error) => {
+                        res.status(400).json({
+                          Status: '400',
+                          Error: error.message,
+                        });
+                      });
+                  }
+                }
+              }
+            })
+            .catch((err) => {
+              res.status(400).json({
                 Status: '400',
-                Error: 'Please Signup to use resource'
+                Error: err,
+              });
             });
+        } else {
+          res.status(401).json({
+            Status: '401',
+            Error: 'User must be Verified To make this request',
+          });
         }
+      } else {
+        res.status(400).json({
+          Status: '400',
+          Error: 'Please Signup to use resource',
+        });
+      }
     })
 
     .catch((error) => {
-        res.status(500).json({
-            Status: '500',
-            Error: 'Failed to process request, Try again later'
-        });
+      res.status(500).json({
+        Status: '500',
+        Error: 'Failed to process request, Try again later',
+      });
     });
 };
