@@ -9,7 +9,7 @@
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "nyc": {
-    "exclude": "App/mainApp.js, Api/Models/*.js, Api/Settings/*.js" 
+    "exclude": "App/mainApp.js, Api/Models/*.js, Api/Settings/*.js"
   },
   "repository": {
     "type": "git",
@@ -47,6 +47,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
     "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
     "supertest": "^4.0.2"
   }
 }

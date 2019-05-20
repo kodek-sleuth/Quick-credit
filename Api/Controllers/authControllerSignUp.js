@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
