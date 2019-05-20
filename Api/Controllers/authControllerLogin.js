@@ -24,10 +24,10 @@ exports.loginUser = (req, res, next) => {
     const checkQueryUser = `Select * from users WHERE email='${req.body.Email}'`;
     pool.query(checkQueryUser)
       .then((data) => {
-        fetchedData = data.rows;
+        const fetchedData = data.rows;
 
         if (data.rowCount > 0) {
-          if (fetchedData[0].isAdmin === 'False')
+          if (fetchedData[0].isadmin == 'False')
           {
             bcrypt.compare(req.body.Password, fetchedData[0].password, (error, success) => {
               if (error) {
@@ -60,6 +60,7 @@ exports.loginUser = (req, res, next) => {
                     Address: fetchedData[0].address,
                     Token: token,
                     Status: fetchedData[0].status,
+                    isAdmin: fetchedData[0].isadmin
                   },
                   Success: 'User has successfully logged in',
                 });
@@ -95,7 +96,8 @@ exports.loginUser = (req, res, next) => {
                     Firstname: fetchedData[0].firstname,
                     Lastname: fetchedData[0].lastname,
                     Email: fetchedData[0].email,
-                    Token: token
+                    Token: token,
+                    isAdmin: fetchedData[0].isadmin
                   },
                   Success: 'Admin has successfully logged in',
                 });
@@ -112,7 +114,7 @@ exports.loginUser = (req, res, next) => {
       .catch((error) => {
         res.status(401).json({
           Status: 401,
-          Error: 'Invalid Email or Password',
+          Error: error.message,
         });
     });
 };

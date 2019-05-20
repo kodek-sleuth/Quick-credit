@@ -27,7 +27,7 @@ exports.createUser = (req, res, next) => {
   // We making sure that User/Admin does not login with an already users Email/Fullname
     pool.query(`Select * FROM users WHERE email='${req.body.Email}'`)
       .then((dataCheck1) => {
-        if (dataCheck1.rows === 0) {
+        if (dataCheck1.rows == 0) {
           // We make sure that the Password stored is first hashed for Privacy and Protection
           bcrypt.hash(req.body.Password, 10, (err, hash) => {
             if (err) {
@@ -55,7 +55,7 @@ exports.createUser = (req, res, next) => {
                       Address: req.body.Address,
                       Status: 'Pending'
                     },
-                    Success: 'User Has Successfully Signed Up',
+                    Success: 'User has successfully signed up',
                   });
                 })
                 .catch((error) => {
