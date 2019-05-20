@@ -21,9 +21,9 @@ const pool = new Pool({ connectionString });
 
 exports.createUser = (req, res, next) => {
   // Database queriey to insert  req body in Database
-  const dataBaseQueryAdmin = 'INSERT INTO admin(firstname, lastname, email, password, isAdmin) VALUES($1, $2, $3, $4, $5)';
+  const dataBaseQueryAdmin = 'INSERT INTO admin(firstname, lastname, email, password, isAdmin, image) VALUES($1, $2, $3, $4, $5, $6)';
 
-  const dataBaseQueryUser = 'INSERT INTO users(firstname, lastname, email, password, address, isAdmin) VALUES($1, $2, $3, $4, $5, $6)';
+  const dataBaseQueryUser = 'INSERT INTO users(firstname, lastname, email, password, address, isAdmin, image) VALUES($1, $2, $3, $4, $5, $6, $7)';
 
   // We seperating who deserves to be admin and user
   if (req.body.isAdmin === 'False') {
@@ -44,7 +44,7 @@ exports.createUser = (req, res, next) => {
                 isAdmin: req.body.isAdmin,
               }, process.env.SECRET_KEY, { expiresIn: '5hr' });
 
-              const valuesToDatabaseUser = [req.body.Firstname, req.body.Lastname, req.body.Email, hash, req.body.Address, req.body.isAdmin];
+              const valuesToDatabaseUser = [req.body.Firstname, req.body.Lastname, req.body.Email, hash, req.body.Address, req.body.isAdmin, req.file.path];
               pool.query(dataBaseQueryUser, valuesToDatabaseUser)
                 .then((result) => {
                   res.status(201).json({
@@ -56,6 +56,7 @@ exports.createUser = (req, res, next) => {
                       Email: req.body.Email,
                       isAdmin: req.body.isAdmin,
                       Address: req.body.Address,
+                      Image: req.file.path,
                     },
                     Success: 'User Has Successfully Signed Up',
                   });
@@ -99,7 +100,7 @@ exports.createUser = (req, res, next) => {
                 isAdmin: req.body.isAdmin,
               }, process.env.SECRET_KEY, { expiresIn: '5hr' });
 
-              const valuesToDatabaseAdmin = [req.body.Firstname, req.body.Lastname, req.body.Email, hash, req.body.isAdmin];
+              const valuesToDatabaseAdmin = [req.body.Firstname, req.body.Lastname, req.body.Email, hash, req.body.isAdmin, req.file.path];
               pool.query(dataBaseQueryAdmin, valuesToDatabaseAdmin)
                 .then((result) => {
                   res.status(201).json({
@@ -110,6 +111,7 @@ exports.createUser = (req, res, next) => {
                       Token: token,
                       Email: req.body.Email,
                       isAdmin: req.body.isAdmin,
+                      Image: req.file.path,
                     },
                     Success: 'Admin Has Successfully Signed Up',
                   });
