@@ -22,7 +22,6 @@ const swaggerUI = require('swagger-ui-express');
 const authSignup = require('../Api/Auth/authSignUp');
 const authLogin = require('../Api/Auth/authLogin');
 const verifyUser = require('../Api/Verifications/verifyUser');
-const rejectUser = require('../Api/Verifications/rejectUser');
 const reqLoan = require('../Api/Loans/applyLoan');
 const repayLoan = require('../Api/Loans/repayLoan');
 const approveLoan = require('../Api/Loans/approveLoan');
@@ -51,7 +50,6 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swagger.swaggerSpec));
 app.use('/api/v1/auth', authSignup);
 app.use('/api/v1/auth', authLogin);
 app.use('/api/v1/admin', verifyUser);
-app.use('/api/v1/admin', rejectUser);
 app.use('/api/v1/user', reqLoan);
 app.use('/api/v1/user', repayLoan);
 app.use('/api/v1/admin', approveLoan);
@@ -59,8 +57,6 @@ app.use('/api/v1/admin', posTransLoan);
 app.use('/api/v1/admin', rejectLoan);
 app.use('/api/v1/user', userLoans);
 app.use('/api/v1/admin', adminLoans);
-app.use('/api/v1/user', userProfile);
-app.use('/api/v1/admin', adminProfile);
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {

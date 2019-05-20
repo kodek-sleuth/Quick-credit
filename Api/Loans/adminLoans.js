@@ -7,58 +7,6 @@ import jwtMiddleware from '../Settings/checkAuthAdmin';
 
 const adminLoans = express.Router();
 
-// Swagger documentation
-/**
-* @swagger
-* /api/v1/admin/users:
-*   get:
-*     security:
-*        - bearerAuth: []
-*     tags:
-*       - Admin
-*     name: Gets All Users in database
-*     summary: Gets All Users in database
-*     responses:
-*       200:
-*         description: Successfully Fetched Users
-*/
-
-adminLoans.get('/users', jwtMiddleware, adminLoansController.getAllUsers);
-
-/**
-* @swagger
-* /api/v1/admin/users/pending:
-*   get:
-*     security:
-*        - bearerAuth: []
-*     tags:
-*       - Admin
-*     name: Gets All Pending Users in database
-*     summary: Gets All Pending Users in database
-*     responses:
-*       200:
-*         description: Successfully Fetched Users
-*/
-
-adminLoans.get('/users/pending', jwtMiddleware, adminLoansController.getUsersPending);
-
-/**
-* @swagger
-* /api/v1/admin/users/verified:
-*   get:
-*     security:
-*        - bearerAuth: []
-*     tags:
-*       - Admin
-*     name: Gets All Verified Users in database
-*     summary: Gets All Verified Users in database
-*     responses:
-*       200:
-*         description: Successfully Fetched Users
-*/
-
-adminLoans.get('/users/verified', jwtMiddleware, adminLoansController.getUsersVerified);
-
 /**
 * @swagger
 * /api/v1/admin/loans:
@@ -92,40 +40,6 @@ adminLoans.get('/loans', jwtMiddleware, adminLoansController.getAllLoans);
 */
 
 adminLoans.get('/loans/approved', jwtMiddleware, adminLoansController.getLoansApproved);
-
-/**
-* @swagger
-* /api/v1/admin/loans/pending:
-*   get:
-*     security:
-*        - bearerAuth: []
-*     tags:
-*       - Loans
-*     name: Gets All Pending Loans in database
-*     summary: Gets All Pending Loans in database
-*     responses:
-*       200:
-*         description: Successfully Fetched Loans
-*/
-
-adminLoans.get('/loans/pending', jwtMiddleware, adminLoansController.getAllLoansPending);
-
-/**
-* @swagger
-* /api/v1/admin/loans/rejected:
-*   get:
-*     security:
-*        - bearerAuth: []
-*     tags:
-*       - Loans
-*     name: Gets All Rejected Loans in database
-*     summary: Gets All Rejected Loans in database
-*     responses:
-*       200:
-*         description: Successfully Fetched Loans
-*/
-
-adminLoans.get('/loans/rejected', jwtMiddleware, adminLoansController.getLoansRejected);
 
 /**
 * @swagger
