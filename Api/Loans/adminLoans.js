@@ -26,23 +26,6 @@ adminLoans.get('/loans', jwtMiddleware, adminLoansController.getAllLoans);
 
 /**
 * @swagger
-* /api/v1/admin/loans/approved:
-*   get:
-*     security:
-*        - bearerAuth: []
-*     tags:
-*       - Loans
-*     name: Gets All Approved Loans in database
-*     summary: Gets All Approved Loans in database
-*     responses:
-*       200:
-*         description: Successfully Fetched Loans
-*/
-
-adminLoans.get('/loans/approved', jwtMiddleware, adminLoansController.getLoansApproved);
-
-/**
-* @swagger
 * /api/v1/admin/loans/repaid:
 *   get:
 *     security:
@@ -56,7 +39,7 @@ adminLoans.get('/loans/approved', jwtMiddleware, adminLoansController.getLoansAp
 *         description: Successfully Fetched Loans
 */
 
-adminLoans.get('/loans/repaid', jwtMiddleware, adminLoansController.getLoansRepaid);
+adminLoans.get('/loans/repaid?status=Approved&repaid=True', jwtMiddleware, adminLoansController.getLoansRepaid);
 
 /**
 * @swagger
@@ -73,7 +56,7 @@ adminLoans.get('/loans/repaid', jwtMiddleware, adminLoansController.getLoansRepa
 *         description: Successfully Fetched Loans
 */
 
-adminLoans.get('/loans/unrepaid', jwtMiddleware, adminLoansController.getLoansUnrepaid);
+adminLoans.get('/loans/unrepaid?status=Approved&repaid=False', jwtMiddleware, adminLoansController.getLoansUnrepaid);
 
 /**
 * @swagger

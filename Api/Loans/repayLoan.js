@@ -38,6 +38,6 @@ const payLoan = express.Router();
 *         description: Failed to process request, Try again later
 */
 
-payLoan.post('/loans/repay', payLoanController.repayLoan);
+payLoan.post('/loans/:loanId/repayment', payLoanController.repayLoan);
 
 module.exports = payLoan;

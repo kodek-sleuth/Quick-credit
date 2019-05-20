@@ -30,6 +30,6 @@ const userLoans = express.Router();
 *       description: Successfully Fetched Repayments
 */
 
-userLoans.get('/:Email/loans/:loanId/repayments', userLoansController.getLoanRepayments);
+userLoans.get('/loans/:loanId/repayments', userLoansController.getLoanRepayments);
 
 module.exports = userLoans;
