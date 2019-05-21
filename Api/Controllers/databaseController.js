@@ -1,21 +1,18 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable no-unused-vars */
 
 import pg from 'pg';
 
 import config from '../../config';
 
-const Pool = pg.Pool;
+const { Pool } = pg;
 
-const connectionString = config.connectionString;
-
-const key = config.jwt_key;
-
-console.log(connectionString);
+const { connectionString } = config;
 
 const pool = new Pool({ connectionString });
 
-exports.createTableLoan = () => {
-  pool.query("CREATE TABLE IF NOT EXISTS loan(id SERIAL PRIMARY KEY, NOT NULL, userid INTEGER REFERENCES users(id), createdOn TEXT NoT NULL, repaid TEXT NOT NULL DEFAULT('False'), status TEXT NOT NULL DEFAULT('Pending'), tenor INTEGER NOT NULL, amount numeric(10, 2) not null, paymentInstallment numeric(10, 2) not null, balance numeric(10, 2) not null, interest numeric(10, 2) not null")
+const createTableLoan = () => {
+  pool.query("CREATE TABLE IF NOT EXISTS loan(id SERIAL PRIMARY KEY, userid INTEGER REFERENCES users(id), createdOn TEXT NoT NULL, repaid TEXT NOT NULL DEFAULT('False'), status TEXT NOT NULL DEFAULT('Pending'), tenor INTEGER NOT NULL, amount numeric(10, 2) not null, paymentInstallment numeric(10, 2) not null, balance numeric(10, 2) not null, interest numeric(10, 2) not null")
     .then((feedback) => {
       pool.end();
     })
@@ -23,7 +20,7 @@ exports.createTableLoan = () => {
     });
 };
 
-exports.createTableRepayment = () => {
+const createTableRepayment = () => {
   pool.query('CREATE TABLE IF NOT EXISTS repayments(id SERIAL PRIMARY KEY, loanId INTEGER REFERENCES loan(id), createdOn TEXT NOT NULL, amount numeric(10, 2) not null, monthlyInstallment numeric(10, 2)not null')
     .then((feedback) => {
       pool.end();
@@ -32,7 +29,7 @@ exports.createTableRepayment = () => {
     });
 };
 
-exports.createTableUser = () => {
+const createTableUser = () => {
   pool.query("CREATE TABLE IF NOT EXISTS users(id SERIAL PRIMARY KEY, firstname VARCHAR(30) NOT NULL, lastname VARCHAR(30) NOT NULL, email VARCHAR(30) NOT NULL UNIQUE, password TEXT NOT NULL, address TEXT NOT NULL, status VARCHAR(20) NOT NULL DEFAULT('Pending'), isAdmin VARCHAR(10) NOT NULL")
     .then((feedback) => {
       pool.end();
@@ -41,11 +38,15 @@ exports.createTableUser = () => {
     });
 };
 
-exports.dropAdmin = () => {
+const dropAdmin = () => {
   pool.query('Delete from admin')
     .then((feedback) => {
       pool.end();
     })
     .catch((error) => {
     });
+};
+
+module.exports = {
+  pool
 };

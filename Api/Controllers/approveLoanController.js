@@ -4,26 +4,19 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-shorthand */
 
-import pg from 'pg';
+import model from './databaseController';
 
-const Pool = pg.Pool;
-
-const connectionString = process.env.QUICK_CREDIT_DB;
-
-const pool = new Pool({ connectionString: connectionString });
-
-// An Approval is an update on the status
 exports.approveLoan = (req, res, next) => {
   const loanId = req.params.loanId;
 
   const verifyLoanQuery = `Update loan SET status='Approved' where id='${loanId}'`;
 
-  pool.query(`Select * from loan where id='${loanId}'`)
+  model.pool.query(`Select * from loan where id='${loanId}'`)
     .then((result) => {
       if (result.rowCount > 0) {
-        pool.query(verifyLoanQuery)
+        model.pool.query(verifyLoanQuery)
           .then(() => {
-            pool.query(`Select * from loan join users on userid=users.id where loan.id='${loanId}'`)
+            model.pool.query(`Select * from loan join users on userid=users.id where loan.id='${loanId}'`)
               .then((data) => {
                 const dataFound = data.rows;
                 res.status(200).json({

@@ -4,27 +4,16 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 
-// Password Encryption Library
 import bcrypt from 'bcrypt';
 
-// Authorisation Token Generator Library
 import jwt from 'jsonwebtoken';
 
-// .Pool enables connection to Database
-import pg from 'pg';
-
-const Pool = pg.Pool;
-
-// Database Conectoion String
-const connectionString = process.env.QUICK_CREDIT_DB;
-
-const pool = new Pool({ connectionString });
+import model from './databaseController';
 
 // A Login is just a database check to make sure that req.body matches  all values in database for that user
 exports.loginUser = (req, res, next) => {
-  console.log(req.body);
   const checkQueryUser = `Select * from users WHERE email='${req.body.Email}'`;
-  pool.query(checkQueryUser)
+  model.pool.query(checkQueryUser)
     .then((data) => {
       const fetchedData = data.rows;
 

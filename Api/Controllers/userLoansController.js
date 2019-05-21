@@ -4,11 +4,13 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-shorthand */
 
+import model from './databaseController';
+
 exports.getLoanRepayments = (req, res, next) => {
   const Email = req.params.Email;
   const loanId = req.params.loanId;
 
-  pool.query(`Select * from repayments WHERE loanid=${loanId}`)
+  model.pool.query(`Select * from repayments WHERE loanid=${loanId}`)
     .then((data) => {
       if (data.rowCount > 0) {
         const fetchedData3 = data.rows;

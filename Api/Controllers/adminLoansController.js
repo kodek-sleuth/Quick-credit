@@ -2,16 +2,10 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-shorthand */
 
-import pg from 'pg';
-
-const Pool = pg.Pool;
-
-const connectionString = process.env.QUICK_CREDIT_DB;
-
-const pool = new Pool({ connectionString: connectionString });
+import model from './databaseController';
 
 exports.getLoansRepaid = (req, res, next) => {
-  pool.query("Select * from loan join users on userid=users.id WHERE loan.repaid='True' and loan.status='Approved'")
+  model.pool.query("Select * from loan join users on userid=users.id WHERE loan.repaid='True' and loan.status='Approved'")
     .then((data) => {
       const fetchedData = data.rows;
       if (data.rowCount) {
@@ -39,7 +33,7 @@ exports.getLoansRepaid = (req, res, next) => {
 };
 
 exports.getLoansUnrepaid = (req, res, next) => {
-  pool.query("Select * from loan join users on userid=users.id  WHERE loan.repaid='False' and loan.status='Approved'")
+  model.pool.query("Select * from loan join users on userid=users.id  WHERE loan.repaid='False' and loan.status='Approved'")
     .then((data) => {
       if (data.rowCount) {
         const fetchedData = data.rows;
@@ -67,7 +61,7 @@ exports.getLoansUnrepaid = (req, res, next) => {
 };
 
 exports.getAllLoans = (req, res, next) => {
-  pool.query('Select * from loan join users on userid=users.id')
+  model.pool.query('Select * from loan join users on userid=users.id')
     .then((data) => {
       if (data.rowCount) {
         const fetchedData = data.rows;
@@ -95,7 +89,7 @@ exports.getAllLoans = (req, res, next) => {
 
 exports.getSpecificLoan = (req, res, next) => {
   const loanId = req.params.loanId;
-  pool.query(`Select * from loan join users on userid=users.id  WHERE loan.id=${loanId}`)
+  model.pool.query(`Select * from loan join users on userid=users.id  WHERE loan.id=${loanId}`)
     .then((data) => {
       if (data.rowCount > 0) {
         const fetchedData = data.rows;

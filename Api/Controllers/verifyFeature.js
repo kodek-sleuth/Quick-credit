@@ -4,17 +4,19 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-shorthand */
 
+import model from './databaseController';
+
 exports.verifyUser = (req, res, next) => {
   const Email = req.params.Email;
 
   const verifyUserQuery = `Update users SET status='Verified' where email='${Email}'`;
 
-  pool.query(`Select * from users where email='${Email}'`)
+  model.pool.query(`Select * from users where email='${Email}'`)
     .then((result) => {
       if (result.rowCount > 0) {
-        pool.query(verifyUserQuery)
+        model.pool.query(verifyUserQuery)
           .then(() => {
-            pool.query(`Select * from users where email='${Email}'`)
+            model.pool.query(`Select * from users where email='${Email}'`)
               .then((data) => {
                 if (data.rowCount > 0) {
                   const dataFound = data.rows;

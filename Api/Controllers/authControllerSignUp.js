@@ -1,7 +1,6 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable eqeqeq */
-/* eslint-disable import/no-unresolved */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
@@ -10,14 +9,16 @@ import bcrypt from 'bcrypt';
 
 import jwt from 'jsonwebtoken';
 
+import config from '../../config';
+
+import model from './databaseController';
 
 exports.createUser = (req, res, next) => {
   const dataBaseQueryUser = 'INSERT INTO users(firstname, lastname, email, password, address, isAdmin) VALUES($1, $2, $3, $4, $5, $6)';
 
-  pool.query(`Select * FROM users WHERE email='${req.body.Email}'`)
+  model.pool.query(`Select * FROM users WHERE email='${req.body.Email}'`)
     .then((dataCheck1) => {
       if (dataCheck1.rows == 0) {
-        // We make sure that the Password stored is first hashed for Privacy and Protection
         bcrypt.hash(req.body.Password, 10, (err, hash) => {
           if (err) {
             res.status(401).json({
@@ -28,10 +29,10 @@ exports.createUser = (req, res, next) => {
             const token = jwt.sign({
               Email: req.body.Email,
               isAdmin: req.body.isAdmin,
-            }, key, { expiresIn: '5hr' });
+            }, config.secret, { expiresIn: '5hr' });
 
             const valuesToDatabaseUser = [req.body.Firstname, req.body.Lastname, req.body.Email, hash, req.body.Address, req.body.isAdmin];
-            pool.query(dataBaseQueryUser, valuesToDatabaseUser)
+            model.pool.query(dataBaseQueryUser, valuesToDatabaseUser)
               .then((result) => {
                 res.status(201).json({
                   Status: '201',

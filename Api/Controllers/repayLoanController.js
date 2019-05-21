@@ -5,31 +5,27 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-shorthand */
 
-import pg from 'pg';
-
 import jwt from 'jsonwebtoken';
 
-const Pool = pg.Pool;
+import model from './databaseController';
 
-const connectionString = process.env.QUICK_CREDIT_DB;
-
-const pool = new Pool({ connectionString: connectionString });
+import config from '../../config';
 
 exports.repayLoan = (req, res, next) => {
   const makeRepaymentQuery = 'INSERT INTO repayments(loanId, createdOn, amount, monthlyInstallment) VALUES($1, $2, $3, $4)';
   try {
     const token = req.headers.authorization.split(' ')[1];
-    const decode = jwt.verify(token, process.env.SECRET_KEY);
+    const decode = jwt.verify(token, config.secret);
     const emailId = decode.Email;
     const userId = decode.id;
     // We first want to make sure that user exists in the Database
-    pool.query(`SELECT * FROM users WHERE email='${emailId}'`)
+    model.pool.query(`SELECT * FROM users WHERE email='${emailId}'`)
       .then((data) => {
         if (data.rowCount > 0) {
           const dataFetched = data.rows;
 
           // Since a repay will always be to that one unrepaid loan we may/many not user an id because a user will only have a loan after paying a new one
-          pool.query(`select loan.status, loan.paymentinstallment, loan.balance, loan.id, users.firstname, users.email, users.lastname from loan join users on userid=${userId} where repaid='False'`)
+          model.pool.query(`select loan.status, loan.paymentinstallment, loan.balance, loan.id, users.firstname, users.email, users.lastname from loan join users on userid=${userId} where repaid='False'`)
             .then((result) => {
               if (result.rowCount > 0) {
                 const loanData = result.rows;
@@ -55,7 +51,7 @@ exports.repayLoan = (req, res, next) => {
                     }
 
                     if (loanData[0].balance == 0.00) {
-                      pool.query(`UPDATE loan set repaid='True' where id=${loanData[0].id}`)
+                      model.pool.query(`UPDATE loan set repaid='True' where id=${loanData[0].id}`)
                         .then((updateResult) => {
                         })
                         .catch((error) => {
@@ -66,11 +62,11 @@ exports.repayLoan = (req, res, next) => {
                       const currentDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
                       const makeRepaymentQueryValues = [loanData[0].id, currentDate, req.body.Amount, loanData[0].paymentinstallment];
 
-                      pool.query(makeRepaymentQuery, makeRepaymentQueryValues)
+                      model.pool.query(makeRepaymentQuery, makeRepaymentQueryValues)
                         .then((feedback) => {
                           // if Loan balance is less than zero we confirm that it is repaid
                           if (loanData[0].balance <= 0.00) {
-                            pool.query(`UPDATE loan set repaid='True' where id=${loanData[0].id}`)
+                            model.pool.query(`UPDATE loan set repaid='True' where id=${loanData[0].id}`)
                               .then((result2) => {
                                 res.status(200).json({
                                   Status: '200',
@@ -94,10 +90,10 @@ exports.repayLoan = (req, res, next) => {
                           } else {
                             // Now -> Loan balance is not zero we can calculate and send back the balance to be paid
                             const newBalance = loanData[0].balance - req.body.Amount;
-                            pool.query(`Update loan set balance='${newBalance}' where id=${loanData[0].id}`)
+                            model.pool.query(`Update loan set balance='${newBalance}' where id=${loanData[0].id}`)
                               .then((updated) => {
                                 // This is sending back the correct Updated details back to user
-                                pool.query(`SELECT * FROM loan WHERE id=${loanData[0].id}`)
+                                model.pool.query(`SELECT * FROM loan WHERE id=${loanData[0].id}`)
                                   .then((currentData) => {
                                     if (currentData.rowCount > 0) {
                                       const updatedData = currentData.rows;

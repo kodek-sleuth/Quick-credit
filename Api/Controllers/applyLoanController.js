@@ -5,32 +5,28 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-shorthand */
 
-import pg from 'pg';
-
 import jwt from 'jsonwebtoken';
 
-const Pool = pg.Pool;
+import model from './databaseController';
 
-const connectionString = process.env.QUICK_CREDIT_DB;
-
-const pool = new Pool({ connectionString: connectionString });
+import config from '../../config';
 
 exports.applyLoan = (req, res, next) => {
   const queryReqLoan = 'INSERT INTO loan(userid, createdOn, tenor, amount, paymentInstallment, balance, interest) VALUES($1, $2, $3, $4, $5, $6, $7)';
 
   try {
     const token = req.headers.authorization.split(' ')[1];
-    const decode = jwt.verify(token, process.env.SECRET_KEY);
+    const decode = jwt.verify(token, config.secret);
     const userId = decode.id;
     const emailId = decode.Email;
- 
-    pool.query(`Select * from users WHERE email='${emailId}'`)
+
+    model.pool.query(`Select * from users WHERE email='${emailId}'`)
       .then((data) => {
         if (data.rowCount > 0) {
           const dataFetched = data.rows;
 
           if (dataFetched[0].status == 'Verified') {
-            pool.query(`select * from loan join users on userid=${userId} where repaid='False'`)
+            model.pool.query(`select * from loan join users on userid=${userId} where repaid='False'`)
               .then((loanData) => {
                 if (loanData.rowCount > 0) {
                   res.status(401).json({
@@ -61,7 +57,7 @@ exports.applyLoan = (req, res, next) => {
                       const queryReqValues = [dataFetched[0].id, currentDate, req.body.Tenor, req.body.Amount, paymentInstallment, balance, interest];
 
                       // Posting the Loan to Database
-                      pool.query(queryReqLoan, queryReqValues)
+                      model.pool.query(queryReqLoan, queryReqValues)
                         .then((result) => {
                           res.status(201).json({
                             Status: '201',
