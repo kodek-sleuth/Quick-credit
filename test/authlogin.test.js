@@ -15,7 +15,7 @@ const expect = chai.expect;
 
 chai.use(chaiHttp);
 
-describe('App Authorisation Login', () => {
+describe('Testing if app Logs in user', () => {
   it('Should login a user if he does exist in database', () => {
     // Incase of an email that exists in database
     chai.request(app).post('/api/v1/auth/login')

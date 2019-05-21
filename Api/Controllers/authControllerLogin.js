@@ -18,7 +18,7 @@ const Pool = pg.Pool;
 // Database Conectoion String
 const connectionString = process.env.QUICK_CREDIT_DB;
 
-const pool = new Pool({ connectionString });
+const pool = new Pool({ connectionString: connectionString });
 
 // A Login is just a database check to make sure that req.body matches  all values in database for that user
 exports.loginUser = (req, res, next) => {
