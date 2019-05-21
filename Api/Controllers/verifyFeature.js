@@ -4,14 +4,6 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-shorthand */
 
-import pg from 'pg';
-
-const Pool = pg.Pool;
-
-const connectionString = process.env.QUICK_CREDIT_DB;
-
-const pool = new Pool({ connectionString: connectionString });
-
 exports.verifyUser = (req, res, next) => {
   const Email = req.params.Email;
 

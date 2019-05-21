@@ -13,21 +13,21 @@ const pool = new Pool({ connectionString: connectionString });
 exports.getLoansRepaid = (req, res, next) => {
   pool.query("Select * from loan join users on userid=users.id WHERE loan.repaid='True' and loan.status='Approved'")
     .then((data) => {
-      if (data.rowCount > 0) {
-        const fetchedData = data.rows;
+      const fetchedData = data.rows;
+      if (data.rowCount) {
         res.status(200).json({
           Count: data.rowCount,
           Status: 200,
           Data: fetchedData,
           Message: 'Successfully Fetched Loans',
         });
-      } else {
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Message: 'There are no repaid loans',
-        });
       }
+
+      return res.status(200).json({
+        Count: data.rowCount,
+        Status: 200,
+        Message: 'There are no repaid loans',
+      });
     })
 
     .catch((error) => {

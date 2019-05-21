@@ -1,5 +1,6 @@
+/* eslint-disable comma-dangle */
 exports.userSignup = {
-  Email: 'melissa@gmail.com',
+  Email: 'melissa2@gmail.com',
   Firstname: 'Tally',
   Lastname: 'Jay',
   isAdmin: 'False',
@@ -12,13 +13,13 @@ exports.userLogin = {
   Password: 'stealth'
 };
 
+exports.adminToken = {
+  Token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiRW1haWwiOiJraW1hdGhpQGdtYWlsLmNvbSIsImlzQWRtaW4iOiJGYWxzZSIsImlhdCI6MTU1ODQzMDI1OSwiZXhwIjoxNTU4NDM3NDU5fQ.Jb0EJBoGDthBzPdbNrpyNUShdHFTkiJNRXYvtQJyyps'
+};
+
 exports.userSignupNumbers = {
   Email: '333@gmail.com',
-  Firstname: 3904,
-  Lastname: 'Jay',
-  isAdmin: 'False',
-  Password: 'stealth',
-  Address: 'Kampala',
+  Password: 'stealth'
 };
 
 exports.userSignupFields = {

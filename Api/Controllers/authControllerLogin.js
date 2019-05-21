@@ -18,11 +18,11 @@ const Pool = pg.Pool;
 // Database Conectoion String
 const connectionString = process.env.QUICK_CREDIT_DB;
 
-const pool = new Pool({ connectionString: connectionString });
+const pool = new Pool({ connectionString });
 
 // A Login is just a database check to make sure that req.body matches  all values in database for that user
 exports.loginUser = (req, res, next) => {
-  // We first check if the Email exists
+  console.log(req.body);
   const checkQueryUser = `Select * from users WHERE email='${req.body.Email}'`;
   pool.query(checkQueryUser)
     .then((data) => {

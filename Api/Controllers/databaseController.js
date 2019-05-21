@@ -1,15 +1,17 @@
-/* eslint-disable prefer-destructuring */
 /* eslint-disable no-unused-vars */
 
-// Object That creates a connection to Postgres Server Instance
 import pg from 'pg';
+
+import config from '../../config';
 
 const Pool = pg.Pool;
 
-// Object that defines db Properties
-const connectionString = process.env.QUICK_CREDIT_DB;
+const connectionString = config.connectionString;
 
-// Creating a connection with connection string
+const key = config.jwt_key;
+
+console.log(connectionString);
+
 const pool = new Pool({ connectionString });
 
 exports.createTableLoan = () => {

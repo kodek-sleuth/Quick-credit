@@ -6,27 +6,14 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 
-// Password Encryption Library
 import bcrypt from 'bcrypt';
 
-// Authorisation Token Generator Library
 import jwt from 'jsonwebtoken';
 
-// .Pool enables connection to Database
-import pg from 'pg';
-
-const Pool = pg.Pool;
-
-// Database Conectoion String
-const connectionString = process.env.QUICK_CREDIT_DB;
-
-const pool = new Pool({ connectionString: connectionString });
 
 exports.createUser = (req, res, next) => {
-  // Database queriey to insert  req body in Database
   const dataBaseQueryUser = 'INSERT INTO users(firstname, lastname, email, password, address, isAdmin) VALUES($1, $2, $3, $4, $5, $6)';
 
-  // We making sure that User/Admin does not login with an already users Email/Fullname
   pool.query(`Select * FROM users WHERE email='${req.body.Email}'`)
     .then((dataCheck1) => {
       if (dataCheck1.rows == 0) {
@@ -41,7 +28,7 @@ exports.createUser = (req, res, next) => {
             const token = jwt.sign({
               Email: req.body.Email,
               isAdmin: req.body.isAdmin,
-            }, process.env.SECRET_KEY, { expiresIn: '5hr' });
+            }, key, { expiresIn: '5hr' });
 
             const valuesToDatabaseUser = [req.body.Firstname, req.body.Lastname, req.body.Email, hash, req.body.Address, req.body.isAdmin];
             pool.query(dataBaseQueryUser, valuesToDatabaseUser)
@@ -62,7 +49,7 @@ exports.createUser = (req, res, next) => {
               })
               .catch((error) => {
                 res.status(400).json({
-                  Status: '400',
+                  Status: 400,
                   Message: error.message,
                 });
               });
@@ -70,14 +57,14 @@ exports.createUser = (req, res, next) => {
         });
       } else {
         res.status(409).json({
-          Status: '409',
+          Status: 409,
           Message: 'Email is already taken',
         });
       }
     })
     .catch((dataError) => {
       res.status(400).json({
-        Status: '400',
+        Status: 400,
         Message: dataError.message,
       });
     });
