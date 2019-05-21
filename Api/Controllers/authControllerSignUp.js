@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable eqeqeq */
 /* eslint-disable import/no-unresolved */
@@ -17,13 +18,12 @@ import pg from 'pg';
 const Pool = pg.Pool;
 
 // Database Conectoion String
-const connectionString = process.env.QUICK_CREDIT_DB_TEST;
+const connectionString = process.env.QUICK_CREDIT_DB;
 
-const pool = new Pool({ connectionString });
+const pool = new Pool({ connectionString: connectionString });
 
 exports.createUser = (req, res, next) => {
   // Database queriey to insert  req body in Database
-
   const dataBaseQueryUser = 'INSERT INTO users(firstname, lastname, email, password, address, isAdmin) VALUES($1, $2, $3, $4, $5, $6)';
 
   // We making sure that User/Admin does not login with an already users Email/Fullname

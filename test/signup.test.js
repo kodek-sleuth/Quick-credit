@@ -18,7 +18,7 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('App Authorisation Signup', () => {
-  it('Should signup a user if he does not exist in database', (done) => {
+  it('Should signup a user if he does not exist in database', () => {
     // Incase of an email that exists in database
     chai.request(app).post('/api/v1/auth/signup')
       .send(utils.userSignup)
@@ -28,7 +28,6 @@ describe('App Authorisation Signup', () => {
         expect(res.body).to.have.property('Message');
         expect(res.body).to.have.property('Data');
         expect(res.body.Message).to.equals('User has successfully signed up');
-        done();
       });
   });
 

@@ -1,10 +1,15 @@
 exports.userSignup = {
-  Email: 'brian@gmail.com',
-  Firstname: 'Brian',
+  Email: 'melissa@gmail.com',
+  Firstname: 'Tally',
   Lastname: 'Jay',
   isAdmin: 'False',
   Password: 'stealth',
-  Address: 'Kampala',
+  Address: 'Kampala'
+};
+
+exports.userLogin = {
+  Email: 'kimathi@gmail.com',
+  Password: 'stealth'
 };
 
 exports.userSignupNumbers = {
