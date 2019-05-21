@@ -16,7 +16,7 @@ exports.getLoanRepayments = (req, res, next) => {
   const Email = req.params.Email;
   const loanId = req.params.loanId;
 
-  pool.query(`Select * from repayments WHERE investee_email='${Email}' and loanid=${loanId}`)
+  pool.query(`Select * from repayments WHERE loanid=${loanId}`)
     .then((data) => {
       if (data.rowCount > 0) {
         const fetchedData3 = data.rows;
@@ -27,17 +27,16 @@ exports.getLoanRepayments = (req, res, next) => {
           Success: 'Successfully fetched Repayments',
         });
       } else {
-        res.status(200).json({
-          Count: data.rowCount,
-          Status: 200,
-          Message: 'User has no repayments made',
+        res.status(404).json({
+          Status: '404',
+          Error: 'No loan found with that id',
         });
       }
     })
 
     .catch((error) => {
-      res.status(500).json({
-        Status: 500,
+      res.status(404).json({
+        Status: 404,
         Error: error.message,
       });
     });

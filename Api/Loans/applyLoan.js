@@ -2,6 +2,8 @@ import express from 'express';
 
 import reqLoanController from '../Controllers/applyLoanController';
 
+import jwtMiddleware from '../Settings/checkAuthUser';
+
 const reqLoan = express.Router();
 
 /**
@@ -44,6 +46,6 @@ const reqLoan = express.Router();
 *         description: Failed To Authenticate
 */
 
-reqLoan.post('/loans/apply', reqLoanController.applyLoan);
+reqLoan.post('/loans/apply', jwtMiddleware, reqLoanController.applyLoan);
 
 module.exports = reqLoan;

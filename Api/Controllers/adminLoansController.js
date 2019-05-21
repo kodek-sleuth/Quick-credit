@@ -11,7 +11,7 @@ const connectionString = process.env.QUICK_CREDIT_DB;
 const pool = new Pool({ connectionString: connectionString });
 
 exports.getLoansRepaid = (req, res, next) => {
-  pool.query("Select * from loan WHERE repaid='True' and status='Approved'")
+  pool.query("Select * from loan join users on userid=users.id WHERE repaid='True' and status='Approved'")
     .then((data) => {
       if (data.rowCount > 0) {
         const fetchedData = data.rows;
@@ -31,15 +31,15 @@ exports.getLoansRepaid = (req, res, next) => {
     })
 
     .catch((error) => {
-      res.status(500).json({
-        Status: 500,
+      res.status(404).json({
+        Status: 404,
         Error: error.message,
       });
     });
 };
 
 exports.getLoansUnrepaid = (req, res, next) => {
-  pool.query("Select * from loan WHERE repaid='False' and status='Approved'")
+  pool.query("Select * from loan join users on userid=users.id  WHERE repaid='False' and status='Approved'")
     .then((data) => {
       if (data.rowCount > 0) {
         const fetchedData = data.rows;
@@ -59,15 +59,15 @@ exports.getLoansUnrepaid = (req, res, next) => {
     })
 
     .catch((error) => {
-      res.status(500).json({
-        Status: 500,
+      res.status(404).json({
+        Status: 404,
         Error: error.message,
       });
     });
 };
 
 exports.getAllLoans = (req, res, next) => {
-  pool.query('Select * from loan')
+  pool.query('Select * from loan join users on userid=users.id')
     .then((data) => {
       if (data.rowCount > 0) {
         const fetchedData = data.rows;
@@ -87,8 +87,8 @@ exports.getAllLoans = (req, res, next) => {
     })
 
     .catch((error) => {
-      res.status(500).json({
-        Status: 500,
+      res.status(404).json({
+        Status: 404,
         Error: error.message,
       });
     });
@@ -96,7 +96,7 @@ exports.getAllLoans = (req, res, next) => {
 
 exports.getSpecificLoan = (req, res, next) => {
   const loanId = req.params.loanId;
-  pool.query(`Select * from loan WHERE id=${loanId}`)
+  pool.query(`Select * from loan join users on userid=users.id  WHERE loan.id=${loanId}`)
     .then((data) => {
       if (data.rowCount > 0) {
         const fetchedData = data.rows;
@@ -107,17 +107,17 @@ exports.getSpecificLoan = (req, res, next) => {
           Success: 'Successfully Fetched Loan',
         });
       } else {
-        res.status(200).json({
+        res.status(404).json({
           Count: data.rowCount,
-          Status: 200,
-          Success: 'Loan with that Id does not exist',
+          Status: 404,
+          Success: '  No loan found with that id',
         });
       }
     })
 
     .catch((error) => {
-      res.status(500).json({
-        Status: 500,
+      res.status(404).json({
+        Status: 404,
         Error: error.message,
       });
     });

@@ -3,6 +3,6 @@
         "QUICK_CREDIT_DB": "postgresql://josekodek:sleuth@localhost:5432/quickcredit",
         "SECRET_KEY": "I have a very big secret",
         "JWT_KEY_USER": "Planet of apes",
-        "QUICK_CREDIT_DB_TEST": "postgresql://postgres:kevina@localhost:5432/quickcredittest"
+        "QUICK_CREDIT_DB_TEST": "postgres://postgres:slime@localhost:5432/quickcredittest"
     }
 }
