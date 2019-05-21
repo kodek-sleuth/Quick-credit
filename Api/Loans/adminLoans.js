@@ -39,7 +39,7 @@ adminLoans.get('/loans', jwtMiddleware, adminLoansController.getAllLoans);
 *         description: Successfully Fetched Loans
 */
 
-adminLoans.get('/loans/repaid?status=Approved&repaid=True', jwtMiddleware, adminLoansController.getLoansRepaid);
+adminLoans.get('/loans/repaid', jwtMiddleware, adminLoansController.getLoansRepaid);
 
 /**
 * @swagger
@@ -56,7 +56,7 @@ adminLoans.get('/loans/repaid?status=Approved&repaid=True', jwtMiddleware, admin
 *         description: Successfully Fetched Loans
 */
 
-adminLoans.get('/loans/unrepaid?status=Approved&repaid=False', jwtMiddleware, adminLoansController.getLoansUnrepaid);
+adminLoans.get('/loans/unrepaid', jwtMiddleware, adminLoansController.getLoansUnrepaid);
 
 /**
 * @swagger

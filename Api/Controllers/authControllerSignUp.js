@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable eqeqeq */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable prefer-destructuring */
@@ -16,7 +17,7 @@ import pg from 'pg';
 const Pool = pg.Pool;
 
 // Database Conectoion String
-const connectionString = process.env.QUICK_CREDIT_DB;
+const connectionString = process.env.QUICK_CREDIT_DB_TEST;
 
 const pool = new Pool({ connectionString });
 
@@ -56,28 +57,28 @@ exports.createUser = (req, res, next) => {
                     Address: req.body.Address,
                     Status: 'Pending',
                   },
-                  Success: 'User has successfully signed up',
+                  Message: 'User has successfully signed up',
                 });
               })
               .catch((error) => {
-                res.status(401).json({
-                  Status: '401',
-                  Error: error.message,
+                res.status(400).json({
+                  Status: '400',
+                  Message: error.message,
                 });
               });
           }
         });
       } else {
-        res.status(401).json({
-          Status: '401',
-          Error: 'Email is already taken',
+        res.status(409).json({
+          Status: '409',
+          Message: 'Email is already taken',
         });
       }
     })
     .catch((dataError) => {
-      res.status(401).json({
-        Status: '401',
-        Error: dataError.message,
+      res.status(400).json({
+        Status: '400',
+        Message: dataError.message,
       });
     });
 };

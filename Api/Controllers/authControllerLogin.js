@@ -64,7 +64,7 @@ exports.loginUser = (req, res, next) => {
                   Status: fetchedData[0].status,
                   isAdmin: fetchedData[0].isadmin,
                 },
-                Success: 'User has successfully logged in',
+                Message: 'User has successfully logged in',
               });
             }
           });
@@ -73,7 +73,7 @@ exports.loginUser = (req, res, next) => {
             if (error) {
               res.status(401).json({
                 Status: '401',
-                Error: 'Invalid Email or Password',
+                Message: 'Invalid Email or Password',
               });
             }
 
@@ -101,7 +101,7 @@ exports.loginUser = (req, res, next) => {
                   Token: token,
                   isAdmin: fetchedData[0].isadmin,
                 },
-                Success: 'Admin has successfully logged in',
+                Message: 'Admin has successfully logged in',
               });
             }
           });
@@ -109,14 +109,14 @@ exports.loginUser = (req, res, next) => {
       } else {
         res.status(401).json({
           Status: '401',
-          Error: 'Invalid Email or Password',
+          Message: 'Invalid Email or Password',
         });
       }
     })
     .catch((error) => {
       res.status(401).json({
         Status: 401,
-        Error: error.message,
+        Message: error.message,
       });
     });
 };
