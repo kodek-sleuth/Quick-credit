@@ -95,4 +95,19 @@ describe('User should repay for a loan', () => {
         done();
       });
   });
+
+  it('Should repay a loan', (done) => {
+    chai.request(app).post('/api/v1/user/loans/1/repayment')
+      .set('Authorization', `Bearer ${usersToken2[0].Token}`)
+      .end((error, res) => {
+        const loan = {
+          Id: res.body.Data.id
+        };
+        loanIds.push(loan);
+        expect(res.body.Status).to.equals(201);
+        expect(res.body).to.have.property('Message');
+        expect(res.body).to.have.property('Data');
+        done();
+      });
+  });
 });
