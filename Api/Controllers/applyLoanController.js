@@ -29,21 +29,21 @@ exports.applyLoan = (req, res, next) => {
               .then((loanData) => {
                 if (loanData.rowCount > 0) {
                   res.status(401).json({
-                    Status: '401',
-                    Error: 'Please repay old loan before applying for a new one',
+                    Status: 401,
+                    Message: 'Please repay old loan before applying for a new one',
                   });
                 } else {
                   if (req.body.Tenor > 12) {
                     res.status(401).json({
-                      Status: '401',
-                      Error: 'Tenor must be 12 or less',
+                      Status: 401,
+                      Message: 'Tenor must be 12 or less',
                     });
                   } else {
                   // Making sure that user does not apply for loan exceeding 20000000
                     if (req.body.Amount > 20000000) {
                       res.status(401).json({
-                        Status: '401',
-                        Error: 'User can only request for a loan less than 20,000,001',
+                        Status: 401,
+                        Message: 'User can only request for a loan less than 20,000,001',
                       });
                     } else {
                     // Creating current date
@@ -59,11 +59,11 @@ exports.applyLoan = (req, res, next) => {
                       model.pool.query(queryReqLoan, queryReqValues)
                         .then((result) => {
                           res.status(201).json({
-                            Status: '201',
+                            Status: 201,
                             Data: {
-                              Investee_Email: dataFetched[0].email,
-                              Investee_Firstname: dataFetched[0].firstname,
-                              Investee_Lastname: dataFetched[0].lastname,
+                              Email: dataFetched[0].email,
+                              Firstname: dataFetched[0].firstname,
+                              Lastname: dataFetched[0].lastname,
                               Amount: req.body.Amount,
                               Tenor: req.body.Tenor,
                               CreatedOn: currentDate,
@@ -71,14 +71,14 @@ exports.applyLoan = (req, res, next) => {
                               Interest: interest,
                               PaymentInstallment: paymentInstallment,
                             },
-                            Success: 'Successfully Applied For Loan',
+                            Message: 'Successfully Applied For Loan',
                           });
                         })
 
                         .catch((error) => {
                           res.status(400).json({
-                            Status: '400',
-                            Error: error.message,
+                            Status: 400,
+                            Message: error.message,
                           });
                         });
                     }
@@ -87,20 +87,20 @@ exports.applyLoan = (req, res, next) => {
               })
               .catch((err) => {
                 res.status(400).json({
-                  Status: '400',
-                  Error: err,
+                  Status: 400,
+                  Message: err,
                 });
               });
           } else {
             res.status(401).json({
-              Status: '401',
-              Error: 'User must be Verified To make this request',
+              Status: 401,
+              Message: 'User must be Verified To make this request',
             });
           }
         } else {
           res.status(400).json({
-            Status: '400',
-            Error: 'Please Signup to use resource',
+            Status: 400,
+            Message: 'Please Signup to use resource',
           });
         }
       })

@@ -22,7 +22,7 @@ exports.postTransaction = (req, res, next) => {
           // We then make the Update and then make another check to send back current data to the User
           model.pool.query(verifyLoanQuery)
             .then((feedback) => {
-              model.pool.query(`SELECT * FROM loan join users on loanid=users.id WHERE loan.id=${loanId} `)
+              model.pool.query(`SELECT * FROM loan join users on userid=users.id WHERE loan.id=${loanId}`)
                 .then((newData) => {
                   const fetchedData = newData.rows;
 
@@ -39,28 +39,34 @@ exports.postTransaction = (req, res, next) => {
                       Repaid: fetchedData[0].repaid,
                       Tenor: `${fetchedData[0].tenor} months`,
                     },
-                    Success: 'Successfully Placed Transaction for User',
+                    Message: 'Successfully Placed Transaction for User',
                   });
                 });
+            })
+            .catch((error) => {
+              res.status(400).json({
+                Status: 400,
+                Message: error.message,
+              });
             });
         } else {
           res.status(401).json({
-            Status: '401',
-            Error: 'Loan has to be Approved inorder to Post Transaction',
+            Status: 401,
+            Message: 'Loan has to be Approved inorder to Post Transaction',
           });
         }
       } else {
         res.status(404).json({
-          Status: '404',
-          Error: 'No loan found with that id',
+          Status: 404,
+          Message: 'No loan found with that id',
         });
       }
     })
 
     .catch((error) => {
       res.status(400).json({
-        Status: '400',
-        Error: error.message,
+        Status: 400,
+        Message: error.message,
       });
     });
 };

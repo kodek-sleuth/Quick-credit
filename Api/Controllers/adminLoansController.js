@@ -23,13 +23,6 @@ exports.getLoansRepaid = (req, res, next) => {
         Status: 200,
         Message: 'There are no repaid loans',
       });
-    })
-
-    .catch((error) => {
-      res.status(404).json({
-        Status: 404,
-        Error: error.message,
-      });
     });
 };
 
@@ -56,7 +49,7 @@ exports.getLoansUnrepaid = (req, res, next) => {
     .catch((error) => {
       res.status(404).json({
         Status: 404,
-        Error: error.message,
+        Message: error.message,
       });
     });
 };
@@ -83,7 +76,7 @@ exports.getAllLoans = (req, res, next) => {
     .catch((error) => {
       res.status(404).json({
         Status: 404,
-        Error: error.message,
+        Message: error.message,
       });
     });
 };

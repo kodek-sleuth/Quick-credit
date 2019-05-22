@@ -4,7 +4,7 @@
   "description": "Quick Credit is an online lending platform that provides short term soft loans to individuals. This",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --require @babel/register ./test/*js",
+    "test": "mocha --require @babel/register ./test",
     "start": "nodemon --exec babel-node App/server.js",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
