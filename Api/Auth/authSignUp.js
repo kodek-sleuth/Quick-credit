@@ -11,46 +11,41 @@ const authSignup = express.Router();
 *     tags:
 *       - Auth
 *     name: Signup
-*     summary: Signs up a User/Admin
+*     summary: Signup a User/Admin
 *     consumes:
-*       - multipart/form-data
+*       - application/json
 *     parameters:
-*       - name: Fullname
-*         in: formData
-*         type: string
-*         required: true
-*         description: Yahya Jalal.
-*       - name: Email
-*         in: formData
-*         type: string
-*         required: true
-*         description: yahya@gmail.com.
-*       - name: Password
-*         in: formData
-*         type: string
-*         required: true
-*         description: stealth.
-*       - name: isAdmin
-*         in: formData
-*         type: string
-*         required: true
-*         description: True or False.
-*       - name: Address
-*         in: formData
-*         type: string
-*         description: Kitende, Entebbe.
-*       - name: Image
-*         in: formData
-*         type: file
-*         required: true
-*         description: Upload an Image File.
+*       - name: body
+*         in: body
+*         properties:
+*           Email:
+*             type: string
+*             example: abel@gmail.com
+*           Firstname:
+*             type: string
+*             example: Kimbugwe
+*           Lastname:
+*             type: string
+*             example: Yasin
+*           Address:
+*             type: string
+*             example: 48kg 299 Kigali
+*           Password:
+*             type: string
+*             format: password
+*             example: stealth
+*         required:
+*           - Email
+*           - Firstname
+*           - Lastname
+*           - Address
+*           - Password
 *     responses:
-*       201:
-*         description: User Has Successfully Signed Up
+*       200:
+*         description: User has successfully signed up
 *       401:
 *         description: Invalid Email or Password
 */
-
 
 authSignup.post('/signup', userController.createUser);
 

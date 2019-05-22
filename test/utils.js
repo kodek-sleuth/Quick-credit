@@ -66,7 +66,7 @@ exports.userLoanApplyTenor = {
 
 exports.userLoanApplyMissing = {
   Amount: 19999
-}
+};
 
 exports.userSignupExist = {
   Email: 'nof@la.com',

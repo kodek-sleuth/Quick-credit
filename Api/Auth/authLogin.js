@@ -25,16 +25,12 @@ const authLogin = express.Router();
 *             type: string
 *             format: password
 *             example: stealth
-*           isAdmin:
-*             type: string
-*             example: "False"
 *         required:
 *           - Email
 *           - Password
-*           - isAdmin
 *     responses:
 *       200:
-*         description: User Has Successfully Logged In
+*         description: User has successfully logged in
 *       401:
 *         description: Invalid Email or Password
 */
