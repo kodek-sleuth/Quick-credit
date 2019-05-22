@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-shorthand */
@@ -41,14 +42,14 @@ exports.getLoansUnrepaid = (req, res, next) => {
           Count: data.rowCount,
           Status: 200,
           Data: fetchedData,
-          Message: 'Successfully Fetched Loans',
+          Message: 'Successfully Fetched Loans'
         });
       }
 
       return res.status(200).json({
         Count: data.rowCount,
         Status: 200,
-        Message: 'There are no unrepaid Loans',
+        Message: 'There are no unrepaid Loans'
       });
     })
 
@@ -69,13 +70,13 @@ exports.getAllLoans = (req, res, next) => {
           Count: data.rowCount,
           Status: 200,
           Data: fetchedData,
-          Success: 'Successfully Fetched Loans',
+          Message: 'Successfully Fetched Loans'
         });
       }
       return res.status(200).json({
         Count: data.rowCount,
         Status: 200,
-        Success: 'There are no Loans found',
+        Message: 'There are no Loans found'
       });
     })
 
@@ -97,13 +98,13 @@ exports.getSpecificLoan = (req, res, next) => {
           Count: data.rowCount,
           Status: 200,
           Data: fetchedData,
-          Message: 'Successfully Fetched Loan',
+          Message: 'Successfully Fetched Loan'
         });
       } else {
         res.status(404).json({
           Count: data.rowCount,
           Status: 404,
-          Message: 'No loan found with that id',
+          Message: 'No loan found with that id'
         });
       }
     })

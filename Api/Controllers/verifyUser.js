@@ -8,7 +8,6 @@ import model from './databaseController';
 
 exports.verifyUser = (req, res, next) => {
   const Email = req.params.Email;
-
   const verifyUserQuery = `Update users SET status='Verified' where email='${Email}'`;
 
   model.pool.query(`Select * from users where email='${Email}'`)
@@ -29,7 +28,7 @@ exports.verifyUser = (req, res, next) => {
                       Status: dataFound[0].status,
                       Address: dataFound[0].address,
                     },
-                    Success: 'Successfully Verified User',
+                    Message: 'Successfully Verified User',
                   });
                 }
               });
@@ -37,14 +36,14 @@ exports.verifyUser = (req, res, next) => {
       } else {
         res.status(404).json({
           Status: '404',
-          Error: 'User not found',
+          Message: 'User not found',
         });
       }
     })
     .catch((err) => {
       res.status(404).json({
-        Status: '404',
-        Error: 'User not found',
+        Status: 404,
+        Message: 'User not found',
       });
     });
 };

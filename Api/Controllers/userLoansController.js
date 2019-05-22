@@ -18,12 +18,12 @@ exports.getLoanRepayments = (req, res, next) => {
           Count: data.rowCount,
           Status: 200,
           Data: fetchedData3,
-          Success: 'Successfully fetched Repayments',
+          Message: 'Successfully fetched Repayments',
         });
       } else {
         res.status(404).json({
-          Status: '404',
-          Error: 'No loan found with that id',
+          Status: 404,
+          Message: 'No loan found with that id',
         });
       }
     })
@@ -31,7 +31,7 @@ exports.getLoanRepayments = (req, res, next) => {
     .catch((error) => {
       res.status(404).json({
         Status: 404,
-        Error: error.message,
+        Message: error.message,
       });
     });
 };

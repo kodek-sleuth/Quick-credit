@@ -51,11 +51,7 @@ exports.repayLoan = (req, res, next) => {
                     }
 
                     if (loanData[0].balance == 0.00) {
-                      model.pool.query(`UPDATE loan set repaid='True' where id=${loanData[0].id}`)
-                        .then((updateResult) => {
-                        })
-                        .catch((error) => {
-                        });
+                      model.pool.query(`UPDATE loan set repaid='True' where id=${loanData[0].id}`);
                     } else {
                       // Now loan is unrepaid and user exists we now accept and track the repayment
                       const today = new Date();
@@ -83,7 +79,7 @@ exports.repayLoan = (req, res, next) => {
                               })
                               .catch((errror) => {
                                 res.status(401).json({
-                                  Status: '401',
+                                  Status: 401,
                                   Error: errror.message,
                                 });
                               });
@@ -100,7 +96,7 @@ exports.repayLoan = (req, res, next) => {
 
                                       if (updatedData[0].balance == 0.00) {
                                         res.status(201).json({
-                                          Status: '201',
+                                          Status: 201,
                                           Data: {
                                             Email: updatedData[0].investee_email,
                                             Firstname: updatedData[0].investee_firstname,
@@ -111,11 +107,11 @@ exports.repayLoan = (req, res, next) => {
                                             Repaid: 'True',
                                             Installment: updatedData[0].paymentinstallment,
                                           },
-                                          Success: 'Successfully Placed Repayment',
+                                          Message: 'Successfully Placed Repayment',
                                         });
                                       } else {
                                         res.status(201).json({
-                                          Status: '201',
+                                          Status: 201,
                                           Data: {
                                             Email: updatedData[0].investee_email,
                                             Firstname: updatedData[0].investee_firstname,
@@ -126,7 +122,7 @@ exports.repayLoan = (req, res, next) => {
                                             Repaid: updatedData[0].repaid,
                                             Installment: updatedData[0].paymentinstallment,
                                           },
-                                          Success: 'Successfully Placed Repayment',
+                                          Message: 'Successfully Placed Repayment',
                                         });
                                       }
                                     }
@@ -135,7 +131,7 @@ exports.repayLoan = (req, res, next) => {
                               .catch((errr) => {
                                 res.status(401).json({
                                   Status: '401',
-                                  Error: errr.message,
+                                  Message: errr.message,
                                 });
                               });
                           }
@@ -143,16 +139,16 @@ exports.repayLoan = (req, res, next) => {
 
                         .catch((error) => {
                           res.status(401).json({
-                            Status: '401',
-                            Error: error.message,
+                            Status: 401,
+                            Message: error.message,
                           });
                         });
                     }
                   }
                 } else {
                   res.status(400).json({
-                    Status: '401',
-                    Error: 'Loan has To be verified inorder to make repayment',
+                    Status: 401,
+                    Message: 'Loan has To be verified inorder to make repayment',
                   });
                 }
               }
@@ -160,22 +156,22 @@ exports.repayLoan = (req, res, next) => {
 
             .catch((err) => {
               res.status(400).json({
-                Status: '401',
-                Error: err.message,
+                Status: 401,
+                Message: err.message,
               });
             });
         } else {
           res.status(401).json({
-            Status: '401',
-            Error: 'Signup to access resource',
+            Status: 401,
+            Message: 'Signup to access resource',
           });
         }
       })
 
       .catch((err) => {
         res.status(400).json({
-          Status: '401',
-          Error: 'Failed to process request, Try again later',
+          Status: 401,
+          Message: 'Failed to process request, Try again later',
         });
       });
   } catch (error) {

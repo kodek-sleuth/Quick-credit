@@ -24,7 +24,6 @@ exports.applyLoan = (req, res, next) => {
       .then((data) => {
         if (data.rowCount > 0) {
           const dataFetched = data.rows;
-
           if (dataFetched[0].status == 'Verified') {
             model.pool.query(`select * from loan join users on userid=${userId} where repaid='False'`)
               .then((loanData) => {

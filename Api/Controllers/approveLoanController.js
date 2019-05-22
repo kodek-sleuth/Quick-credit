@@ -32,27 +32,27 @@ exports.approveLoan = (req, res, next) => {
                     Repaid: dataFound[0].repaid,
                     Tenor: `${dataFound[0].tenor} months`,
                   },
-                  Success: 'Successfully Approved Loan',
+                  Message: 'Successfully Approved Loan',
                 });
               });
           })
           .catch((error) => {
             res.status(404).json({
-              Status: '404',
-              Error: error.message,
+              Status: 404,
+              Message: error.message,
             });
           });
       } else {
         res.status(404).json({
-          Status: '404',
-          Error: 'No loan found with that id',
+          Status: 404,
+          Message: 'No loan found with that id',
         });
       }
     })
     .catch((err) => {
       res.status(404).json({
-        Status: '404',
-        Error: err.message,
+        Status: 404,
+        Message: err.message,
       });
     });
 };

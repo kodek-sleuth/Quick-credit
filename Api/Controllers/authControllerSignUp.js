@@ -35,7 +35,7 @@ exports.createUser = (req, res, next) => {
             model.pool.query(dataBaseQueryUser, valuesToDatabaseUser)
               .then((result) => {
                 res.status(201).json({
-                  Status: '201',
+                  Status: 201,
                   Data: {
                     Firstname: req.body.Firstname,
                     Lastname: req.body.Lastname,
@@ -49,8 +49,8 @@ exports.createUser = (req, res, next) => {
                 });
               })
               .catch((error) => {
-                res.status(400).json({
-                  Status: 400,
+                res.status(409).json({
+                  Status: 409,
                   Message: error.message,
                 });
               });

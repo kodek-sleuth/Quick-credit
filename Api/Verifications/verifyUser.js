@@ -1,7 +1,7 @@
 
 import express from 'express';
 
-import verifyUserController from '../Controllers/verifyFeature';
+import verifyUserController from '../Controllers/verifyUser';
 
 import jwtMiddleware from '../Settings/checkAuthAdmin';
 

@@ -10,6 +10,8 @@ import jwt from 'jsonwebtoken';
 
 import model from './databaseController';
 
+import config from '../../config';
+
 // A Login is just a database check to make sure that req.body matches  all values in database for that user
 exports.loginUser = (req, res, next) => {
   const checkQueryUser = `Select * from users WHERE email='${req.body.Email}'`;
@@ -22,7 +24,7 @@ exports.loginUser = (req, res, next) => {
           bcrypt.compare(req.body.Password, fetchedData[0].password, (error, success) => {
             if (error) {
               res.status(401).json({
-                Status: '401',
+                Status: 401,
                 Error: 'Invalid Email or Password',
               });
             }
@@ -37,9 +39,9 @@ exports.loginUser = (req, res, next) => {
                 isAdmin: 'False'
               },
 
-              process.env.SECRET_KEY,
+              config.secret,
               {
-                expiresIn: '2h',
+                expiresIn: '24h',
               });
 
               res.status(200).json({
@@ -76,9 +78,9 @@ exports.loginUser = (req, res, next) => {
                 isAdmin: 'False'
               },
 
-              process.env.SECRET_KEY,
+              config.secret,
               {
-                expiresIn: '2h',
+                expiresIn: '24h',
               });
 
               res.status(200).json({

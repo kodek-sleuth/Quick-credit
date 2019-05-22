@@ -1,6 +1,38 @@
 /* eslint-disable comma-dangle */
+
+import random from 'random-email';
+
 exports.userSignup = {
-  Email: 'melissa2@gmail.com',
+  Email: random(),
+  Firstname: 'Tally',
+  Lastname: 'Jay',
+  isAdmin: 'True',
+  Password: 'stealth',
+  Address: 'Kampala'
+};
+
+exports.userLogin = {
+  Email: 'nof@la.com',
+  Password: 'stealth'
+};
+
+exports.userLoginUser = {
+  Email: 'nof@la.com',
+  Password: 'stealth'
+};
+
+exports.userLoginAdmin = {
+  Email: 'melissa289@gmail.com',
+  Password: 'stealth'
+};
+
+exports.userLoginFake = {
+  Email: 'nofjjjjjjj@la.com',
+  Password: 'stealth'
+};
+
+exports.userSignupExist = {
+  Email: 'nof@la.com',
   Firstname: 'Tally',
   Lastname: 'Jay',
   isAdmin: 'False',
@@ -8,13 +40,12 @@ exports.userSignup = {
   Address: 'Kampala'
 };
 
-exports.userLogin = {
-  Email: 'kimathi@gmail.com',
-  Password: 'stealth'
+exports.adminToken = {
+  Token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUxLCJFbWFpbCI6Im1lbGlzc2EyODlAZ21haWwuY29tIiwiaXNBZG1pbiI6IkZhbHNlIiwiaWF0IjoxNTU4NDk0NTYxLCJleHAiOjE1NTg1ODA5NjF9.Zhwi1-hzHkkRwOTAEDb5oYBnY_qc_XdLSLIOw1Gce18'
 };
 
-exports.adminToken = {
-  Token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiRW1haWwiOiJraW1hdGhpQGdtYWlsLmNvbSIsImlzQWRtaW4iOiJGYWxzZSIsImlhdCI6MTU1ODQzMDI1OSwiZXhwIjoxNTU4NDM3NDU5fQ.Jb0EJBoGDthBzPdbNrpyNUShdHFTkiJNRXYvtQJyyps'
+exports.userToken = {
+  Token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMxLCJFbWFpbCI6Im5vZkBsYS5ibmwiLCJpc0FkbWluIjoiRmFsc2UiLCJpYXQiOjE1NTg1MDcwOTgsImV4cCI6MTU1ODU5MzQ5OH0.gIoTfEpzhrEzJJXbGkBUl2S32h-vyV5trpMfti0TR3Q'
 };
 
 exports.userSignupNumbers = {
@@ -23,8 +54,7 @@ exports.userSignupNumbers = {
 };
 
 exports.userSignupFields = {
-  Email: 'brian@gmail.com',
-  Firstname: 3904,
+  Email: 'melissa8822@gmail.com',
   Lastname: 'Jay',
   isAdmin: 'False',
   Password: 'stealth',

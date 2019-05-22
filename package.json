@@ -11,6 +11,9 @@
   "nyc": {
     "exclude": "App/mainApp.js, Api/Settings/*.js"
   },
+  "nodemonConfig": {
+    "ignore": ["test/*"]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kodek-sleuth/Quick-credit.git"
@@ -38,6 +41,7 @@
     "nodemailer": "^6.1.1",
     "nodemon": "^1.19.0",
     "pg": "^7.10.0",
+    "random-email": "^1.0.3",
     "swagger-jsdoc": "^3.2.9",
     "swagger-ui-express": "^4.0.2"
   },
