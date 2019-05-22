@@ -20,22 +20,14 @@ const payLoan = express.Router();
 *       - name: body
 *         in: body
 *         properties:
-*           FullName:
-*             type: string
-*             example: Mugerwa Joseph
-*           Email:
-*             type: string
-*             example: mugerwa@gmail.com
 *           Amount:
 *             type: integer
 *             example: 500000
 *         required:
-*           - FullName
-*           - Email
 *           - Amount
 *     responses:
 *       201:
-*         description: Successfully Placed Repayment
+*         description: Successfully placed repayment
 *       401:
 *         description: Failed to process request, Try again later
 */
