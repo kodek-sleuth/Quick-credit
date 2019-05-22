@@ -47,8 +47,8 @@ exports.getLoansUnrepaid = (req, res, next) => {
     })
 
     .catch((error) => {
-      res.status(404).json({
-        Status: 404,
+      res.status(400).json({
+        Status: 400,
         Message: error.message,
       });
     });
@@ -74,8 +74,8 @@ exports.getAllLoans = (req, res, next) => {
     })
 
     .catch((error) => {
-      res.status(404).json({
-        Status: 404,
+      res.status(400).json({
+        Status: 400,
         Message: error.message,
       });
     });
@@ -103,8 +103,8 @@ exports.getSpecificLoan = (req, res, next) => {
     })
 
     .catch((error) => {
-      res.status(404).json({
-        Status: 404,
+      res.status(400).json({
+        Status: 400,
         Error: error.message,
       });
     });

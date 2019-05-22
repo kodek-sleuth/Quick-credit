@@ -82,7 +82,7 @@ describe('User should repay for a loan', () => {
   });
 
   it('User should not apply for loan without authentication first', (done) => {
-    chai.request(app).post('/api/v1/user/loans/2/repayment')
+    chai.request(app).post('/api/v1/user/loans/repayment')
       .send(utils.userLoanApply)
       .end((error, res) => {
         expect(res.body).to.have.property('Message');

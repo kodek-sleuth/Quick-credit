@@ -30,6 +30,9 @@ const authSignup = express.Router();
 *           Address:
 *             type: string
 *             example: 48kg 299 Kigali
+*           isAdmin:
+*             type: string
+*             example: 'True'
 *           Password:
 *             type: string
 *             format: password

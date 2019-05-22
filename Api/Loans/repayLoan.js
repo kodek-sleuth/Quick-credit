@@ -32,6 +32,6 @@ const payLoan = express.Router();
 *         description: Failed to process request, Try again later
 */
 
-payLoan.post('/loans/:loanId/repayment', jwtMiddleware, payLoanController.repayLoan);
+payLoan.post('/loans/repayment', jwtMiddleware, payLoanController.repayLoan);
 
 module.exports = payLoan;
