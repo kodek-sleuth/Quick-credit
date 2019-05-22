@@ -35,6 +35,10 @@ exports.userLogin = {
   Password: 'stealth'
 };
 
+exports.repay = {
+  Amount: 21000
+};
+
 exports.userLoginUser = {
   Email: 'nof@la.com',
   Password: 'stealth'
