@@ -8,8 +8,10 @@ const payLoan = express.Router();
 
 /**
 * @swagger
-* /api/v1/user/loans/repay:
+* /api/v1/user/loans/{:loanId}/repayment:
 *   post:
+*     security:
+*        - bearerAuth: []
 *     tags:
 *       - User
 *     name: Repay a Loan
@@ -17,7 +19,12 @@ const payLoan = express.Router();
 *     consumes:
 *       - application/json
 *     parameters:
-*       - name: body
+*       - name: ":loanId"
+*         in: path
+*         description: Id of Loan
+*         required: true
+*         type: integer
+*       - name: Amount
 *         in: body
 *         properties:
 *           Amount:

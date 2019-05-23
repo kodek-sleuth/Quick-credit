@@ -19,12 +19,12 @@ exports.repayLoan = (req, res, next) => {
     const decode = jwt.verify(token, config.secret);
     const emailId = decode.Email;
     const userId = decode.id;
-    // We first want to make sure that user exists in the Database
+  
     model.pool.query(`SELECT * FROM users WHERE email='${emailId}'`)
       .then((data) => {
         if (data.rowCount > 0) {
           // Since a repay will always be to that one unrepaid loan we may/many not user an id because a user will only have a loan after paying a new one
-          model.pool.query(`select loan.status, loan.paymentinstallment, loan.balance, loan.id, users.firstname, users.email, users.lastname from loan join users on userid=${userId} where repaid='False' and loan.id=${loanId}`)
+          model.pool.query(`select loan.status, loan.paymentinstallment, loan.balance, loan.id, users.firstname, users.email, users.lastname from loan join users on userid=${userId} where repaid='False'`)
             .then((result) => {
               if (result.rowCount > 0) {
                 const [loanData] = result.rows;
@@ -97,9 +97,9 @@ exports.repayLoan = (req, res, next) => {
                                         res.status(201).json({
                                           Status: 201,
                                           Data: {
-                                            Email: updatedData.investee_email,
-                                            Firstname: updatedData.investee_firstname,
-                                            Lastname: updatedData.investee_lastname,
+                                            Email: updatedData.email,
+                                            Firstname: updatedData.firstname,
+                                            Lastname: updatedData.lastname,
                                             Amount: updatedData.amount,
                                             Paid: req.body.Amount,
                                             Balance: updatedData.balance,
