@@ -72,7 +72,7 @@ describe('App Should login a user', () => {
 
   it('Should login an admin and return  admin message', (done) => {
     chai.request(app).post('/api/v1/auth/login')
-      .send(utils.userLoginAdmin)
+      .send(usersArray[0])
       .end((error, res) => {
         expect(res.body).to.have.property('Status');
         expect(res.body).to.have.property('Message');
