@@ -7,7 +7,7 @@ exports.userSignup = {
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -17,7 +17,7 @@ exports.userSignupLoginUser = {
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -27,7 +27,7 @@ exports.userSignupVerify = {
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: true,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -36,7 +36,7 @@ exports.userSignupVerifyUser = {
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -46,7 +46,7 @@ exports.userSignupLoginAdmin = {
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -55,7 +55,7 @@ exports.userSignupLoanAdmin = {
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: true,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -64,7 +64,7 @@ exports.userSignupLoanUser = {
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -73,7 +73,7 @@ exports.adminCredLoan = {
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: true,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -82,7 +82,7 @@ exports.userHistory = {
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -91,7 +91,7 @@ exports.userSignupLoan = {
   Firstname: 'Tally',
   Lastname: 'Jay',
   isAdmin: false,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -100,7 +100,7 @@ exports.userSignupName = {
   Firstname: 'T',
   Lastname: 'Jay',
   isAdmin: 'False',
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -109,14 +109,14 @@ exports.userSignupRepay = {
   Firstname: 'Tally',
   Lastname: 'Jay',
   isAdmin: 'False',
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
 
 exports.userLogin = {
   Email: 'abel@gmail.com',
-  Password: 'stealth'
+  Password: 'Stealth12'
 };
 
 exports.repay = {
@@ -125,22 +125,22 @@ exports.repay = {
 
 exports.userLoginUser = {
   Email: 'abel12@gmail.com',
-  Password: 'stealth'
+  Password: 'Stealth12'
 };
 
 exports.userLoginAdmin = {
   Email: 'abel@gmail.com',
-  Password: 'stealth'
+  Password: 'Stealth12'
 };
 
 exports.userLoginFake = {
   Email: 'nofjjjjjjj@la.com',
-  Password: 'stealth'
+  Password: 'Stealth12'
 };
 
 exports.userLoginFakeEmail = {
   Email: 'nofjjjjjjjla.com',
-  Password: 'stealth'
+  Password: 'Stealth12'
 };
 
 exports.userLoanApply = {
@@ -162,7 +162,7 @@ exports.userSignupExist = {
   Firstname: 'Tally',
   Lastname: 'Jay',
   isAdmin: false,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -171,7 +171,7 @@ exports.userSignupEmail = {
   Firstname: 'Tally',
   Lastname: 'Jay',
   isAdmin: false,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -180,7 +180,7 @@ exports.userSignupNumbers = {
   Firstname: 'Tally21',
   Lastname: 'Jay',
   isAdmin: false,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -188,7 +188,7 @@ exports.userSignupFields = {
   Firstname: 'Tally21',
   Lastname: 'Jay',
   isAdmin: false,
-  Password: 'stealth',
+  Password: 'Stealth12',
   Address: 'Kampala'
 };
 
@@ -210,12 +210,12 @@ exports.TenorToken = {
 
 exports.userSignupNumbers = {
   Email: '333@gmail.com',
-  Password: 'stealth'
+  Password: 'Stealth12'
 };
 
 exports.userSignupFields = {
   Email: 'melissa8822@gmail.com',
   Lastname: 'Jay',
   isAdmin: 'False',
-  Password: 'stealth',
+  Password: 'Stealth12',
 };
