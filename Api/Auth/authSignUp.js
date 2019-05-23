@@ -31,8 +31,8 @@ const authSignup = express.Router();
 *             type: string
 *             example: 48kg 299 Kigali
 *           isAdmin:
-*             type: string
-*             example: 'True'
+*             type: boolean
+*             example: true
 *           Password:
 *             type: string
 *             format: password

@@ -14,20 +14,19 @@ import bcrypt from 'bcrypt';
 
 import jwt from 'jsonwebtoken';
 
-import config from '../../config';
-
 import model from './databaseController';
 
 import validators from './validations';
 
+require('dotenv').config();
+
 exports.createUser = (req, res, next) => {
   const validate = validators.validateSignup(req.body);
-
   if (validate.error) {
     return res.status(400).json(
       {
-        status: 400,
-        validate: validate.error.details[0].context.label
+        Status: 400,
+        Message: validate.error.details[0].context.label
       });
   }
 
@@ -45,7 +44,7 @@ exports.createUser = (req, res, next) => {
             const token = jwt.sign({
               Email: req.body.Email,
               isAdmin: req.body.isAdmin,
-            }, config.secret, { expiresIn: '5hr' });
+            }, process.env.SECRET_KEY, { expiresIn: '5hr' });
 
             const valuesToDatabaseUser = [req.body.Firstname, req.body.Lastname, req.body.Email, hash, req.body.Address, req.body.isAdmin];
             model.pool.query(dataBaseQueryUser, valuesToDatabaseUser)

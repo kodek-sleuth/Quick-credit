@@ -10,9 +10,9 @@ import jwt from 'jsonwebtoken';
 
 import model from './databaseController';
 
-import config from '../../config';
-
 import validators from './validations';
+
+require('dotenv').config();
 
 // A Login is just a database check to make sure that req.body matches  all values in database for that user
 exports.loginUser = (req, res, next) => {
@@ -21,8 +21,8 @@ exports.loginUser = (req, res, next) => {
   if (validate.error) {
     return res.status(400).json(
       {
-        status: 400,
-        validate: validate.error.details[0].context.label
+        Status: 400,
+        Message: validate.error.details[0].context.label
       }
     );
   }
@@ -32,7 +32,7 @@ exports.loginUser = (req, res, next) => {
       const [fetchedData] = data.rows;
 
       if (data.rowCount > 0) {
-        if (fetchedData.isadmin == 'False') {
+        if (fetchedData.isadmin == false) {
           bcrypt.compare(req.body.Password, fetchedData.password, (error, success) => {
             if (error) {
               res.status(401).json({
@@ -48,7 +48,7 @@ exports.loginUser = (req, res, next) => {
                 isAdmin: 'False'
               },
 
-              config.secret,
+              process.env.SECRET_KEY,
               {
                 expiresIn: '24h',
               });
@@ -87,7 +87,7 @@ exports.loginUser = (req, res, next) => {
                 isAdmin: 'False'
               },
 
-              config.secret,
+              process.env.SECRET_KEY,
               {
                 expiresIn: '24h',
               });

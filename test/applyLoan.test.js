@@ -21,6 +21,16 @@ const usersArray = [];
 const usersToken = [];
 
 describe('User should apply for a loan', () => {
+  it('User should not apply for loan without authentication first', (done) => {
+    chai.request(app).post('/api/v1/user/loans/apply')
+      .send(utils.userLoanApply)
+      .end((error, res) => {
+        expect(res.body).to.have.property('Message');
+        expect(res.body.Message).to.equals('User Authorisation required to access resource');
+        done();
+      });
+  });
+
   it('Should signup a user if he does not exist in database', (done) => {
     // Incase of an email that exists in database
     chai.request(app).post('/api/v1/auth/signup')
@@ -68,6 +78,17 @@ describe('User should apply for a loan', () => {
       });
   });
 
+  it('User should not apply for loan with Tenor greater than 12 months', (done) => {
+    chai.request(app).post('/api/v1/user/loans/apply')
+      .set('Authorization', `Bearer ${utils.TenorToken.Token}`)
+      .send(utils.userLoanApplyTenor)
+      .end((error, res) => {
+        expect(res.body.Status).to.equals(403);
+        expect(res.body).to.have.property('Message');
+        done();
+      });
+  });
+
   it('Should apply for a loan given right credentials', (done) => {
     chai.request(app).post('/api/v1/user/loans/apply')
       .set('Authorization', `Bearer ${usersToken[0].Token}`)
@@ -80,55 +101,23 @@ describe('User should apply for a loan', () => {
       });
   });
 
-  it('User should not apply for new loan with an unrepaid loan', (done) => {
-    chai.request(app).post('/api/v1/user/loans/apply')
-      .set('Authorization', `Bearer ${utils.userToken.Token}`)
-      .send(utils.userLoanApply)
-      .end((error, res) => {
-        expect(res.body.Status).to.equals(401);
-        expect(res.body).to.have.property('Message');
-        done();
-      });
-  });
-
-  it('User should not apply for loan without authentication first', (done) => {
-    chai.request(app).post('/api/v1/user/loans/apply')
-      .send(utils.userLoanApply)
-      .end((error, res) => {
-        expect(res.body).to.have.property('Message');
-        expect(res.body.Message).to.equals('User Authorisation required to access resource');
-        done();
-      });
-  });
+  // it('User should not apply for new loan with an unrepaid loan', (done) => {
+  //   chai.request(app).post('/api/v1/user/loans/apply')
+  //     .set('Authorization', `Bearer ${utils.userToken.Token}`)
+  //     .send(utils.userLoanApply)
+  //     .end((error, res) => {
+  //       expect(res.body.Status).to.equals(403);
+  //       expect(res.body).to.have.property('Message');
+  //       done();
+  //     });
+  // });
 
   it('User should not apply for loan without being verified first', (done) => {
     chai.request(app).post('/api/v1/user/loans/apply')
       .set('Authorization', `Bearer ${utils.userTokenUnverified.Token}`)
       .send(utils.userLoanApply)
       .end((error, res) => {
-        expect(res.body.Status).to.equals(401);
-        expect(res.body).to.have.property('Message');
-        done();
-      });
-  });
-
-  it('User should not apply for loan without all fields', (done) => {
-    chai.request(app).post('/api/v1/user/loans/apply')
-      .set('Authorization', `Bearer ${utils.userToken.Token}`)
-      .send(utils.userLoanApplyMissing)
-      .end((error, res) => {
-        expect(res.body.Status).to.equals(401);
-        expect(res.body).to.have.property('Message');
-        done();
-      });
-  });
-
-  it('User should not apply for loan with Tenor greater than 12 months', (done) => {
-    chai.request(app).post('/api/v1/user/loans/apply')
-      .set('Authorization', `Bearer ${utils.userToken.Token}`)
-      .send(utils.userLoanApplyTenor)
-      .end((error, res) => {
-        expect(res.body.Status).to.equals(401);
+        expect(res.body.Status).to.equals(403);
         expect(res.body).to.have.property('Message');
         done();
       });

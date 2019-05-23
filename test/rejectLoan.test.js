@@ -28,7 +28,7 @@ describe('Admin should verify a user', () => {
   });
 
   it('Should not reject a specific loan given wrong id', (done) => {
-    chai.request(app).patch('/api/v1/admin/loans/3/reject')
+    chai.request(app).patch('/api/v1/admin/loans/33333/reject')
       .set('Authorization', `Bearer ${utils.adminToken.Token}`)
       .end((error, res) => {
         expect(res.body.Status).to.equals(404);

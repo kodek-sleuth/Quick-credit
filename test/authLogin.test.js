@@ -7,8 +7,6 @@ import chai from 'chai';
 
 import chaiHttp from 'chai-http';
 
-import model from '../Api/Controllers/databaseController';
-
 import utils from './utils';
 
 const expect = chai.expect;
@@ -45,7 +43,7 @@ describe('App Should login a user', () => {
       .end((error, res) => {
         expect(res.body).to.have.property('Status');
         expect(res.body).to.have.property('Message');
-        expect(res.body.Status).to.equal('401');
+        expect(res.body.Status).to.equal(401);
         expect(res.body.Message).to.equals('Invalid Email or Password');
         done();
       });
@@ -71,6 +69,17 @@ describe('App Should login a user', () => {
         expect(res.body).to.have.property('Message');
         expect(res.body.Status).to.equal(200);
         expect(res.body.Message).to.equals('User has successfully logged in');
+        done();
+      });
+  });
+
+  it('Should not login with invalid email address', (done) => {
+    chai.request(app).post('/api/v1/auth/login')
+      .send(utils.userLoginFakeEmail)
+      .end((error, res) => {
+        expect(res.body).to.have.property('Status');
+        expect(res.body).to.have.property('Message');
+        expect(res.body.Status).to.equal(400);
         done();
       });
   });

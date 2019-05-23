@@ -31,7 +31,7 @@ exports.validateLogin = (object) => {
 
 exports.loanPayment = (object) => {
   const schema = joi.object().keys({
-    Amount: joi.number().label('Please enter a valid email address')
+    Amount: joi.number().label('Please enter amount in numbers')
   });
 
   return joi.validate(object, schema);

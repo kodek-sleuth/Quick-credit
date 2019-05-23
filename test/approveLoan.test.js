@@ -16,6 +16,16 @@ chai.use(chaiHttp);
 const app = require('../App/server').server;
 
 describe('Admin should approve a user', () => {
+  it('Admin should not approve without fast logging in', (done) => {
+    chai.request(app).patch('/api/v1/admin/loans/1/approve')
+      .send(utils.userLoanApply)
+      .end((error, res) => {
+        expect(res.body).to.have.property('Message');
+        expect(res.body.Message).to.equals('Admin Authorisation required to access resource');
+        done();
+      });
+  });
+
   it('Should approve a loan given right id', (done) => {
     chai.request(app).patch('/api/v1/admin/loans/1/approve')
       .set('Authorization', `Bearer ${utils.adminToken.Token}`)
@@ -28,7 +38,7 @@ describe('Admin should approve a user', () => {
   });
 
   it('Should not approve a specific loan given wrong id', (done) => {
-    chai.request(app).patch('/api/v1/admin/loans/3/approve')
+    chai.request(app).patch('/api/v1/admin/loans/02023/approve')
       .set('Authorization', `Bearer ${utils.adminToken.Token}`)
       .end((error, res) => {
         expect(res.body.Status).to.equals(404);

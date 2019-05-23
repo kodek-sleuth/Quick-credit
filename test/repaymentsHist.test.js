@@ -28,7 +28,7 @@ describe('User should get loan repayment history', () => {
   });
 
   it('Should not fetch loan repayment history given wrong id', (done) => {
-    chai.request(app).get('/api/v1/user/loans/3/repayments')
+    chai.request(app).get('/api/v1/user/loans/3211/repayments')
       .set('Authorization', `Bearer ${utils.userToken.Token}`)
       .end((error, res) => {
         expect(res.body.Status).to.equals(404);

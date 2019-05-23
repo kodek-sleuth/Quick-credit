@@ -5,8 +5,8 @@ import random from 'random-email';
 exports.userSignup = {
   Email: random(),
   Firstname: 'Tally',
-  Lastname: 'Jay',
-  isAdmin: 'True',
+  Lastname: 'Jaya',
+  isAdmin: false,
   Password: 'stealth',
   Address: 'Kampala'
 };
@@ -14,6 +14,15 @@ exports.userSignup = {
 exports.userSignupLoan = {
   Email: random(),
   Firstname: 'Tally',
+  Lastname: 'Jay',
+  isAdmin: false,
+  Password: 'stealth',
+  Address: 'Kampala'
+};
+
+exports.userSignupName = {
+  Email: random(),
+  Firstname: 'T',
   Lastname: 'Jay',
   isAdmin: 'False',
   Password: 'stealth',
@@ -31,7 +40,7 @@ exports.userSignupRepay = {
 
 
 exports.userLogin = {
-  Email: 'nof@la.com',
+  Email: 'abel@gmail.com',
   Password: 'stealth'
 };
 
@@ -40,17 +49,22 @@ exports.repay = {
 };
 
 exports.userLoginUser = {
-  Email: 'nof@la.com',
+  Email: 'abel12@gmail.com',
   Password: 'stealth'
 };
 
 exports.userLoginAdmin = {
-  Email: 'melissa289@gmail.com',
+  Email: 'abel@gmail.com',
   Password: 'stealth'
 };
 
 exports.userLoginFake = {
   Email: 'nofjjjjjjj@la.com',
+  Password: 'stealth'
+};
+
+exports.userLoginFakeEmail = {
+  Email: 'nofjjjjjjjla.com',
   Password: 'stealth'
 };
 
@@ -69,16 +83,42 @@ exports.userLoanApplyMissing = {
 };
 
 exports.userSignupExist = {
-  Email: 'nof@la.com',
+  Email: 'abel@gmail.com',
   Firstname: 'Tally',
   Lastname: 'Jay',
-  isAdmin: 'False',
+  isAdmin: false,
+  Password: 'stealth',
+  Address: 'Kampala'
+};
+
+exports.userSignupEmail = {
+  Email: 'abelgmail.com',
+  Firstname: 'Tally',
+  Lastname: 'Jay',
+  isAdmin: false,
+  Password: 'stealth',
+  Address: 'Kampala'
+};
+
+exports.userSignupNumbers = {
+  Email: 'abel212222@gmail.com',
+  Firstname: 'Tally21',
+  Lastname: 'Jay',
+  isAdmin: false,
+  Password: 'stealth',
+  Address: 'Kampala'
+};
+
+exports.userSignupFields = {
+  Firstname: 'Tally21',
+  Lastname: 'Jay',
+  isAdmin: false,
   Password: 'stealth',
   Address: 'Kampala'
 };
 
 exports.adminToken = {
-  Token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUxLCJFbWFpbCI6Im1lbGlzc2EyODlAZ21haWwuY29tIiwiaXNBZG1pbiI6IkZhbHNlIiwiaWF0IjoxNTU4NDk0NTYxLCJleHAiOjE1NTg1ODA5NjF9.Zhwi1-hzHkkRwOTAEDb5oYBnY_qc_XdLSLIOw1Gce18'
+  Token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiRW1haWwiOiJhYmVsQGdtYWlsLmNvbSIsImlzQWRtaW4iOiJGYWxzZSIsImlhdCI6MTU1ODYwMDA2MSwiZXhwIjoxNTU4Njg2NDYxfQ.Hf1Ww2wjq32rcrQMfg6vUTkOOcV8z8yqs4LmkpMzwqA'
 };
 
 exports.userToken = {
@@ -86,8 +126,12 @@ exports.userToken = {
 };
 
 exports.userTokenUnverified = {
-  Token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM5LCJFbWFpbCI6Imx1dkBwYWxmby5leHBlcnQiLCJpc0FkbWluIjoiRmFsc2UiLCJpYXQiOjE1NTg1MTAzMDgsImV4cCI6MTU1ODU5NjcwOH0.q7OccWbsTd_CAVSRNoz1PSQqXDnqWg87sHvsKgyT1LI'
+  Token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTYsIkVtYWlsIjoidGFAdGlkaXouYXoiLCJpc0FkbWluIjoiRmFsc2UiLCJpYXQiOjE1NTg2MDA1OTMsImV4cCI6MTU1ODY4Njk5M30.CXs2oOlv1CljQTvRGY5UrxgrOEtGD7PGgfPST7tsS9k'
 };
+
+exports.TenorToken = {
+  Token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTcsIkVtYWlsIjoiZGV3bmVAZGlqbGlrLmluayIsImlzQWRtaW4iOiJGYWxzZSIsImlhdCI6MTU1ODYwMDc4NywiZXhwIjoxNTU4Njg3MTg3fQ.FF-eCfjLL9LGZwbPmXkTKt5YJjawvYOfSf0MUe1lvZU'
+}
 
 exports.userSignupNumbers = {
   Email: '333@gmail.com',

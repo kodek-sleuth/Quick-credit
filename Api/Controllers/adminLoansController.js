@@ -8,7 +8,7 @@
 import model from './databaseController';
 
 exports.getLoansRepaid = (req, res, next) => {
-  model.pool.query("Select * from loan join users on userid=users.id WHERE loan.repaid='True' and loan.status='Approved'")
+  model.pool.query("Select * from loan join users on userid=users.id WHERE loan.repaid=true and loan.status='Approved'")
     .then((data) => {
       const [fetchedData] = data.rows;
       if (data.rowCount) {
@@ -41,7 +41,7 @@ exports.getLoansRepaid = (req, res, next) => {
 };
 
 exports.getLoansUnrepaid = (req, res, next) => {
-  model.pool.query("Select * from loan join users on userid=users.id  WHERE loan.repaid='False' and loan.status='Approved'")
+  model.pool.query("Select * from loan join users on userid=users.id  WHERE loan.repaid=false and loan.status='Approved'")
     .then((data) => {
       if (data.rowCount) {
         const [fetchedData] = data.rows;

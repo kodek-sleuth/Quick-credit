@@ -9,17 +9,17 @@ import jwt from 'jsonwebtoken';
 
 import model from './databaseController';
 
-import config from '../../config';
+require('dotenv').config();
 
 exports.repayLoan = (req, res, next) => {
   const loanId = req.params.loanId;
   const makeRepaymentQuery = 'INSERT INTO repayments(loanId, createdOn, amount, monthlyInstallment) VALUES($1, $2, $3, $4)';
   try {
     const token = req.headers.authorization.split(' ')[1];
-    const decode = jwt.verify(token, config.secret);
+    const decode = jwt.verify(token, process.env.SECRET_KEY);
     const emailId = decode.Email;
     const userId = decode.id;
-  
+
     model.pool.query(`SELECT * FROM users WHERE email='${emailId}'`)
       .then((data) => {
         if (data.rowCount > 0) {
