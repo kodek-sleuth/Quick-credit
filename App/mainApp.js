@@ -16,6 +16,8 @@ const app = express();
 
 app.use(cors());
 
+// Setting up Tables
+
 // Library that generates the UI/UX of swagger
 const swaggerUI = require('swagger-ui-express');
 

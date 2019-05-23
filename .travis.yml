@@ -8,7 +8,7 @@ cache:
     - "node_modules"
     
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database quickcreditv1;' -U postgres
 
 script:
   - npm test

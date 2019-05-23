@@ -11,6 +11,11 @@ import model from './databaseController';
 
 require('dotenv').config();
 
+const createTableLoan = () => {
+  model.pool.query("CREATE TABLE IF NOT EXISTS loan(id SERIAL PRIMARY KEY, userid INTEGER REFERENCES users(id), createdOn TEXT NoT NULL, repaid BOOLEAN NOT NULL DEFAULT(false), status TEXT NOT NULL DEFAULT('Pending'), tenor INTEGER NOT NULL, amount numeric(10, 2) not null, paymentInstallment numeric(10, 2) not null, balance numeric(10, 2) not null, interest numeric(10, 2) not null)");
+};
+createTableLoan();
+
 exports.applyLoan = (req, res, next) => {
   const queryReqLoan = 'INSERT INTO loan(userid, createdOn, tenor, amount, paymentInstallment, balance, interest) VALUES($1, $2, $3, $4, $5, $6, $7)';
 

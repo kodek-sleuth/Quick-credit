@@ -20,6 +20,12 @@ import validators from './validations';
 
 require('dotenv').config();
 
+const createTableUser = () => {
+  model.pool.query("CREATE TABLE IF NOT EXISTS users(id SERIAL PRIMARY KEY, firstname VARCHAR(30) NOT NULL, lastname VARCHAR(30) NOT NULL, email VARCHAR(30) NOT NULL UNIQUE, password TEXT NOT NULL, address TEXT NOT NULL, status VARCHAR(20) NOT NULL DEFAULT('Pending'), isAdmin BOOLEAN NOT NULL)");
+};
+createTableUser();
+
+
 exports.createUser = (req, res, next) => {
   const validate = validators.validateSignup(req.body);
   if (validate.error) {

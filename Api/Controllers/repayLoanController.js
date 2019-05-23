@@ -11,6 +11,12 @@ import model from './databaseController';
 
 require('dotenv').config();
 
+const createTableRepayment = () => {
+  model.pool.query('CREATE TABLE IF NOT EXISTS repayments(id SERIAL PRIMARY KEY, loanId INTEGER REFERENCES loan(id), createdOn TEXT NOT NULL, amount numeric(10, 2) not null, monthlyInstallment numeric(10, 2)not null)');
+};
+
+createTableRepayment();
+
 exports.repayLoan = (req, res, next) => {
   const loanId = req.params.loanId;
   const makeRepaymentQuery = 'INSERT INTO repayments(loanId, createdOn, amount, monthlyInstallment) VALUES($1, $2, $3, $4)';
