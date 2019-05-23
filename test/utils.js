@@ -50,11 +50,38 @@ exports.userSignupLoginAdmin = {
   Address: 'Kampala'
 };
 
+exports.userSignupLoanAdmin = {
+  Email: random(),
+  Firstname: 'Tally',
+  Lastname: 'Jaya',
+  isAdmin: true,
+  Password: 'stealth',
+  Address: 'Kampala'
+};
+
+exports.userSignupLoanUser = {
+  Email: random(),
+  Firstname: 'Tally',
+  Lastname: 'Jaya',
+  isAdmin: false,
+  Password: 'stealth',
+  Address: 'Kampala'
+};
+
 exports.adminCredLoan = {
   Email: random(),
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: true,
+  Password: 'stealth',
+  Address: 'Kampala'
+};
+
+exports.userHistory = {
+  Email: random(),
+  Firstname: 'Tally',
+  Lastname: 'Jaya',
+  isAdmin: false,
   Password: 'stealth',
   Address: 'Kampala'
 };

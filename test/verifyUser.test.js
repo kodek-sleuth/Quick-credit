@@ -1,3 +1,4 @@
+/* eslint-disable no-trailing-spaces */
 /* eslint-disable comma-dangle */
 /* eslint-disable object-shorthand */
 /* eslint-disable no-unused-vars */
