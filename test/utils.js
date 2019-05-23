@@ -22,6 +22,25 @@ exports.userSignupLoginUser = {
 };
 
 
+exports.userSignupVerify = {
+  Email: random(),
+  Firstname: 'Tally',
+  Lastname: 'Jaya',
+  isAdmin: true,
+  Password: 'stealth',
+  Address: 'Kampala'
+};
+
+exports.userSignupVerifyUser = {
+  Email: random(),
+  Firstname: 'Tally',
+  Lastname: 'Jaya',
+  isAdmin: false,
+  Password: 'stealth',
+  Address: 'Kampala'
+};
+
+
 exports.userSignupLoginAdmin = {
   Email: random(),
   Firstname: 'Tally',

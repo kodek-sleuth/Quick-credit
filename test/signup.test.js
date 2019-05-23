@@ -33,7 +33,7 @@ describe('App Should Signup a user', () => {
   it('Should not signup a user if he enters an email that exists', (done) => {
     // Incase of an email that exists in database
     chai.request(app).post('/api/v1/auth/signup')
-      .send(utils.userSignupExist)
+      .send(utils.userSignup)
       .end((error, res) => {
         expect(res.body).to.have.property('Status');
         expect(res.body.Status).to.equals(409);

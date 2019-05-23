@@ -77,7 +77,7 @@ describe('App Should login a user', () => {
         expect(res.body).to.have.property('Status');
         expect(res.body).to.have.property('Message');
         expect(res.body.Status).to.equal(200);
-        expect(res.body.Message).to.equals('Admin has successfully logged in');
+        expect(res.body.Message).to.equals('User has successfully logged in');
         done();
       });
   });
