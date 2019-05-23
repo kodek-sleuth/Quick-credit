@@ -1,3 +1,8 @@
+/* eslint-disable consistent-return */
+/* eslint-disable function-paren-newline */
+/* eslint-disable comma-dangle */
+/* eslint-disable no-useless-escape */
+/* eslint-disable no-mixed-operators */
 /* eslint-disable object-shorthand */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable eqeqeq */
@@ -13,16 +18,27 @@ import config from '../../config';
 
 import model from './databaseController';
 
-exports.createUser = (req, res, next) => {
-  const dataBaseQueryUser = 'INSERT INTO users(firstname, lastname, email, password, address, isAdmin) VALUES($1, $2, $3, $4, $5, $6)';
+import validators from './validations';
 
+exports.createUser = (req, res, next) => {
+  const validate = validators.validateSignup(req.body);
+
+  if (validate.error) {
+    return res.status(400).json(
+      {
+        status: 400,
+        validate: validate.error.details[0].context.label
+      });
+  }
+
+  const dataBaseQueryUser = 'INSERT INTO users(firstname, lastname, email, password, address, isAdmin) VALUES($1, $2, $3, $4, $5, $6)';
   model.pool.query(`Select * FROM users WHERE email='${req.body.Email}'`)
     .then((dataCheck1) => {
       if (dataCheck1.rows == 0) {
         bcrypt.hash(req.body.Password, 10, (err, hash) => {
           if (err) {
-            res.status(401).json({
-              Status: '401',
+            res.status(400).json({
+              Status: 400,
               Error: err,
             });
           } else {
@@ -49,8 +65,8 @@ exports.createUser = (req, res, next) => {
                 });
               })
               .catch((error) => {
-                res.status(409).json({
-                  Status: 409,
+                res.status(400).json({
+                  Status: 400,
                   Message: error.message,
                 });
               });
@@ -63,10 +79,10 @@ exports.createUser = (req, res, next) => {
         });
       }
     })
-    .catch((dataError) => {
+    .catch((error) => {
       res.status(400).json({
         Status: 400,
-        Message: dataError.message,
+        Message: error.message,
       });
     });
 };

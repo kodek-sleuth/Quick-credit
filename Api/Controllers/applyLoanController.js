@@ -23,26 +23,26 @@ exports.applyLoan = (req, res, next) => {
     model.pool.query(`Select * from users WHERE email='${emailId}'`)
       .then((data) => {
         if (data.rowCount > 0) {
-          const dataFetched = data.rows;
-          if (dataFetched[0].status == 'Verified') {
+          const [dataFetched] = data.rows;
+          if (dataFetched.status == 'Verified') {
             model.pool.query(`select * from loan join users on userid=${userId} where repaid='False'`)
               .then((loanData) => {
                 if (loanData.rowCount > 0) {
-                  res.status(401).json({
-                    Status: 401,
-                    Message: 'Please repay old loan before applying for a new one',
+                  res.status(403).json({
+                    Status: 403,
+                    Message: 'You cannot apply for two loans at once',
                   });
                 } else {
                   if (req.body.Tenor > 12) {
-                    res.status(401).json({
-                      Status: 401,
+                    res.status(403).json({
+                      Status: 403,
                       Message: 'Tenor must be 12 or less',
                     });
                   } else {
                   // Making sure that user does not apply for loan exceeding 20000000
                     if (req.body.Amount > 20000000) {
-                      res.status(401).json({
-                        Status: 401,
+                      res.status(403).json({
+                        Status: 403,
                         Message: 'User can only request for a loan less than 20,000,001',
                       });
                     } else {
@@ -53,7 +53,7 @@ exports.applyLoan = (req, res, next) => {
                       const interest = (5 * req.body.Amount) / 100;
                       const paymentInstallment = (req.body.Amount + interest) / req.body.Tenor;
                       const balance = req.body.Amount + interest;
-                      const queryReqValues = [dataFetched[0].id, currentDate, req.body.Tenor, req.body.Amount, paymentInstallment, balance, interest];
+                      const queryReqValues = [dataFetched.id, currentDate, req.body.Tenor, req.body.Amount, paymentInstallment, balance, interest];
 
                       // Posting the Loan to Database
                       model.pool.query(queryReqLoan, queryReqValues)
@@ -61,9 +61,9 @@ exports.applyLoan = (req, res, next) => {
                           res.status(201).json({
                             Status: 201,
                             Data: {
-                              Email: dataFetched[0].email,
-                              Firstname: dataFetched[0].firstname,
-                              Lastname: dataFetched[0].lastname,
+                              Email: dataFetched.email,
+                              Firstname: dataFetched.firstname,
+                              Lastname: dataFetched.lastname,
                               Amount: req.body.Amount,
                               Tenor: req.body.Tenor,
                               CreatedOn: currentDate,
@@ -92,14 +92,14 @@ exports.applyLoan = (req, res, next) => {
                 });
               });
           } else {
-            res.status(401).json({
-              Status: 401,
-              Message: 'User must be Verified To make this request',
+            res.status(403).json({
+              Status: 403,
+              Message: 'User must be verified To make this request',
             });
           }
         } else {
-          res.status(400).json({
-            Status: 400,
+          res.status(403).json({
+            Status: 403,
             Message: 'Please Signup to use resource',
           });
         }
@@ -107,8 +107,8 @@ exports.applyLoan = (req, res, next) => {
 
       .catch((error) => {
         res.status(500).json({
-          Status: '500',
-          Error: 'Failed to process request, Try again later',
+          Status: 500,
+          Message: 'Failed to process request, Try again later',
         });
       });
   } catch (error) {

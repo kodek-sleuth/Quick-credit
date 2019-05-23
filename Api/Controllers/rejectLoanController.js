@@ -18,19 +18,19 @@ exports.rejectLoan = (req, res, next) => {
           .then(() => {
             model.pool.query(`Select * from loan join users on userid=users.id where loan.id='${loanId}'`)
               .then((data) => {
-                const dataFound = data.rows;
+                const [dataFound] = data.rows;
                 res.status(200).json({
                   Status: 200,
                   Data: {
-                    Firstname: dataFound[0].firstname,
-                    Lastname: dataFound[0].lastname,
-                    Email: dataFound[0].email,
-                    Status: dataFound[0].status,
-                    Amount: dataFound[0].amount,
-                    Installment: dataFound[0].paymentinstallment,
-                    Balance: dataFound[0].balance,
-                    Repaid: dataFound[0].repaid,
-                    Tenor: `${dataFound[0].tenor} months`,
+                    Firstname: dataFound.firstname,
+                    Lastname: dataFound.lastname,
+                    Email: dataFound.email,
+                    Status: dataFound.status,
+                    Amount: dataFound.amount,
+                    Installment: dataFound.paymentinstallment,
+                    Balance: dataFound.balance,
+                    Repaid: dataFound.repaid,
+                    Tenor: `${dataFound.tenor} months`,
                   },
                   Message: 'Successfully Rejected Loan',
                 });

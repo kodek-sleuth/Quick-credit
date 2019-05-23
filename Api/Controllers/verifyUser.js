@@ -18,15 +18,15 @@ exports.verifyUser = (req, res, next) => {
             model.pool.query(`Select * from users where email='${Email}'`)
               .then((data) => {
                 if (data.rowCount > 0) {
-                  const dataFound = data.rows;
+                  const [dataFound] = data.rows;
                   res.status(200).json({
                     Status: 200,
                     Data: {
-                      Firstname: dataFound[0].firstname,
-                      Lastname: dataFound[0].lastname,
-                      Email: dataFound[0].email,
-                      Status: dataFound[0].status,
-                      Address: dataFound[0].address,
+                      Firstname: dataFound.firstname,
+                      Lastname: dataFound.lastname,
+                      Email: dataFound.email,
+                      Status: dataFound.status,
+                      Address: dataFound.address,
                     },
                     Message: 'Successfully Verified User',
                   });
@@ -35,7 +35,7 @@ exports.verifyUser = (req, res, next) => {
           });
       } else {
         res.status(404).json({
-          Status: '404',
+          Status: 404,
           Message: 'User not found',
         });
       }

@@ -18,26 +18,26 @@ exports.postTransaction = (req, res, next) => {
         const dataFound = data.rows;
 
         // We make sure that Admin can only Post Transaction of un approved Loan
-        if (dataFound[0].status == 'Approved') {
+        if (dataFound.status == 'Approved') {
           // We then make the Update and then make another check to send back current data to the User
           model.pool.query(verifyLoanQuery)
             .then((feedback) => {
               model.pool.query(`SELECT * FROM loan join users on userid=users.id WHERE loan.id=${loanId}`)
                 .then((newData) => {
-                  const fetchedData = newData.rows;
+                  const [fetchedData] = newData.rows;
 
                   res.status(200).json({
                     Status: 200,
                     Data: {
-                      Firstname: fetchedData[0].firstname,
-                      Lastname: fetchedData[0].lastname,
-                      Email: fetchedData[0].email,
-                      Status: fetchedData[0].status,
-                      Amount: fetchedData[0].amount,
-                      Installment: fetchedData[0].paymentinstallment,
-                      Balance: fetchedData[0].balance,
-                      Repaid: fetchedData[0].repaid,
-                      Tenor: `${fetchedData[0].tenor} months`,
+                      Firstname: fetchedData.firstname,
+                      Lastname: fetchedData.lastname,
+                      Email: fetchedData.email,
+                      Status: fetchedData.status,
+                      Amount: fetchedData.amount,
+                      Installment: fetchedData.paymentinstallment,
+                      Balance: fetchedData.balance,
+                      Repaid: fetchedData.repaid,
+                      Tenor: `${fetchedData.tenor} months`,
                     },
                     Message: 'Successfully Placed Transaction for User',
                   });
@@ -50,9 +50,9 @@ exports.postTransaction = (req, res, next) => {
               });
             });
         } else {
-          res.status(401).json({
-            Status: 401,
-            Message: 'Loan has to be Approved inorder to Post Transaction',
+          res.status(403).json({
+            Status: 403,
+            Message: 'Loan has to be approved inorder to Post Transaction',
           });
         }
       } else {
