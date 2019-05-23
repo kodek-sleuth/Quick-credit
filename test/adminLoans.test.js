@@ -102,6 +102,19 @@ describe('Testing if app returns all Admin loan requests', () => {
       });
   });
 
+  it('Should apply for a loan given right credentials', (done) => {
+    chai.request(app).post('/api/v1/user/loans/apply')
+      .set('Authorization', `Bearer ${userToken[0].Token}`)
+      .send(utils.userLoanApply)
+      .end((error, res) => {
+        expect(res.body.Status).to.equals(201);
+        expect(res.body).to.have.property('Message');
+        expect(res.body).to.have.property('Data');
+        done();
+      });
+  });
+
+
   it('Should return all repaid loans', (done) => {
     chai.request(app).get('/api/v1/admin/loans/repaid')
       .set('Authorization', `Bearer ${usersToken[0].Token}`)
@@ -138,17 +151,17 @@ describe('Testing if app returns all Admin loan requests', () => {
       });
   });
 
-  // it('Should return a specific loan given right id', (done) => {
-  //   chai.request(app).get('/api/v1/admin/loans/1')
-  //     .set('Authorization', `Bearer ${usersToken[0].Token}`)
-  //     .end((error, res) => {
-  //       expect(res.body.Status).to.equals(200);
-  //       expect(res.body).to.have.property('Status');
-  //       expect(res.body).to.have.property('Data');
-  //       expect(res.body).to.have.property('Count');
-  //       done();
-  //     });
-  // });
+  it('Should return a specific loan given right id', (done) => {
+    chai.request(app).get('/api/v1/admin/loans/1')
+      .set('Authorization', `Bearer ${usersToken[0].Token}`)
+      .end((error, res) => {
+        expect(res.body.Status).to.equals(200);
+        expect(res.body).to.have.property('Status');
+        expect(res.body).to.have.property('Data');
+        expect(res.body).to.have.property('Count');
+        done();
+      });
+  });
 
   it('Should not return a specific loan given wrong id', (done) => {
     chai.request(app).get('/api/v1/admin/loans/220990')
