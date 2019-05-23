@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-else-return */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable prefer-destructuring */
@@ -8,21 +10,33 @@ import model from './databaseController';
 exports.getLoansRepaid = (req, res, next) => {
   model.pool.query("Select * from loan join users on userid=users.id WHERE loan.repaid='True' and loan.status='Approved'")
     .then((data) => {
-      const fetchedData = data.rows;
+      const [fetchedData] = data.rows;
       if (data.rowCount) {
         res.status(200).json({
           Count: data.rowCount,
           Status: 200,
-          Data: fetchedData,
+          Data: {
+            Firstname: fetchedData.firstname,
+            Lastname: fetchedData.lastname,
+            Email: fetchedData.email,
+            Status: fetchedData.status,
+            Amount: fetchedData.amount,
+            Balance: fetchedData.balance,
+            Repaid: fetchedData.repaid,
+            Tenor: fetchedData.tenor,
+            Interest: fetchedData.interest,
+            Installment: fetchedData.paymentinstallment,
+            CreatedOn: fetchedData.createdon
+          },
           Message: 'Successfully Fetched Loans',
         });
+      } else {
+        return res.status(200).json({
+          Count: data.rowCount,
+          Status: 200,
+          Message: 'There are no repaid loans',
+        });
       }
-
-      return res.status(200).json({
-        Count: data.rowCount,
-        Status: 200,
-        Message: 'There are no repaid loans',
-      });
     });
 };
 
@@ -30,20 +44,32 @@ exports.getLoansUnrepaid = (req, res, next) => {
   model.pool.query("Select * from loan join users on userid=users.id  WHERE loan.repaid='False' and loan.status='Approved'")
     .then((data) => {
       if (data.rowCount) {
-        const fetchedData = data.rows;
+        const [fetchedData] = data.rows;
         return res.status(200).json({
           Count: data.rowCount,
           Status: 200,
-          Data: fetchedData,
+          Data: {
+            Firstname: fetchedData.firstname,
+            Lastname: fetchedData.lastname,
+            Email: fetchedData.email,
+            Status: fetchedData.status,
+            Amount: fetchedData.amount,
+            Balance: fetchedData.balance,
+            Repaid: fetchedData.repaid,
+            Tenor: fetchedData.tenor,
+            Interest: fetchedData.interest,
+            Installment: fetchedData.paymentinstallment,
+            CreatedOn: fetchedData.createdon
+          },
           Message: 'Successfully Fetched Loans'
         });
+      } else {
+        return res.status(200).json({
+          Count: data.rowCount,
+          Status: 200,
+          Message: 'There are no unrepaid Loans'
+        });
       }
-
-      return res.status(200).json({
-        Count: data.rowCount,
-        Status: 200,
-        Message: 'There are no unrepaid Loans'
-      });
     })
 
     .catch((error) => {
@@ -58,19 +84,32 @@ exports.getAllLoans = (req, res, next) => {
   model.pool.query('Select * from loan join users on userid=users.id')
     .then((data) => {
       if (data.rowCount) {
-        const fetchedData = data.rows;
+        const [fetchedData] = data.rows;
         return res.status(200).json({
           Count: data.rowCount,
           Status: 200,
-          Data: fetchedData,
+          Data: {
+            Firstname: fetchedData.firstname,
+            Lastname: fetchedData.lastname,
+            Email: fetchedData.email,
+            Status: fetchedData.status,
+            Amount: fetchedData.amount,
+            Balance: fetchedData.balance,
+            Repaid: fetchedData.repaid,
+            Tenor: fetchedData.tenor,
+            Interest: fetchedData.interest,
+            Installment: fetchedData.paymentinstallment,
+            CreatedOn: fetchedData.createdon
+          },
           Message: 'Successfully Fetched Loans'
         });
+      } else {
+        return res.status(200).json({
+          Count: data.rowCount,
+          Status: 200,
+          Message: 'There are no Loans found'
+        });
       }
-      return res.status(200).json({
-        Count: data.rowCount,
-        Status: 200,
-        Message: 'There are no Loans found'
-      });
     })
 
     .catch((error) => {
@@ -86,11 +125,23 @@ exports.getSpecificLoan = (req, res, next) => {
   model.pool.query(`Select * from loan join users on userid=users.id  WHERE loan.id=${loanId}`)
     .then((data) => {
       if (data.rowCount > 0) {
-        const fetchedData = data.rows;
+        const [fetchedData] = data.rows;
         res.status(200).json({
           Count: data.rowCount,
           Status: 200,
-          Data: fetchedData,
+          Data: {
+            Firstname: fetchedData.firstname,
+            Lastname: fetchedData.lastname,
+            Email: fetchedData.email,
+            Status: fetchedData.status,
+            Amount: fetchedData.amount,
+            Balance: fetchedData.balance,
+            Repaid: fetchedData.repaid,
+            Tenor: fetchedData.tenor,
+            Interest: fetchedData.interest,
+            Installment: fetchedData.paymentinstallment,
+            CreatedOn: fetchedData.createdon
+          },
           Message: 'Successfully Fetched Loan'
         });
       } else {

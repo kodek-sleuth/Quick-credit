@@ -15,14 +15,14 @@ exports.postTransaction = (req, res, next) => {
   model.pool.query(`Select * from loan where id='${loanId}'`)
     .then((data) => {
       if (data.rowCount > 0) {
-        const dataFound = data.rows;
+        const [dataFound] = data.rows;
 
         // We make sure that Admin can only Post Transaction of un approved Loan
         if (dataFound.status == 'Approved') {
           // We then make the Update and then make another check to send back current data to the User
           model.pool.query(verifyLoanQuery)
             .then((feedback) => {
-              model.pool.query(`SELECT * FROM loan join users on userid=users.id WHERE loan.id=${loanId}`)
+              model.pool.query(`SELECT * FROM users join loan on users.id=userid WHERE loan.id=${loanId}`)
                 .then((newData) => {
                   const [fetchedData] = newData.rows;
 
@@ -39,7 +39,7 @@ exports.postTransaction = (req, res, next) => {
                       Repaid: fetchedData.repaid,
                       Tenor: `${fetchedData.tenor} months`,
                     },
-                    Message: 'Successfully Placed Transaction for User',
+                    Message: 'Successfully posted transaction for user',
                   });
                 });
             })
@@ -52,7 +52,7 @@ exports.postTransaction = (req, res, next) => {
         } else {
           res.status(403).json({
             Status: 403,
-            Message: 'Loan has to be approved inorder to Post Transaction',
+            Message: 'Loan has to be approved inorder to post transaction',
           });
         }
       } else {

@@ -22,7 +22,7 @@ exports.approveLoan = (req, res, next) => {
                 res.status(200).json({
                   Status: 200,
                   Data: {
-                    Id: dataFound.id,
+                    Id: loanId,
                     Firstname: dataFound.firstname,
                     Lastname: dataFound.lastname,
                     Email: dataFound.email,

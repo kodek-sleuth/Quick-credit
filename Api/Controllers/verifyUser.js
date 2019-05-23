@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable no-lonely-if */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
@@ -27,6 +28,7 @@ exports.verifyUser = (req, res, next) => {
                       Email: dataFound.email,
                       Status: dataFound.status,
                       Address: dataFound.address,
+                      isAdmin: dataFound.isAdmin
                     },
                     Message: 'Successfully Verified User',
                   });

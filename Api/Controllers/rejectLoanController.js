@@ -16,12 +16,13 @@ exports.rejectLoan = (req, res, next) => {
       if (result.rowCount > 0) {
         model.pool.query(verifyLoanQuery)
           .then(() => {
-            model.pool.query(`Select * from loan join users on userid=users.id where loan.id='${loanId}'`)
+            model.pool.query(`Select * from users join loan on users.id=userid where loan.id='${loanId}'`)
               .then((data) => {
                 const [dataFound] = data.rows;
                 res.status(200).json({
                   Status: 200,
                   Data: {
+                    Id: loanId,
                     Firstname: dataFound.firstname,
                     Lastname: dataFound.lastname,
                     Email: dataFound.email,

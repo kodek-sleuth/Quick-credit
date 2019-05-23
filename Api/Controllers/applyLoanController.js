@@ -71,7 +71,7 @@ exports.applyLoan = (req, res, next) => {
                               Interest: interest,
                               PaymentInstallment: paymentInstallment,
                             },
-                            Message: 'Successfully Applied For Loan',
+                            Message: 'Successfully applied For loan',
                           });
                         })
 
