@@ -3,7 +3,7 @@
 import random from 'random-email';
 
 exports.userSignup = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
@@ -13,7 +13,7 @@ exports.userSignup = {
 
 
 exports.userSignupLoginUser = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
@@ -23,7 +23,7 @@ exports.userSignupLoginUser = {
 
 
 exports.userSignupVerify = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: true,
@@ -32,7 +32,7 @@ exports.userSignupVerify = {
 };
 
 exports.userSignupVerifyUser = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
@@ -42,7 +42,7 @@ exports.userSignupVerifyUser = {
 
 
 exports.userSignupLoginAdmin = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
@@ -51,7 +51,7 @@ exports.userSignupLoginAdmin = {
 };
 
 exports.userSignupLoanAdmin = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: true,
@@ -60,7 +60,7 @@ exports.userSignupLoanAdmin = {
 };
 
 exports.userSignupLoanUser = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
@@ -69,7 +69,7 @@ exports.userSignupLoanUser = {
 };
 
 exports.adminCredLoan = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: true,
@@ -78,7 +78,7 @@ exports.adminCredLoan = {
 };
 
 exports.userHistory = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'Tally',
   Lastname: 'Jaya',
   isAdmin: false,
@@ -87,7 +87,7 @@ exports.userHistory = {
 };
 
 exports.userSignupLoan = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'Tally',
   Lastname: 'Jay',
   isAdmin: false,
@@ -96,7 +96,7 @@ exports.userSignupLoan = {
 };
 
 exports.userSignupName = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'T',
   Lastname: 'Jay',
   isAdmin: 'False',
@@ -105,7 +105,7 @@ exports.userSignupName = {
 };
 
 exports.userSignupRepay = {
-  Email: random(),
+  Email: random({ domain: 'example.com' }),
   Firstname: 'Tally',
   Lastname: 'Jay',
   isAdmin: 'False',
