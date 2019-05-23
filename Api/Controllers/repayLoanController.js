@@ -94,10 +94,10 @@ exports.repayLoan = (req, res, next) => {
                             model.pool.query(`Update loan set balance='${newBalance}' where id=${loanData.id}`)
                               .then((updated) => {
                                 // This is sending back the correct Updated details back to user
-                                model.pool.query(`SELECT * FROM loan WHERE id=${loanData.id}`)
+                                model.pool.query(`SELECT * FROM loan join users on userid=users.id WHERE loan.id=${loanData.id}`)
                                   .then((currentData) => {
                                     if (currentData.rowCount > 0) {
-                                      const updatedData = currentData.rows;
+                                      const [updatedData] = currentData.rows;
 
                                       if (updatedData.balance == 0.00) {
                                         res.status(201).json({

@@ -80,7 +80,7 @@ exports.createUser = (req, res, next) => {
       } else {
         res.status(409).json({
           Status: 409,
-          Message: 'Email is already taken',
+          Message: 'User already exists with that Email',
         });
       }
     })

@@ -12,6 +12,10 @@ import morgan from 'morgan';
 
 import cors from 'cors';
 
+import jwtMiddleware from '../Api/Settings/checkAuthAdmin';
+
+import jwtMiddleware2 from '../Api/Settings/checkAuthUser';
+
 const app = express();
 
 app.use(cors());
@@ -51,14 +55,14 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swagger.swaggerSpec));
 // Defining our routes.
 app.use('/api/v1/auth', authSignup);
 app.use('/api/v1/auth', authLogin);
-app.use('/api/v1/admin', verifyUser);
-app.use('/api/v1/user', reqLoan);
-app.use('/api/v1/user', repayLoan);
-app.use('/api/v1/admin', approveLoan);
-app.use('/api/v1/admin', posTransLoan);
-app.use('/api/v1/admin', rejectLoan);
-app.use('/api/v1/user', userLoans);
-app.use('/api/v1/admin', adminLoans);
+app.use('/api/v1/admin', jwtMiddleware, verifyUser);
+app.use('/api/v1/user', jwtMiddleware2, reqLoan);
+app.use('/api/v1/user', jwtMiddleware2, repayLoan);
+app.use('/api/v1/admin', jwtMiddleware, approveLoan);
+app.use('/api/v1/admin', jwtMiddleware, posTransLoan);
+app.use('/api/v1/admin', jwtMiddleware, rejectLoan);
+app.use('/api/v1/user', jwtMiddleware2, userLoans);
+app.use('/api/v1/admin', jwtMiddleware, adminLoans);
 
 // Error Handling Where we create a new error object that gets sent on after error display Message Status
 app.use((req, res, next) => {

@@ -2,8 +2,6 @@ import express from 'express';
 
 import rejectLoanController from '../Controllers/rejectLoanController';
 
-import jwtMiddleware from '../Settings/checkAuthAdmin';
-
 const rejectLoan = express.Router();
 
 /**
@@ -27,6 +25,6 @@ const rejectLoan = express.Router();
 *         description: Successfully Rejected Loan
 */
 
-rejectLoan.patch('/loans/:loanId/reject', jwtMiddleware, rejectLoanController.rejectLoan);
+rejectLoan.patch('/loans/:loanId/reject', rejectLoanController.rejectLoan);
 
 module.exports = rejectLoan;

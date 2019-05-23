@@ -2,9 +2,6 @@ import express from 'express';
 
 import adminLoansController from '../Controllers/adminLoansController';
 
-// Middleware for checking Auth and Access Rights
-import jwtMiddleware from '../Settings/checkAuthAdmin';
-
 const adminLoans = express.Router();
 
 /**
@@ -22,7 +19,7 @@ const adminLoans = express.Router();
 *         description: Successfully Fetched Loans
 */
 
-adminLoans.get('/loans', jwtMiddleware, adminLoansController.getAllLoans);
+adminLoans.get('/loans', adminLoansController.getAllLoans);
 
 /**
 * @swagger
@@ -39,7 +36,7 @@ adminLoans.get('/loans', jwtMiddleware, adminLoansController.getAllLoans);
 *         description: Successfully Fetched Loans
 */
 
-adminLoans.get('/loans/repaid', jwtMiddleware, adminLoansController.getLoansRepaid);
+adminLoans.get('/loans/repaid', adminLoansController.getLoansRepaid);
 
 /**
 * @swagger
@@ -56,7 +53,7 @@ adminLoans.get('/loans/repaid', jwtMiddleware, adminLoansController.getLoansRepa
 *         description: Successfully Fetched Loans
 */
 
-adminLoans.get('/loans/unrepaid', jwtMiddleware, adminLoansController.getLoansUnrepaid);
+adminLoans.get('/loans/unrepaid', adminLoansController.getLoansUnrepaid);
 
 /**
 * @swagger
@@ -79,6 +76,6 @@ adminLoans.get('/loans/unrepaid', jwtMiddleware, adminLoansController.getLoansUn
 *         description: Successfully Fetched Loan
 */
 
-adminLoans.get('/loans/:loanId', jwtMiddleware, adminLoansController.getSpecificLoan);
+adminLoans.get('/loans/:loanId', adminLoansController.getSpecificLoan);
 
 module.exports = adminLoans;

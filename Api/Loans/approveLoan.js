@@ -2,8 +2,6 @@ import express from 'express';
 
 import approveLoanController from '../Controllers/approveLoanController';
 
-import jwtMiddleware from '../Settings/checkAuthAdmin';
-
 const approveLoan = express.Router();
 
 /**
@@ -29,6 +27,6 @@ const approveLoan = express.Router();
 *         description: Failed to process request, Try again later
 */
 
-approveLoan.patch('/loans/:loanId/approve', jwtMiddleware, approveLoanController.approveLoan);
+approveLoan.patch('/loans/:loanId/approve', approveLoanController.approveLoan);
 
 module.exports = approveLoan;

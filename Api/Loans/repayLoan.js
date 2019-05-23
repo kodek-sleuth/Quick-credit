@@ -2,8 +2,6 @@ import express from 'express';
 
 import payLoanController from '../Controllers/repayLoanController';
 
-import jwtMiddleware from '../Settings/checkAuthUser';
-
 const payLoan = express.Router();
 
 /**
@@ -39,6 +37,6 @@ const payLoan = express.Router();
 *         description: Failed to process request, Try again later
 */
 
-payLoan.post('/loans/:loanId/repayment', jwtMiddleware, payLoanController.repayLoan);
+payLoan.post('/loans/:loanId/repayment', payLoanController.repayLoan);
 
 module.exports = payLoan;

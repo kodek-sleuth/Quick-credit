@@ -1,7 +1,5 @@
 import express from 'express';
 
-import jwtMiddleware from '../Settings/checkAuthAdmin';
-
 import postTransLoanController from '../Controllers/adminPostTransactionController';
 
 const postTransLoan = express.Router();
@@ -27,6 +25,6 @@ const postTransLoan = express.Router();
 *         description: Successfully Placed Transaction for User
 */
 
-postTransLoan.patch('/loans/:loanId/transact', jwtMiddleware, postTransLoanController.postTransaction);
+postTransLoan.patch('/loans/:loanId/transact', postTransLoanController.postTransaction);
 
 module.exports = postTransLoan;
