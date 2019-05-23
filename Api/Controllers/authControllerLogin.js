@@ -12,7 +12,7 @@ import model from './databaseController';
 
 import validators from './validations';
 
-require('dotenv').config();
+require('dotenv').config()
 
 // A Login is just a database check to make sure that req.body matches  all values in database for that user
 exports.loginUser = (req, res, next) => {
