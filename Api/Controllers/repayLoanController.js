@@ -12,6 +12,7 @@ import model from './databaseController';
 import config from '../../config';
 
 exports.repayLoan = (req, res, next) => {
+  const loanId = req.params.loanId;
   const makeRepaymentQuery = 'INSERT INTO repayments(loanId, createdOn, amount, monthlyInstallment) VALUES($1, $2, $3, $4)';
   try {
     const token = req.headers.authorization.split(' ')[1];
@@ -23,7 +24,7 @@ exports.repayLoan = (req, res, next) => {
       .then((data) => {
         if (data.rowCount > 0) {
           // Since a repay will always be to that one unrepaid loan we may/many not user an id because a user will only have a loan after paying a new one
-          model.pool.query(`select loan.status, loan.paymentinstallment, loan.balance, loan.id, users.firstname, users.email, users.lastname from loan join users on userid=${userId} where repaid='False'`)
+          model.pool.query(`select loan.status, loan.paymentinstallment, loan.balance, loan.id, users.firstname, users.email, users.lastname from loan join users on userid=${userId} where repaid='False' and loan.id=${loanId}`)
             .then((result) => {
               if (result.rowCount > 0) {
                 const [loanData] = result.rows;
@@ -155,7 +156,7 @@ exports.repayLoan = (req, res, next) => {
             .catch((err) => {
               res.status(400).json({
                 Status: 400,
-                Message: err.message,
+                Message: 'No loan exists with that Id',
               });
             });
         } else {
