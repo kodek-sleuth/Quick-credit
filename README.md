@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/kodek-sleuth/Quick-credit.svg?branch=ADC-challenge-3)](https://travis-ci.org/kodek-sleuth/Quick-credit)
 [![Coverage Status](https://coveralls.io/repos/github/kodek-sleuth/Quick-credit/badge.svg?branch=ADC-challenge-3)](https://coveralls.io/github/kodek-sleuth/Quick-credit?branch=ADC-challenge-3)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2a2b1009120b374af300/maintainability)](https://codeclimate.com/github/kodek-sleuth/Quick-credit/maintainability)
 
 # Quick-credit
 Quick Credit is an online lending platform that provides short term soft loans to individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners.
