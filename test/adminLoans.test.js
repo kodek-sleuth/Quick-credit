@@ -138,15 +138,6 @@ describe('Testing if app returns all Admin loan requests', () => {
       });
   });
 
-  it('Should return a specific loan given right id', (done) => {
-    chai.request(app).get('/api/v1/admin/loans/1')
-      .set('Authorization', `Bearer ${usersToken[0].Token}`)
-      .end((error, res) => {
-        expect(res.body.Status).to.equals(404);
-        done();
-      });
-  });
-
   it('Should not return a specific loan given wrong id', (done) => {
     chai.request(app).get('/api/v1/admin/loans/220990')
       .set('Authorization', `Bearer ${usersToken[0].Token}`)
