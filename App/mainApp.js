@@ -16,11 +16,23 @@ import jwtMiddleware from '../Api/Settings/checkAuthAdmin';
 
 import jwtMiddleware2 from '../Api/Settings/checkAuthUser';
 
+import model from '../Api/Controllers/databaseController';
+
 const app = express();
 
 app.use(cors());
 
-// Setting up Tables
+const createTableRepayment = () => {
+    model.pool.query('CREATE TABLE IF NOT EXISTS repayments(id SERIAL PRIMARY KEY, loanId INTEGER REFERENCES loan(id), createdOn TEXT NOT NULL, amount numeric(10, 2) not null, monthlyInstallment numeric(10, 2)not null)');
+  };
+  
+createTableRepayment();
+
+const createTableLoan = () => {
+    model.pool.query("CREATE TABLE IF NOT EXISTS loan(id SERIAL PRIMARY KEY, userid INTEGER REFERENCES users(id), createdOn TEXT NoT NULL, repaid BOOLEAN NOT NULL DEFAULT(false), status TEXT NOT NULL DEFAULT('Pending'), tenor INTEGER NOT NULL, amount numeric(10, 2) not null, paymentInstallment numeric(10, 2) not null, balance numeric(10, 2) not null, interest numeric(10, 2) not null)");
+  };
+  createTableLoan();
+
 
 // Library that generates the UI/UX of swagger
 const swaggerUI = require('swagger-ui-express');
