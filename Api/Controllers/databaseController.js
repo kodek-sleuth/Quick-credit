@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const { Pool } = pg;
 
-const connectionString = process.env.QUICK_CREDIT_DB;
+const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({ connectionString });
 

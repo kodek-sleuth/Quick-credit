@@ -206,7 +206,7 @@ exports.userTokenUnverified = {
 
 exports.TenorToken = {
   Token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTcsIkVtYWlsIjoiZGV3bmVAZGlqbGlrLmluayIsImlzQWRtaW4iOiJGYWxzZSIsImlhdCI6MTU1ODYwMDc4NywiZXhwIjoxNTU4Njg3MTg3fQ.FF-eCfjLL9LGZwbPmXkTKt5YJjawvYOfSf0MUe1lvZU'
-}
+};
 
 exports.userSignupNumbers = {
   Email: '333@gmail.com',

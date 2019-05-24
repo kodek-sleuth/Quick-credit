@@ -12,9 +12,9 @@ exports.validateSignup = (object) => {
     Email: joi.string().email().required().regex(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).label('Please enter a valid email address'),
     Firstname: joi.string().min(3).max(20).trim().required().regex(/^[A-Za-z]+$/).label('Please enter a valid firstname of not more than 20 characters e.g Mugerwa'),
     Lastname: joi.string().min(3).max(20).trim().required().regex(/^[A-Za-z]+$/).label('Please enter a valid secondname of not more than 20 characters e.g Joseph'),
-    Password: joi.string().required().min(3).max(20).regex(/^[a-zA-Z0-9]{8,15}$/).label('Password should be between 3 and 20'),
+    Password: joi.string().required().min(3).max(20).regex(/^[a-zA-Z0-9]{8,15}$/).label('Password should have atleast a caps letter and numbers'),
     Address: joi.string().min(3).required(),
-    isAdmin: joi.boolean().required()
+    isAdmin: joi.boolean().required().label('This field can either be true or false')
   });
 
   return joi.validate(object, schema);
